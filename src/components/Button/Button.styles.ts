@@ -285,6 +285,7 @@ export const useButtonStyles = createUseStyles({
   "ste-button": (props: ButtonStyleProps) => {
     return {
       display: "inline-flex",
+      width: props.fullWidth ? "100%" : "auto",
       gap: "0.5rem",
       justifyContent: "center",
       alignItems: "center",

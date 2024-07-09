@@ -11,9 +11,10 @@ const ButtonInternal = ({
   color = "primary",
   disabled,
   children,
+  fullWidth,
   ...rest
 }: ButtonProps & ButtonInternalProps) => {
-  const classNames = useButtonStyles({ size, variant, color, disabled });
+  const classNames = useButtonStyles({ size, variant, color, disabled, fullWidth });
 
   return (
     <button aria-disabled={disabled} className={classNames["ste-button"]}>

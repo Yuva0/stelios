@@ -7,7 +7,13 @@ const meta: Meta<typeof Button> = {
   title: "Components/Button",
   component: Button,
   parameters: {},
-  argTypes: {},
+  argTypes: {
+    fullWidth: {
+      control: {
+        type: "boolean",
+      },
+    },
+  },
 };
 
 export default meta;

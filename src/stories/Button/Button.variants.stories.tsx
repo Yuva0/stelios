@@ -7,7 +7,9 @@ import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
 const meta: Meta<typeof Button> = {
   title: "Components/Button",
   component: Button,
-  parameters: {},
+  parameters: {
+    layout: "fullscreen",
+  },
   argTypes: {},
 };
 
@@ -457,8 +459,7 @@ export const Variants: Story = {
             </td>
           </tr>
         </table>
-        <div style={{display:"flex", gap:"1rem"}}>
-
+        <div style={{ display: "flex", gap: "1rem" }}>
           <Button leadingIcon={<IconArrowLeft />}>Label</Button>
           <Button trailingIcon={<IconArrowRight />}>Label</Button>
           <Button

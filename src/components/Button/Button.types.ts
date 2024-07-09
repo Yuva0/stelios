@@ -38,4 +38,5 @@ export interface ButtonStyleProps {
     | "success"
     | "info";
   disabled?: boolean;
+  fullWidth?: boolean;
 }
