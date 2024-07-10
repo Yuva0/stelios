@@ -2,6 +2,7 @@ export interface RadioProps {
   index?: number;
   value?: string;
   size?: "small" | "medium" | "large";
+  color?: "primary" | "secondary" | "tertiary" | "danger" | "warning" | "success" | "info";
   checked?: boolean;
   selected?: boolean;
   disabled?: boolean;
@@ -20,4 +21,5 @@ export interface RadioStyleProps {
   selected?: boolean;
   disabled?: boolean;
   size?: "small" | "medium" | "large";
+  color?: "primary" | "secondary" | "tertiary" | "danger" | "warning" | "success" | "info";
 }

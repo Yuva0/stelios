@@ -24,7 +24,7 @@ const useRadioStyles = createUseStyles({
     width: "fit-content",
     borderRadius: "50%",
     "&:hover": {
-      background: colors.info["10"],
+      background: colors[props.color ?? "info"]["10"],
     },
     '& input[type="radio"]': {
       position: "absolute",

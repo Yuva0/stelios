@@ -15,6 +15,7 @@ const Radio = forwardRef(
       className,
       style,
       size = "medium",
+      color,
 
       //Events
       onChange,
