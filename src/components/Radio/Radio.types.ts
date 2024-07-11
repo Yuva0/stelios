@@ -2,9 +2,16 @@ export interface RadioProps {
   index?: number;
   value?: string;
   size?: "small" | "medium" | "large";
-  color?: "primary" | "secondary" | "tertiary" | "danger" | "warning" | "success" | "info";
-  checked?: boolean;
+  color?:
+    | "primary"
+    | "secondary"
+    | "tertiary"
+    | "danger"
+    | "warning"
+    | "success"
+    | "info";
   selected?: boolean;
+  focused?: boolean;
   disabled?: boolean;
   label?: string;
   name?: string;
@@ -14,12 +21,19 @@ export interface RadioProps {
 
   //Events
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  getSelectedIndex?: (index?: number) => void;
 }
 
 export interface RadioStyleProps {
-  checked?: boolean;
   selected?: boolean;
   disabled?: boolean;
   size?: "small" | "medium" | "large";
-  color?: "primary" | "secondary" | "tertiary" | "danger" | "warning" | "success" | "info";
+  color?:
+    | "primary"
+    | "secondary"
+    | "tertiary"
+    | "danger"
+    | "warning"
+    | "success"
+    | "info";
 }

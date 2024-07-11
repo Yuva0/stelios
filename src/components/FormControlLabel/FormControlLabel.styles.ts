@@ -21,6 +21,7 @@ const getFlexDirection = (
 const useFormControlLabelStyles = createUseStyles({
   "ste-form-control-label": (props: FormControlLabelStyleProps) => ({
     display: "inline-flex",
+    width: "fit-content",
     flexDirection: getFlexDirection(props.labelPlacement),
     alignItems: "center",
     justifyContent: "center",

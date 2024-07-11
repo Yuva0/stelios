@@ -9,8 +9,9 @@ const FormControlLabel: React.FC<FormControlLabelProps> = ({
   label,
   labelPlacement = "end",
   size = "medium",
-  gap = 8,
+  gap = 4,
   disabled,
+  ...props
 }) => {
   const _disabled = control.props.disabled || disabled;
 
@@ -21,9 +22,13 @@ const FormControlLabel: React.FC<FormControlLabelProps> = ({
     gap,
   });
 
+  // console.log(Array.isArray(control));
+
   return (
     <label className={classNames["ste-form-control-label"]}>
-      {control}
+      {React.cloneElement(control, {
+        ...props,
+      })}
       <span className="ste-form-control-label">
         {typeof label === "string" ? (
           size === "small" ? (

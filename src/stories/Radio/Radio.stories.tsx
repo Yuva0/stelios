@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import Radio from "../../components/Radio/Radio";
+import FormControlLabel from "../../components/FormControlLabel/FormControlLabel";
 
 const meta: Meta<typeof Radio> = {
   title: "Components/Radio",
@@ -19,7 +20,7 @@ export const Default: Story = {
   render: () => {
     return (
       <div>
-        <Radio />
+        <FormControlLabel control={<Radio />} label="Radio Label" />
       </div>
     );
   },

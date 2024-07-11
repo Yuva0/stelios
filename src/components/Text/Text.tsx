@@ -9,7 +9,7 @@ const Text = ({
   align,
   color,
   wrap,
-  size,
+  size = "medium",
   style,
   ...rest
 }: TextProps) => {
@@ -97,7 +97,10 @@ const Text = ({
       );
     case "label":
       return (
-        <label style={style} className={`${classNames["ste-typography"]}`}>
+        <label
+          style={style}
+          className={`${classNames["ste-typography"]} ${classNames["ste-typography-label"]}`}
+        >
           {children}
         </label>
       );

@@ -13,6 +13,9 @@ export const useTextStyles = createUseStyles({
     color: props.color,
     padding: 0,
     margin: 0,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   }),
   "ste-typography-h1": (props: TextStyleProps) => ({
     fontSize:
@@ -73,9 +76,9 @@ export const useTextStyles = createUseStyles({
   "ste-typography-label": (props: TextStyleProps) => ({
     fontSize:
       props.size === "large"
-        ? "1rem"
+        ? "1.25rem"
         : props.size === "medium"
-          ? "0.875rem"
+          ? "1rem"
           : "0.75rem",
   }),
   "ste-typography-p": (props: TextStyleProps) => ({

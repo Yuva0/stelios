@@ -14,17 +14,47 @@ const getSize = (size?: "small" | "medium" | "large") => {
   return 1;
 };
 
+const getColor = (
+  color?:
+    | "primary"
+    | "secondary"
+    | "tertiary"
+    | "danger"
+    | "warning"
+    | "success"
+    | "info"
+) => {
+  switch (color) {
+    case "primary":
+      return colors.primary[800];
+    case "secondary":
+      return colors.secondary[800];
+    case "tertiary":
+      return colors.tertiary[800];
+    case "danger":
+      return colors.danger[700];
+    case "warning":
+      return colors.warning[800];
+    case "success":
+      return colors.success[800];
+    case "info":
+      return colors.info[700];
+  }
+  return colors.info[700];
+};
+
 const useRadioStyles = createUseStyles({
   "ste-radio-content": (props: RadioStyleProps) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    width: "fit-content",
     cursor: "pointer",
     padding: "0.5rem",
-    width: "fit-content",
     borderRadius: "50%",
     "&:hover": {
       background: colors[props.color ?? "info"]["10"],
+      // boxShadow: `0 0 0 8px ${colors[props.color ?? "info"]["10"]}`,
     },
     '& input[type="radio"]': {
       position: "absolute",
@@ -42,7 +72,7 @@ const useRadioStyles = createUseStyles({
       width: `${getSize(props.size)}rem`,
       height: `${getSize(props.size)}rem`,
       borderRadius: "50%",
-      border: `1.5px solid ${colors.info[700]}`,
+      border: `1.5px solid ${getColor(props.color)}`,
       transition: "all 0.2s",
       position: "relative",
     },
@@ -51,13 +81,19 @@ const useRadioStyles = createUseStyles({
       width: `${(2 * getSize(props.size)) / 3}rem`,
       height: `${(2 * getSize(props.size)) / 3}rem`,
       borderRadius: "50%",
-      background: colors.info[700],
+      background: getColor(props.color),
       position: "absolute",
       top: "50%",
       left: "50%",
       transform: "translate(-50%, -50%)",
     },
+    '& input[type="radio"]:focus + span': {
+      boxShadow: `0px 0px 4px 2px ${getColor(props.color)}`,
+    },
   }),
+  "ste-radio-content-focus-visible": {
+    outline: "1px solid black",
+  },
 });
 
 export default useRadioStyles;
