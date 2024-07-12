@@ -11,16 +11,21 @@ const Tag = ({
   leadingIcon,
   trailingIcon,
   className,
+  disableClick,
   style,
+
+  // Events
+  onClick,
 }: TagProps) => {
   const classNames = useTagStyles({
     size,
     color,
     variant,
+    disableClick,
   });
 
   return (
-    <div className={`${classNames["ste-tag"]} ${className}`}>
+    <div className={`${classNames["ste-tag"]} ${className}`} onClick={onClick}>
       {leadingIcon && (
         <span className={classNames["ste-tag-leading-icon"]}>
           {leadingIcon}

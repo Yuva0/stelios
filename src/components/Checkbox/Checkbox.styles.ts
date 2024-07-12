@@ -59,7 +59,6 @@ const useCheckboxStyles = createUseStyles({
       position: "absolute",
       opacity: 0,
       cursor: "pointer",
-      maargin: 0,
     },
     '& input[type="checkbox"] + span': {
       width: `${getSize(props.size)}rem`,

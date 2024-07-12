@@ -3,7 +3,7 @@ import { InputProps } from "./Input.types";
 import Text from "../Text/Text";
 import useInputStyles from "./Input.styles";
 
-const Input = forwardRef<HTMLInputElement, InputProps>(
+const Input = forwardRef<HTMLDivElement, InputProps>(
   (
     {
       placeholder,
@@ -14,16 +14,17 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       leadingIcon,
       trailingIcon,
       labelPosition = "top",
+      cursor = "text",
 
       // Events
       onChange,
+      onClick,
 
       ...props
     }: InputProps,
     ref
   ) => {
-    const innerRef = React.useRef<HTMLInputElement>(null);
-    const _ref = (ref ?? innerRef) as React.RefObject<HTMLInputElement>;
+    const inputRef = React.useRef<HTMLInputElement>(null);
     const [isFocused, setIsFocused] = React.useState(false);
 
     const classNames = useInputStyles({
@@ -33,6 +34,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       hasLeadingIcon: !!leadingIcon,
       hasTrailingIcon: !!trailingIcon,
       isFocused,
+      cursor,
     });
 
     const Label = label ? (
@@ -47,12 +49,15 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       )
     ) : null;
 
-    // Events
-    const _onClick = () => {
-      _ref.current?.focus();
+    const _onClick = (e: React.MouseEvent<HTMLDivElement>) => {
+      inputRef.current?.focus();
       setIsFocused(true);
+      onClick && onClick(e);
     };
 
+    const _onFocus = () => {
+      setIsFocused(true);
+    };
     const _onBlur = () => {
       setIsFocused(false);
     };
@@ -63,9 +68,11 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
 
     return (
       <div
+        ref={ref}
         className={classNames["ste-input"]}
         {...props}
         onClick={_onClick}
+        onFocus={_onFocus}
         onBlur={_onBlur}
       >
         {labelPosition && labelPosition === "top" ? Label : null}
@@ -73,7 +80,11 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           {leadingIcon && (
             <span className={classNames["ste-input-icon"]}>{leadingIcon}</span>
           )}
-          <input ref={_ref} placeholder={placeholder} onChange={_onChange} />
+          <input
+            ref={inputRef}
+            placeholder={placeholder}
+            onChange={_onChange}
+          />
           {trailingIcon && (
             <span className={classNames["ste-input-icon"]}>{trailingIcon}</span>
           )}

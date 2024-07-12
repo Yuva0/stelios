@@ -250,7 +250,7 @@ const useTagStyles = createUseStyles({
     padding: getPadding(props.size),
     color: getColor(props),
     outline: getOutline(props),
-    cursor: "pointer",
+    cursor: props.disableClick ? "inherit" : "pointer",
     "&:hover": {
       backgroundColor: getHoverBackgroundColor(props),
       color: getHoverColor(props),

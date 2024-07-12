@@ -12,7 +12,7 @@ const meta: Meta<typeof Input> = {
       control: {
         type: "text",
       },
-    }
+    },
   },
 };
 
@@ -21,6 +21,6 @@ type Story = StoryObj<typeof Input>;
 
 export const Default: Story = {
   render: (args) => {
-    return <Input {...args} />;
+    return <Input label="Input Label" {...args} />;
   },
 };

@@ -1,9 +1,8 @@
-import React, { forwardRef, useEffect, useState } from "react";
-import { CheckboxProps } from "./Checkbox.types";
-import useCheckboxStyles from "./Checkbox.styles";
-import { IconCheck } from "@tabler/icons-react";
+import React, { forwardRef, useState, useEffect } from "react";
+import { SwitchProps } from "./Switch.types";
+import useSwitchStyles from "./Switch.styles";
 
-const Checkbox = forwardRef(
+const Switch = forwardRef(
   (
     {
       id,
@@ -17,17 +16,17 @@ const Checkbox = forwardRef(
       className,
       style,
 
-      //Events
+      // Events
       onChange,
       ...props
-    }: CheckboxProps,
+    }: SwitchProps,
     ref
   ) => {
     const innerRef = React.useRef<HTMLInputElement>(null);
     const _ref = (ref ?? innerRef) as React.RefObject<HTMLInputElement>;
     const [isChecked, setIsChecked] = useState(checked ?? false);
 
-    const classNames = useCheckboxStyles({
+    const classNames = useSwitchStyles({
       checked,
       disabled,
       size,
@@ -47,22 +46,21 @@ const Checkbox = forwardRef(
 
     return (
       <span
-        role="checkbox"
+        role="switch"
         aria-checked={isChecked}
-        className={`${classNames["ste-checkbox"]} ${className}`}
+        className={`${classNames["ste-switch"]} ${classNames} ${className}`}
         {...props}
       >
         <input
-          ref={_ref}
-          checked={isChecked}
           type="checkbox"
+          checked={isChecked}
           name={name}
           onChange={_onChange}
         />
-        <span>{isChecked && <IconCheck />}</span>
+        <span></span>
       </span>
     );
   }
 );
 
-export default Checkbox;
+export default Switch;

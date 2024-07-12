@@ -1,6 +1,7 @@
-export interface TagProps {
+export interface SwitchProps {
+  id?: string;
+  value?: string;
   size?: "small" | "medium" | "large";
-  variant?: "contained" | "outlined";
   color?:
     | "primary"
     | "secondary"
@@ -9,18 +10,21 @@ export interface TagProps {
     | "warning"
     | "success"
     | "info";
-  children?: React.ReactNode;
-  leadingIcon?: React.ReactNode;
-  trailingIcon?: React.ReactNode;
+  checked?: boolean;
+  disabled?: boolean;
+  label?: string;
+  name?: string;
   className?: string;
   style?: React.CSSProperties;
-  disableClick?: boolean;
-  onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+
+  //Events
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export interface TagStyleProps {
+export interface SwitchStyleProps {
+  checked?: boolean;
+  disabled?: boolean;
   size?: "small" | "medium" | "large";
-  variant?: "contained" | "outlined";
   color?:
     | "primary"
     | "secondary"
@@ -29,5 +33,4 @@ export interface TagStyleProps {
     | "warning"
     | "success"
     | "info";
-  disableClick?: boolean;
 }

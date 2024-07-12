@@ -10,15 +10,15 @@ const getPadding = (props: InputStyleProps) => {
       if (props.hasTrailingIcon) return "0 8px 0 12px";
       return "0 12px";
     case "medium":
-      if (props.hasLeadingIcon && props.hasTrailingIcon) return "0 12px";
-      if (props.hasLeadingIcon) return "0 16px 0 12px";
-      if (props.hasTrailingIcon) return "0 12px 0 16px";
+      if (props.hasLeadingIcon && props.hasTrailingIcon) return "0 8px";
+      if (props.hasLeadingIcon) return "0 12px 0 8px";
+      if (props.hasTrailingIcon) return "0 8px 0 12px";
       return "0 16px";
 
     case "large":
-      if (props.hasLeadingIcon && props.hasTrailingIcon) return "0 16px";
-      if (props.hasLeadingIcon) return "0 20px 0 16px";
-      if (props.hasTrailingIcon) return "0 16px 0 20px";
+      if (props.hasLeadingIcon && props.hasTrailingIcon) return "0 12px";
+      if (props.hasLeadingIcon) return "0 16px 0 12px";
+      if (props.hasTrailingIcon) return "0 12px 0 16px";
       return "0 20px";
   }
   return "0 16px";
@@ -38,7 +38,7 @@ const getFontSize = (props: InputStyleProps) => {
     case "small":
       return { fontSize: "0.875rem", lineHeight: "2rem" };
     case "medium":
-      return { fontSize: "0.875rem", lineHeight: "2.5rem" };
+      return { fontSize: "1rem", lineHeight: "2.5rem" };
     case "large":
       return { fontSize: "1rem", lineHeight: "3rem" };
   }
@@ -77,13 +77,14 @@ const useInputStyles = createUseStyles({
     gap: "0.5rem",
     justifyContent: "center",
     alignItems: "center",
-    cursor: "text",
+    cursor: props.cursor ?? "text",
 
     "& input": {
       padding: 0,
       margin: 0,
       border: 0,
       width: "100%",
+      cursor: props.cursor ?? "text",
       fontSize: getFontSize(props).fontSize,
       lineHeight: getFontSize(props).lineHeight,
       outlineOffset: "-1px",
@@ -108,12 +109,18 @@ const useInputStyles = createUseStyles({
     color: colors.secondary[800],
   }),
   "ste-input-icon": (props: InputStyleProps) => ({
-    color: colors.secondary[500],
+    color: colors.secondary[600],
+    cursor: "pointer",
+    padding: "0.125rem",
     width: getIconSize(props.size),
     height: getIconSize(props.size),
+    "&:hover": {
+      backgroundColor: colors.secondary[200],
+      borderRadius: "50%",
+    },
     "& svg": {
-      width: "100%",
-      height: "100%",
+      width: getIconSize(props.size),
+      height: getIconSize(props.size),
     },
   }),
 });

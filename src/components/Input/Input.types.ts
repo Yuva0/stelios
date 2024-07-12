@@ -8,6 +8,7 @@ export interface InputProps {
     | "success"
     | "info";
   size?: "small" | "medium" | "large";
+  cursor?: "pointer" | "text";
   width?: string;
   disabled?: boolean;
   fullWidth?: boolean;
@@ -21,6 +22,7 @@ export interface InputProps {
 
   //Events
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
 }
 
 export interface InputStyleProps {
@@ -33,6 +35,7 @@ export interface InputStyleProps {
     | "success"
     | "info";
   size?: "small" | "medium" | "large";
+  cursor?: "pointer" | "text";
   disabled?: boolean;
   fullWidth?: boolean;
   width?: string;
