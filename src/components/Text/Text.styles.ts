@@ -14,7 +14,6 @@ export const useTextStyles = createUseStyles({
     padding: 0,
     margin: 0,
     display: "flex",
-    justifyContent: "center",
     alignItems: "center",
   }),
   "ste-typography-h1": (props: TextStyleProps) => ({

@@ -27,15 +27,14 @@ const FormControlLabel: React.FC<FormControlLabelProps> = ({
   return (
     <label className={classNames["ste-form-control-label"]}>
       {React.cloneElement(control, {
+        ...(!control.props.size && size && { size }),
         ...props,
       })}
       <span className="ste-form-control-label">
         {typeof label === "string" ? (
-          size === "small" ? (
-            <Text variant="paragraph">{label}</Text>
-          ) : (
-            <Text variant="paragraph">{label}</Text>
-          )
+          <Text variant="paragraph" size={size}>
+            {label}
+          </Text>
         ) : (
           label
         )}

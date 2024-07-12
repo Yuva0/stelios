@@ -1,4 +1,6 @@
 {
+  "white": "#ffffff",
+  "black": "#000000",
   "primary": {
     "10": "#f9f4e6",
     "100": "#fbe6c0",

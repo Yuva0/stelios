@@ -28,6 +28,7 @@ const useFormControlLabelStyles = createUseStyles({
     verticalAlign: "middle",
     gap: `${props.gap}px`,
     cursor: "pointer",
+    userSelect: "none",
   }),
 });
 

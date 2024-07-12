@@ -47,20 +47,20 @@ const Radio = forwardRef(
       onChange && onChange(event);
     };
 
-    const _onClick = (event: React.MouseEvent<HTMLSpanElement>) => {
-      if (disabled) return;
-      _ref.current?.click();
-    };
-
     return (
       <span
         role="radio"
         aria-checked={isSelected}
         className={`${classNames["ste-radio-content"]} ${className}`}
-        onClick={_onClick}
         {...props}
       >
-        <input ref={_ref} type="radio" name={name} onChange={_onChange} />
+        <input
+          ref={_ref}
+          type="radio"
+          checked={isSelected}
+          name={name}
+          onChange={_onChange}
+        />
         <span></span>
       </span>
     );

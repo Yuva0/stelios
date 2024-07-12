@@ -1,5 +1,5 @@
-import { RadioStyleProps } from "./Radio.types";
 import { createUseStyles } from "react-jss";
+import { CheckboxStyleProps } from "./Checkbox.types";
 import colors from "../../tokens/colors.json";
 
 const getSize = (size?: "small" | "medium" | "large") => {
@@ -9,7 +9,7 @@ const getSize = (size?: "small" | "medium" | "large") => {
     case "medium":
       return 1;
     case "large":
-      return 1.5;
+      return 1.25;
   }
   return 1;
 };
@@ -43,8 +43,8 @@ const getColor = (
   return colors.info[700];
 };
 
-const useRadioStyles = createUseStyles({
-  "ste-radio-content": (props: RadioStyleProps) => ({
+const useCheckboxStyles = createUseStyles({
+  "ste-checkbox": (props: CheckboxStyleProps) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -54,43 +54,32 @@ const useRadioStyles = createUseStyles({
     borderRadius: "50%",
     "&:hover": {
       background: colors[props.color ?? "info"]["10"],
-      // boxShadow: `0 0 0 8px ${colors[props.color ?? "info"]["10"]}`,
     },
-    '& input[type="radio"]': {
+    '& input[type="checkbox"]': {
       position: "absolute",
       opacity: 0,
+      cursor: "pointer",
+      maargin: 0,
     },
-    '& input[type="radio"] + span': {
+    '& input[type="checkbox"] + span': {
       width: `${getSize(props.size)}rem`,
       height: `${getSize(props.size)}rem`,
-      borderRadius: "50%",
       border: `1.5px solid ${getColor(props.color)}`,
-      transition: "all 0.2s",
+      borderRadius: "0.25rem",
       position: "relative",
+
+      "& svg": {
+        width: "100%",
+        height: "100%",
+        backgroundColor: getColor(props.color),
+        color: colors.white,
+      },
     },
-    '& input[type="radio"]:checked + span': {
-      width: `${getSize(props.size)}rem`,
-      height: `${getSize(props.size)}rem`,
-      borderRadius: "50%",
-      border: `1.5px solid ${getColor(props.color)}`,
-      transition: "all 0.2s",
-      position: "relative",
-    },
-    '& input[type="radio"]:checked + span::before': {
-      content: "''",
-      width: `${(2 * getSize(props.size)) / 3}rem`,
-      height: `${(2 * getSize(props.size)) / 3}rem`,
-      borderRadius: "50%",
-      background: getColor(props.color),
-      position: "absolute",
-      top: "50%",
-      left: "50%",
-      transform: "translate(-50%, -50%)",
-    },
-    '& input[type="radio"]:focus + span': {
-      boxShadow: `0px 0px 4px 2px ${getColor(props.color)}`,
+    '& input[type="checkbox"]:focus + span': {
+      outline: `1px solid ${getColor(props.color)}`,
+      outlineOffset: "1px",
     },
   }),
 });
 
-export default useRadioStyles;
+export default useCheckboxStyles;
