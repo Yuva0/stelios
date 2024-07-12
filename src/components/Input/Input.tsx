@@ -15,6 +15,7 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
       trailingIcon,
       labelPosition = "top",
       cursor = "text",
+      disableSearch,
 
       // Events
       onChange,
@@ -51,7 +52,6 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
 
     const _onClick = (e: React.MouseEvent<HTMLDivElement>) => {
       inputRef.current?.focus();
-      setIsFocused(true);
       onClick && onClick(e);
     };
 
@@ -72,19 +72,23 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
         className={classNames["ste-input"]}
         {...props}
         onClick={_onClick}
-        onFocus={_onFocus}
-        onBlur={_onBlur}
       >
         {labelPosition && labelPosition === "top" ? Label : null}
         <div className={classNames["ste-input-content"]}>
           {leadingIcon && (
             <span className={classNames["ste-input-icon"]}>{leadingIcon}</span>
           )}
-          <input
-            ref={inputRef}
-            placeholder={placeholder}
-            onChange={_onChange}
-          />
+          {!disableSearch ? (
+            <input
+              onFocus={_onFocus}
+              onBlur={_onBlur}
+              ref={inputRef}
+              placeholder={placeholder}
+              onChange={_onChange}
+            />
+          ) : (
+            <span className="ste-input-content"></span>
+          )}
           {trailingIcon && (
             <span className={classNames["ste-input-icon"]}>{trailingIcon}</span>
           )}

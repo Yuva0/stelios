@@ -4,37 +4,53 @@ import Text from "../Text/Text";
 import Input from "../Input/Input";
 import { IconArrowDown } from "@tabler/icons-react";
 import { usePopper } from "react-popper";
+import Menu from "../Menu/Menu";
+import MenuItem from "../MenuItem/MenuItem";
 
-const Dropdown = ({ label }: SelectProps) => {
+const Select = ({ label, open }: SelectProps) => {
   const inputRef = React.useRef<HTMLDivElement>(null);
   const menuRef = React.useRef<HTMLDivElement>(null);
-  const [open, setOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = React.useState(open ?? false);
 
   const { styles, attributes } = usePopper(inputRef.current, menuRef.current, {
     placement: "bottom-start",
+    modifiers: [
+      {
+        name: "offset",
+        options: {
+          offset: [0, 2.5],
+        },
+      },
+    ],
   });
 
   return (
     <div>
       <Input
+        disableSearch
         ref={inputRef}
         label={label}
         trailingIcon={<IconArrowDown />}
         cursor="pointer"
-        onClick={() => setOpen(!open)}
+        onClick={() => {
+          setIsOpen(!isOpen);
+        }}
       />
-      <div
-        style={{ display: open ? "block" : "none", ...styles.popper }}
+      <Menu
+        open={isOpen}
         ref={menuRef}
-        {...attributes.popper}
+        minWidth={`${inputRef.current?.offsetWidth}px`}
+        style={{
+          ...styles.popper,
+        }}
+        {...attributes.poper}
       >
-        <div>Test1</div>
-        <div>Test2</div>
-        <div>Test3</div>
-        <div>Test4</div>
-      </div>
+        <MenuItem>Test 1</MenuItem>
+        <MenuItem>Test 2</MenuItem>
+        <MenuItem>Test 3</MenuItem>
+      </Menu>
     </div>
   );
 };
 
-export default Dropdown;
+export default Select;

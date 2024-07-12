@@ -9,6 +9,7 @@ export interface InputProps {
     | "info";
   size?: "small" | "medium" | "large";
   cursor?: "pointer" | "text";
+  disableSearch?: boolean;
   width?: string;
   disabled?: boolean;
   fullWidth?: boolean;

@@ -95,6 +95,10 @@ const useInputStyles = createUseStyles({
         outline: "none",
       },
     },
+    "& span.ste-input-content": {
+      height: getFontSize(props).lineHeight,
+      width: "100%",
+    },
     "&:hover": {
       outline: props.isFocused
         ? `2px solid ${colors.info["500"]}`
