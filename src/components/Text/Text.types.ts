@@ -26,6 +26,8 @@ export interface TextProps {
   wrap?: boolean;
   className?: string;
   style?: React.CSSProperties;
+  fontSize?: string;
+  lineHeight?: string;
 }
 
 export interface TextStyleProps {
@@ -53,4 +55,6 @@ export interface TextStyleProps {
     | string;
   wrap?: boolean;
   size?: "small" | "medium" | "large";
+  fontSize?: string;
+  lineHeight?: string;
 }

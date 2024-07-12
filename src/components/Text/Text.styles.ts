@@ -18,23 +18,35 @@ export const useTextStyles = createUseStyles({
   }),
   "ste-typography-h1": (props: TextStyleProps) => ({
     fontSize:
-      props.size === "large"
+      props.fontSize ?? props.size === "large"
         ? "2.5rem"
         : props.size === "medium"
           ? "2.25rem"
           : "2rem",
+    lineHeight:
+      props.lineHeight ?? props.size === "large"
+        ? "4rem"
+        : props.size === "medium"
+          ? "3.5rem"
+          : "3rem",
   }),
   "ste-typography-h2": (props: TextStyleProps) => ({
     fontSize:
-      props.size === "large"
+      props.fontSize ?? props.size === "large"
         ? "2.25rem"
         : props.size === "medium"
           ? "2rem"
           : "1.75rem",
+          lineHeight:
+          props.lineHeight ?? props.size === "large"
+            ? "3.5rem"
+            : props.size === "medium"
+              ? "3rem"
+              : "2.5rem",
   }),
   "ste-typography-h3": (props: TextStyleProps) => ({
     fontSize:
-      props.size === "large"
+      props.fontSize ?? props.size === "large"
         ? "2rem"
         : props.size === "medium"
           ? "1.75rem"
@@ -42,7 +54,7 @@ export const useTextStyles = createUseStyles({
   }),
   "ste-typography-h4": (props: TextStyleProps) => ({
     fontSize:
-      props.size === "large"
+      props.fontSize ?? props.size === "large"
         ? "1.75rem"
         : props.size === "medium"
           ? "1.5rem"
@@ -50,7 +62,7 @@ export const useTextStyles = createUseStyles({
   }),
   "ste-typography-h5": (props: TextStyleProps) => ({
     fontSize:
-      props.size === "large"
+      props.fontSize ?? props.size === "large"
         ? "1.5rem"
         : props.size === "medium"
           ? "1.25rem"
@@ -58,7 +70,7 @@ export const useTextStyles = createUseStyles({
   }),
   "ste-typography-h6": (props: TextStyleProps) => ({
     fontSize:
-      props.size === "large"
+      props.fontSize ?? props.size === "large"
         ? "1.25rem"
         : props.size === "medium"
           ? "1rem"
@@ -66,15 +78,21 @@ export const useTextStyles = createUseStyles({
   }),
   "ste-typography-span": (props: TextStyleProps) => ({
     fontSize:
-      props.size === "large"
+      props.fontSize ?? props.size === "large"
         ? "1.25rem"
         : props.size === "medium"
           ? "1rem"
           : "0.875rem",
+    lineHeight:
+      props.lineHeight ?? props.size === "large"
+        ? "1.75rem"
+        : props.size === "medium"
+          ? "1.5rem"
+          : "1.25rem",
   }),
   "ste-typography-label": (props: TextStyleProps) => ({
     fontSize:
-      props.size === "large"
+      props.fontSize ?? props.size === "large"
         ? "1.25rem"
         : props.size === "medium"
           ? "1rem"
@@ -82,7 +100,7 @@ export const useTextStyles = createUseStyles({
   }),
   "ste-typography-p": (props: TextStyleProps) => ({
     fontSize:
-      props.size === "large"
+      props.fontSize ?? props.size === "large"
         ? "1.25rem"
         : props.size === "medium"
           ? "1rem"
@@ -90,7 +108,7 @@ export const useTextStyles = createUseStyles({
   }),
   "ste-typography-div": (props: TextStyleProps) => ({
     fontSize:
-      props.size === "large"
+      props.fontSize ?? props.size === "large"
         ? "1.25rem"
         : props.size === "medium"
           ? "1rem"

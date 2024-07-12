@@ -10,6 +10,8 @@ const Text = ({
   color,
   wrap,
   size = "medium",
+  fontSize,
+  lineHeight,
   style,
   ...rest
 }: TextProps) => {
@@ -20,6 +22,8 @@ const Text = ({
     color,
     wrap,
     size,
+    fontSize,
+    lineHeight,
   });
 
   switch (variant) {
