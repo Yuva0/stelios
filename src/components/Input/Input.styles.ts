@@ -78,8 +78,10 @@ const useInputStyles = createUseStyles({
     justifyContent: "center",
     alignItems: "center",
     cursor: props.cursor ?? "text",
+    userSelect: "none",
 
     "& input": {
+      fontFamily: "'Source Sans 3', sans-serif",
       padding: 0,
       margin: 0,
       border: 0,
@@ -96,8 +98,12 @@ const useInputStyles = createUseStyles({
       },
     },
     "& span.ste-input-content": {
+      fontFamily: "'Source Sans 3', sans-serif",
       height: getFontSize(props).lineHeight,
       width: "100%",
+      fontSize: getFontSize(props).fontSize,
+      lineHeight: getFontSize(props).lineHeight,
+      outlineOffset: "-1px",
     },
     "&:hover": {
       outline: props.isFocused

@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import Select from "../../components/Select/Select";
+import Input from "../../components/Input/Input";
+import { IconArrowDown } from "@tabler/icons-react";
 
 const meta: Meta<typeof Select> = {
   title: "Components/Select",

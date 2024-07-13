@@ -1,16 +1,17 @@
 import React from "react";
 import { SelectProps } from "./Select.types";
-import Text from "../Text/Text";
 import Input from "../Input/Input";
 import { IconArrowDown } from "@tabler/icons-react";
 import { usePopper } from "react-popper";
 import Menu from "../Menu/Menu";
 import MenuItem from "../MenuItem/MenuItem";
+import { MenuItemKeyProps } from "../MenuItem/MenuItem.types";
 
-const Select = ({ label, open }: SelectProps) => {
+const Select = ({ label, open, onClick }: SelectProps) => {
   const inputRef = React.useRef<HTMLDivElement>(null);
   const menuRef = React.useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = React.useState(open ?? false);
+  const [inputValue, setInputValue] = React.useState("");
 
   const { styles, attributes } = usePopper(inputRef.current, menuRef.current, {
     placement: "bottom-start",
@@ -24,9 +25,20 @@ const Select = ({ label, open }: SelectProps) => {
     ],
   });
 
+  const _onClick = (
+    e: React.MouseEvent,
+    { title, value }: MenuItemKeyProps
+  ) => {
+    setIsOpen(false);
+    setInputValue(title);
+
+    onClick && onClick(e, { title, value });
+  };
+
   return (
     <div>
       <Input
+        value={inputValue}
         disableSearch
         ref={inputRef}
         label={label}
@@ -43,11 +55,12 @@ const Select = ({ label, open }: SelectProps) => {
         style={{
           ...styles.popper,
         }}
+        onClick={_onClick}
         {...attributes.poper}
       >
-        <MenuItem>Test 1</MenuItem>
-        <MenuItem>Test 2</MenuItem>
-        <MenuItem>Test 3</MenuItem>
+        <MenuItem value="1" title="Test 1"></MenuItem>
+        <MenuItem value="2" title="Test 2"></MenuItem>
+        <MenuItem value="3" title="Test 3"></MenuItem>
       </Menu>
     </div>
   );

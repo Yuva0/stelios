@@ -11,6 +11,7 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
       label,
       size = "medium",
       width = "15rem",
+      value,
       leadingIcon,
       trailingIcon,
       labelPosition = "top",
@@ -27,6 +28,7 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
   ) => {
     const inputRef = React.useRef<HTMLInputElement>(null);
     const [isFocused, setIsFocused] = React.useState(false);
+    const [inputValue, setInputValue] = React.useState(value ?? "");
 
     const classNames = useInputStyles({
       color,
@@ -63,6 +65,7 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
     };
 
     const _onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      setInputValue(e.target.value);
       onChange && onChange(e);
     };
 
@@ -80,6 +83,7 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
           )}
           {!disableSearch ? (
             <input
+              value={inputValue}
               onFocus={_onFocus}
               onBlur={_onBlur}
               ref={inputRef}
@@ -87,7 +91,7 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
               onChange={_onChange}
             />
           ) : (
-            <span className="ste-input-content"></span>
+            <span className="ste-input-content">{value}</span>
           )}
           {trailingIcon && (
             <span className={classNames["ste-input-icon"]}>{trailingIcon}</span>

@@ -22,8 +22,6 @@ const FormControlLabel: React.FC<FormControlLabelProps> = ({
     gap,
   });
 
-  // console.log(Array.isArray(control));
-
   return (
     <label className={classNames["ste-form-control-label"]}>
       {React.cloneElement(control, {

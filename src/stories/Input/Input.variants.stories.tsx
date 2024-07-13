@@ -22,9 +22,8 @@ export const Variants: Story = {
           size="small"
           label="Small"
           placeholder="Placeholder"
-          onChange={(e) => {
-            console.log(e.target.value);
-          }}
+          value="Value"
+          onChange={(e) => {}}
         />
         <Input size="medium" label="Medium" placeholder="Placeholder" />
         <Input size="large" label="Large" placeholder="Placeholder" />
