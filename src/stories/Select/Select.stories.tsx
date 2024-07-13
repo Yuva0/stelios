@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import Select from "../../components/Select/Select";
 import Input from "../../components/Input/Input";
-import { IconArrowDown } from "@tabler/icons-react";
+import MenuItem from "../../components/MenuItem/MenuItem";
 
 const meta: Meta<typeof Select> = {
   title: "Components/Select",
@@ -20,7 +20,11 @@ export const Default: Story = {
   render: () => {
     return (
       <div>
-        <Select label="Select" />
+        <Select label="Select">
+          <MenuItem value="1" title="Test 1"></MenuItem>
+          <MenuItem value="2" title="Test 2"></MenuItem>
+          <MenuItem value="3" title="Test 3"></MenuItem>
+        </Select>
       </div>
     );
   },

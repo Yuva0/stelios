@@ -4,10 +4,9 @@ import Input from "../Input/Input";
 import { IconArrowDown } from "@tabler/icons-react";
 import { usePopper } from "react-popper";
 import Menu from "../Menu/Menu";
-import MenuItem from "../MenuItem/MenuItem";
 import { MenuItemKeyProps } from "../MenuItem/MenuItem.types";
 
-const Select = ({ label, open, onClick }: SelectProps) => {
+const Select = ({ label, open, children, onClick }: SelectProps) => {
   const inputRef = React.useRef<HTMLDivElement>(null);
   const menuRef = React.useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = React.useState(open ?? false);
@@ -58,9 +57,9 @@ const Select = ({ label, open, onClick }: SelectProps) => {
         onClick={_onClick}
         {...attributes.poper}
       >
-        <MenuItem value="1" title="Test 1"></MenuItem>
-        <MenuItem value="2" title="Test 2"></MenuItem>
-        <MenuItem value="3" title="Test 3"></MenuItem>
+        {React.Children.map(children, (child) => {
+          return child;
+        })}
       </Menu>
     </div>
   );

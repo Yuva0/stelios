@@ -5,6 +5,8 @@ export interface SelectProps {
   open?: boolean;
   multiple?: boolean;
 
+  children? : React.ReactNode | React.ReactNode[];
+
   // Events
   onClick?: (
     e: React.MouseEvent,
