@@ -11,7 +11,7 @@ export interface InputProps {
   cursor?: "pointer" | "text";
   disableSearch?: boolean;
   width?: string;
-  value?: string;
+  value?: string | string[];
   disabled?: boolean;
   fullWidth?: boolean;
   label?: React.ReactNode;

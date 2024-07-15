@@ -19,7 +19,6 @@ const Menu = forwardRef<HTMLDivElement, MenuProps>(
       e: React.MouseEvent<HTMLLIElement>,
       { title, value }: MenuItemKeyProps
     ) => {
-      setIsOpen(false);
       onClick && onClick(e, { title, value });
     };
 

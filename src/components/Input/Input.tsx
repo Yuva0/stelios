@@ -28,7 +28,9 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
   ) => {
     const inputRef = React.useRef<HTMLInputElement>(null);
     const [isFocused, setIsFocused] = React.useState(false);
-    const [inputValue, setInputValue] = React.useState(value ?? "");
+    const [inputValue, setInputValue] = React.useState<string | string[]>(
+      value ?? ""
+    );
 
     const classNames = useInputStyles({
       color,

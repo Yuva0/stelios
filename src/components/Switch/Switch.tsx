@@ -7,7 +7,7 @@ const Switch = forwardRef(
     {
       id,
       value,
-      size,
+      size = "medium",
       color,
       checked,
       disabled,
@@ -25,11 +25,10 @@ const Switch = forwardRef(
     const innerRef = React.useRef<HTMLInputElement>(null);
     const _ref = (ref ?? innerRef) as React.RefObject<HTMLInputElement>;
     const [isChecked, setIsChecked] = useState(checked ?? false);
-
     const classNames = useSwitchStyles({
-      checked,
+      checked: isChecked,
       disabled,
-      size,
+      size: "medium",
       color,
     });
 
@@ -52,12 +51,17 @@ const Switch = forwardRef(
         {...props}
       >
         <input
+          ref={_ref}
           type="checkbox"
           checked={isChecked}
           name={name}
           onChange={_onChange}
         />
-        <span></span>
+        <span>
+          <span
+            className={`${classNames["ste-switch-content"]} ${isChecked ? "ste-switch-content-selected" : "ste-switch-content-unselected"}`}
+          ></span>
+        </span>
       </span>
     );
   }

@@ -3,7 +3,7 @@ import { MenuItemKeyProps } from "../MenuItem/MenuItem.types";
 export interface SelectProps {
   label?: React.ReactNode;
   open?: boolean;
-  multiple?: boolean;
+  multiSelect?: boolean;
 
   children? : React.ReactNode | React.ReactNode[];
 

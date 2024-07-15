@@ -3,7 +3,14 @@ import Text from "../Text/Text";
 import useMenuItemStyles from "./MenuItem.styles";
 import { MenuItemProps } from "./MenuItem.types";
 
-const MenuItem = ({ children, title, value, onClick }: MenuItemProps) => {
+const MenuItem = ({
+  leadingIcon,
+  trailingIcon,
+  children,
+  title,
+  value,
+  onClick,
+}: MenuItemProps) => {
   const classNames = useMenuItemStyles({});
 
   const _onClick = (event: React.MouseEvent<HTMLLIElement>) => {
@@ -12,14 +19,26 @@ const MenuItem = ({ children, title, value, onClick }: MenuItemProps) => {
 
   return (
     <li className={classNames["ste-menu-item"]} onClick={_onClick}>
+      {leadingIcon && (
+        <span className={classNames["ste-menu-item-icon"]}>{leadingIcon}</span>
+      )}
       {children ? (
         typeof children === "string" ? (
-          <Text variant="paragraph">{children}</Text>
+          <span className={classNames["ste-menu-item-content"]}>
+            <Text variant="paragraph">{children}</Text>
+          </span>
         ) : (
-          children
+          <span className={classNames["ste-menu-item-content"]}>
+            {children}
+          </span>
         )
       ) : (
-        <Text variant="paragraph">{title}</Text>
+        <span className={classNames["ste-menu-item-content"]}>
+          <Text variant="paragraph">{title}</Text>
+        </span>
+      )}
+      {trailingIcon && (
+        <span className={classNames["ste-menu-item-icon"]}>{trailingIcon}</span>
       )}
     </li>
   );

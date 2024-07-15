@@ -4,6 +4,8 @@ export interface MenuItemKeyProps {
 }
 
 export interface MenuItemProps extends MenuItemKeyProps {
+  leadingIcon?: React.ReactNode;
+  trailingIcon?: React.ReactNode;
   children?: React.ReactNode | React.ReactNode[];
   onClick?: (
     e: React.MouseEvent<HTMLLIElement>,
