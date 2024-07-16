@@ -8,6 +8,7 @@ export interface InputProps {
     | "success"
     | "info";
   size?: "small" | "medium" | "large";
+  type?: "text" | "password" | "number" | "email" | "search";
   cursor?: "pointer" | "text";
   disableSearch?: boolean;
   width?: string;

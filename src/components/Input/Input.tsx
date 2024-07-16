@@ -9,6 +9,7 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
       placeholder,
       color = "secondary",
       label,
+      type = "text",
       size = "medium",
       width = "15rem",
       value,
@@ -35,7 +36,7 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
 
     React.useEffect(() => {
       setInputValue(value ?? "");
-    },[value])
+    }, [value]);
 
     const classNames = useInputStyles({
       color,
@@ -95,6 +96,7 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
           )}
           {!disableSearch ? (
             <input
+              type={type}
               value={inputValue}
               onFocus={_onFocus}
               onBlur={_onBlur}
