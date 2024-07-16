@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import Select from "../../components/Select/Select";
-import Input from "../../components/Input/Input";
 import MenuItem from "../../components/MenuItem/MenuItem";
 
 const meta: Meta<typeof Select> = {

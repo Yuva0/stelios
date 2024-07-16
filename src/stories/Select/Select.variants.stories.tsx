@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import Select from "../../components/Select/Select";
-import Input from "../../components/Input/Input";
 import MenuItem from "../../components/MenuItem/MenuItem";
 import { IconArrowUpCircle } from "@tabler/icons-react";
 
@@ -27,7 +26,7 @@ export const Variants: Story = {
             title="Test 1"
             leadingIcon={<IconArrowUpCircle />}
             trailingIcon={<IconArrowUpCircle />}
-          ></MenuItem>
+          />
           <MenuItem value="2" title="Test 2"></MenuItem>
           <MenuItem value="3" title="Test 3"></MenuItem>
         </Select>

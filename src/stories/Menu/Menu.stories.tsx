@@ -20,9 +20,15 @@ export const Default: Story = {
     return (
       <div>
         <Menu>
-          <MenuItem>Item 1</MenuItem>
-          <MenuItem>Item 2</MenuItem>
-          <MenuItem>Item 3</MenuItem>
+          <MenuItem value="1" title="Item 1">
+            Item 1
+          </MenuItem>
+          <MenuItem value="2" title="Item 2">
+            Item 2
+          </MenuItem>
+          <MenuItem value="3" title="Item 3">
+            Item 3
+          </MenuItem>
         </Menu>
       </div>
     );

@@ -11,6 +11,9 @@ const Select = ({
   open,
   children,
   multiSelect,
+  placeholder,
+
+  //Events
   onClick,
 }: SelectProps) => {
   const inputRef = React.useRef<HTMLDivElement>(null);
@@ -62,6 +65,7 @@ const Select = ({
   return (
     <div>
       <Input
+        placeholder={placeholder}
         value={inputValue}
         disableSearch
         ref={inputRef}

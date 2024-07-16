@@ -4,6 +4,9 @@ export interface SelectProps {
   label?: React.ReactNode;
   open?: boolean;
   multiSelect?: boolean;
+  placeholder?: string;
+  style?: React.CSSProperties;
+  className?: string;
 
   children? : React.ReactNode | React.ReactNode[];
 

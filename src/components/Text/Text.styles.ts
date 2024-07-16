@@ -9,12 +9,13 @@ export const useTextStyles = createUseStyles({
   "ste-typography": (props: TextStyleProps) => ({
     fontFamily: "'Source Sans 3', sans-serif",
     fontWeight: props.strong ? "bold" : "normal",
-    textAlign: props.align,
+    textAlign: props.align ?? "left",
     color: props.color,
     padding: 0,
     margin: 0,
     display: "flex",
     alignItems: "center",
+    justifyContent: props.align ?? "left",
   }),
   "ste-typography-h1": (props: TextStyleProps) => ({
     fontSize:
@@ -37,12 +38,12 @@ export const useTextStyles = createUseStyles({
         : props.size === "medium"
           ? "2rem"
           : "1.75rem",
-          lineHeight:
-          props.lineHeight ?? props.size === "large"
-            ? "3.5rem"
-            : props.size === "medium"
-              ? "3rem"
-              : "2.5rem",
+    lineHeight:
+      props.lineHeight ?? props.size === "large"
+        ? "3.5rem"
+        : props.size === "medium"
+          ? "3rem"
+          : "2.5rem",
   }),
   "ste-typography-h3": (props: TextStyleProps) => ({
     fontSize:

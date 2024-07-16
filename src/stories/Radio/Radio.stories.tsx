@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import Radio from "../../components/Radio/Radio";
 import FormControlLabel from "../../components/FormControlLabel/FormControlLabel";
+import RadioGroup from "../../components/RadioGroup/RadioGroup";
 
 const meta: Meta<typeof Radio> = {
   title: "Components/Radio",
@@ -20,7 +21,9 @@ export const Default: Story = {
   render: () => {
     return (
       <div>
-        <FormControlLabel control={<Radio />} label="Radio Label" />
+        <RadioGroup>
+          <FormControlLabel control={<Radio />} label="Radio Label" />
+        </RadioGroup>
       </div>
     );
   },

@@ -4,7 +4,18 @@ import { MenuProps } from "./Menu.types";
 import { MenuItemKeyProps } from "../MenuItem/MenuItem.types";
 
 const Menu = forwardRef<HTMLDivElement, MenuProps>(
-  ({ children, style, open, minWidth, onClick }: MenuProps, ref) => {
+  (
+    {
+      children,
+      style,
+      open,
+      minWidth,
+
+      //Events
+      onClick,
+    },
+    ref
+  ) => {
     const [isOpen, setIsOpen] = React.useState(open ?? false);
 
     useEffect(() => {
@@ -22,7 +33,8 @@ const Menu = forwardRef<HTMLDivElement, MenuProps>(
       onClick && onClick(e, { title, value });
     };
 
-    if (!children) return;
+    if (!children) return null;
+    if(Array.isArray(children) && children.length === 0) return null;
 
     return (
       <div className={classes["ste-menu-container"]} ref={ref} style={style}>

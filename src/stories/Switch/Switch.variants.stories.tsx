@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import Switch from "../../components/Switch/Switch";
+import FormControlLabel from "../../components/FormControlLabel/FormControlLabel";
 
 const meta: Meta<typeof Switch> = {
   title: "Components/Switch",
@@ -19,7 +20,21 @@ export const Variants: Story = {
   render: () => {
     return (
       <div>
-        <Switch />
+        <FormControlLabel
+          control={<Switch />}
+          label="Switch Label"
+          size="small"
+        />
+        <FormControlLabel
+          control={<Switch />}
+          label="Switch Label"
+          size="medium"
+        />
+        <FormControlLabel
+          control={<Switch />}
+          label="Switch Label"
+          size="large"
+        />
       </div>
     );
   },

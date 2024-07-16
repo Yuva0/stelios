@@ -21,6 +21,7 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
       // Events
       onChange,
       onClick,
+      onKeyDown,
 
       ...props
     }: InputProps,
@@ -31,6 +32,10 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
     const [inputValue, setInputValue] = React.useState<string | string[]>(
       value ?? ""
     );
+
+    React.useEffect(() => {
+      setInputValue(value ?? "");
+    },[value])
 
     const classNames = useInputStyles({
       color,
@@ -71,12 +76,17 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
       onChange && onChange(e);
     };
 
+    const _onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+      onKeyDown && onKeyDown(e);
+    };
+
     return (
       <div
         ref={ref}
         className={classNames["ste-input"]}
         {...props}
         onClick={_onClick}
+        onKeyDown={_onKeyDown}
       >
         {labelPosition && labelPosition === "top" ? Label : null}
         <div className={classNames["ste-input-content"]}>
@@ -105,4 +115,4 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
   }
 );
 
-export default Input;
+export default React.memo(Input);

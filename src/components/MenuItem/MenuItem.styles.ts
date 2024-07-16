@@ -7,7 +7,7 @@ const useMenuItemStyles = createUseStyles({
     display: "flex",
     alignItems: "center",
     justifyContent: "flex-start",
-    padding: "0.5rem 0.75rem 0.5rem 0.5rem",
+    padding: "0.5rem 0.5rem 0.5rem 0.75rem",
     gap: "0.25rem",
     cursor: "pointer",
     "&:hover": {
