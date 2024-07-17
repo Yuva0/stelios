@@ -82,7 +82,7 @@ const Header = ({
       className={className}
       style={style}
     >
-      {children}
+      {expanded && children}
       {expandable && (
         <StyledExpandIcon expanded={expanded} onClick={_onExpandHandler}>
           {expanded ? <IconChevronCompactUp /> : <IconChevronCompactDown />}
