@@ -71,7 +71,7 @@ const useCheckboxStyles = createUseStyles({
         width: "100%",
         height: "100%",
         backgroundColor: getColor(props.color),
-        color: colors.white,
+        color: colors.white[0],
       },
     },
     '& input[type="checkbox"]:focus + span': {

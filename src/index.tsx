@@ -2,6 +2,7 @@ import Autocomplete from "./components/Autocomplete/Autocomplete";
 import Button from "./components/Button/Button";
 import Checkbox from "./components/Checkbox/Checkbox";
 import FormControlLabel from "./components/FormControlLabel/FormControlLabel";
+import IconButton from "./components/IconButton/IconButton";
 import Input from "./components/Input/Input";
 import Text from "./components/Text/Text";
 import Link from "./components/Link/Link";
@@ -21,6 +22,7 @@ export {
   Checkbox,
   FormControlLabel,
   Text,
+  IconButton,
   Input,
   Link,
   Menu,

@@ -315,7 +315,7 @@ const getIconSize = (size?: "small" | "medium" | "large") => {
     case "small":
       return "1rem";
     case "medium":
-      return "1.25rem";
+      return "1.125rem";
     case "large":
       return "1.5rem";
   }

@@ -9,7 +9,7 @@ const useMenuStyles = createUseStyles({
     border: `1px solid ${colors.secondary["400"]}`,
     borderRadius: "0.5rem",
     padding: "0.5rem 0",
-    backgroundColor: colors.white,
+    backgroundColor: colors.white[0],
   }),
   "ste-menu": (props: MenuStyleProps) => ({
     display: "flex",
