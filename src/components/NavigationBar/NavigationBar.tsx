@@ -15,9 +15,13 @@ const StyledNavigationBarCtr = styled.div`
   border-right: 1px solid ${colors.white[200]};
 `;
 
-const NavigationBar: React.FC<NavigationBarProps> = ({ children, style }) => {
+const NavigationBar: React.FC<NavigationBarProps> = ({
+  children,
+  className,
+  style,
+}) => {
   return (
-    <StyledNavigationBarCtr style={style}>
+    <StyledNavigationBarCtr className={className} style={style}>
       <nav>{children}</nav>
     </StyledNavigationBarCtr>
   );
