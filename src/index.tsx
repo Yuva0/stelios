@@ -15,6 +15,10 @@ import RadioGroup from "./components/RadioGroup/RadioGroup";
 import Select from "./components/Select/Select";
 import Switch from "./components/Switch/Switch";
 import Tag from "./components/Tag/Tag";
+import NavigationBar from "./components/NavigationBar/NavigationBar";
+import NavigationBarGroup from "./components/NavigationBar/NavigationBarGroup/NavigationBarGroup";
+import NavigationBarHeader from "./components/NavigationBar/NavigationBarHeader/NavigationBarHeader";
+import NavigationBarItem from "./components/NavigationBar/NavigationBarItem/NavigationBarItem";
 
 export {
   Autocomplete,
@@ -34,4 +38,8 @@ export {
   Select,
   Switch,
   Tag,
+  NavigationBar,
+  NavigationBarGroup,
+  NavigationBarHeader,
+  NavigationBarItem,
 };
