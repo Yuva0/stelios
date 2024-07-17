@@ -5,6 +5,8 @@ import FormControlLabel from "./components/FormControlLabel/FormControlLabel";
 import IconButton from "./components/IconButton/IconButton";
 import Input from "./components/Input/Input";
 import Header from "./components/Header/Header";
+import HeaderGroup from "./components/Header/HeaderGroup/HeaderGroup";
+import HeaderItem from "./components/Header/HeaderItem/HeaderItem";
 import Text from "./components/Text/Text";
 import Link from "./components/Link/Link";
 import Menu from "./components/Menu/Menu";
@@ -34,6 +36,8 @@ export {
   MenuItem,
   NumberInput,
   Header,
+  HeaderGroup,
+  HeaderItem,
   Password,
   Radio,
   RadioGroup,

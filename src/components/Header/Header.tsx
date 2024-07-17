@@ -23,9 +23,11 @@ const StyledHeader = styled.header<ExpandProps>`
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  box-sizing: border-box;
   transition: height 330ms ease-in-out;
   background-color: ${colors.white[0]};
   z-index: 1000;
+  padding: 0 1rem;
   height: ${(props) => (props.expanded ? props.height ?? "5rem" : "0rem")};
   position: fixed;
   box-shadow: ${(props) =>
