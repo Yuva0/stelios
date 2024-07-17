@@ -128,7 +128,7 @@ const getColor = (variant?: string, color?: string) => {
     case "outlined":
       switch (color) {
         case "primary":
-          return colors.primary[900];
+          return colors.primary[600];
         case "secondary":
           return colors.secondary[800];
         case "tertiary":
@@ -217,7 +217,7 @@ const getOutline = (variant?: string, color?: string) => {
     case "contained":
       switch (color) {
         case "primary":
-          return `1px solid ${colors.primary[400]}`;
+          return `1px solid ${colors.primary[600]}`;
         case "secondary":
           return `1px solid ${colors.secondary[800]}`;
         case "tertiary":
@@ -313,9 +313,9 @@ const getPadding = (size?: "small" | "medium" | "large") => {
 const getIconSize = (size?: "small" | "medium" | "large") => {
   switch (size) {
     case "small":
-      return "1rem";
+      return "1.25rem";
     case "medium":
-      return "1.125rem";
+      return "1.25rem";
     case "large":
       return "1.5rem";
   }
@@ -347,7 +347,7 @@ const StyledIconBtn = styled.button<IconButtonStyleProps>`
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
   }
   &:active {
-   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
   }
 `;
 
