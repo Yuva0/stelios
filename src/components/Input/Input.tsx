@@ -1,5 +1,5 @@
 import React, { forwardRef } from "react";
-import { InputProps } from "./Input.types";
+import { InputProps, InputStyleProps } from "./Input.types";
 import Text from "../Text/Text";
 import useInputStyles from "./Input.styles";
 
@@ -18,6 +18,7 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
       labelPosition = "top",
       cursor = "text",
       disableSearch,
+      inputBgColor,
 
       // Events
       onChange,
@@ -45,6 +46,7 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
       hasLeadingIcon: !!leadingIcon,
       hasTrailingIcon: !!trailingIcon,
       isFocused,
+      inputBgColor,
       cursor,
     });
 

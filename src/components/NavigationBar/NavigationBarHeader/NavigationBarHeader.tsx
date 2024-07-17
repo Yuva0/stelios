@@ -34,16 +34,25 @@ const StyledNavBarHeader = styled.li`
   }
 `;
 
-const NavigationBarHeader = ({ children, style }: NavigationBarHeaderProps) => {
+const NavigationBarHeader = ({
+  children,
+  style,
+  className,
+  leadingIcon,
+  trailingIcon,
+  size,
+}: NavigationBarHeaderProps) => {
   return (
-    <StyledNavBarHeader style={style}>
+    <StyledNavBarHeader style={style} className={className}>
+      {leadingIcon && <span>{leadingIcon}</span>}
       {typeof children === "string" ? (
-        <Text variant="span" size="small">
+        <Text variant="span" size={size ?? "small"}>
           {children}
         </Text>
       ) : (
         children
       )}
+      {trailingIcon && <span>{trailingIcon}</span>}
     </StyledNavBarHeader>
   );
 };

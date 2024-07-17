@@ -1,4 +1,6 @@
+import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
+import colors from "../../tokens/colors.json";
 // import { fn } from "@storybook/test";
 
 import Input from "../../components/Input/Input";
@@ -21,6 +23,6 @@ type Story = StoryObj<typeof Input>;
 
 export const Default: Story = {
   render: (args) => {
-    return <Input label="Input Label" {...args} />;
+    return <Input inputBgColor={colors.white[0]} label="Input Label" {...args} />;
   },
 };

@@ -29,7 +29,7 @@ const getBorderColor = (props: InputStyleProps) => {
     case "primary":
       return `1px solid ${colors.primary[400]}`;
     case "secondary":
-      return `1px solid ${colors.secondary[400]}`;
+      return `1px solid ${colors.white[400]}`;
   }
 };
 
@@ -79,7 +79,8 @@ const useInputStyles = createUseStyles({
     alignItems: "center",
     cursor: props.cursor ?? "text",
     userSelect: "none",
-    backgroundColor: colors.secondary[10],
+    backgroundColor: props.inputBgColor ?? colors.secondary[10],
+    boxShadow: "0 2px 3px 0 rgba(0, 0, 0, 0.1)",
 
     "& input": {
       fontFamily: "'Source Sans 3', sans-serif",
@@ -91,7 +92,7 @@ const useInputStyles = createUseStyles({
       fontSize: getFontSize(props).fontSize,
       lineHeight: getFontSize(props).lineHeight,
       outlineOffset: "-1px",
-      backgroundColor: colors.secondary[10],
+      backgroundColor: props.inputBgColor ?? colors.secondary[10],
       "&::placeholder": {
         color: colors.secondary[500],
       },
@@ -110,7 +111,7 @@ const useInputStyles = createUseStyles({
     "&:hover": {
       outline: props.isFocused
         ? `2px solid ${colors.info["500"]}`
-        : `1px solid ${colors.secondary["600"]}`,
+        : `1px solid ${colors.white["500"]}`,
     },
     "&:focus": {
       outline: `1px solid blue`,

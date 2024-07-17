@@ -23,6 +23,8 @@ export interface InputProps {
   leadingIcon?: React.ReactNode;
   trailingIcon?: React.ReactNode;
 
+  inputBgColor?: string;
+
   //Events
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
@@ -46,4 +48,6 @@ export interface InputStyleProps {
   hasLeadingIcon?: boolean;
   hasTrailingIcon?: boolean;
   isFocused?: boolean;
+
+  inputBgColor?: string;
 }

@@ -38,12 +38,15 @@ const NavigationBarItem = ({
   trailingIcon,
   className,
   style,
+  size,
 }: NavigationBarItemProps) => {
   return (
     <StyledNavBarItem className={className} style={style}>
       {leadingIcon && <StyledNavBarIcon>{leadingIcon}</StyledNavBarIcon>}
       {typeof children === "string" ? (
-        <Text variant="span">{children}</Text>
+        <Text variant="span" size={size}>
+          {children}
+        </Text>
       ) : (
         children
       )}

@@ -176,7 +176,7 @@ const getHoverColor = (variant?: string, color?: string) => {
     case "outlined":
       switch (color) {
         case "primary":
-          return colors.primary[900];
+          return colors.primary[600];
         case "secondary":
           return colors.secondary[800];
         case "tertiary":
@@ -259,7 +259,7 @@ const getHoverOutline = (variant?: string, color?: string) => {
     case "contained":
       switch (color) {
         case "primary":
-          return `1px solid ${colors.primary[500]}`;
+          return `1px solid ${colors.primary[700]}`;
         case "secondary":
           return `1px solid ${colors.secondary[900]}`;
         case "tertiary":

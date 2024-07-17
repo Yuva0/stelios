@@ -23,7 +23,7 @@ export const Default: Story = {
   render: () => {
     return (
       <>
-        <Header/>
+        {/* <Header/> */}
         <NavigationBar>
           <NavigationBarGroup title="Components 1">
             <NavigationBarHeader>Header</NavigationBarHeader>

@@ -20,6 +20,7 @@ const StyledNavBarGroupHeader = styled.li`
   display: flex;
   flex-direction: row;
   gap: 0.5rem;
+  justify-content: space-between;
   align-items: center;
   padding: 0.3rem 0.75rem;
   border-radius: 0.5rem;
@@ -68,14 +69,16 @@ const NavigationBarGroup = ({
   return (
     <StyledNavBarGroup className={className}>
       <StyledNavBarGroupHeader onClick={_toggleExpand}>
-        {leadingIcon && (
-          <StyledNavBarGroupIcon>{leadingIcon}</StyledNavBarGroupIcon>
-        )}
-        {title && typeof title === "string" ? (
-          <Text variant="span">{title}</Text>
-        ) : (
-          title
-        )}
+        <span>
+          {leadingIcon && (
+            <StyledNavBarGroupIcon>{leadingIcon}</StyledNavBarGroupIcon>
+          )}
+          {title && typeof title === "string" ? (
+            <Text variant="span">{title}</Text>
+          ) : (
+            title
+          )}
+        </span>
         {
           <StyledNavBarGroupIcon expand={expand}>
             <IconChevronRight />
