@@ -31,6 +31,13 @@ export const Default: Story = {
           <NavigationBarItem>Content</NavigationBarItem>
           <NavigationBarItem>Content</NavigationBarItem>
           <NavigationBarItem>Content</NavigationBarItem>
+          <NavigationBarItem>Content</NavigationBarItem>
+          <NavigationBarItem>Content</NavigationBarItem>
+          <NavigationBarItem>Content</NavigationBarItem>
+          <NavigationBarItem>Content</NavigationBarItem>
+          <NavigationBarItem>Content</NavigationBarItem>
+          <NavigationBarItem>Content</NavigationBarItem>
+          <NavigationBarItem>Content</NavigationBarItem>
         </NavigationBarGroup>
         <NavigationBarGroup title="Components 2">
           <NavigationBarHeader>Header</NavigationBarHeader>
