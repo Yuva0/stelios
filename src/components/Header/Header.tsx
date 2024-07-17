@@ -10,6 +10,11 @@ import colors from "../../tokens/colors.json";
 
 interface ExpandProps {
   expanded?: boolean;
+  height?: string;
+  iconWidth?: string;
+  iconHeight?: string;
+  iconRight?: string;
+  iconBottom?: string;
 }
 
 const StyledHeader = styled.header<ExpandProps>`
@@ -21,7 +26,7 @@ const StyledHeader = styled.header<ExpandProps>`
   transition: height 330ms ease-in-out;
   background-color: ${colors.white[0]};
   z-index: 1000;
-  height: ${(props) => (props.expanded ? "5rem" : "0rem")};
+  height: ${(props) => (props.expanded ? props.height ?? "5rem" : "0rem")};
   position: fixed;
   box-shadow: ${(props) =>
     props.expanded ? "none" : "0 0 10px 0 rgba(0, 0, 0, 0.35)"};
@@ -33,10 +38,10 @@ const StyledExpandIcon = styled.div<ExpandProps>`
   border-radius: 0 0 0.25rem 0.25rem;
   cursor: pointer;
   position: absolute;
-  right: 5rem;
-  bottom: -1.75rem;
-  width: 3rem;
-  height: 1.75rem;
+  right: ${(props) => props.iconRight ?? `5rem`};
+  bottom: ${(props) => props.iconBottom ?? `-1.75rem`};
+  width: ${(props) => props.iconWidth ?? `3rem`};
+  height: ${(props) => props.iconHeight ?? `1.75rem`};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -53,18 +58,28 @@ const StyledExpandIcon = styled.div<ExpandProps>`
 
 const Header = ({
   children,
+  height,
   className,
   style,
   expandable = true,
+  iconWidth,
+  iconHeight,
+  iconRight,
+  iconBottom,
 }: HeaderProps) => {
-  const [expanded, setExpanded] = React.useState(true);
+  const [expanded, setExpanded] = React.useState<boolean>(true);
 
   const _onExpandHandler = () => {
     setExpanded(!expanded);
   };
 
   return (
-    <StyledHeader expanded={expanded} className={className} style={style}>
+    <StyledHeader
+      height={height}
+      expanded={expanded}
+      className={className}
+      style={style}
+    >
       {children}
       {expandable && (
         <StyledExpandIcon expanded={expanded} onClick={_onExpandHandler}>
