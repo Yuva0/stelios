@@ -12,12 +12,26 @@ const ButtonInternal = ({
   disabled,
   children,
   fullWidth,
+
+  // Events
+  onClick,
   ...rest
 }: ButtonProps & ButtonInternalProps) => {
-  const classNames = useButtonStyles({ size, variant, color, disabled, fullWidth });
+  const classNames = useButtonStyles({
+    size,
+    variant,
+    color,
+    disabled,
+    fullWidth,
+  });
 
   return (
-    <button aria-disabled={disabled} className={classNames["ste-button"]}>
+    <button
+      aria-disabled={disabled}
+      className={classNames["ste-button"]}
+      onClick={onClick}
+      {...rest}
+    >
       {leadingIcon && (
         <span className={classNames["ste-button-leading-icon"]}>
           {leadingIcon}

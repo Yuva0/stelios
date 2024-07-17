@@ -1,11 +1,13 @@
-import { createUseStyles } from "react-jss";
-import { ButtonStyleProps } from "./Button.types";
+import React, { forwardRef } from "react";
+import { IconButtonProps, IconButtonStyleProps } from "./IconButton.types";
+import styled from "styled-components";
 import colors from "../../tokens/colors.json";
+import Text from "../Text/Text";
 
-const getBackgroundColor = (props: ButtonStyleProps) => {
-  switch (props.variant) {
+const getBackgroundColor = (variant?: string, color?: string) => {
+  switch (variant) {
     case "contained":
-      switch (props.color) {
+      switch (color) {
         case "primary":
           return colors.primary[400];
         case "secondary":
@@ -20,18 +22,41 @@ const getBackgroundColor = (props: ButtonStyleProps) => {
           return colors.success[800];
         case "info":
           return colors.info[700];
+        default:
+          return color;
       }
-      break;
     case "outlined":
-      return "#ffffff";
+      switch (color) {
+        case "primary":
+        case "secondary":
+        case "tertiary":
+        case "danger":
+        case "warning":
+        case "success":
+        case "info":
+          return "#ffffff";
+        default:
+          return color;
+      }
     case "text":
-      return "transparent";
+      switch (color) {
+        case "primary":
+        case "secondary":
+        case "tertiary":
+        case "danger":
+        case "warning":
+        case "success":
+        case "info":
+          return "transparent";
+        default:
+          return color;
+      }
   }
 };
-const getHoverBackgroundColor = (props: ButtonStyleProps) => {
-  switch (props.variant) {
+const getHoverBackgroundColor = (variant?: string, color?: string) => {
+  switch (variant) {
     case "contained":
-      switch (props.color) {
+      switch (color) {
         case "primary":
           return colors.primary[500];
         case "secondary":
@@ -46,10 +71,11 @@ const getHoverBackgroundColor = (props: ButtonStyleProps) => {
           return colors.success[900];
         case "info":
           return colors.info[900];
+        default:
+          return color;
       }
-      break;
     case "outlined":
-      switch (props.color) {
+      switch (color) {
         case "primary":
           return colors.primary[10];
         case "secondary":
@@ -64,10 +90,11 @@ const getHoverBackgroundColor = (props: ButtonStyleProps) => {
           return colors.success[100];
         case "info":
           return colors.info[100];
+        default:
+          return color;
       }
-      return;
     case "text":
-      switch (props.color) {
+      switch (color) {
         case "primary":
           return colors.primary[10];
         case "secondary":
@@ -82,14 +109,16 @@ const getHoverBackgroundColor = (props: ButtonStyleProps) => {
           return colors.success[100];
         case "info":
           return colors.info[100];
+        default:
+          return color;
       }
   }
 };
 
-const getColor = (props: ButtonStyleProps) => {
-  switch (props.variant) {
+const getColor = (variant?: string, color?: string) => {
+  switch (variant) {
     case "contained":
-      switch (props.color) {
+      switch (color) {
         case "primary":
           return "#000";
         case "warning":
@@ -97,7 +126,7 @@ const getColor = (props: ButtonStyleProps) => {
       }
       return "#fff";
     case "outlined":
-      switch (props.color) {
+      switch (color) {
         case "primary":
           return colors.primary[900];
         case "secondary":
@@ -115,7 +144,7 @@ const getColor = (props: ButtonStyleProps) => {
       }
       break;
     case "text":
-      switch (props.color) {
+      switch (color) {
         case "primary":
           return colors.primary[900];
         case "secondary":
@@ -134,10 +163,10 @@ const getColor = (props: ButtonStyleProps) => {
       break;
   }
 };
-const getHoverColor = (props: ButtonStyleProps) => {
-  switch (props.variant) {
+const getHoverColor = (variant?: string, color?: string) => {
+  switch (variant) {
     case "contained":
-      switch (props.color) {
+      switch (color) {
         case "primary":
           return "#000";
         case "warning":
@@ -145,7 +174,7 @@ const getHoverColor = (props: ButtonStyleProps) => {
       }
       return "#fff";
     case "outlined":
-      switch (props.color) {
+      switch (color) {
         case "primary":
           return colors.primary[900];
         case "secondary":
@@ -163,7 +192,7 @@ const getHoverColor = (props: ButtonStyleProps) => {
       }
       break;
     case "text":
-      switch (props.color) {
+      switch (color) {
         case "primary":
           return colors.primary[900];
         case "secondary":
@@ -183,10 +212,10 @@ const getHoverColor = (props: ButtonStyleProps) => {
   }
 };
 
-const getOutline = (props: ButtonStyleProps) => {
-  switch (props.variant) {
+const getOutline = (variant?: string, color?: string) => {
+  switch (variant) {
     case "contained":
-      switch (props.color) {
+      switch (color) {
         case "primary":
           return `1px solid ${colors.primary[400]}`;
         case "secondary":
@@ -204,7 +233,7 @@ const getOutline = (props: ButtonStyleProps) => {
       }
       break;
     case "outlined":
-      switch (props.color) {
+      switch (color) {
         case "primary":
           return `1px solid ${colors.primary[400]}`;
         case "secondary":
@@ -225,10 +254,10 @@ const getOutline = (props: ButtonStyleProps) => {
 
   return;
 };
-const getHoverOutline = (props: ButtonStyleProps) => {
-  switch (props.variant) {
+const getHoverOutline = (variant?: string, color?: string) => {
+  switch (variant) {
     case "contained":
-      switch (props.color) {
+      switch (color) {
         case "primary":
           return `1px solid ${colors.primary[500]}`;
         case "secondary":
@@ -246,7 +275,7 @@ const getHoverOutline = (props: ButtonStyleProps) => {
       }
       break;
     case "outlined":
-      switch (props.color) {
+      switch (color) {
         case "primary":
           return `1px solid ${colors.primary[600]}`;
         case "secondary":
@@ -271,61 +300,89 @@ const getHoverOutline = (props: ButtonStyleProps) => {
 const getPadding = (size?: "small" | "medium" | "large") => {
   switch (size) {
     case "small":
-      return "0.25rem 0.5rem";
+      return "0.5rem 0.5rem";
     case "medium":
-      return "0.5rem 1rem";
+      return "0.5rem 0.5rem";
     case "large":
-      return "0.75rem 1.5rem";
+      return "1rem 1rem";
     default:
-      return "0.75rem 1.5rem";
+      return "0.5rem 0.5rem";
   }
 };
 
-export const useButtonStyles = createUseStyles({
-  "ste-button": (props: ButtonStyleProps) => {
-    return {
-      display: "inline-flex",
-      width: props.fullWidth ? "100%" : "auto",
-      gap: "0.5rem",
-      justifyContent: "center",
-      alignItems: "center",
-      cursor: props.disabled ? "not-allowed" : "pointer",
-      backgroundColor: getBackgroundColor(props),
-      color: getColor(props),
-      outline: getOutline(props),
-      border: 0,
-      padding: getPadding(props.size),
-      borderRadius: "0.25rem",
-      boxShadow: "0 3px 4px 0 rgba(0, 0, 0, 0.1)",
-      "&:hover": {
-        backgroundColor: getHoverBackgroundColor(props),
-        color: getHoverColor(props),
-        outline: getHoverOutline(props),
-        boxShadow: "0 3px 4px 0 rgba(0, 0, 0, 0.2)",
-      },
-      "&:active": {
-        boxShadow: "0 3px 4px 0 rgba(0, 0, 0, 0.1)",
-      }
-    };
-  },
-  "ste-button-leading-icon": (props: ButtonStyleProps) => {
-    return {
-      width: "1.25rem",
-      height: "1.25rem",
-      "& svg": {
-        width: "100%",
-        height: "100%",
-      },
-    };
-  },
-  "ste-button-trailing-icon": (props: ButtonStyleProps) => {
-    return {
-      width: "1.25rem",
-      height: "1.25rem",
-      "& svg": {
-        width: "100%",
-        height: "100%",
-      },
-    };
-  },
-});
+const getIconSize = (size?: "small" | "medium" | "large") => {
+  switch (size) {
+    case "small":
+      return "1rem";
+    case "medium":
+      return "1.25rem";
+    case "large":
+      return "1.5rem";
+  }
+  return "1.5rem";
+};
+
+const StyledIconBtn = styled.button<IconButtonStyleProps>`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
+  background-color: ${(props) =>
+    getBackgroundColor(props.variant, props.color)};
+  color: ${(props) => getColor(props.variant, props.color)};
+  outline: ${(props) => getOutline(props.variant, props.color)};
+  border: 0;
+  border-radius: 50%;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  padding: ${(props) => getPadding(props.size)};
+  svg {
+    width: ${(props) => getIconSize(props.size)};
+    height: ${(props) => getIconSize(props.size)};
+  }
+  &:hover {
+    background-color: ${(props) =>
+      getHoverBackgroundColor(props.variant, props.color)};
+    color: ${(props) => getHoverColor(props.variant, props.color)};
+    outline: ${(props) => getHoverOutline(props.variant, props.color)};
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  &:active {
+   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+`;
+
+const IconButton = forwardRef(
+  (
+    {
+      icon,
+      onClick,
+      size,
+      variant = "contained",
+      color,
+      disabled,
+      className,
+    }: IconButtonProps,
+    ref
+  ) => {
+    return (
+      <StyledIconBtn
+        variant={variant}
+        size={size}
+        color={color}
+        disabled={disabled}
+        aria-disabled={disabled}
+        onClick={onClick}
+      >
+        {typeof icon === "string" ? (
+          <Text variant="span" size={size}>
+            {icon}
+          </Text>
+        ) : (
+          icon
+        )}
+      </StyledIconBtn>
+    );
+  }
+);
+
+export default IconButton;

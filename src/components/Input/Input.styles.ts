@@ -79,6 +79,7 @@ const useInputStyles = createUseStyles({
     alignItems: "center",
     cursor: props.cursor ?? "text",
     userSelect: "none",
+    backgroundColor: colors.secondary[10],
 
     "& input": {
       fontFamily: "'Source Sans 3', sans-serif",
@@ -90,6 +91,7 @@ const useInputStyles = createUseStyles({
       fontSize: getFontSize(props).fontSize,
       lineHeight: getFontSize(props).lineHeight,
       outlineOffset: "-1px",
+      backgroundColor: colors.secondary[10],
       "&::placeholder": {
         color: colors.secondary[500],
       },
