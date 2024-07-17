@@ -1,6 +1,6 @@
 {
   "name": "stelios",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "dependencies": {
@@ -25,7 +25,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "babel src --out-dir build --extensions \".js,.jsx,.ts,.tsx\"",
+    "build": "babel src --out-dir build --extensions \".js,.jsx,.ts,.tsx\" && tsc",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "storybook dev -p 6006",
