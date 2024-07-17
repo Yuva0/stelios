@@ -4,6 +4,7 @@ import Checkbox from "./components/Checkbox/Checkbox";
 import FormControlLabel from "./components/FormControlLabel/FormControlLabel";
 import IconButton from "./components/IconButton/IconButton";
 import Input from "./components/Input/Input";
+import Header from "./components/Header/Header";
 import Text from "./components/Text/Text";
 import Link from "./components/Link/Link";
 import Menu from "./components/Menu/Menu";
@@ -32,6 +33,7 @@ export {
   Menu,
   MenuItem,
   NumberInput,
+  Header,
   Password,
   Radio,
   RadioGroup,
