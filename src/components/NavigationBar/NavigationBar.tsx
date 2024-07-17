@@ -3,7 +3,8 @@ import { NavigationBarProps } from "./NavigationBar.types";
 import styled from "styled-components";
 import colors from "../../tokens/colors.json";
 
-const StyledNavigationBar = styled.nav`
+const 
+StyledNavigationBar = styled.nav`
   display: flex;
   flex-direction: column;
   position: fixed;
@@ -13,7 +14,6 @@ const StyledNavigationBar = styled.nav`
   margintop: 4rem;
   width: 15rem;
   border-right: 1px solid ${colors.white[200]};
-  gap:0.15rem
 `;
 
 const NavigationBar: React.FC<NavigationBarProps> = ({ children, style }) => {

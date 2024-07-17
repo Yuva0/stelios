@@ -12,7 +12,6 @@ const StyledNavBarHeader = styled.li`
   align-items: center;
   border-radius: 0.5rem;
   padding: 0.25rem 0 0.25rem 2.25rem;
-  margin-top: 0.5rem;
   color: ${colors.white[800]};
   &:before {
     content: "";

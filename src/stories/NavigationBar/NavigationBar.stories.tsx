@@ -22,10 +22,7 @@ export const Default: Story = {
   render: () => {
     return (
       <NavigationBar>
-        <NavigationBarGroup
-          title="Components 1"
-          leadingIcon={<IconChevronRight width={14} height={14} />}
-        >
+        <NavigationBarGroup title="Components 1">
           <NavigationBarHeader>Header</NavigationBarHeader>
           <NavigationBarItem>Content</NavigationBarItem>
           <NavigationBarItem>Content</NavigationBarItem>
@@ -35,10 +32,7 @@ export const Default: Story = {
           <NavigationBarItem>Content</NavigationBarItem>
           <NavigationBarItem>Content</NavigationBarItem>
         </NavigationBarGroup>
-        <NavigationBarGroup
-          title="Components 2"
-          leadingIcon={<IconChevronRight width={14} height={14} />}
-        >
+        <NavigationBarGroup title="Components 2">
           <NavigationBarHeader>Header</NavigationBarHeader>
           <NavigationBarItem>Content</NavigationBarItem>
           <NavigationBarItem>Content</NavigationBarItem>
