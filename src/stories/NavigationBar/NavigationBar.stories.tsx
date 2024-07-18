@@ -7,6 +7,11 @@ import NavigationBarItem from "../../components/NavigationBar/NavigationBarItem/
 import NavigationBarHeader from "../../components/NavigationBar/NavigationBarHeader/NavigationBarHeader";
 import NavigationBarGroup from "../../components/NavigationBar/NavigationBarGroup/NavigationBarGroup";
 import Header from "../../components/Header/Header";
+import SideBar from "../../components/SideBar/SideBar";
+import SideBarItem from "../../components/SideBar/SideBarItem/SideBarItem";
+import SideBarGroup from "../../components/SideBar/SideBarGroup/SideBarGroup";
+import SideBarGroupItem from "../../components/SideBar/SideBarGroupItem/SideBarGroupItem";
+
 
 const meta: Meta<typeof NavigationBar> = {
   title: "Components/NavigationBar",
@@ -53,6 +58,18 @@ export const Default: Story = {
             <NavigationBarItem>Content</NavigationBarItem>
           </NavigationBarGroup>
         </NavigationBar>
+        <SideBar style={{ marginTop: "5rem" }}>
+          <SideBarItem>Test</SideBarItem>
+          <SideBarItem>Test</SideBarItem>
+          <SideBarItem>Test</SideBarItem>
+          <SideBarItem>Test</SideBarItem>
+          <SideBarGroup title="Group 1" onClick={() => {}}>
+            <SideBarGroupItem>Test</SideBarGroupItem>
+            <SideBarGroupItem>Test</SideBarGroupItem>
+            <SideBarGroupItem>Test</SideBarGroupItem>
+            <SideBarGroupItem>Test</SideBarGroupItem>
+          </SideBarGroup>
+        </SideBar>
       </>
     );
   },

@@ -4,6 +4,23 @@ import Text from "../Text/Text";
 import styled from "styled-components";
 import colors from "../../tokens/colors.json";
 
+type LinkStyleProps = {
+  variant?: "default" | "underline" | "hover";
+  color?: string;
+};
+
+const StyledLink = styled.a<LinkStyleProps>`
+  text-decoration: ${(props) =>
+    props.variant === "underline" ? "underline" : "none"};
+  color: ${(props) => props.color ?? colors.info["700"]};
+  cursor: pointer;
+  display: inline-block;
+  &:hover {
+    text-decoration: ${(props) =>
+      props.variant === "default" ? "none" : "underline"};
+  }
+`;
+
 const Link = ({
   href,
   children,
@@ -12,21 +29,13 @@ const Link = ({
   className,
   target,
   style,
+  color,
   onClick,
 }: LinkProps) => {
-  console.log(variant);
-  const StyledLink = styled.a`
-    text-decoration: ${variant === "underline" ? "underline" : "none"};
-    color: ${colors.info["700"]};
-    cursor: pointer;
-    display: inline-block;
-    &:hover {
-      text-decoration: ${variant === "default" ? "none" : "underline"};
-    }
-  `;
-
   return (
     <StyledLink
+      color={color}
+      variant={variant}
       target={target}
       href={href}
       className={className}

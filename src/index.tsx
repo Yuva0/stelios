@@ -18,10 +18,15 @@ import RadioGroup from "./components/RadioGroup/RadioGroup";
 import Select from "./components/Select/Select";
 import Switch from "./components/Switch/Switch";
 import Tag from "./components/Tag/Tag";
+import SideBar from "./components/SideBar/SideBar";
+import SideBarItem from "./components/SideBar/SideBarItem/SideBarItem";
+import SideBarGroup from "./components/SideBar/SideBarGroup/SideBarGroup";
+import SideBarGroupItem from "./components/SideBar/SideBarGroupItem/SideBarGroupItem";
 import NavigationBar from "./components/NavigationBar/NavigationBar";
 import NavigationBarGroup from "./components/NavigationBar/NavigationBarGroup/NavigationBarGroup";
 import NavigationBarHeader from "./components/NavigationBar/NavigationBarHeader/NavigationBarHeader";
 import NavigationBarItem from "./components/NavigationBar/NavigationBarItem/NavigationBarItem";
+import "./index.css";
 
 export {
   Autocomplete,
@@ -39,6 +44,10 @@ export {
   HeaderGroup,
   HeaderItem,
   Password,
+  SideBar,
+  SideBarItem,
+  SideBarGroup,
+  SideBarGroupItem,
   Radio,
   RadioGroup,
   Select,
