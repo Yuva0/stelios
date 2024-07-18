@@ -26,7 +26,6 @@ import NavigationBar from "./components/NavigationBar/NavigationBar";
 import NavigationBarGroup from "./components/NavigationBar/NavigationBarGroup/NavigationBarGroup";
 import NavigationBarHeader from "./components/NavigationBar/NavigationBarHeader/NavigationBarHeader";
 import NavigationBarItem from "./components/NavigationBar/NavigationBarItem/NavigationBarItem";
-import "./index.css";
 
 export {
   Autocomplete,
