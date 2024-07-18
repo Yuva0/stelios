@@ -7,7 +7,7 @@ import HeaderItem from "../../components/Header/HeaderItem/HeaderItem";
 import Link from "../../components/Link/Link";
 import Button from "../../components/Button/Button";
 import IconButton from "../../components/IconButton/IconButton";
-import { IconPackage, IconSettings } from "@tabler/icons-react";
+import { IconSettings } from "@tabler/icons-react";
 
 const meta: Meta<typeof Header> = {
   title: "Components/Header",
@@ -37,7 +37,11 @@ export const Default: Story = {
             </Button>
           </HeaderItem>
           <HeaderItem>
-            <IconButton icon={<IconSettings />} variant="outlined" color="primary"/>
+            <IconButton
+              icon={<IconSettings />}
+              variant="outlined"
+              color="primary"
+            />
           </HeaderItem>
         </HeaderGroup>
         <HeaderGroup>

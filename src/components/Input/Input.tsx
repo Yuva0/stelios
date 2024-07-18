@@ -1,5 +1,5 @@
 import React, { forwardRef } from "react";
-import { InputProps, InputStyleProps } from "./Input.types";
+import { InputProps } from "./Input.types";
 import Text from "../Text/Text";
 import useInputStyles from "./Input.styles";
 

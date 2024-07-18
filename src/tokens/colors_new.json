@@ -1,0 +1,24 @@
+{
+  "primary": {
+    "accent": "#EE9B00"
+  },
+  "secondary": {
+    "accent": "#305c84"
+  },
+  "danger": {
+    "accent": "ae3334"
+  },
+  "info": {
+    "accent": "0859AA"
+  },
+  "warning": {
+    "accent": "ffc327"
+  },
+  "success": {
+    "accent": "38703B"
+  },
+
+  "gray": "#0D0D0D",
+  "background": "#121212",
+  "appearance": "dark"
+}

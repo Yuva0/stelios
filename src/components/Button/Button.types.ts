@@ -39,4 +39,5 @@ export interface ButtonStyleProps {
     | "info";
   disabled?: boolean;
   fullWidth?: boolean;
+  colorObj?: any;
 }

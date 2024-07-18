@@ -5,8 +5,8 @@ import IconButton from "../../components/IconButton/IconButton";
 import Text from "../../components/Text/Text";
 import {
   Icon12Hours,
-  IconArrowLeft,
-  IconArrowRight,
+  // IconArrowLeft,
+  // IconArrowRight,
 } from "@tabler/icons-react";
 
 const meta: Meta<typeof IconButton> = {
