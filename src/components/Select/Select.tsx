@@ -2,7 +2,6 @@ import React from "react";
 import { SelectProps } from "./Select.types";
 import Input from "../Input/Input";
 import { IconArrowDown } from "@tabler/icons-react";
-import { usePopper } from "react-popper";
 import Menu from "../Menu/Menu";
 import { MenuItemKeyProps } from "../MenuItem/MenuItem.types";
 
@@ -16,23 +15,10 @@ const Select = ({
   //Events
   onClick,
 }: SelectProps) => {
-  const inputRef = React.useRef<HTMLDivElement>(null);
-  const menuRef = React.useRef<HTMLDivElement>(null);
+  const [anchorElement, setAnchorElement] =
+    React.useState<HTMLDivElement | null>(null);
   const [isOpen, setIsOpen] = React.useState(open ?? false);
   const [inputValue, setInputValue] = React.useState<string | string[]>("");
-
-  const { styles, attributes } = usePopper(inputRef.current, menuRef.current, {
-    placement: "bottom-start",
-    modifiers: [
-      {
-        name: "offset",
-        options: {
-          offset: [0, 2.5],
-        },
-      },
-    ],
-  });
-
   const _handleMultiSelectOnClick = (
     e: React.MouseEvent,
     { title, value }: MenuItemKeyProps
@@ -62,13 +48,15 @@ const Select = ({
     else return _handleSingleSelectOnClick(e, { title, value });
   };
 
+  console.log(setAnchorElement);
+
   return (
     <div>
       <Input
         placeholder={placeholder}
         value={inputValue}
         disableSearch
-        ref={inputRef}
+        ref={setAnchorElement}
         label={label}
         trailingIcon={<IconArrowDown />}
         cursor="pointer"
@@ -78,13 +66,9 @@ const Select = ({
       />
       <Menu
         open={isOpen}
-        ref={menuRef}
-        minWidth={`${inputRef.current?.offsetWidth}px`}
-        style={{
-          ...styles.popper,
-        }}
+        anchorElement={anchorElement}
+        minWidth={`${anchorElement?.offsetWidth}px`}
         onClick={_onClick}
-        {...attributes.poper}
       >
         {React.Children.map(children, (child) => {
           return child;
