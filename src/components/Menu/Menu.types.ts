@@ -6,7 +6,28 @@ export interface MenuProps {
   minWidth?: string;
   open?: boolean;
   anchorElement: HTMLElement | null;
-
+  // Popper Styles
+  popperStyles?: {
+    placement?:
+      | "top"
+      | "top-start"
+      | "top-end"
+      | "right"
+      | "right-start"
+      | "right-end"
+      | "bottom"
+      | "bottom-start"
+      | "bottom-end"
+      | "left"
+      | "left-start"
+      | "left-end";
+    modifiers?: {
+      name: string;
+      options: {
+        offset: [number, number];
+      };
+    }[];
+  };
   // Events
   onClick?: (
     e: React.MouseEvent<HTMLLIElement>,

@@ -1,8 +1,9 @@
-import React, { forwardRef, useEffect, useRef, useState } from "react";
+import React, { forwardRef, useEffect, useState } from "react";
 import { MenuProps, MenuStyleProps } from "./Menu.types";
 import { MenuItemKeyProps } from "../MenuItem/MenuItem.types";
 import styled from "styled-components";
 import { usePopper } from "react-popper";
+import { MenuItemProps } from "../MenuItem/MenuItem.types";
 
 const StyledMenuContainer = styled.div<MenuStyleProps>`
   display: ${(props) => (props.$open ? "block" : "none")};
@@ -31,6 +32,7 @@ const Menu = forwardRef<HTMLDivElement, MenuProps>(
     {
       children,
       style,
+      popperStyles,
       open = false,
       minWidth = "none",
       anchorElement,
@@ -40,34 +42,32 @@ const Menu = forwardRef<HTMLDivElement, MenuProps>(
     ref
   ) => {
     const [isOpen, setIsOpen] = useState(open ?? false);
-    const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(null);
+    const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(
+      null
+    );
 
     useEffect(() => {
       setIsOpen(open ?? false);
     }, [open]);
 
-    const { styles, attributes } = usePopper(
-      anchorElement,
-      popperElement,
-      {
-        placement: "bottom-start",
-        modifiers: [
-          {
-            name: "offset",
-            options: {
-              offset: [0, 2.5],
-            },
+    const { styles, attributes } = usePopper(anchorElement, popperElement, {
+      placement: (popperStyles && popperStyles.placement) ?? "bottom-start",
+      modifiers: [
+        {
+          name: "offset",
+          options: {
+            offset: [0, 2.5],
           },
-        ],
-      }
-    );
+        },
+      ],
+    });
 
-    // const _onClick = (
-    //   e: React.MouseEvent<HTMLLIElement>,
-    //   { title, value }: MenuItemKeyProps
-    // ) => {
-    //   onClick && onClick(e, { title, value });
-    // };
+    const _onClick = (
+      e: React.MouseEvent<HTMLLIElement>,
+      { title, value }: MenuItemKeyProps
+    ) => {
+      onClick && onClick(e, { title, value });
+    };
 
     if (!children) return null;
     if (Array.isArray(children) && children.length === 0) return null;
@@ -87,8 +87,8 @@ const Menu = forwardRef<HTMLDivElement, MenuProps>(
 
             return React.cloneElement(child, {
               key: child.props.index ?? index,
-              // onClick: _onClick as React.MouseEventHandler<HTMLLIElement>,
-            });
+              onClick: _onClick,
+            } as MenuItemProps);
           })}
         </StyledMenu>
       </StyledMenuContainer>
