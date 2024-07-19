@@ -6,12 +6,11 @@ import NavigationBar from "../../components/NavigationBar/NavigationBar";
 import NavigationBarItem from "../../components/NavigationBar/NavigationBarItem/NavigationBarItem";
 import NavigationBarHeader from "../../components/NavigationBar/NavigationBarHeader/NavigationBarHeader";
 import NavigationBarGroup from "../../components/NavigationBar/NavigationBarGroup/NavigationBarGroup";
-// import Header from "../../components/Header/Header";
+import NavigationBarGroupItem from "../../components/NavigationBar/NavigationBarGroupItem/NavigationBarGroupItem";
 import SideBar from "../../components/SideBar/SideBar";
 import SideBarItem from "../../components/SideBar/SideBarItem/SideBarItem";
 import SideBarGroup from "../../components/SideBar/SideBarGroup/SideBarGroup";
 import SideBarGroupItem from "../../components/SideBar/SideBarGroupItem/SideBarGroupItem";
-
 
 const meta: Meta<typeof NavigationBar> = {
   title: "Components/NavigationBar",
@@ -32,30 +31,28 @@ export const Default: Story = {
         <NavigationBar>
           <NavigationBarGroup title="Components 1">
             <NavigationBarHeader>Header</NavigationBarHeader>
-            <NavigationBarItem>Content</NavigationBarItem>
-            <NavigationBarItem>Content</NavigationBarItem>
-            <NavigationBarItem>Content</NavigationBarItem>
-            <NavigationBarItem>Content</NavigationBarItem>
-            <NavigationBarItem>Content</NavigationBarItem>
-            <NavigationBarItem>Content</NavigationBarItem>
-            <NavigationBarItem>Content</NavigationBarItem>
-            <NavigationBarItem>Content</NavigationBarItem>
-            <NavigationBarItem>Content</NavigationBarItem>
-            <NavigationBarItem>Content</NavigationBarItem>
-            <NavigationBarItem>Content</NavigationBarItem>
-            <NavigationBarItem>Content</NavigationBarItem>
-            <NavigationBarItem>Content</NavigationBarItem>
-            <NavigationBarItem>Content</NavigationBarItem>
+            <NavigationBarGroupItem>Content</NavigationBarGroupItem>
+            <NavigationBarGroupItem>Content</NavigationBarGroupItem>
+            <NavigationBarGroupItem>Content</NavigationBarGroupItem>
+            <NavigationBarGroupItem>Content</NavigationBarGroupItem>
+            <NavigationBarGroupItem>Content</NavigationBarGroupItem>
+            <NavigationBarGroupItem>Content</NavigationBarGroupItem>
+            <NavigationBarGroupItem>Content</NavigationBarGroupItem>
+            <NavigationBarGroupItem>Content</NavigationBarGroupItem>
+            <NavigationBarGroupItem>Content</NavigationBarGroupItem>
           </NavigationBarGroup>
+          <NavigationBarItem>Content</NavigationBarItem>
           <NavigationBarGroup title="Components 2">
             <NavigationBarHeader>Header</NavigationBarHeader>
-            <NavigationBarItem>Content</NavigationBarItem>
-            <NavigationBarItem>Content</NavigationBarItem>
-            <NavigationBarItem>Content</NavigationBarItem>
-            <NavigationBarItem>Content</NavigationBarItem>
-            <NavigationBarItem>Content</NavigationBarItem>
-            <NavigationBarItem>Content</NavigationBarItem>
-            <NavigationBarItem>Content</NavigationBarItem>
+            <NavigationBarGroupItem>Content</NavigationBarGroupItem>
+            <NavigationBarGroupItem>Content</NavigationBarGroupItem>
+            <NavigationBarGroupItem>Content</NavigationBarGroupItem>
+            <NavigationBarGroupItem>Content</NavigationBarGroupItem>
+            <NavigationBarGroupItem>Content</NavigationBarGroupItem>
+            <NavigationBarGroupItem>Content</NavigationBarGroupItem>
+            <NavigationBarGroupItem>Content</NavigationBarGroupItem>
+            <NavigationBarGroupItem>Content</NavigationBarGroupItem>
+            <NavigationBarGroupItem>Content</NavigationBarGroupItem>
           </NavigationBarGroup>
         </NavigationBar>
         <SideBar style={{ marginTop: "5rem" }}>

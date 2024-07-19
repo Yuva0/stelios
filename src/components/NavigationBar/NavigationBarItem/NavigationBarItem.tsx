@@ -6,25 +6,15 @@ import Text from "../../Text/Text";
 
 const StyledNavBarItem = styled.li`
   display: flex;
-  position: relative;
   flex-direction: row;
-  gap: 1rem;
+  gap: 0.5rem;
   align-items: center;
   cursor: pointer;
   border-radius: 0.5rem;
-  padding: 0.4rem 0 0.4rem 1.75rem;
+  padding: 0.3rem 0.75rem;
   margin: 0 0.5rem;
   &:hover {
     background-color: ${colors.white[100]};
-  }
-  &:after {
-    content: "";
-    position: absolute;
-    height: 100%;
-    margin-left: 0.43rem;
-    border-left: 1px solid ${colors.white[200]};
-    top: 0;
-    left: 0;
   }
 `;
 
