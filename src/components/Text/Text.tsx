@@ -8,7 +8,6 @@ const commonStyles = `
   margin: 0;
   display: flex;
   align-items: center;
-  justify-content: ${(props: TextStyleProps) => props.$align ?? "left"};
 `;
 
 const StyledH1 = styled.h1<TextStyleProps>`
@@ -24,6 +23,7 @@ const StyledH1 = styled.h1<TextStyleProps>`
       : props.$size === "medium"
         ? "3.5rem"
         : "3rem"};
+  font-weight: ${(props: TextStyleProps) => (props.$strong ? "700" : "400")};
   ${commonStyles}
 `;
 const StyledH2 = styled.h2<TextStyleProps>`
@@ -39,6 +39,7 @@ const StyledH2 = styled.h2<TextStyleProps>`
       : props.$size === "medium"
         ? "3rem"
         : "2.5rem"};
+  font-weight: ${(props: TextStyleProps) => (props.$strong ? "700" : "400")};
   ${commonStyles}
 `;
 const StyledH3 = styled.h3<TextStyleProps>`
@@ -54,6 +55,7 @@ const StyledH3 = styled.h3<TextStyleProps>`
       : props.$size === "medium"
         ? "2.5rem"
         : "2rem"};
+  font-weight: ${(props: TextStyleProps) => (props.$strong ? "700" : "400")};
   ${commonStyles}
 `;
 const StyledH4 = styled.h4<TextStyleProps>`
@@ -69,6 +71,7 @@ const StyledH4 = styled.h4<TextStyleProps>`
       : props.$size === "medium"
         ? "2rem"
         : "1.75rem"};
+  font-weight: ${(props: TextStyleProps) => (props.$strong ? "700" : "400")};
   ${commonStyles}
 `;
 const StyledH5 = styled.h5<TextStyleProps>`
@@ -84,6 +87,7 @@ const StyledH5 = styled.h5<TextStyleProps>`
       : props.$size === "medium"
         ? "1.75rem"
         : "1.5rem"};
+  font-weight: ${(props: TextStyleProps) => (props.$strong ? "700" : "400")};
   ${commonStyles}
 `;
 const StyledH6 = styled.h6<TextStyleProps>`
@@ -99,6 +103,7 @@ const StyledH6 = styled.h6<TextStyleProps>`
       : props.$size === "medium"
         ? "1.5rem"
         : "1.25rem"};
+  font-weight: ${(props: TextStyleProps) => (props.$strong ? "700" : "400")};
   ${commonStyles}
 `;
 const StyledDiv = styled.div<TextStyleProps>`
@@ -114,6 +119,7 @@ const StyledDiv = styled.div<TextStyleProps>`
       : props.$size === "medium"
         ? "1.5rem"
         : "1.25rem"};
+  font-weight: ${(props: TextStyleProps) => (props.$strong ? "700" : "400")};
   ${commonStyles}
 `;
 const StyledLabel = styled.label<TextStyleProps>`
@@ -129,6 +135,7 @@ const StyledLabel = styled.label<TextStyleProps>`
       : props.$size === "medium"
         ? "1.5rem"
         : "1.25rem"};
+  font-weight: ${(props: TextStyleProps) => (props.$strong ? "700" : "400")};
   ${commonStyles}
 `;
 const StyledSpan = styled.span<TextStyleProps>`
@@ -144,6 +151,7 @@ const StyledSpan = styled.span<TextStyleProps>`
       : props.$size === "medium"
         ? "1.5rem"
         : "1.25rem"};
+  font-weight: ${(props: TextStyleProps) => (props.$strong ? "700" : "400")};
   ${commonStyles}
 `;
 const StyledP = styled.p<TextStyleProps>`
@@ -159,16 +167,17 @@ const StyledP = styled.p<TextStyleProps>`
       : props.$size === "medium"
         ? "1.5rem"
         : "1.25rem"};
+  font-weight: ${(props: TextStyleProps) => (props.$strong ? "700" : "400")};
   ${commonStyles}
 `;
 
 const Text = ({
-  variant,
+  variant = "div",
   strong,
   children,
-  align,
+  align = "center",
   color,
-  wrap,
+  wrap = false,
   size = "medium",
   fontSize,
   lineHeight,
@@ -180,7 +189,6 @@ const Text = ({
     case "h1":
       return (
         <StyledH1
-          $variant={variant}
           $strong={strong}
           $align={align}
           $color={color}
@@ -198,7 +206,6 @@ const Text = ({
     case "h2":
       return (
         <StyledH2
-          $variant={variant}
           $strong={strong}
           $align={align}
           $color={color}
@@ -356,6 +363,24 @@ const Text = ({
         >
           {children}
         </StyledSpan>
+      );
+    default:
+      return (
+        <StyledDiv
+          $variant={variant}
+          $strong={strong}
+          $align={align}
+          $color={color}
+          $wrap={wrap}
+          $size={size}
+          $fontSize={fontSize}
+          $lineHeight={lineHeight}
+          style={style}
+          className={className}
+          {...rest}
+        >
+          {children}
+        </StyledDiv>
       );
   }
 };

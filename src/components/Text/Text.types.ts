@@ -31,12 +31,12 @@ export interface TextProps {
 }
 
 export interface TextStyleProps {
-  $variant: NonNullable<TextProps["variant"]>;
+  $variant?: TextProps["variant"];
   $strong?: number;
-  $align?: NonNullable<TextProps["align"]>;
-  $color?: NonNullable<TextProps["color"]>;
+  $align?: TextProps["align"];
+  $color?: TextProps["color"];
   $wrap?: boolean;
-  $size?: NonNullable<TextProps["size"]>;
+  $size?: TextProps["size"];
   $fontSize?: string;
   $lineHeight?: string;
 }
