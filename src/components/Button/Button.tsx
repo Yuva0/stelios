@@ -7,7 +7,6 @@ import {
 import Text from "../Text/Text";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
 import styled from "styled-components";
-import { DefaultTheme } from "../ThemeProvider/ThemeProvider.types";
 
 const getPadding = (size?: "small" | "medium" | "large") => {
   switch (size) {
@@ -23,81 +22,75 @@ const getPadding = (size?: "small" | "medium" | "large") => {
 };
 
 const getBackgroundColor = (
-  variant?: ButtonProps["variant"],
-  color?: ButtonProps["color"],
-  colorGradient?: DefaultTheme["colorGradient"]
+  variant: ButtonStyleProps["$variant"],
+  color: ButtonStyleProps["$color"],
+  colorGradient: ButtonStyleProps["$colorGradient"]
 ) => {
   switch (variant) {
     case "contained":
       return {
-        default: colorGradient[color ?? "primary"].accentScale[8],
-        hover: colorGradient[color ?? "primary"].accentScale[9],
-        active: colorGradient[color ?? "primary"].accentScale[9],
+        default: colorGradient[color].accentScale[8],
+        hover: colorGradient[color].accentScale[9],
+        active: colorGradient[color].accentScale[9],
       };
     case "outlined":
       return {
-        default: colorGradient[color ?? "primary"].accentScale[2],
-        hover: colorGradient[color ?? "primary"].accentScale[3],
-        active: colorGradient[color ?? "primary"].accentScale[4],
+        default: colorGradient[color].accentScale[2],
+        hover: colorGradient[color].accentScale[3],
+        active: colorGradient[color].accentScale[4],
       };
     case "text":
       return {
-        default: colorGradient[color ?? "primary"].accentScale[0],
-        hover: colorGradient[color ?? "primary"].accentScale[1],
-        active: colorGradient[color ?? "primary"].accentScale[2],
-      };
-    default:
-      return {
-        default: colorGradient[color ?? "primary"].accentScale[9],
-        hover: colorGradient[color ?? "primary"].accentScale[10],
-        active: colorGradient[color ?? "primary"].accentScale[11],
+        default: colorGradient[color].accentScale[0],
+        hover: colorGradient[color].accentScale[1],
+        active: colorGradient[color].accentScale[2],
       };
   }
 };
 
 const getColor = (
-  variant?: ButtonProps["variant"],
-  color?: ButtonProps["color"],
-  colorGradient?: DefaultTheme["colorGradient"]
+  variant: ButtonStyleProps["$variant"],
+  color: ButtonStyleProps["$color"],
+  colorGradient: ButtonStyleProps["$colorGradient"]
 ) => {
   switch (variant) {
     case "contained":
       return {
-        default: colorGradient[color ?? "primary"].accentContrast,
-        hover: colorGradient[color ?? "primary"].accentContrast,
-        active: colorGradient[color ?? "primary"].accentContrast,
+        default: colorGradient[color].accentContrast,
+        hover: colorGradient[color].accentContrast,
+        active: colorGradient[color].accentContrast,
       };
     case "outlined":
       return {
-        default: colorGradient[color ?? "primary"].accentScale[10],
-        hover: colorGradient[color ?? "primary"].accentScale[10],
-        active: colorGradient[color ?? "primary"].accentScale[10],
+        default: colorGradient[color].accentScale[10],
+        hover: colorGradient[color].accentScale[10],
+        active: colorGradient[color].accentScale[10],
       };
     case "text":
       return {
-        default: colorGradient[color ?? "primary"].accentScale[10],
-        hover: colorGradient[color ?? "primary"].accentScale[10],
-        active: colorGradient[color ?? "primary"].accentScale[10],
+        default: colorGradient[color].accentScale[10],
+        hover: colorGradient[color].accentScale[10],
+        active: colorGradient[color].accentScale[10],
       };
     default:
       return {
-        default: colorGradient[color ?? "primary"].accentContrast,
-        hover: colorGradient[color ?? "primary"].accentContrast,
-        active: colorGradient[color ?? "primary"].accentContrast,
+        default: colorGradient[color].accentContrast,
+        hover: colorGradient[color].accentContrast,
+        active: colorGradient[color].accentContrast,
       };
   }
 };
 
 const getOutline = (
-  variant?: ButtonProps["variant"],
-  color?: ButtonProps["color"],
-  colorGradient?: DefaultTheme["colorGradient"]
+  variant: ButtonStyleProps["$variant"],
+  color: ButtonStyleProps["$color"],
+  colorGradient: ButtonStyleProps["$colorGradient"]
 ) => {
   if (variant === "outlined") {
     return {
-      default: `1px solid ${colorGradient[color ?? "primary"].accentScale[5]}`,
-      hover: `1px solid ${colorGradient[color ?? "primary"].accentScale[6]}`,
-      active: `1px solid ${colorGradient[color ?? "primary"].accentScale[7]}`,
+      default: `1px solid ${colorGradient[color].accentScale[5]}`,
+      hover: `1px solid ${colorGradient[color].accentScale[6]}`,
+      active: `1px solid ${colorGradient[color].accentScale[7]}`,
     };
   }
   return { default: "none", hover: "none", active: "none" };
@@ -166,9 +159,9 @@ const ButtonInternal = ({
   size = "medium",
   variant = "contained",
   color = "primary",
-  disabled,
+  disabled = false,
   children,
-  fullWidth,
+  fullWidth = false,
 
   // Events
   onClick,

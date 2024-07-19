@@ -45,11 +45,6 @@ export const Variants: Story = {
               </td>
               <td>
                 <Text variant="h5" size="large">
-                  Tertiary
-                </Text>
-              </td>
-              <td>
-                <Text variant="h5" size="large">
                   Danger
                 </Text>
               </td>
@@ -95,14 +90,6 @@ export const Variants: Story = {
                 size="large"
                 variant="contained"
                 color="secondary"
-              ></IconButton>
-            </td>
-            <td>
-              <IconButton
-                icon={<Icon12Hours />}
-                size="large"
-                variant="contained"
-                color="tertiary"
               ></IconButton>
             </td>
             <td>
@@ -165,14 +152,6 @@ export const Variants: Story = {
                 icon={<Icon12Hours />}
                 size="large"
                 variant="outlined"
-                color="tertiary"
-              ></IconButton>
-            </td>
-            <td>
-              <IconButton
-                icon={<Icon12Hours />}
-                size="large"
-                variant="outlined"
                 color="danger"
               ></IconButton>
             </td>
@@ -221,14 +200,6 @@ export const Variants: Story = {
                 size="large"
                 variant="text"
                 color="secondary"
-              ></IconButton>
-            </td>
-            <td>
-              <IconButton
-                icon={<Icon12Hours />}
-                size="large"
-                variant="text"
-                color="tertiary"
               ></IconButton>
             </td>
             <td>
@@ -296,14 +267,6 @@ export const Variants: Story = {
                 icon={<Icon12Hours />}
                 size="medium"
                 variant="contained"
-                color="tertiary"
-              ></IconButton>
-            </td>
-            <td>
-              <IconButton
-                icon={<Icon12Hours />}
-                size="medium"
-                variant="contained"
                 color="danger"
               ></IconButton>
             </td>
@@ -359,14 +322,6 @@ export const Variants: Story = {
                 icon={<Icon12Hours />}
                 size="medium"
                 variant="outlined"
-                color="tertiary"
-              ></IconButton>
-            </td>
-            <td>
-              <IconButton
-                icon={<Icon12Hours />}
-                size="medium"
-                variant="outlined"
                 color="danger"
               ></IconButton>
             </td>
@@ -415,14 +370,6 @@ export const Variants: Story = {
                 size="medium"
                 variant="text"
                 color="secondary"
-              ></IconButton>
-            </td>
-            <td>
-              <IconButton
-                icon={<Icon12Hours />}
-                size="medium"
-                variant="text"
-                color="tertiary"
               ></IconButton>
             </td>
             <td>
@@ -490,14 +437,6 @@ export const Variants: Story = {
                 icon={<Icon12Hours />}
                 size="small"
                 variant="contained"
-                color="tertiary"
-              ></IconButton>
-            </td>
-            <td>
-              <IconButton
-                icon={<Icon12Hours />}
-                size="small"
-                variant="contained"
                 color="danger"
               ></IconButton>
             </td>
@@ -553,14 +492,6 @@ export const Variants: Story = {
                 icon={<Icon12Hours />}
                 size="small"
                 variant="outlined"
-                color="tertiary"
-              ></IconButton>
-            </td>
-            <td>
-              <IconButton
-                icon={<Icon12Hours />}
-                size="small"
-                variant="outlined"
                 color="danger"
               ></IconButton>
             </td>
@@ -609,14 +540,6 @@ export const Variants: Story = {
                 size="small"
                 variant="text"
                 color="secondary"
-              ></IconButton>
-            </td>
-            <td>
-              <IconButton
-                icon={<Icon12Hours />}
-                size="small"
-                variant="text"
-                color="tertiary"
               ></IconButton>
             </td>
             <td>

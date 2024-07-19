@@ -11,13 +11,7 @@ export interface ButtonProps
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   size?: "small" | "medium" | "large";
   variant?: "contained" | "outlined" | "text";
-  color?:
-    | "primary"
-    | "secondary"
-    | "danger"
-    | "warning"
-    | "success"
-    | "info";
+  color?: "primary" | "secondary" | "danger" | "warning" | "success" | "info";
   children?: React.ReactNode | React.ReactNode[];
   disabled?: boolean;
   fullWidth?: boolean;
@@ -26,16 +20,10 @@ export interface ButtonProps
 }
 
 export interface ButtonStyleProps {
-  $size?: "small" | "medium" | "large";
-  $variant?: "contained" | "outlined" | "text";
-  $color?:
-    | "primary"
-    | "secondary"
-    | "danger"
-    | "warning"
-    | "success"
-    | "info";
-  $disabled?: boolean;
-  $fullWidth?: boolean;
+  $size: NonNullable<ButtonProps["size"]>;
+  $variant: NonNullable<ButtonProps["variant"]>;
+  $color: NonNullable<ButtonProps["color"]>;
+  $disabled?: NonNullable<ButtonProps["disabled"]>;
+  $fullWidth?: NonNullable<ButtonProps["fullWidth"]>;
   $colorGradient: any;
 }
