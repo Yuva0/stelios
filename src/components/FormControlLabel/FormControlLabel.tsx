@@ -1,8 +1,40 @@
 import React from "react";
 
-import { FormControlLabelProps } from "./FormControlLabel.types";
-import useFormControlLabelStyles from "./FormControlLabel.styles";
+import {
+  FormControlLabelProps,
+  FormControlLabelStyleProps,
+} from "./FormControlLabel.types";
 import Text from "../Text/Text";
+import styled from "styled-components";
+
+const getFlexDirection = (
+  labelPlacement?: "start" | "end" | "top" | "bottom"
+) => {
+  switch (labelPlacement) {
+    case "start":
+      return "row-reverse";
+    case "end":
+      return "row";
+    case "top":
+      return "column-reverse";
+    case "bottom":
+      return "column";
+    default:
+      return "row";
+  }
+};
+
+const StyledFormControl = styled.label<FormControlLabelStyleProps>`
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  gap: ${(props) => props.$gap}px;
+  cursor: pointer;
+  user-select: none;
+  flex-direction: ${(props) => getFlexDirection(props.$labelPlacement)};
+`;
 
 const FormControlLabel: React.FC<FormControlLabelProps> = ({
   control,
@@ -10,25 +42,23 @@ const FormControlLabel: React.FC<FormControlLabelProps> = ({
   labelPlacement = "end",
   size = "medium",
   gap = 4,
-  disabled,
+  disabled = false,
   ...props
 }) => {
   const _disabled = control.props.disabled || disabled;
 
-  const classNames = useFormControlLabelStyles({
-    labelPlacement,
-    size,
-    disabled: _disabled,
-    gap,
-  });
-
   return (
-    <label className={classNames["ste-form-control-label"]}>
+    <StyledFormControl
+      $gap={gap}
+      $labelPlacement={labelPlacement}
+      $disabled={_disabled}
+      $size={size}
+    >
       {React.cloneElement(control, {
         ...(!control.props.size && size && { size }),
         ...props,
       })}
-      <span className="ste-form-control-label">
+      <span>
         {typeof label === "string" ? (
           <Text variant="paragraph" size={size}>
             {label}
@@ -37,7 +67,7 @@ const FormControlLabel: React.FC<FormControlLabelProps> = ({
           label
         )}
       </span>
-    </label>
+    </StyledFormControl>
   );
 };
 

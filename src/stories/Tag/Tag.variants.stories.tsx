@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-
+import React from "react";
 import Tag from "../../components/Tag/Tag";
 import { IconInfoCircle } from "@tabler/icons-react";
 
@@ -21,7 +21,7 @@ export const Variants: Story = {
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
         <Tag color="info" leadingIcon={<IconInfoCircle />}>
-          Badge
+          Extremely large badge
         </Tag>
         <Tag
           color="success"
@@ -33,7 +33,6 @@ export const Variants: Story = {
         <Tag color="success">Badge</Tag>
         <Tag color="danger">Badge</Tag>
         <Tag color="warning">Badge</Tag>
-        <Tag color="tertiary">Badge</Tag>
         <Tag color="primary">Badge</Tag>
         <Tag color="secondary">Badge</Tag>
       </div>

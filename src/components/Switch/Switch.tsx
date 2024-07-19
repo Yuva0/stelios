@@ -1,6 +1,5 @@
 import React, { forwardRef, useState, useEffect } from "react";
 import { SwitchProps, SwitchStyleProps } from "./Switch.types";
-import useSwitchStyles from "./Switch.styles";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
 import styled from "styled-components";
 

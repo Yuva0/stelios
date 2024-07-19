@@ -1,7 +1,43 @@
 import React from "react";
 import Text from "../Text/Text";
-import useMenuItemStyles from "./MenuItem.styles";
-import { MenuItemProps } from "./MenuItem.types";
+import { MenuItemProps, MenuItemStyleProps } from "./MenuItem.types";
+import styled from "styled-components";
+import { useTheme } from "../ThemeProvider/ThemeProvider";
+
+const StyledMenuItem = styled.li<MenuItemStyleProps>`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0.5rem 0.5rem 0.5rem 0.75rem;
+  gap: 0.25rem;
+  cursor: pointer;
+  &:hover {
+    background: ${(props) => props.colorGradient["primary"].grayScale[1]};
+  }
+  &:focus {
+    background: ${(props) => props.colorGradient["primary"].grayScale[1]};
+    outline: ${(props) =>
+      `1px solid ${props.colorGradient["primary"].accentScale[5]}`};
+    outline-offset: -1px;
+    border-radius: 0.25rem;
+  }
+`;
+
+const StyledMenuItemContent = styled.li<MenuItemStyleProps>`
+  width: 100%;
+`;
+
+const StyledMenuItemIcon = styled.span`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  & svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+`;
 
 const MenuItem = ({
   leadingIcon,
@@ -11,36 +47,36 @@ const MenuItem = ({
   value,
   onClick,
 }: MenuItemProps) => {
-  const classNames = useMenuItemStyles({});
+  const colorGradient = useTheme().colorGradient;
 
   const _onClick = (event: React.MouseEvent<HTMLLIElement>) => {
     onClick && onClick(event, { title, value });
   };
 
   return (
-    <li className={classNames["ste-menu-item"]} onClick={_onClick}>
-      {leadingIcon && (
-        <span className={classNames["ste-menu-item-icon"]}>{leadingIcon}</span>
-      )}
+    <StyledMenuItem colorGradient={colorGradient} onClick={_onClick}>
+      {leadingIcon && <StyledMenuItemIcon>{leadingIcon}</StyledMenuItemIcon>}
       {children ? (
         typeof children === "string" ? (
-          <span className={classNames["ste-menu-item-content"]}>
+          <StyledMenuItemContent colorGradient={colorGradient}>
             <Text variant="paragraph">{children}</Text>
-          </span>
+          </StyledMenuItemContent>
         ) : (
-          <span className={classNames["ste-menu-item-content"]}>
+          <StyledMenuItemContent colorGradient={colorGradient}>
             {children}
-          </span>
+          </StyledMenuItemContent>
         )
       ) : (
-        <span className={classNames["ste-menu-item-content"]}>
+        <StyledMenuItemContent colorGradient={colorGradient}>
           <Text variant="paragraph">{title}</Text>
-        </span>
+        </StyledMenuItemContent>
       )}
       {trailingIcon && (
-        <span className={classNames["ste-menu-item-icon"]}>{trailingIcon}</span>
+        <StyledMenuItemContent colorGradient={colorGradient}>
+          {trailingIcon}
+        </StyledMenuItemContent>
       )}
-    </li>
+    </StyledMenuItem>
   );
 };
 

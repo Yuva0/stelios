@@ -8,8 +8,8 @@ export interface FormControlLabelProps {
 }
 
 export interface FormControlLabelStyleProps {
-  labelPlacement?: "start" | "end" | "top" | "bottom";
-  size?: "small" | "medium" | "large";
-  disabled?: boolean;
-  gap?: number;
+  $labelPlacement: NonNullable<FormControlLabelProps["labelPlacement"]>;
+  $size: NonNullable<FormControlLabelProps["size"]>;
+  $disabled: NonNullable<FormControlLabelProps["disabled"]>;
+  $gap: NonNullable<FormControlLabelProps["gap"]>;
 }

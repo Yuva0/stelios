@@ -13,4 +13,6 @@ export interface MenuItemProps extends MenuItemKeyProps {
   ) => void;
 }
 
-export interface MenuItemStyleProps {}
+export interface MenuItemStyleProps {
+  colorGradient: any
+}

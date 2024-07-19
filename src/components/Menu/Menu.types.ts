@@ -14,6 +14,6 @@ export interface MenuProps {
 }
 
 export interface MenuStyleProps {
-  open?: boolean;
-  minWidth?: string;
+  $open: NonNullable<MenuProps["open"]>;
+  $minWidth: NonNullable<MenuProps["minWidth"]>;
 }

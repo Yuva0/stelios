@@ -28,15 +28,15 @@ export interface InputProps {
 }
 
 export interface InputStyleProps {
-  $color?: InputProps["color"];
-  $size?: InputProps["size"];
-  $cursor?: InputProps["cursor"];
-  $disabled?: InputProps["disabled"];
+  $color: NonNullable<InputProps["color"]>;
+  $size: NonNullable<InputProps["size"]>;
+  $cursor?: NonNullable<InputProps["cursor"]>;
+  $disabled?: NonNullable<InputProps["disabled"]>;
   $fullWidth?: InputProps["fullWidth"];
-  $width?: InputProps["width"];
-  $hasLeadingIcon?: boolean;
-  $hasTrailingIcon?: boolean;
+  $width: NonNullable<InputProps["width"]>;
+  $hasLeadingIcon: boolean;
+  $hasTrailingIcon: boolean;
   $isFocused?: boolean;
-  $colorGradient?: any;
+  $colorGradient: any;
   $inputBgColor?: InputProps["inputBgColor"];
 }

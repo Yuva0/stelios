@@ -35,9 +35,9 @@ const getBackgroundColor = (
       };
     case "outlined":
       return {
-        default: colorGradient[color].accentScale[2],
-        hover: colorGradient[color].accentScale[3],
-        active: colorGradient[color].accentScale[4],
+        default: colorGradient[color].accentScale[0],
+        hover: colorGradient[color].accentScale[1],
+        active: colorGradient[color].accentScale[1],
       };
     case "text":
       return {

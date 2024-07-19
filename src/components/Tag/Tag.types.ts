@@ -19,15 +19,9 @@ export interface TagProps {
 }
 
 export interface TagStyleProps {
-  size?: "small" | "medium" | "large";
-  variant?: "contained" | "outlined";
-  color?:
-    | "primary"
-    | "secondary"
-    | "tertiary"
-    | "danger"
-    | "warning"
-    | "success"
-    | "info";
-  disableClick?: boolean;
+  $size: NonNullable<TagProps["size"]>;
+  $variant: NonNullable<TagProps["variant"]>;
+  $color: NonNullable<TagProps["color"]>;
+  $disableClick?: boolean;
+  $colorGradient: any;
 }

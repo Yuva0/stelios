@@ -63,6 +63,7 @@ const StyledInput = styled.div<InputStyleProps>`
   flex-direction: column;
   width: ${(props) => props.$width ?? "auto"};
   gap: 4px;
+  user-select: none;
 `;
 
 const StyledInputIcon = styled.div<InputStyleProps>`
@@ -141,6 +142,7 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
       type = "text",
       size = "medium",
       width = "15rem",
+      fullWidth,
       value,
       leadingIcon,
       trailingIcon,
@@ -150,6 +152,7 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
       inputBgColor,
       style,
       className,
+      disabled=false,
 
       // Events
       onChange,
@@ -214,6 +217,13 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
         $color={color}
         $size={size}
         $width={width}
+        $cursor={cursor}
+        $hasLeadingIcon={!!leadingIcon}
+        $hasTrailingIcon={!!trailingIcon}
+        $isFocused={isFocused}
+        $inputBgColor={inputBgColor}
+        style={style}
+        className={className}
         {...props}
       >
         {labelPosition && labelPosition === "top" ? Label : null}
@@ -225,6 +235,9 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
           $width={width}
           $hasLeadingIcon={!!leadingIcon}
           $hasTrailingIcon={!!trailingIcon}
+          $cursor={cursor}
+          $inputBgColor={inputBgColor}
+          $disabled={disabled}
         >
           {leadingIcon && (
             <StyledInputIcon
