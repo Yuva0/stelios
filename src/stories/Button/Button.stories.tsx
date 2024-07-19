@@ -25,7 +25,7 @@ type Story = StoryObj<typeof Button>;
 export const Default: Story = {
   render: (args) => {
     return (
-      <ThemeProvider accent={{ primary: "#DD3C74" }}>
+      <ThemeProvider>
         <Button {...args} color="success" variant="contained">
           {args.children}
         </Button>

@@ -68,12 +68,13 @@ const StyledInput = styled.div<InputStyleProps>`
 const StyledInputIcon = styled.div<InputStyleProps>`
   color: ${(props) =>
     props.$colorGradient[props.color ?? "primary"].grayScale[8]};
-  padding: 0 0.125rem;
+  padding: 0.25rem 0.25rem;
+  cursor: pointer;
   width: ${(props) => getIconSize(props.$size)};
   height: ${(props) => getIconSize(props.$size)};
   &:hover {
     background-color: ${(props) =>
-      props.$colorGradient[props.color ?? "primary"].grayScale[1]};
+      props.$colorGradient[props.color ?? "primary"].grayScale[2]};
     border-radius: 50%;
   }
   & svg {
@@ -118,7 +119,7 @@ const StyledInputContent = styled.div<InputStyleProps>`
   & span.ste-input-content {
       font-family: 'Source Sans 3', sans-serif;
       height: ${(props) => getFontSize(props).lineHeight};
-      width: "100%";
+      width: 100%;
       font-size: ${(props) => getFontSize(props).fontSize};
       line-height: ${(props) => getFontSize(props).lineHeight};
       outline-offset: -1px;
@@ -222,6 +223,8 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
           $size={size}
           $isFocused={isFocused}
           $width={width}
+          $hasLeadingIcon={!!leadingIcon}
+          $hasTrailingIcon={!!trailingIcon}
         >
           {leadingIcon && (
             <StyledInputIcon

@@ -22,15 +22,9 @@ export interface SwitchProps {
 }
 
 export interface SwitchStyleProps {
-  checked?: boolean;
-  disabled?: boolean;
-  size?: "small" | "medium" | "large";
-  color?:
-    | "primary"
-    | "secondary"
-    | "tertiary"
-    | "danger"
-    | "warning"
-    | "success"
-    | "info";
+  $checked: NonNullable<SwitchProps["checked"]>;
+  $disabled: NonNullable<SwitchProps["disabled"]>;
+  $size: NonNullable<SwitchProps["size"]>;
+  $color: NonNullable<SwitchProps["color"]>;
+  $colorGradient: any;
 }
