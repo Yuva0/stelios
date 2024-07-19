@@ -1,6 +1,166 @@
 import React from "react";
-import { useTextStyles } from "./Text.styles";
-import { TextProps } from "./Text.types";
+import { TextProps, TextStyleProps } from "./Text.types";
+import styled from "styled-components";
+
+const commonStyles = `
+  font-family: 'Source Sans 3', sans-serif;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: ${(props: TextStyleProps) => props.$align ?? "left"};
+`;
+
+const StyledH1 = styled.h1<TextStyleProps>`
+  font-size: ${(props) =>
+    props.$fontSize ?? props.$size === "large"
+      ? "2.5rem"
+      : props.$size === "medium"
+        ? "2.25rem"
+        : "2rem"};
+  line-height: ${(props) =>
+    props.$lineHeight ?? props.$lineHeight === "large"
+      ? "4rem"
+      : props.$size === "medium"
+        ? "3.5rem"
+        : "3rem"};
+  ${commonStyles}
+`;
+const StyledH2 = styled.h2<TextStyleProps>`
+  font-size: ${(props) =>
+    props.$fontSize ?? props.$size === "large"
+      ? "2.25rem"
+      : props.$size === "medium"
+        ? "2rem"
+        : "1.75rem"};
+  line-height: ${(props) =>
+    props.$lineHeight ?? props.$size === "large"
+      ? "3.5rem"
+      : props.$size === "medium"
+        ? "3rem"
+        : "2.5rem"};
+  ${commonStyles}
+`;
+const StyledH3 = styled.h3<TextStyleProps>`
+  font-size: ${(props) =>
+    props.$fontSize ?? props.$size === "large"
+      ? "2rem"
+      : props.$size === "medium"
+        ? "1.75rem"
+        : "1.5rem"};
+  line-height: ${(props) =>
+    props.$lineHeight ?? props.$size === "large"
+      ? "3rem"
+      : props.$size === "medium"
+        ? "2.5rem"
+        : "2rem"};
+  ${commonStyles}
+`;
+const StyledH4 = styled.h4<TextStyleProps>`
+  font-size: ${(props) =>
+    props.$fontSize ?? props.$size === "large"
+      ? "1.75rem"
+      : props.$size === "medium"
+        ? "1.5rem"
+        : "1.25rem"};
+  line-height: ${(props) =>
+    props.$lineHeight ?? props.$size === "large"
+      ? "2.5rem"
+      : props.$size === "medium"
+        ? "2rem"
+        : "1.75rem"};
+  ${commonStyles}
+`;
+const StyledH5 = styled.h5<TextStyleProps>`
+  font-size: ${(props) =>
+    props.$fontSize ?? props.$size === "large"
+      ? "1.5rem"
+      : props.$size === "medium"
+        ? "1.25rem"
+        : "1rem"};
+  line-height: ${(props) =>
+    props.$lineHeight ?? props.$size === "large"
+      ? "2rem"
+      : props.$size === "medium"
+        ? "1.75rem"
+        : "1.5rem"};
+  ${commonStyles}
+`;
+const StyledH6 = styled.h6<TextStyleProps>`
+  font-size: ${(props) =>
+    props.$fontSize ?? props.$size === "large"
+      ? "1.25rem"
+      : props.$size === "medium"
+        ? "1rem"
+        : "0.875rem"};
+  line-height: ${(props) =>
+    props.$lineHeight ?? props.$size === "large"
+      ? "1.75rem"
+      : props.$size === "medium"
+        ? "1.5rem"
+        : "1.25rem"};
+  ${commonStyles}
+`;
+const StyledDiv = styled.div<TextStyleProps>`
+  font-size: ${(props) =>
+    props.$fontSize ?? props.$size === "large"
+      ? "1.25rem"
+      : props.$size === "medium"
+        ? "1rem"
+        : "0.875rem"};
+  line-height: ${(props) =>
+    props.$lineHeight ?? props.$size === "large"
+      ? "1.75rem"
+      : props.$size === "medium"
+        ? "1.5rem"
+        : "1.25rem"};
+  ${commonStyles}
+`;
+const StyledLabel = styled.label<TextStyleProps>`
+  font-size: ${(props) =>
+    props.$fontSize ?? props.$size === "large"
+      ? "1.25rem"
+      : props.$size === "medium"
+        ? "1rem"
+        : "0.75rem"};
+  line-height: ${(props) =>
+    props.$lineHeight ?? props.$size === "large"
+      ? "1.75rem"
+      : props.$size === "medium"
+        ? "1.5rem"
+        : "1.25rem"};
+  ${commonStyles}
+`;
+const StyledSpan = styled.span<TextStyleProps>`
+  font-size: ${(props) =>
+    props.$fontSize ?? props.$size === "large"
+      ? "1.25rem"
+      : props.$size === "medium"
+        ? "1rem"
+        : "0.875rem"};
+  line-height: ${(props) =>
+    props.$lineHeight ?? props.$size === "large"
+      ? "1.75rem"
+      : props.$size === "medium"
+        ? "1.5rem"
+        : "1.25rem"};
+  ${commonStyles}
+`;
+const StyledP = styled.p<TextStyleProps>`
+  font-size: ${(props) =>
+    props.$fontSize ?? props.$size === "large"
+      ? "1.25rem"
+      : props.$size === "medium"
+        ? "1rem"
+        : "0.875rem"};
+  line-height: ${(props) =>
+    props.$lineHeight ?? props.$size === "large"
+      ? "1.75rem"
+      : props.$size === "medium"
+        ? "1.5rem"
+        : "1.25rem"};
+  ${commonStyles}
+`;
 
 const Text = ({
   variant,
@@ -13,121 +173,191 @@ const Text = ({
   fontSize,
   lineHeight,
   style,
+  className,
   ...rest
 }: TextProps) => {
-  const classNames = useTextStyles({
-    variant,
-    strong,
-    align,
-    color,
-    wrap,
-    size,
-    fontSize,
-    lineHeight,
-  });
-
   switch (variant) {
     case "h1":
       return (
-        <h1
+        <StyledH1
+          $variant={variant}
+          $strong={strong}
+          $align={align}
+          $color={color}
+          $wrap={wrap}
+          $size={size}
+          $fontSize={fontSize}
+          $lineHeight={lineHeight}
           style={style}
-          className={`${classNames["ste-typography"]} ${classNames["ste-typography-h1"]}`}
+          className={className}
+          {...rest}
         >
           {children}
-        </h1>
+        </StyledH1>
       );
     case "h2":
       return (
-        <h2
+        <StyledH2
+          $variant={variant}
+          $strong={strong}
+          $align={align}
+          $color={color}
+          $wrap={wrap}
+          $size={size}
+          $fontSize={fontSize}
+          $lineHeight={lineHeight}
           style={style}
-          className={`${classNames["ste-typography"]} ${classNames["ste-typography-h2"]}`}
+          className={className}
+          {...rest}
         >
           {children}
-        </h2>
+        </StyledH2>
       );
     case "h3":
       return (
-        <h3
+        <StyledH3
+          $variant={variant}
+          $strong={strong}
+          $align={align}
+          $color={color}
+          $wrap={wrap}
+          $size={size}
+          $fontSize={fontSize}
+          $lineHeight={lineHeight}
           style={style}
-          className={`${classNames["ste-typography"]} ${classNames["ste-typography-h3"]}`}
+          className={className}
+          {...rest}
         >
           {children}
-        </h3>
+        </StyledH3>
       );
     case "h4":
       return (
-        <h4
+        <StyledH4
+          $variant={variant}
+          $strong={strong}
+          $align={align}
+          $color={color}
+          $wrap={wrap}
+          $size={size}
+          $fontSize={fontSize}
+          $lineHeight={lineHeight}
           style={style}
-          className={`${classNames["ste-typography"]} ${classNames["ste-typography-h4"]}`}
+          className={className}
+          {...rest}
         >
           {children}
-        </h4>
+        </StyledH4>
       );
     case "h5":
       return (
-        <h5
+        <StyledH5
+          $variant={variant}
+          $strong={strong}
+          $align={align}
+          $color={color}
+          $wrap={wrap}
+          $size={size}
+          $fontSize={fontSize}
+          $lineHeight={lineHeight}
           style={style}
-          className={`${classNames["ste-typography"]} ${classNames["ste-typography-h5"]}`}
+          className={className}
+          {...rest}
         >
           {children}
-        </h5>
+        </StyledH5>
       );
     case "h6":
       return (
-        <h6
+        <StyledH6
+          $variant={variant}
+          $strong={strong}
+          $align={align}
+          $color={color}
+          $wrap={wrap}
+          $size={size}
+          $fontSize={fontSize}
+          $lineHeight={lineHeight}
           style={style}
-          className={`${classNames["ste-typography"]} ${classNames["ste-typography-h6"]}`}
+          className={className}
+          {...rest}
         >
           {children}
-        </h6>
+        </StyledH6>
       );
     case "div":
       return (
-        <div
+        <StyledDiv
+          $variant={variant}
+          $strong={strong}
+          $align={align}
+          $color={color}
+          $wrap={wrap}
+          $size={size}
+          $fontSize={fontSize}
+          $lineHeight={lineHeight}
           style={style}
-          className={`${classNames["ste-typography"]} ${classNames["ste-typography-div"]}`}
+          className={className}
+          {...rest}
         >
           {children}
-        </div>
+        </StyledDiv>
       );
     case "paragraph":
       return (
-        <p
+        <StyledP
+          $variant={variant}
+          $strong={strong}
+          $align={align}
+          $color={color}
+          $wrap={wrap}
+          $size={size}
+          $fontSize={fontSize}
+          $lineHeight={lineHeight}
           style={style}
-          className={`${classNames["ste-typography"]} ${classNames["ste-typography-p"]}`}
+          className={className}
+          {...rest}
         >
           {children}
-        </p>
+        </StyledP>
       );
     case "label":
       return (
-        <label
+        <StyledLabel
+          $variant={variant}
+          $strong={strong}
+          $align={align}
+          $color={color}
+          $wrap={wrap}
+          $size={size}
+          $fontSize={fontSize}
+          $lineHeight={lineHeight}
           style={style}
-          className={`${classNames["ste-typography"]} ${classNames["ste-typography-label"]}`}
+          className={className}
+          {...rest}
         >
           {children}
-        </label>
+        </StyledLabel>
       );
     case "span":
       return (
-        <span
+        <StyledSpan
+          $variant={variant}
+          $strong={strong}
+          $align={align}
+          $color={color}
+          $wrap={wrap}
+          $size={size}
+          $fontSize={fontSize}
+          $lineHeight={lineHeight}
           style={style}
-          className={`${classNames["ste-typography"]} ${classNames["ste-typography-span"]}`}
+          className={className}
+          {...rest}
         >
           {children}
-        </span>
-      );
-    default:
-      return (
-        <div style={style} className={`${classNames["ste-typography"]}`}>
-          {children}
-        </div>
+        </StyledSpan>
       );
   }
 };
-
-// const Text = React.forwardRef<HTMLHeadingElement, TextProps>((props, ref) => (
-//   <TextInternal ref={ref} {...props} />
-// ));
 
 export default Text;

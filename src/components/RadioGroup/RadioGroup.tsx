@@ -1,8 +1,15 @@
 import React, { useState } from "react";
-import { RadioGroupProps } from "./RadioGroup.types";
-import useRadioGroupStyles from "./RadioGroup.styles";
+import { RadioGroupProps, RadioGroupStyleProps } from "./RadioGroup.types";
 import Text from "../Text/Text";
 import { getIncrementalGeneratedId } from "../../helpers/Utilities";
+import styled from "styled-components";
+
+const StyledRadioGroup = styled.div<RadioGroupStyleProps>`
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: ${(props) =>
+    props.$orientation === "vertical" ? "column" : "row"};
+`;
 
 const RadioGroup = ({
   name,
@@ -18,7 +25,6 @@ const RadioGroup = ({
 }: RadioGroupProps) => {
   const [finalName, setFinalName] = React.useState(name);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
-  const classNames = useRadioGroupStyles({orientation});
   const [focusedIndex, setFocusedIndex] = useState<number>(selectedIndex ?? 0);
 
   React.useEffect(() => {
@@ -88,10 +94,13 @@ const RadioGroup = ({
   ]);
 
   return (
-    <div role="radiogroup" className={classNames["ste-radio-group"]}>
+    <StyledRadioGroup
+      $orientation={orientation}
+      role="radiogroup"
+    >
       {Label}
       {filteredChildren}
-    </div>
+    </StyledRadioGroup>
   );
 };
 

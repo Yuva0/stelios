@@ -12,5 +12,5 @@ export interface RadioGroupProps {
 }
 
 export interface RadioGroupStyleProps {
-  orientation?: "horizontal" | "vertical";
+  $orientation: NonNullable<RadioGroupProps["orientation"]>;
 }
