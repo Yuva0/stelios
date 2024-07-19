@@ -1,7 +1,6 @@
 import React, { forwardRef } from "react";
 import { IconButtonProps, IconButtonStyleProps } from "./IconButton.types";
 import styled from "styled-components";
-import colors from "../../tokens/colors.json";
 import Text from "../Text/Text";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
 
@@ -167,12 +166,13 @@ const IconButton = forwardRef(
       disabled = false,
       className,
     }: IconButtonProps,
-    ref
+    ref: React.ForwardedRef<HTMLButtonElement>
   ) => {
     const colorGradient = useTheme().colorGradient;
 
     return (
       <StyledIconBtn
+        ref={ref}
         $variant={variant}
         $size={size}
         $color={color}

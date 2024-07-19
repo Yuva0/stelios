@@ -2,6 +2,8 @@ import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import Menu from "../../components/Menu/Menu";
 import MenuItem from "../../components/MenuItem/MenuItem";
+import IconButton from "../../components/IconButton/IconButton";
+import { Icon123 } from "@tabler/icons-react";
 
 const meta: Meta<typeof Menu> = {
   title: "Components/Menu",
@@ -18,9 +20,14 @@ type Story = StoryObj<typeof Menu>;
 
 export const Default: Story = {
   render: () => {
+    const [iconRef, setIconRef] = React.useState<HTMLButtonElement | null>(
+      null
+    );
+
     return (
       <div>
-        <Menu>
+        <IconButton icon={<Icon123 />} ref={setIconRef} />
+        <Menu anchorElement={iconRef} open={true}>
           <MenuItem value="1" title="Item 1">
             Item 1
           </MenuItem>

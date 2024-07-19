@@ -12,18 +12,18 @@ const StyledMenuItem = styled.li<MenuItemStyleProps>`
   gap: 0.25rem;
   cursor: pointer;
   &:hover {
-    background: ${(props) => props.colorGradient["primary"].grayScale[1]};
+    background: ${(props) => props.$colorGradient["primary"].grayScale[1]};
   }
   &:focus {
-    background: ${(props) => props.colorGradient["primary"].grayScale[1]};
+    background: ${(props) => props.$colorGradient["primary"].grayScale[1]};
     outline: ${(props) =>
-      `1px solid ${props.colorGradient["primary"].accentScale[5]}`};
+      `1px solid ${props.$colorGradient["primary"].accentScale[5]}`};
     outline-offset: -1px;
     border-radius: 0.25rem;
   }
 `;
 
-const StyledMenuItemContent = styled.li<MenuItemStyleProps>`
+const StyledMenuItemContent = styled.span<MenuItemStyleProps>`
   width: 100%;
 `;
 
@@ -54,25 +54,25 @@ const MenuItem = ({
   };
 
   return (
-    <StyledMenuItem colorGradient={colorGradient} onClick={_onClick}>
+    <StyledMenuItem $colorGradient={colorGradient} onClick={_onClick}>
       {leadingIcon && <StyledMenuItemIcon>{leadingIcon}</StyledMenuItemIcon>}
       {children ? (
         typeof children === "string" ? (
-          <StyledMenuItemContent colorGradient={colorGradient}>
+          <StyledMenuItemContent $colorGradient={colorGradient}>
             <Text variant="paragraph">{children}</Text>
           </StyledMenuItemContent>
         ) : (
-          <StyledMenuItemContent colorGradient={colorGradient}>
+          <StyledMenuItemContent $colorGradient={colorGradient}>
             {children}
           </StyledMenuItemContent>
         )
       ) : (
-        <StyledMenuItemContent colorGradient={colorGradient}>
+        <StyledMenuItemContent $colorGradient={colorGradient}>
           <Text variant="paragraph">{title}</Text>
         </StyledMenuItemContent>
       )}
       {trailingIcon && (
-        <StyledMenuItemContent colorGradient={colorGradient}>
+        <StyledMenuItemContent $colorGradient={colorGradient}>
           {trailingIcon}
         </StyledMenuItemContent>
       )}

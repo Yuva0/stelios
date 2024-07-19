@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { usePopper } from "react-popper";
+
 import Menu from "../Menu/Menu";
 import { IconArrowDown } from "@tabler/icons-react";
 import Input from "../Input/Input";
@@ -17,14 +17,14 @@ const Autocomplete = ({
   label,
   open,
   multiSelect,
-
   // Events
   onChange,
   onClick,
   onInputChange,
 }: AutocompleteProps) => {
-  const inputRef = React.useRef<HTMLDivElement>(null);
-  const menuRef = React.useRef<HTMLDivElement>(null);
+  const [inputAnchor, setInputAnchor] = React.useState<HTMLDivElement | null>(
+    null
+  );
   const [isOpen, setIsOpen] = React.useState(open ?? false);
   const [inputValue, setInputValue] = React.useState<string | string[]>(
     value
@@ -56,18 +56,6 @@ const Autocomplete = ({
       );
     });
   }, [options, inputValue]);
-
-  const { styles, attributes } = usePopper(inputRef.current, menuRef.current, {
-    placement: "bottom-start",
-    modifiers: [
-      {
-        name: "offset",
-        options: {
-          offset: [0, 2.5],
-        },
-      },
-    ],
-  });
 
   const _handleMultiSelectOnClick = (
     e: React.MouseEvent,
@@ -114,21 +102,19 @@ const Autocomplete = ({
       <Input
         placeholder={placeholder}
         value={inputValue}
-        ref={inputRef}
+        ref={setInputAnchor}
         label={label}
         trailingIcon={<IconArrowDown />}
+        className={className}
+        style={style}
         onClick={_onInputClick}
         onChange={_onInputChange}
       />
       <Menu
         open={isOpen}
-        ref={menuRef}
-        minWidth={`${inputRef.current?.offsetWidth}px`}
-        style={{
-          ...styles.popper,
-        }}
+        anchorElement={inputAnchor}
+        minWidth={`${inputAnchor?.offsetWidth}px`}
         onClick={_onMenuClick}
-        {...attributes.poper}
       >
         {filteredOptions?.map((option, index) => (
           <MenuItem title={option.title} value={option.value} key={index} />

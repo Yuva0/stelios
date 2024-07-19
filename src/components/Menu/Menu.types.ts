@@ -5,6 +5,7 @@ export interface MenuProps {
   style?: React.CSSProperties;
   minWidth?: string;
   open?: boolean;
+  anchorElement: HTMLElement | null;
 
   // Events
   onClick?: (

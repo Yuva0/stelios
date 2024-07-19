@@ -14,5 +14,5 @@ export interface MenuItemProps extends MenuItemKeyProps {
 }
 
 export interface MenuItemStyleProps {
-  colorGradient: any
+  $colorGradient: any
 }

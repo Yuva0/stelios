@@ -1,7 +1,8 @@
-import React, { forwardRef, useEffect } from "react";
+import React, { forwardRef, useEffect, useRef, useState } from "react";
 import { MenuProps, MenuStyleProps } from "./Menu.types";
 import { MenuItemKeyProps } from "../MenuItem/MenuItem.types";
 import styled from "styled-components";
+import { usePopper } from "react-popper";
 
 const StyledMenuContainer = styled.div<MenuStyleProps>`
   display: ${(props) => (props.$open ? "block" : "none")};
@@ -32,43 +33,61 @@ const Menu = forwardRef<HTMLDivElement, MenuProps>(
       style,
       open = false,
       minWidth = "none",
-      //Events
+      anchorElement,
+      // Events
       onClick,
     },
     ref
   ) => {
-    const [isOpen, setIsOpen] = React.useState(open ?? false);
+    const [isOpen, setIsOpen] = useState(open ?? false);
+    const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(null);
 
     useEffect(() => {
       setIsOpen(open ?? false);
     }, [open]);
 
-    const _onClick = (
-      e: React.MouseEvent<HTMLLIElement>,
-      { title, value }: MenuItemKeyProps
-    ) => {
-      onClick && onClick(e, { title, value });
-    };
+    const { styles, attributes } = usePopper(
+      anchorElement,
+      popperElement,
+      {
+        placement: "bottom-start",
+        modifiers: [
+          {
+            name: "offset",
+            options: {
+              offset: [0, 2.5],
+            },
+          },
+        ],
+      }
+    );
+
+    // const _onClick = (
+    //   e: React.MouseEvent<HTMLLIElement>,
+    //   { title, value }: MenuItemKeyProps
+    // ) => {
+    //   onClick && onClick(e, { title, value });
+    // };
 
     if (!children) return null;
     if (Array.isArray(children) && children.length === 0) return null;
 
     return (
       <StyledMenuContainer
+        ref={setPopperElement}
         $open={isOpen}
         $minWidth={minWidth}
-        ref={ref}
-        style={style}
+        style={{ ...styles.popper }}
+        {...attributes.popper}
       >
         <StyledMenu>
           {React.Children.map(children, (child, index) => {
             if (!child) return child;
             if (!React.isValidElement(child)) return child;
 
-            // Remove any typescript later
-            return React.cloneElement(child as any, {
+            return React.cloneElement(child, {
               key: child.props.index ?? index,
-              onClick: _onClick,
+              // onClick: _onClick as React.MouseEventHandler<HTMLLIElement>,
             });
           })}
         </StyledMenu>
