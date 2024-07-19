@@ -4,263 +4,10 @@ import {
   ButtonProps,
   ButtonStyleProps,
 } from "./Button.types";
-import { useButtonStyles } from "./Button.styles";
 import Text from "../Text/Text";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
 import styled from "styled-components";
-import colors from "../../tokens/colors.json";
-
-const getBackgroundColor = (props: ButtonStyleProps) => {
-  console.log(props.colorObj.accentScale[9], props.variant);
-  switch (props.variant) {
-    case "contained":
-      return props.colorObj.accentScale[9];
-    case "outlined":
-      return props.colorObj.accentSurface;
-    case "text":
-      return "transparent";
-  }
-  return props.colorObj.accentScale[9];
-};
-const getHoverBackgroundColor = (props: ButtonStyleProps) => {
-  switch (props.variant) {
-    case "contained":
-      switch (props.color) {
-        case "primary":
-          return colors.primary[500];
-        case "secondary":
-          return colors.secondary[900];
-        case "tertiary":
-          return colors.tertiary[900];
-        case "danger":
-          return colors.danger[800];
-        case "warning":
-          return colors.warning[800];
-        case "success":
-          return colors.success[900];
-        case "info":
-          return colors.info[900];
-      }
-      break;
-    case "outlined":
-      switch (props.color) {
-        case "primary":
-          return colors.primary[10];
-        case "secondary":
-          return colors.secondary[100];
-        case "tertiary":
-          return colors.tertiary[10];
-        case "danger":
-          return colors.danger[10];
-        case "warning":
-          return colors.warning[10];
-        case "success":
-          return colors.success[100];
-        case "info":
-          return colors.info[100];
-      }
-      return;
-    case "text":
-      switch (props.color) {
-        case "primary":
-          return colors.primary[10];
-        case "secondary":
-          return colors.secondary[100];
-        case "tertiary":
-          return colors.tertiary[10];
-        case "danger":
-          return colors.danger[10];
-        case "warning":
-          return colors.warning[10];
-        case "success":
-          return colors.success[100];
-        case "info":
-          return colors.info[100];
-      }
-  }
-};
-
-const getColor = (props: ButtonStyleProps) => {
-  switch (props.variant) {
-    case "contained":
-      switch (props.color) {
-        case "primary":
-          return "#000";
-        case "warning":
-          return "#000";
-      }
-      return "#fff";
-    case "outlined":
-      switch (props.color) {
-        case "primary":
-          return colors.primary[900];
-        case "secondary":
-          return colors.secondary[800];
-        case "tertiary":
-          return colors.tertiary[900];
-        case "danger":
-          return colors.danger[700];
-        case "warning":
-          return colors.warning[900];
-        case "success":
-          return colors.success[900];
-        case "info":
-          return colors.info[800];
-      }
-      break;
-    case "text":
-      switch (props.color) {
-        case "primary":
-          return colors.primary[900];
-        case "secondary":
-          return colors.secondary[800];
-        case "tertiary":
-          return colors.tertiary[700];
-        case "danger":
-          return colors.danger[700];
-        case "warning":
-          return colors.warning[900];
-        case "success":
-          return colors.success[800];
-        case "info":
-          return colors.info[600];
-      }
-      break;
-  }
-};
-const getHoverColor = (props: ButtonStyleProps) => {
-  switch (props.variant) {
-    case "contained":
-      switch (props.color) {
-        case "primary":
-          return "#000";
-        case "warning":
-          return "#000";
-      }
-      return "#fff";
-    case "outlined":
-      switch (props.color) {
-        case "primary":
-          return colors.primary[900];
-        case "secondary":
-          return colors.secondary[800];
-        case "tertiary":
-          return colors.tertiary[900];
-        case "danger":
-          return colors.danger[700];
-        case "warning":
-          return colors.warning[900];
-        case "success":
-          return colors.success[900];
-        case "info":
-          return colors.info[800];
-      }
-      break;
-    case "text":
-      switch (props.color) {
-        case "primary":
-          return colors.primary[900];
-        case "secondary":
-          return colors.secondary[800];
-        case "tertiary":
-          return colors.tertiary[700];
-        case "danger":
-          return colors.danger[700];
-        case "warning":
-          return colors.warning[900];
-        case "success":
-          return colors.success[800];
-        case "info":
-          return colors.info[600];
-      }
-      break;
-  }
-};
-
-const getOutline = (props: ButtonStyleProps) => {
-  switch (props.variant) {
-    case "contained":
-      switch (props.color) {
-        case "primary":
-          return `1px solid ${colors.primary[400]}`;
-        case "secondary":
-          return `1px solid ${colors.secondary[800]}`;
-        case "tertiary":
-          return `1px solid ${colors.tertiary[800]}`;
-        case "danger":
-          return `1px solid ${colors.danger[700]}`;
-        case "warning":
-          return `1px solid ${colors.warning[700]}`;
-        case "success":
-          return `1px solid ${colors.success[800]}`;
-        case "info":
-          return `1px solid ${colors.info[700]}`;
-      }
-      break;
-    case "outlined":
-      switch (props.color) {
-        case "primary":
-          return `1px solid ${colors.primary[400]}`;
-        case "secondary":
-          return `1px solid ${colors.secondary[800]}`;
-        case "tertiary":
-          return `1px solid ${colors.tertiary[900]}`;
-        case "danger":
-          return `1px solid ${colors.danger[700]}`;
-        case "warning":
-          return `1px solid ${colors.warning[700]}`;
-        case "success":
-          return `1px solid ${colors.success[800]}`;
-        case "info":
-          return `1px solid ${colors.info[700]}`;
-      }
-      break;
-  }
-
-  return;
-};
-const getHoverOutline = (props: ButtonStyleProps) => {
-  switch (props.variant) {
-    case "contained":
-      switch (props.color) {
-        case "primary":
-          return `1px solid ${colors.primary[500]}`;
-        case "secondary":
-          return `1px solid ${colors.secondary[900]}`;
-        case "tertiary":
-          return `1px solid ${colors.tertiary[1000]}`;
-        case "danger":
-          return `1px solid ${colors.danger[800]}`;
-        case "warning":
-          return `1px solid ${colors.warning[800]}`;
-        case "success":
-          return `1px solid ${colors.success[900]}`;
-        case "info":
-          return `1px solid ${colors.info[800]}`;
-      }
-      break;
-    case "outlined":
-      switch (props.color) {
-        case "primary":
-          return `1px solid ${colors.primary[600]}`;
-        case "secondary":
-          return `1px solid ${colors.secondary[900]}`;
-        case "tertiary":
-          return `1px solid ${colors.tertiary[1000]}`;
-        case "danger":
-          return `1px solid ${colors.danger[800]}`;
-        case "warning":
-          return `1px solid ${colors.warning[800]}`;
-        case "success":
-          return `1px solid ${colors.success[900]}`;
-        case "info":
-          return `1px solid ${colors.info[800]}`;
-      }
-      break;
-  }
-
-  return;
-};
+import { DefaultTheme } from "../ThemeProvider/ThemeProvider.types";
 
 const getPadding = (size?: "small" | "medium" | "large") => {
   switch (size) {
@@ -275,22 +22,132 @@ const getPadding = (size?: "small" | "medium" | "large") => {
   }
 };
 
+const getBackgroundColor = (
+  variant?: ButtonProps["variant"],
+  color?: ButtonProps["color"],
+  colorGradient?: DefaultTheme["colorGradient"]
+) => {
+  switch (variant) {
+    case "contained":
+      return {
+        default: colorGradient[color ?? "primary"].accentScale[8],
+        hover: colorGradient[color ?? "primary"].accentScale[9],
+        active: colorGradient[color ?? "primary"].accentScale[9],
+      };
+    case "outlined":
+      return {
+        default: colorGradient[color ?? "primary"].accentScale[2],
+        hover: colorGradient[color ?? "primary"].accentScale[3],
+        active: colorGradient[color ?? "primary"].accentScale[4],
+      };
+    case "text":
+      return {
+        default: colorGradient[color ?? "primary"].accentScale[0],
+        hover: colorGradient[color ?? "primary"].accentScale[1],
+        active: colorGradient[color ?? "primary"].accentScale[2],
+      };
+    default:
+      return {
+        default: colorGradient[color ?? "primary"].accentScale[9],
+        hover: colorGradient[color ?? "primary"].accentScale[10],
+        active: colorGradient[color ?? "primary"].accentScale[11],
+      };
+  }
+};
+
+const getColor = (
+  variant?: ButtonProps["variant"],
+  color?: ButtonProps["color"],
+  colorGradient?: DefaultTheme["colorGradient"]
+) => {
+  switch (variant) {
+    case "contained":
+      return {
+        default: colorGradient[color ?? "primary"].accentContrast,
+        hover: colorGradient[color ?? "primary"].accentContrast,
+        active: colorGradient[color ?? "primary"].accentContrast,
+      };
+    case "outlined":
+      return {
+        default: colorGradient[color ?? "primary"].accentScale[10],
+        hover: colorGradient[color ?? "primary"].accentScale[10],
+        active: colorGradient[color ?? "primary"].accentScale[10],
+      };
+    case "text":
+      return {
+        default: colorGradient[color ?? "primary"].accentScale[10],
+        hover: colorGradient[color ?? "primary"].accentScale[10],
+        active: colorGradient[color ?? "primary"].accentScale[10],
+      };
+    default:
+      return {
+        default: colorGradient[color ?? "primary"].accentContrast,
+        hover: colorGradient[color ?? "primary"].accentContrast,
+        active: colorGradient[color ?? "primary"].accentContrast,
+      };
+  }
+};
+
+const getOutline = (
+  variant?: ButtonProps["variant"],
+  color?: ButtonProps["color"],
+  colorGradient?: DefaultTheme["colorGradient"]
+) => {
+  if (variant === "outlined") {
+    return {
+      default: `1px solid ${colorGradient[color ?? "primary"].accentScale[5]}`,
+      hover: `1px solid ${colorGradient[color ?? "primary"].accentScale[6]}`,
+      active: `1px solid ${colorGradient[color ?? "primary"].accentScale[7]}`,
+    };
+  }
+  return { default: "none", hover: "none", active: "none" };
+};
+
 const StyledButton = styled.button<ButtonStyleProps>`
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
   border: none;
-  background-color: ${(props) => getBackgroundColor(props)};
-  width: ${(props) => (props.fullWidth ? "100%" : "auto")};
-  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
-  padding: ${(props) => getPadding(props.size)};
-  outline: ${(props) => getOutline(props)};
+  background-color: ${(props) =>
+    getBackgroundColor(props.$variant, props.$color, props.$colorGradient)
+      .default};
+  color: ${(props) =>
+    getColor(props.$variant, props.$color, props.$colorGradient).default};
+  padding: ${(props) => getPadding(props.$size)};
+  outline: ${(props) =>
+    getOutline(props.$variant, props.$color, props.$colorGradient).default};
+  outline-offset: -1px;
+  width: ${(props) => (props.$fullWidth ? "100%" : "auto")};
+  cursor: ${(props) => (props.$disabled ? "not-allowed" : "pointer")};
   border-radius: 0.25rem;
+  box-shadow: ${(props) =>
+    props.$variant === "text" ? "none" : "0 1px 2px 0 rgba(0, 0, 0, 0.05)"};
   &:hover {
-    background-color: ${(props) => getHoverBackgroundColor(props)};
-    color: ${(props) => getHoverColor(props)};
-    outline: ${(props) => getHoverOutline(props)};
+    background-color: ${(props) =>
+      getBackgroundColor(props.$variant, props.$color, props.$colorGradient)
+        .hover};
+    color: ${(props) =>
+      getColor(props.$variant, props.$color, props.$colorGradient).hover};
+    outline: ${(props) =>
+      getOutline(props.$variant, props.$color, props.$colorGradient).hover};
+    box-shadow: ${(props) =>
+      props.$variant === "text" ? "none" : "0 2px 4px 0 rgba(0, 0, 0, 0.1)"};
+  }
+  &:active {
+    background-color: ${(props) =>
+      getBackgroundColor(props.$variant, props.$color, props.$colorGradient)
+        .active};
+    color: ${(props) =>
+      getColor(props.$variant, props.$color, props.$colorGradient).active};
+    outline: ${(props) =>
+      getOutline(props.$variant, props.$color, props.$colorGradient).active};
+    filter: ${(props) =>
+      props.$variant === "contained"
+        ? "brightness(0.92) saturate(1.1)"
+        : "none"};
+    box-shadow: ${(props) =>
+      props.$variant === "text" ? "none" : "0 1px 2px 0 rgba(0, 0, 0, 0.05)"};
   }
 `;
 
@@ -317,31 +174,22 @@ const ButtonInternal = ({
   onClick,
   ...rest
 }: ButtonProps & ButtonInternalProps) => {
-  const classNames = useButtonStyles({
-    size,
-    variant,
-    color,
-    disabled,
-    fullWidth,
-  });
-
-  console.log(useTheme());
-
   const theme = useTheme();
-  const colorObj = theme.colorObj;
+  const colorGradient = theme.colorGradient;
 
   return (
     <StyledButton
-      colorObj={colorObj}
+      $size={size}
+      $variant={variant}
+      $color={color}
+      $colorGradient={colorGradient}
+      $disabled={disabled}
+      $fullWidth={fullWidth}
       aria-disabled={disabled}
       onClick={onClick}
       {...rest}
     >
-      {leadingIcon && (
-        <StyledButtonIcon className={classNames["ste-button-leading-icon"]}>
-          {leadingIcon}
-        </StyledButtonIcon>
-      )}
+      {leadingIcon && <StyledButtonIcon>{leadingIcon}</StyledButtonIcon>}
       {typeof children === "string" ? (
         <Text variant="span" size={size}>
           {children}
@@ -349,11 +197,7 @@ const ButtonInternal = ({
       ) : (
         children
       )}
-      {trailingIcon && (
-        <StyledButtonIcon className={classNames["ste-button-trailing-icon"]}>
-          {trailingIcon}
-        </StyledButtonIcon>
-      )}
+      {trailingIcon && <StyledButtonIcon>{trailingIcon}</StyledButtonIcon>}
     </StyledButton>
   );
 };

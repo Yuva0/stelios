@@ -9,32 +9,115 @@ const useTheme = () => {
   const context = useContext(ThemeContext);
   return (
     context ?? {
-      colorObj: generateRadixColors({
-        appearance: colors_new.appearance as "light" | "dark",
-        accent: colors_new.primary.accent,
-        background: colors_new.background,
-        gray: colors_new.gray,
-      }),
+      colorGradient: {
+        primary: generateRadixColors({
+          appearance: colors_new.appearance as "light" | "dark",
+          accent: colors_new.primary.accent,
+          background: colors_new.background,
+          gray: colors_new.gray,
+        }),
+        secondary: generateRadixColors({
+          appearance: colors_new.appearance as "light" | "dark",
+          accent: colors_new.secondary.accent,
+          background: colors_new.background,
+          gray: colors_new.gray,
+        }),
+        danger: generateRadixColors({
+          appearance: colors_new.appearance as "light" | "dark",
+          accent: colors_new.danger.accent,
+          background: colors_new.background,
+          gray: colors_new.gray,
+        }),
+        warning: generateRadixColors({
+          appearance: colors_new.appearance as "light" | "dark",
+          accent: colors_new.warning.accent,
+          background: colors_new.background,
+          gray: colors_new.gray,
+        }),
+        success: generateRadixColors({
+          appearance: colors_new.appearance as "light" | "dark",
+          accent: colors_new.success.accent,
+          background: colors_new.background,
+          gray: colors_new.gray,
+        }),
+        info: generateRadixColors({
+          appearance: colors_new.appearance as "light" | "dark",
+          accent: colors_new.info.accent,
+          background: colors_new.background,
+          gray: colors_new.gray,
+        }),
+      },
     }
   );
 };
 
 const ThemeProvider = ({
-  accent,
-  background,
-  gray,
-  appearance,
+  accent = {
+    primary: colors_new.primary.accent,
+    secondary: colors_new.secondary.accent,
+    danger: colors_new.danger.accent,
+    warning: colors_new.warning.accent,
+    success: colors_new.success.accent,
+    info: colors_new.info.accent,
+  },
+  background = colors_new.background,
+  gray = colors_new.gray,
+  appearance = colors_new.appearance as "light" | "dark",
   children,
 }: ThemeProviderProps) => {
-  const colorObj = generateRadixColors({
-    appearance: appearance ?? (colors_new.appearance as "light" | "dark"),
-    accent: accent ?? colors_new.primary.accent,
-    background: background ?? colors_new.background,
-    gray: gray ?? colors_new.gray,
+  const primary = generateRadixColors({
+    appearance,
+    accent: accent["primary"] ?? colors_new.primary.accent,
+    gray,
+    background,
   });
 
+  const secondary = generateRadixColors({
+    appearance,
+    accent: accent["secondary"] ?? colors_new.secondary.accent,
+    gray,
+    background,
+  });
+
+  const danger = generateRadixColors({
+    appearance,
+    accent: accent["danger"] ?? colors_new.danger.accent,
+    gray,
+    background,
+  });
+
+  const warning = generateRadixColors({
+    appearance,
+    accent: accent["warning"] ?? colors_new.warning.accent,
+    gray,
+    background,
+  });
+
+  const success = generateRadixColors({
+    appearance,
+    accent: accent["success"] ?? colors_new.success.accent,
+    gray,
+    background,
+  });
+
+  const info = generateRadixColors({
+    appearance,
+    accent: accent["info"] ?? colors_new.info.accent,
+    gray,
+    background,
+  });
+
+  const colorGradient = {
+    primary,
+    secondary,
+    danger,
+    warning,
+    success,
+    info,
+  };
+
   return (
-    <ThemeContext.Provider value={{ colorObj }}>
+    <ThemeContext.Provider value={{ colorGradient }}>
       {children}
     </ThemeContext.Provider>
   );

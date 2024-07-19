@@ -5,11 +5,10 @@ export interface CheckboxProps {
   color?:
     | "primary"
     | "secondary"
-    | "tertiary"
     | "danger"
     | "warning"
     | "success"
-    | "info";
+    | "info"
   checked?: boolean;
   disabled?: boolean;
   label?: string;
@@ -28,9 +27,9 @@ export interface CheckboxStyleProps {
   color?:
     | "primary"
     | "secondary"
-    | "tertiary"
     | "danger"
     | "warning"
     | "success"
     | "info";
+  colorGradient: any;
 }

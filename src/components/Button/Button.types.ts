@@ -14,7 +14,6 @@ export interface ButtonProps
   color?:
     | "primary"
     | "secondary"
-    | "tertiary"
     | "danger"
     | "warning"
     | "success"
@@ -27,17 +26,16 @@ export interface ButtonProps
 }
 
 export interface ButtonStyleProps {
-  size?: "small" | "medium" | "large";
-  variant?: "contained" | "outlined" | "text";
-  color?:
+  $size?: "small" | "medium" | "large";
+  $variant?: "contained" | "outlined" | "text";
+  $color?:
     | "primary"
     | "secondary"
-    | "tertiary"
     | "danger"
     | "warning"
     | "success"
     | "info";
-  disabled?: boolean;
-  fullWidth?: boolean;
-  colorObj?: any;
+  $disabled?: boolean;
+  $fullWidth?: boolean;
+  $colorGradient: any;
 }

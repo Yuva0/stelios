@@ -1,7 +1,135 @@
 import React, { forwardRef } from "react";
-import { InputProps } from "./Input.types";
+import { InputProps, InputStyleProps } from "./Input.types";
 import Text from "../Text/Text";
-import useInputStyles from "./Input.styles";
+import styled from "styled-components";
+import { useTheme } from "../ThemeProvider/ThemeProvider";
+
+const getIconSize = (size?: "small" | "medium" | "large") => {
+  switch (size) {
+    case "small":
+      return "1rem";
+    case "medium":
+      return "1.25rem";
+    case "large":
+      return "1.5rem";
+  }
+  return "1.5rem";
+};
+
+const getFontSize = (props: InputStyleProps) => {
+  switch (props.$size) {
+    case "small":
+      return { fontSize: "0.875rem", lineHeight: "2rem" };
+    case "medium":
+      return { fontSize: "1rem", lineHeight: "2.5rem" };
+    case "large":
+      return { fontSize: "1rem", lineHeight: "3rem" };
+  }
+  return { fontSize: "1rem", lineHeight: "2.5rem" };
+};
+
+const getPadding = (
+  size?: InputProps["size"],
+  hasLeadingIcon?: boolean,
+  hasTrailingIcon?: boolean
+) => {
+  switch (size) {
+    case "small":
+      if (hasLeadingIcon && hasTrailingIcon) return "0 8px";
+      if (hasLeadingIcon) return "0 12px 0 8px";
+      if (hasTrailingIcon) return "0 8px 0 12px";
+      return "0 12px";
+    case "medium":
+      if (hasLeadingIcon && hasTrailingIcon) return "0 8px";
+      if (hasLeadingIcon) return "0 12px 0 8px";
+      if (hasTrailingIcon) return "0 8px 0 12px";
+      return "0 16px";
+
+    case "large":
+      if (hasLeadingIcon && hasTrailingIcon) return "0 12px";
+      if (hasLeadingIcon) return "0 16px 0 12px";
+      if (hasTrailingIcon) return "0 12px 0 16px";
+      return "0 20px";
+  }
+  return "0 16px";
+};
+
+const StyledLabel = styled.span`
+  margin-left: 4px;
+`;
+
+const StyledInput = styled.div<InputStyleProps>`
+  display: flex;
+  flex-direction: column;
+  width: ${(props) => props.$width ?? "auto"};
+  gap: 4px;
+`;
+
+const StyledInputIcon = styled.div<InputStyleProps>`
+  color: ${(props) =>
+    props.$colorGradient[props.color ?? "primary"].grayScale[8]};
+  padding: 0 0.125rem;
+  width: ${(props) => getIconSize(props.$size)};
+  height: ${(props) => getIconSize(props.$size)};
+  &:hover {
+    background-color: ${(props) =>
+      props.$colorGradient[props.color ?? "primary"].grayScale[1]};
+    border-radius: 50%;
+  }
+  & svg {
+    width: ${(props) => getIconSize(props.$size)};
+    height: ${(props) => getIconSize(props.$size)};
+  }
+`;
+
+const StyledInputContent = styled.div<InputStyleProps>`
+  border-radius: 8px;
+  border:${(props) => `1px solid ${props.$colorGradient["info"].grayScale[6]}`};
+  outline: ${(props) => (props.$isFocused ? `2px solid ${props.$colorGradient["info"].accentScale[6]}` : "none")};
+  outline-offset:-1px;
+  padding: ${(props) => getPadding(props.$size, props.$hasLeadingIcon, props.$hasTrailingIcon)};
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: ${(props) => props.$cursor ?? "text"};
+  user-select: none;
+  background-color: ${(props) => props.$inputBgColor ?? "transparent"};
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.1);
+  & input {
+      font-family: 'Source Sans 3', sans-serif;
+      padding: 0;
+      margin: 0;
+      border: 0;
+      width: 100%;
+      cursor: ${(props) => props.$cursor ?? "text"};
+      font-size: ${(props) => getFontSize(props).fontSize};
+      line-height: ${(props) => getFontSize(props).lineHeight};
+      outline-offset: -1px;
+      background-color: ${(props) => props.$inputBgColor ?? "transparent"};
+      &::placeholder {
+        color: ${(props) => props.$colorGradient["info"].grayScale[8]};
+      },
+      &:focus-visible {
+          outline: none;
+      },
+  };
+  & span.ste-input-content {
+      font-family: 'Source Sans 3', sans-serif;
+      height: ${(props) => getFontSize(props).lineHeight};
+      width: "100%";
+      font-size: ${(props) => getFontSize(props).fontSize};
+      line-height: ${(props) => getFontSize(props).lineHeight};
+      outline-offset: -1px;
+  }
+  &:hover {
+      outline: ${(props) => (props.$isFocused ? `2px solid ${props.$colorGradient["info"].accentScale[6]}` : `1px solid ${props.$colorGradient["info"].accentScale[7]}`)};
+  }
+  &:focus {
+      outline: "1px solid ${(props) => props.$colorGradient["info"].accentScale[9]}";
+  }
+`;
 
 const Input = forwardRef<HTMLDivElement, InputProps>(
   (
@@ -19,6 +147,8 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
       cursor = "text",
       disableSearch,
       inputBgColor,
+      style,
+      className,
 
       // Events
       onChange,
@@ -39,24 +169,15 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
       setInputValue(value ?? "");
     }, [value]);
 
-    const classNames = useInputStyles({
-      color,
-      width,
-      size,
-      hasLeadingIcon: !!leadingIcon,
-      hasTrailingIcon: !!trailingIcon,
-      isFocused,
-      inputBgColor,
-      cursor,
-    });
+    const colorGradient = useTheme().colorGradient;
 
     const Label = label ? (
       typeof label === "string" ? (
-        <span className={classNames["ste-input-label"]}>
+        <StyledLabel>
           <Text variant="label" size={size}>
             {label}
           </Text>
-        </span>
+        </StyledLabel>
       ) : (
         label
       )
@@ -84,17 +205,35 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
     };
 
     return (
-      <div
+      <StyledInput
         ref={ref}
-        className={classNames["ste-input"]}
-        {...props}
         onClick={_onClick}
         onKeyDown={_onKeyDown}
+        $colorGradient={colorGradient}
+        $color={color}
+        $size={size}
+        $width={width}
+        {...props}
       >
         {labelPosition && labelPosition === "top" ? Label : null}
-        <div className={classNames["ste-input-content"]}>
+        <StyledInputContent
+          $colorGradient={colorGradient}
+          $color={color}
+          $size={size}
+          $isFocused={isFocused}
+          $width={width}
+        >
           {leadingIcon && (
-            <span className={classNames["ste-input-icon"]}>{leadingIcon}</span>
+            <StyledInputIcon
+              $colorGradient={colorGradient}
+              $color={color}
+              $size={size}
+              $hasLeadingIcon={!!leadingIcon}
+              $hasTrailingIcon={!!trailingIcon}
+              $width={width}
+            >
+              {leadingIcon}
+            </StyledInputIcon>
           )}
           {!disableSearch ? (
             <input
@@ -110,11 +249,20 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
             <span className="ste-input-content">{value}</span>
           )}
           {trailingIcon && (
-            <span className={classNames["ste-input-icon"]}>{trailingIcon}</span>
+            <StyledInputIcon
+              $colorGradient={colorGradient}
+              $color={color}
+              $size={size}
+              $hasLeadingIcon={!!leadingIcon}
+              $hasTrailingIcon={!!trailingIcon}
+              $width={width}
+            >
+              {trailingIcon}
+            </StyledInputIcon>
           )}
-        </div>
+        </StyledInputContent>
         {labelPosition && labelPosition === "bottom" ? Label : null}
-      </div>
+      </StyledInput>
     );
   }
 );

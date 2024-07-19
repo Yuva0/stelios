@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-
+import React from "react";
 import Checkbox from "../../components/Checkbox/Checkbox";
 import FormControlLabel from "../../components/FormControlLabel/FormControlLabel";
 
@@ -33,11 +33,6 @@ export const Variants: Story = {
           control={<Checkbox color="warning" />}
           label="Warning"
           size="small"
-        />
-        <FormControlLabel
-          control={<Checkbox color="tertiary" />}
-          label="Tertiary"
-          size="medium"
         />
         <FormControlLabel
           control={<Checkbox color="primary" />}

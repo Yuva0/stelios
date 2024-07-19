@@ -1,12 +1,5 @@
 export interface InputProps {
-  color?:
-    | "primary"
-    | "secondary"
-    | "tertiary"
-    | "danger"
-    | "warning"
-    | "success"
-    | "info";
+  color?: "primary" | "secondary" | "danger" | "warning" | "success" | "info";
   size?: "small" | "medium" | "large";
   type?: "text" | "password" | "number" | "email" | "search";
   cursor?: "pointer" | "text";
@@ -22,7 +15,10 @@ export interface InputProps {
   forwardedRef?: React.ForwardedRef<HTMLInputElement>;
   leadingIcon?: React.ReactNode;
   trailingIcon?: React.ReactNode;
+  style?: React.CSSProperties;
+  className?: string;
 
+  // <input> props
   inputBgColor?: string;
 
   //Events
@@ -32,22 +28,15 @@ export interface InputProps {
 }
 
 export interface InputStyleProps {
-  color?:
-    | "primary"
-    | "secondary"
-    | "tertiary"
-    | "danger"
-    | "warning"
-    | "success"
-    | "info";
-  size?: "small" | "medium" | "large";
-  cursor?: "pointer" | "text";
-  disabled?: boolean;
-  fullWidth?: boolean;
-  width?: string;
-  hasLeadingIcon?: boolean;
-  hasTrailingIcon?: boolean;
-  isFocused?: boolean;
-
-  inputBgColor?: string;
+  $color?: InputProps["color"];
+  $size?: InputProps["size"];
+  $cursor?: InputProps["cursor"];
+  $disabled?: InputProps["disabled"];
+  $fullWidth?: InputProps["fullWidth"];
+  $width?: InputProps["width"];
+  $hasLeadingIcon?: boolean;
+  $hasTrailingIcon?: boolean;
+  $isFocused?: boolean;
+  $colorGradient?: any;
+  $inputBgColor?: InputProps["inputBgColor"];
 }

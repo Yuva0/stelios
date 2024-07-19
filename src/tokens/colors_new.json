@@ -6,19 +6,19 @@
     "accent": "#305c84"
   },
   "danger": {
-    "accent": "ae3334"
+    "accent": "#ae3334"
   },
   "info": {
-    "accent": "0859AA"
+    "accent": "#376390"
   },
   "warning": {
-    "accent": "ffc327"
+    "accent": "#DBC533"
   },
   "success": {
-    "accent": "38703B"
+    "accent": "#639765"
   },
 
-  "gray": "#0D0D0D",
-  "background": "#121212",
-  "appearance": "dark"
+  "gray": "#1C1C1C",
+  "background": "#FFFFFF",
+  "appearance": "light"
 }

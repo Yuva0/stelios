@@ -24,11 +24,11 @@ type Story = StoryObj<typeof Button>;
 
 export const Default: Story = {
   render: (args) => {
-    
-
     return (
       <ThemeProvider>
-        <Button {...args}>{args.children}</Button>
+        <Button {...args} color="success" variant="contained">
+          {args.children}
+        </Button>
       </ThemeProvider>
     );
   },

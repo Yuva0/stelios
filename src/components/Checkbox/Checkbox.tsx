@@ -1,7 +1,62 @@
 import React, { forwardRef, useEffect, useState } from "react";
-import { CheckboxProps } from "./Checkbox.types";
-import useCheckboxStyles from "./Checkbox.styles";
+import { CheckboxProps, CheckboxStyleProps } from "./Checkbox.types";
 import { IconCheck } from "@tabler/icons-react";
+import { useTheme } from "../ThemeProvider/ThemeProvider";
+import styled from "styled-components";
+
+const getSize = (size?: "small" | "medium" | "large") => {
+  switch (size) {
+    case "small":
+      return 0.875;
+    case "medium":
+      return 1;
+    case "large":
+      return 1.25;
+  }
+  return 1;
+};
+
+const StyledCheckbox = styled.span<CheckboxStyleProps>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  "&:hover": {
+    background: ${(props) =>
+      props.colorGradient[props.color ?? "info"].accentScale[1]};
+  }
+  & input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    margin: 0;
+  }
+  & input[type="checkbox"] + span {
+    width: ${(props) => getSize(props.size)}rem;
+    height: ${(props) => getSize(props.size)}rem;
+    border: 1.5px solid
+      ${(props) => props.colorGradient[props.color ?? "info"].accentScale[8]};
+    border-radius: 0.25rem;
+    position: relative;
+
+    & svg {
+      width: 100%;
+      height: 100%;
+      background-color: ${(props) =>
+        props.colorGradient[props.color ?? "info"].accentScale[8]};
+      color: ${(props) =>
+        props.colorGradient[props.color ?? "info"].accentContrast};
+      border-radius: 0.15rem;
+    }
+  }
+  & input[type="checkbox"]:focus + span {
+    outline: 1px solid
+      ${(props) => props.colorGradient[props.color ?? "info"].accentScale[8]};
+    outline-offset: 1px;
+  }
+`;
 
 const Checkbox = forwardRef(
   (
@@ -27,12 +82,7 @@ const Checkbox = forwardRef(
     const _ref = (ref ?? innerRef) as React.RefObject<HTMLInputElement>;
     const [isChecked, setIsChecked] = useState(checked ?? false);
 
-    const classNames = useCheckboxStyles({
-      checked,
-      disabled,
-      size,
-      color,
-    });
+    const colorGradient = useTheme().colorGradient;
 
     useEffect(() => {
       setIsChecked(checked ?? false);
@@ -46,10 +96,12 @@ const Checkbox = forwardRef(
     };
 
     return (
-      <span
+      <StyledCheckbox
         role="checkbox"
         aria-checked={isChecked}
-        className={`${classNames["ste-checkbox"]} ${className}`}
+        colorGradient={colorGradient}
+        color={color}
+        // className={`${classNames["ste-checkbox"]} ${className}`}
         {...props}
       >
         <input
@@ -60,7 +112,7 @@ const Checkbox = forwardRef(
           onChange={_onChange}
         />
         <span>{isChecked && <IconCheck />}</span>
-      </span>
+      </StyledCheckbox>
     );
   }
 );

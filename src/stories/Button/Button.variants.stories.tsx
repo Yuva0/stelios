@@ -41,11 +41,6 @@ export const Variants: Story = {
               </td>
               <td>
                 <Text variant="h5" size="large">
-                  Tertiary
-                </Text>
-              </td>
-              <td>
-                <Text variant="h5" size="large">
                   Danger
                 </Text>
               </td>
@@ -88,11 +83,6 @@ export const Variants: Story = {
               </Button>
             </td>
             <td>
-              <Button size="large" variant="contained" color="tertiary">
-                Label
-              </Button>
-            </td>
-            <td>
               <Button size="large" variant="contained" color="danger">
                 Label
               </Button>
@@ -130,11 +120,6 @@ export const Variants: Story = {
               </Button>
             </td>
             <td>
-              <Button size="large" variant="outlined" color="tertiary">
-                Label
-              </Button>
-            </td>
-            <td>
               <Button size="large" variant="outlined" color="danger">
                 Label
               </Button>
@@ -168,11 +153,6 @@ export const Variants: Story = {
             </td>
             <td>
               <Button size="large" variant="text" color="secondary">
-                Label
-              </Button>
-            </td>
-            <td>
-              <Button size="large" variant="text" color="tertiary">
                 Label
               </Button>
             </td>
@@ -219,11 +199,6 @@ export const Variants: Story = {
               </Button>
             </td>
             <td>
-              <Button size="medium" variant="contained" color="tertiary">
-                Label
-              </Button>
-            </td>
-            <td>
               <Button size="medium" variant="contained" color="danger">
                 Label
               </Button>
@@ -261,11 +236,6 @@ export const Variants: Story = {
               </Button>
             </td>
             <td>
-              <Button size="medium" variant="outlined" color="tertiary">
-                Label
-              </Button>
-            </td>
-            <td>
               <Button size="medium" variant="outlined" color="danger">
                 Label
               </Button>
@@ -299,11 +269,6 @@ export const Variants: Story = {
             </td>
             <td>
               <Button size="medium" variant="text" color="secondary">
-                Label
-              </Button>
-            </td>
-            <td>
-              <Button size="medium" variant="text" color="tertiary">
                 Label
               </Button>
             </td>
@@ -350,11 +315,6 @@ export const Variants: Story = {
               </Button>
             </td>
             <td>
-              <Button size="small" variant="contained" color="tertiary">
-                Label
-              </Button>
-            </td>
-            <td>
               <Button size="small" variant="contained" color="danger">
                 Label
               </Button>
@@ -392,11 +352,6 @@ export const Variants: Story = {
               </Button>
             </td>
             <td>
-              <Button size="small" variant="outlined" color="tertiary">
-                Label
-              </Button>
-            </td>
-            <td>
               <Button size="small" variant="outlined" color="danger">
                 Label
               </Button>
@@ -430,11 +385,6 @@ export const Variants: Story = {
             </td>
             <td>
               <Button size="small" variant="text" color="secondary">
-                Label
-              </Button>
-            </td>
-            <td>
-              <Button size="small" variant="text" color="tertiary">
                 Label
               </Button>
             </td>
