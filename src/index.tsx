@@ -1,6 +1,7 @@
 import Autocomplete from "./components/Autocomplete/Autocomplete";
 import Button from "./components/Button/Button";
 import Checkbox from "./components/Checkbox/Checkbox";
+import ClickAwayListener from "./components/ClickAwayListener/ClickAwayListener";
 import FormControlLabel from "./components/FormControlLabel/FormControlLabel";
 import Header from "./components/Header/Header";
 import HeaderGroup from "./components/Header/HeaderGroup/HeaderGroup";
@@ -27,12 +28,17 @@ import SideBarGroupItem from "./components/SideBar/SideBarGroupItem/SideBarGroup
 import Switch from "./components/Switch/Switch";
 import Tag from "./components/Tag/Tag";
 import Text from "./components/Text/Text";
-import { ThemeProvider, useTheme } from "./components/ThemeProvider/ThemeProvider";
+import ToggleButton from "./components/ToggleButton/ToggleButton";
+import {
+  ThemeProvider,
+  useTheme,
+} from "./components/ThemeProvider/ThemeProvider";
 
 export {
   Autocomplete,
   Button,
   Checkbox,
+  ClickAwayListener,
   FormControlLabel,
   Header,
   HeaderGroup,
@@ -60,5 +66,6 @@ export {
   Tag,
   Text,
   ThemeProvider,
+  ToggleButton,
   useTheme,
 };

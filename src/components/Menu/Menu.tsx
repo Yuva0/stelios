@@ -4,6 +4,7 @@ import { MenuItemKeyProps } from "../MenuItem/MenuItem.types";
 import styled from "styled-components";
 import { usePopper } from "react-popper";
 import { MenuItemProps } from "../MenuItem/MenuItem.types";
+import ClickAwayListener from "../ClickAwayListener/ClickAwayListener";
 
 const StyledMenuContainer = styled.div<MenuStyleProps>`
   display: ${(props) => (props.$open ? "block" : "none")};
@@ -36,8 +37,10 @@ const Menu = forwardRef<HTMLDivElement, MenuProps>(
       open = false,
       minWidth = "none",
       anchorElement,
+      hideOnOutsideClick = true,
       // Events
       onClick,
+      onClose,
     },
     ref
   ) => {
@@ -52,7 +55,7 @@ const Menu = forwardRef<HTMLDivElement, MenuProps>(
 
     const { styles, attributes } = usePopper(anchorElement, popperElement, {
       placement: (popperStyles && popperStyles.placement) ?? "bottom-start",
-      modifiers: [
+      modifiers: (popperStyles && popperStyles.modifiers) ?? [
         {
           name: "offset",
           options: {
@@ -68,16 +71,20 @@ const Menu = forwardRef<HTMLDivElement, MenuProps>(
     ) => {
       onClick && onClick(e, { title, value });
     };
+    const _onClose = (e: MouseEvent) => {
+      setIsOpen(false);
+      onClose && onClose(e);
+    };
 
     if (!children) return null;
     if (Array.isArray(children) && children.length === 0) return null;
 
-    return (
+    const MenuElement = (
       <StyledMenuContainer
         ref={setPopperElement}
         $open={isOpen}
         $minWidth={minWidth}
-        style={{ ...styles.popper }}
+        style={{ ...styles.popper, ...style }}
         {...attributes.popper}
       >
         <StyledMenu>
@@ -93,6 +100,16 @@ const Menu = forwardRef<HTMLDivElement, MenuProps>(
         </StyledMenu>
       </StyledMenuContainer>
     );
+
+    if (hideOnOutsideClick) {
+      return (
+        <ClickAwayListener onClickAway={_onClose}>
+          {MenuElement}
+        </ClickAwayListener>
+      );
+    }
+
+    return MenuElement;
   }
 );
 

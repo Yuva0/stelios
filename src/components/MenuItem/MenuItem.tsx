@@ -8,7 +8,7 @@ const StyledMenuItem = styled.li<MenuItemStyleProps>`
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding: 0.5rem 0.5rem 0.5rem 0.75rem;
+  padding: 0.5rem 1rem 0.5rem 1rem;
   gap: 0.25rem;
   cursor: pointer;
   &:hover {

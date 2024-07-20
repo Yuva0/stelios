@@ -6,6 +6,7 @@ export interface MenuProps {
   minWidth?: string;
   open?: boolean;
   anchorElement: HTMLElement | null;
+  hideOnOutsideClick?: boolean;
   // Popper Styles
   popperStyles?: {
     placement?:
@@ -33,6 +34,7 @@ export interface MenuProps {
     e: React.MouseEvent<HTMLLIElement>,
     { title, value }: MenuItemKeyProps
   ) => void;
+  onClose?: (e:MouseEvent) => void;
 }
 
 export interface MenuStyleProps {
