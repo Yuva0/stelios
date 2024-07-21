@@ -71,7 +71,7 @@ const getGap = (size: ToggleButtonStyleProps["$size"]) => {
     default:
       return "0.5rem";
   }
-}
+};
 
 const StyledToggleBtn = styled.button<ToggleButtonStyleProps>`
   display: flex;
@@ -79,6 +79,7 @@ const StyledToggleBtn = styled.button<ToggleButtonStyleProps>`
   align-items: center;
   padding: ${(props) => getPadding(props.$size)};
   font-size: 1rem;
+  width: 100%;
   gap: ${(props) => getGap(props.$size)};
   cursor: pointer;
   color: ${(props) => props.$colorGradient[props.$color].accentScale[10]};

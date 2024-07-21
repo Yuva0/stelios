@@ -35,6 +35,7 @@ export const Default: Story = {
               value="1"
               color="primary"
               onClick={_onClick}
+              width="100%"
               {...args}
             >
               <ToggleButton value="1">

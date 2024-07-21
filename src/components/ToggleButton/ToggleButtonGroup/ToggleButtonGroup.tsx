@@ -22,7 +22,7 @@ const StyledToggleBtnGroup = styled.div<ToggleButtonStyleGroupProps>`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: fit-content;
+  width: ${(props) => props.$width};
   & > :first-child {
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
@@ -84,6 +84,7 @@ const ToggleButtonGroup = ({
   className,
   size,
   style,
+  width = "fit-content",
   //Events
   onClick,
 }: ToggleButtonGroupProps) => {
@@ -104,6 +105,7 @@ const ToggleButtonGroup = ({
 
   return (
     <StyledToggleBtnGroup
+      $width={width}
       $color={color}
       $colorGradient={colorGradient}
       className={className}
