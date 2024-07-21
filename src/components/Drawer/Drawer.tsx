@@ -13,13 +13,13 @@ type DrawerBackdropProps = {
 const getSize = (size: DrawerStyleProps["$size"]) => {
   switch (size) {
     case "small":
-      return "320px";
+      return 320;
     case "medium":
-      return "480px";
+      return 480;
     case "large":
-      return "640px";
+      return 640;
     default:
-      return "480px";
+      return 480;
   }
 };
 const getBackdropStrength = (strength: DrawerProps["backdropStrength"]) => {
@@ -36,16 +36,15 @@ const getBackdropStrength = (strength: DrawerProps["backdropStrength"]) => {
 };
 
 const StyledDrawer = styled.div<DrawerStyleProps>`
-  width: ${(props) => getSize(props.$size)};
+  width: ${(props) => `${getSize(props.$size)}px`};
   position: fixed;
   top: 0;
-  ${(props) => props.$position}: 0;
+  ${(props) => props.$position}: ${(props) =>
+    props.$open ? 0 : `${-1 * getSize(props.$size)}px`};
   height: 100%;
   background-color: white;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease-in-out;
-  transform: ${(props) =>
-    props.$open ? "translateX(0)" : `translateX(${getSize(props.$size)})`};
+  transition: ${(props) => `${props.$position} 0.3s ease-in-out;`}  
   z-index: ${(props) => props.$zIndex};
 `;
 const StyledBackdrop = styled.div<DrawerBackdropProps>`
@@ -130,9 +129,7 @@ const Drawer = ({
         $zIndex={zIndex}
       >
         {headerDrawer}
-        <div style={{padding: "1rem"}}>
-          {children}
-        </div>
+        <div style={{ padding: "1rem" }}>{children}</div>
       </StyledDrawer>
       {isOpen && (
         <StyledBackdrop

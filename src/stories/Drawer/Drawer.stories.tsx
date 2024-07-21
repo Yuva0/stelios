@@ -33,7 +33,7 @@ export const Default: Story = {
         <Drawer
           open={open}
           size="small"
-          position="right"
+          position="left"
           title="Settings"
           onClose={() => {
             setOpen(false);
