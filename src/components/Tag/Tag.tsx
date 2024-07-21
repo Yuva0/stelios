@@ -113,7 +113,7 @@ const Tag = ({
   // Events
   onClick,
 }: TagProps) => {
-  const colorGradient = useTheme().colorGradient;
+  const themeColor = useTheme().theme.themeColor;
 
   return (
     <StyledTag
@@ -121,7 +121,7 @@ const Tag = ({
       $variant={variant}
       $color={color}
       $disableClick={disableClick}
-      $colorGradient={colorGradient}
+      $colorGradient={themeColor}
       className={className}
       onClick={onClick}
     >
@@ -130,7 +130,7 @@ const Tag = ({
           $variant={variant}
           $color={color}
           $size={size}
-          $colorGradient={colorGradient}
+          $colorGradient={themeColor}
         >
           {leadingIcon}
         </StyledTagIcon>
@@ -147,7 +147,7 @@ const Tag = ({
           $variant={variant}
           $color={color}
           $size={size}
-          $colorGradient={colorGradient}
+          $colorGradient={themeColor}
         >
           {trailingIcon}
         </StyledTagIcon>

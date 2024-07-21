@@ -168,7 +168,7 @@ const IconButton = forwardRef(
     }: IconButtonProps,
     ref: React.ForwardedRef<HTMLButtonElement>
   ) => {
-    const colorGradient = useTheme().colorGradient;
+    const themeColor = useTheme().theme.themeColor;
 
     return (
       <StyledIconBtn
@@ -178,7 +178,7 @@ const IconButton = forwardRef(
         $color={color}
         $disabled={disabled}
         aria-disabled={disabled}
-        $colorGradient={colorGradient}
+        $colorGradient={themeColor}
         onClick={onClick}
         className={className}
       >

@@ -59,7 +59,9 @@ const StyledSwitchContent = styled.span<SwitchStyleProps>`
   width: ${(props) => getSize(props.$size).width};
   height: ${(props) => getSize(props.$size).height};
   background-color: ${(props) =>
-    props.$checked ? props.$colorGradient[props.$color].accentScale[8] : props.$colorGradient[props.$color].grayScale[8]};
+    props.$checked
+      ? props.$colorGradient[props.$color].accentScale[8]
+      : props.$colorGradient[props.$color].grayScale[8]};
 
   & span {
     top: ${(props) => getSize(props.$size).top};
@@ -103,7 +105,7 @@ const Switch = forwardRef(
     const _ref = (ref ?? innerRef) as React.RefObject<HTMLInputElement>;
     const [isChecked, setIsChecked] = useState(checked ?? false);
 
-    const colorGradient = useTheme().colorGradient;
+    const themeColor = useTheme().theme.themeColor;
 
     useEffect(() => {
       setIsChecked(checked ?? false);
@@ -125,7 +127,7 @@ const Switch = forwardRef(
         $disabled={disabled}
         $size={size}
         $color={color}
-        $colorGradient={colorGradient}
+        $colorGradient={themeColor}
         {...props}
       >
         <input
@@ -140,7 +142,7 @@ const Switch = forwardRef(
           $disabled={disabled}
           $size={size}
           $color={color}
-          $colorGradient={colorGradient}
+          $colorGradient={themeColor}
         >
           <span
             className={`${isChecked ? "ste-switch-content-selected" : "ste-switch-content-unselected"}`}

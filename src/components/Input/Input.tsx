@@ -171,7 +171,7 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
       setInputValue(value ?? "");
     }, [value]);
 
-    const colorGradient = useTheme().colorGradient;
+    const themeColor = useTheme().theme.themeColor;
 
     const Label = label ? (
       typeof label === "string" ? (
@@ -211,7 +211,7 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
         ref={ref}
         onClick={_onClick}
         onKeyDown={_onKeyDown}
-        $colorGradient={colorGradient}
+        $colorGradient={themeColor}
         $color={color}
         $size={size}
         $width={width}
@@ -226,7 +226,7 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
       >
         {labelPosition && labelPosition === "top" ? Label : null}
         <StyledInputContent
-          $colorGradient={colorGradient}
+          $colorGradient={themeColor}
           $color={color}
           $size={size}
           $isFocused={isFocused}
@@ -239,7 +239,7 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
         >
           {leadingIcon && (
             <StyledInputIcon
-              $colorGradient={colorGradient}
+              $colorGradient={themeColor}
               $color={color}
               $size={size}
               $hasLeadingIcon={!!leadingIcon}
@@ -264,7 +264,7 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
           )}
           {trailingIcon && (
             <StyledInputIcon
-              $colorGradient={colorGradient}
+              $colorGradient={themeColor}
               $color={color}
               $size={size}
               $hasLeadingIcon={!!leadingIcon}

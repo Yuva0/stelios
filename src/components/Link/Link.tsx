@@ -28,13 +28,13 @@ const Link = ({
   color = "primary",
   onClick,
 }: LinkProps) => {
-  const colorGradient = useTheme().colorGradient;
+  const themeColor = useTheme().theme.themeColor;
 
   return (
     <StyledLink
       $color={color}
       $variant={variant}
-      $colorGradient={colorGradient}
+      $colorGradient={themeColor}
       target={target}
       href={href}
       className={className}

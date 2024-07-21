@@ -1,5 +1,5 @@
 export interface ThemeProviderProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   accent?: {
     primary?: string;
     secondary?: string;
@@ -14,5 +14,8 @@ export interface ThemeProviderProps {
 }
 
 export interface DefaultTheme {
-  colorGradient: any;
+  theme: {
+    themeColor: any
+  };
+  setTheme: any;
 }

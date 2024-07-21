@@ -35,6 +35,7 @@ import ToggleButtonGroup from "./components/ToggleButton/ToggleButtonGroup/Toggl
 import {
   ThemeProvider,
   useTheme,
+  useUpdateTheme,
 } from "./components/ThemeProvider/ThemeProvider";
 
 export {
@@ -74,4 +75,5 @@ export {
   ToggleButton,
   ToggleButtonGroup,
   useTheme,
+  useUpdateTheme,
 };
