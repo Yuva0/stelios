@@ -15,8 +15,10 @@ const StyledChromePicker = styled.div<ColorPickerStyleProps>`
 `;
 
 const ColorPicker = ({
+  label,
   color = "#ee9b00",
   open,
+  size,
   onChange,
 }: ColorPickerProps) => {
   const [isOpen, setIsOpen] = useState(open ?? false);
@@ -62,6 +64,8 @@ const ColorPicker = ({
   return (
     <ClickAwayListener onClickAway={() => setIsOpen(false)}>
       <Input
+        size={size}
+        label={label}
         ref={setAnchorElement}
         value={innerColor}
         onChange={_onInputChange}

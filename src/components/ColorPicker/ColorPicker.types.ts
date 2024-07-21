@@ -4,6 +4,8 @@ import React from "react";
 export interface ColorPickerProps {
   open?: boolean;
   color?: string;
+  label?: React.ReactNode;
+  size?: "small" | "medium" | "large";
   onChange?: (color?: string) => void;
 }
 
