@@ -77,18 +77,18 @@ const ColorPicker = ({
           />
         }
       />
-      {/* <StyledChromePicker
+      <StyledChromePicker
         ref={setPopperElement}
         $open={isOpen}
         style={{ ...styles.popper }}
         {...attributes.popper}
-      > */}
+      >
         <ChromePicker
           disableAlpha={true}
           color={innerColor}
           onChange={_onChange}
         />
-      {/* </StyledChromePicker> */}
+      </StyledChromePicker>
     </ClickAwayListener>
   );
 };
