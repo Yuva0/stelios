@@ -8,10 +8,6 @@ import ClickAwayListener from "../ClickAwayListener/ClickAwayListener";
 
 const StyledChromePicker = styled.div<ColorPickerStyleProps>`
   display: ${(props) => (props.$open ? "block" : "none")};
-
-  & .test {
-    width: 500px;
-  }
 `;
 
 const ColorPicker = ({
@@ -81,19 +77,18 @@ const ColorPicker = ({
           />
         }
       />
-      <StyledChromePicker
+      {/* <StyledChromePicker
         ref={setPopperElement}
         $open={isOpen}
         style={{ ...styles.popper }}
         {...attributes.popper}
-      >
+      > */}
         <ChromePicker
           disableAlpha={true}
           color={innerColor}
           onChange={_onChange}
-          className="test"
         />
-      </StyledChromePicker>
+      {/* </StyledChromePicker> */}
     </ClickAwayListener>
   );
 };
