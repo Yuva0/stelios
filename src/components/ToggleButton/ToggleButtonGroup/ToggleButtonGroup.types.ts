@@ -6,7 +6,7 @@ export interface ToggleButtonGroupProps {
   className?: string;
   style?: React.CSSProperties;
   // Events
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onClick?: (e: React.MouseEvent, value?: string) => void;
 }
 
 export interface ToggleButtonStyleGroupProps {

@@ -22,6 +22,7 @@ const StyledToggleBtnGroup = styled.div<ToggleButtonStyleGroupProps>`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  width: fit-content;
   & > :first-child {
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
@@ -71,6 +72,11 @@ const StyledToggleBtnGroup = styled.div<ToggleButtonStyleGroupProps>`
   }
 `;
 
+const getIndexFromValue = (value: string, children: React.ReactNode) => {
+  const childrenArray = React.Children.toArray(children);
+  return childrenArray.findIndex((child: any) => child.props.value === value);
+};
+
 const ToggleButtonGroup = ({
   children,
   value,
@@ -78,16 +84,45 @@ const ToggleButtonGroup = ({
   className,
   size,
   style,
-  onChange,
+  //Events
+  onClick,
 }: ToggleButtonGroupProps) => {
+  const [selectedIndex, setSelectedIndex] = React.useState<number | null>(
+    value ? getIndexFromValue(value, children) : null
+  );
+
+  React.useEffect(() => {
+    setSelectedIndex(value ? getIndexFromValue(value, children) : null);
+  }, [value, children]);
+
   const colorGradient = useTheme().colorGradient;
+
+  const _onClick = (e: React.MouseEvent, value?: string, index?: number) => {
+    setSelectedIndex(index ?? null);
+    onClick && onClick(e, value);
+  };
+
   return (
-    <StyledToggleBtnGroup $color={color} $colorGradient={colorGradient}>
-      {React.Children.map(children, (child) => {
-        if (React.isValidElement(child)) {
-          return React.cloneElement(child, {
-            ...(!child.props.color && color && { color }),
-          });
+    <StyledToggleBtnGroup
+      $color={color}
+      $colorGradient={colorGradient}
+      className={className}
+      style={style}
+    >
+      {React.Children.map(children, (child, index) => {
+        if (React.isValidElement(child) && child.type) {
+          const childElement = child as React.ReactElement;
+          const childType = childElement.type;
+
+          if (typeof childType === "string") return child;
+          if (childType.name === "ToggleButton") {
+            return React.cloneElement(childElement, {
+              index: index,
+              selected: selectedIndex === index,
+              ...(!childElement.props.size && size && { size }),
+              onClick: _onClick,
+            });
+          }
         }
         return child;
       })}
