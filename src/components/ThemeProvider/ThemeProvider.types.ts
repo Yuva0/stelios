@@ -14,5 +14,5 @@ export interface ThemeProviderProps {
 }
 
 export interface DefaultTheme {
-  colorGradient: any;
+  themeColors: any;
 }

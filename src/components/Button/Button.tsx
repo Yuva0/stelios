@@ -7,6 +7,8 @@ import {
 import Text from "../Text/Text";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
 import styled from "styled-components";
+import colors_new from "../../tokens/colors_new.json";
+import { generateRadixColors } from "../../helpers/colors/generateRadixColors";
 
 const getPadding = (size?: "small" | "medium" | "large") => {
   switch (size) {
@@ -168,7 +170,68 @@ const ButtonInternal = ({
   ...rest
 }: ButtonProps & ButtonInternalProps) => {
   const theme = useTheme();
-  const colorGradient = theme.colorGradient;
+  const colorGradient = theme?.theme.themeColors;
+
+  const _onClick = () => {
+    theme?.setTheme({
+      themeColors: {
+        primary: {
+          main: colors_new.primary.accent,
+          ...generateRadixColors({
+            appearance: colors_new.appearance as "light" | "dark",
+            accent: colors_new.primary.accent,
+            gray: colors_new.gray,
+            background: colors_new.background,
+          }),
+        },
+        secondary: {
+          main: colors_new.secondary.accent,
+          ...generateRadixColors({
+            appearance: colors_new.appearance as "light" | "dark",
+            accent: colors_new.secondary.accent,
+            gray: colors_new.gray,
+            background: colors_new.background,
+          }),
+        },
+        danger: {
+          main: colors_new.danger.accent,
+          ...generateRadixColors({
+            appearance: colors_new.appearance as "light" | "dark",
+            accent: colors_new.danger.accent,
+            gray: colors_new.gray,
+            background: colors_new.background,
+          }),
+        },
+        warning: {
+          main: colors_new.warning.accent,
+          ...generateRadixColors({
+            appearance: colors_new.appearance as "light" | "dark",
+            accent: colors_new.warning.accent,
+            gray: colors_new.gray,
+            background: colors_new.background,
+          }),
+        },
+        success: {
+          main: colors_new.success.accent,
+          ...generateRadixColors({
+            appearance: colors_new.appearance as "light" | "dark",
+            accent: colors_new.success.accent,
+            gray: colors_new.gray,
+            background: colors_new.background,
+          }),
+        },
+        info: {
+          main: colors_new.info.accent,
+          ...generateRadixColors({
+            appearance: colors_new.appearance as "light" | "dark",
+            accent: colors_new.info.accent,
+            gray: colors_new.gray,
+            background: colors_new.background,
+          }),
+        },
+      },
+    });
+  };
 
   return (
     <StyledButton
@@ -179,7 +242,7 @@ const ButtonInternal = ({
       $disabled={disabled}
       $fullWidth={fullWidth}
       aria-disabled={disabled}
-      onClick={onClick}
+      onClick={_onClick}
       {...rest}
     >
       {leadingIcon && <StyledButtonIcon>{leadingIcon}</StyledButtonIcon>}
