@@ -2,6 +2,7 @@ import Autocomplete from "./components/Autocomplete/Autocomplete";
 import Button from "./components/Button/Button";
 import Checkbox from "./components/Checkbox/Checkbox";
 import ClickAwayListener from "./components/ClickAwayListener/ClickAwayListener";
+import ColorPicker from "./components/ColorPicker/ColorPicker";
 import Drawer from "./components/Drawer/Drawer";
 import FormControlLabel from "./components/FormControlLabel/FormControlLabel";
 import Header from "./components/Header/Header";
@@ -41,6 +42,7 @@ export {
   Button,
   Checkbox,
   ClickAwayListener,
+  ColorPicker,
   Drawer,
   FormControlLabel,
   Header,
