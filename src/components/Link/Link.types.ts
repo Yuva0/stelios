@@ -10,3 +10,8 @@ export interface LinkProps {
   color?: string;
   target?: "_blank" | "_self" | "_parent" | "_top";
 }
+
+export type LinkStyleProps = {
+  $variant: NonNullable<LinkProps["variant"]>;
+  $color: NonNullable<LinkProps["color"]>;
+};

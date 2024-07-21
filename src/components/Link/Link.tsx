@@ -1,23 +1,19 @@
 import React from "react";
-import { LinkProps } from "./Link.types";
+import { LinkProps, LinkStyleProps } from "./Link.types";
 import Text from "../Text/Text";
 import styled from "styled-components";
-import colors from "../../tokens/colors.json";
-
-type LinkStyleProps = {
-  variant?: "default" | "underline" | "hover";
-  color?: string;
-};
+import { useTheme } from "../ThemeProvider/ThemeProvider";
 
 const StyledLink = styled.a<LinkStyleProps>`
   text-decoration: ${(props) =>
-    props.variant === "underline" ? "underline" : "none"};
-  color: ${(props) => props.color ?? colors.info["700"]};
+    props.$variant === "underline" ? "underline" : "none"};
+  color: ${(props) =>
+    props.color ?? props.$colorGradient[props.$color].accentScale[10]};
   cursor: pointer;
   display: inline-block;
   &:hover {
     text-decoration: ${(props) =>
-      props.variant === "default" ? "none" : "underline"};
+      props.$variant === "default" ? "none" : "underline"};
   }
 `;
 
@@ -29,13 +25,16 @@ const Link = ({
   className,
   target,
   style,
-  color,
+  color = "primary",
   onClick,
 }: LinkProps) => {
+  const colorGradient = useTheme().colorGradient;
+
   return (
     <StyledLink
-      color={color}
-      variant={variant}
+      $color={color}
+      $variant={variant}
+      $colorGradient={colorGradient}
       target={target}
       href={href}
       className={className}

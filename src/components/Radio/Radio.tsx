@@ -95,7 +95,6 @@ const Radio = forwardRef(
     const _onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       if (isSelected) return;
       // setIsSelected(event.target.checked);
-      console.log("Called");
       getSelectedIndex && getSelectedIndex(index);
       onChange && onChange(event);
     };

@@ -21,15 +21,9 @@ export interface CheckboxProps {
 }
 
 export interface CheckboxStyleProps {
-  checked?: boolean;
-  disabled?: boolean;
-  size?: "small" | "medium" | "large";
-  color?:
-    | "primary"
-    | "secondary"
-    | "danger"
-    | "warning"
-    | "success"
-    | "info";
-  colorGradient: any;
+  $checked?: boolean;
+  $disabled?: boolean;
+  $size: NonNullable<CheckboxProps["size"]>;
+  $color: NonNullable<CheckboxProps["color"]>;
+  $colorGradient: any;
 }

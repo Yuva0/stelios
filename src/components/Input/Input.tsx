@@ -61,21 +61,20 @@ const StyledLabel = styled.span`
 const StyledInput = styled.div<InputStyleProps>`
   display: flex;
   flex-direction: column;
-  width: ${(props) => props.$width ?? "auto"};
+  width: ${(props) => props.$width};
   gap: 4px;
   user-select: none;
 `;
 
 const StyledInputIcon = styled.div<InputStyleProps>`
-  color: ${(props) =>
-    props.$colorGradient[props.color ?? "primary"].grayScale[8]};
+  color: ${(props) => props.$colorGradient[props.$color].grayScale[8]};
   padding: 0.25rem 0.25rem;
   cursor: pointer;
   width: ${(props) => getIconSize(props.$size)};
   height: ${(props) => getIconSize(props.$size)};
   &:hover {
     background-color: ${(props) =>
-      props.$colorGradient[props.color ?? "primary"].grayScale[2]};
+      props.$colorGradient[props.$color].grayScale[2]};
     border-radius: 50%;
   }
   & svg {
@@ -86,8 +85,8 @@ const StyledInputIcon = styled.div<InputStyleProps>`
 
 const StyledInputContent = styled.div<InputStyleProps>`
   border-radius: 8px;
-  border:${(props) => `1px solid ${props.$colorGradient["info"].grayScale[6]}`};
-  outline: ${(props) => (props.$isFocused ? `2px solid ${props.$colorGradient["info"].accentScale[6]}` : "none")};
+  border:${(props) => `1px solid ${props.$colorGradient[props.$color].grayScale[6]}`};
+  outline: ${(props) => (props.$isFocused ? `2px solid ${props.$colorGradient[props.$color].accentScale[6]}` : "none")};
   outline-offset:-1px;
   padding: ${(props) => getPadding(props.$size, props.$hasLeadingIcon, props.$hasTrailingIcon)};
   display: flex;
@@ -111,7 +110,7 @@ const StyledInputContent = styled.div<InputStyleProps>`
       outline-offset: -1px;
       background-color: ${(props) => props.$inputBgColor ?? "transparent"};
       &::placeholder {
-        color: ${(props) => props.$colorGradient["info"].grayScale[8]};
+        color: ${(props) => props.$colorGradient[props.$color].grayScale[8]};
       },
       &:focus-visible {
           outline: none;
@@ -126,10 +125,10 @@ const StyledInputContent = styled.div<InputStyleProps>`
       outline-offset: -1px;
   }
   &:hover {
-      outline: ${(props) => (props.$isFocused ? `2px solid ${props.$colorGradient["info"].accentScale[6]}` : `1px solid ${props.$colorGradient["info"].accentScale[7]}`)};
+      outline: ${(props) => (props.$isFocused ? `2px solid ${props.$colorGradient[props.$color].accentScale[6]}` : `1px solid ${props.$colorGradient[props.$color].accentScale[7]}`)};
   }
   &:focus {
-      outline: "1px solid ${(props) => props.$colorGradient["info"].accentScale[9]}";
+      outline: "1px solid ${(props) => props.$colorGradient[props.$color].accentScale[9]}";
   }
 `;
 
@@ -137,7 +136,7 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
   (
     {
       placeholder,
-      color = "secondary",
+      color = "primary",
       label,
       type = "text",
       size = "medium",
@@ -152,7 +151,7 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
       inputBgColor,
       style,
       className,
-      disabled=false,
+      disabled = false,
 
       // Events
       onChange,
@@ -168,7 +167,6 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
     const [inputValue, setInputValue] = React.useState<string | string[]>(
       value ?? ""
     );
-
     React.useEffect(() => {
       setInputValue(value ?? "");
     }, [value]);
