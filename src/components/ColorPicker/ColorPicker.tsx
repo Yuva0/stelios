@@ -20,32 +20,24 @@ const ColorPicker = ({
 }: ColorPickerProps) => {
   const [isOpen, setIsOpen] = useState(open ?? false);
   const [innerColor, setInnerColor] = useState<string>(color);
-  const [anchorElement, setAnchorElement] = useState<HTMLDivElement | null>(
-    null
-  );
-  const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(
-    null
-  );
+  const [anchorElement, setAnchorElement] = useState<HTMLDivElement | null>(null);
+  const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(null);
 
   useEffect(() => {
     setIsOpen(open ?? false);
   }, [open]);
 
-  const { styles, attributes } = usePopper(
-    anchorElement,
-    popperElement as any,
-    {
-      placement: "bottom-start",
-      modifiers: [
-        {
-          name: "offset",
-          options: {
-            offset: [0, 2.5],
-          },
+  const { styles, attributes } = usePopper(anchorElement, popperElement, {
+    placement: "bottom-start",
+    modifiers: [
+      {
+        name: "offset",
+        options: {
+          offset: [0, 10],
         },
-      ],
-    }
-  );
+      },
+    ],
+  });
 
   const _onChange = (color: ColorResult) => {
     setInnerColor(color.hex);
@@ -60,37 +52,39 @@ const ColorPicker = ({
 
   return (
     <ClickAwayListener onClickAway={() => setIsOpen(false)}>
-      <Input
-        width={width}
-        size={size}
-        label={label}
-        ref={setAnchorElement}
-        value={innerColor}
-        onChange={_onInputChange}
-        leadingIcon={
-          <div
-            onClick={() => setIsOpen(!isOpen)}
-            style={{
-              width: "20px",
-              height: "20px",
-              backgroundColor: innerColor,
-              borderRadius: "4px",
-            }}
-          />
-        }
-      />
-      <StyledChromePicker
-        ref={setPopperElement}
-        $open={isOpen}
-        style={{ ...styles.popper }}
-        {...attributes.popper}
-      >
-        <ChromePicker
-          disableAlpha={true}
-          color={innerColor}
-          onChange={_onChange}
+      <div>
+        <Input
+          width={width}
+          size={size}
+          label={label}
+          ref={setAnchorElement}
+          value={innerColor}
+          onChange={_onInputChange}
+          leadingIcon={
+            <div
+              onClick={() => setIsOpen(!isOpen)}
+              style={{
+                width: "20px",
+                height: "20px",
+                backgroundColor: innerColor,
+                borderRadius: "4px",
+              }}
+            />
+          }
         />
-      </StyledChromePicker>
+        <StyledChromePicker
+          ref={setPopperElement}
+          $open={isOpen}
+          style={{ ...styles.popper }}
+          {...attributes.popper}
+        >
+          <ChromePicker
+            disableAlpha
+            color={innerColor}
+            onChange={_onChange}
+          />
+        </StyledChromePicker>
+      </div>
     </ClickAwayListener>
   );
 };
