@@ -30,6 +30,7 @@ import Switch from "./components/Switch/Switch";
 import Tag from "./components/Tag/Tag";
 import Text from "./components/Text/Text";
 import ToggleButton from "./components/ToggleButton/ToggleButton";
+import ToggleButtonGroup from "./components/ToggleButton/ToggleButtonGroup/ToggleButtonGroup";
 import {
   ThemeProvider,
   useTheme,
@@ -69,5 +70,6 @@ export {
   Text,
   ThemeProvider,
   ToggleButton,
+  ToggleButtonGroup,
   useTheme,
 };
