@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { ChromePicker, ColorResult } from "react-color";
 import { ColorPickerProps, ColorPickerStyleProps } from "./ColorPicker.types";
 import Input from "../Input/Input";
@@ -20,20 +20,20 @@ const ColorPicker = ({
 }: ColorPickerProps) => {
   const [isOpen, setIsOpen] = useState(open ?? false);
   const [innerColor, setInnerColor] = useState<string>(color);
-  const [anchorElement, setAnchorElement] = useState<HTMLDivElement | null>(null);
-  const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(null);
+  const anchorElement = useRef<HTMLDivElement | null>(null);
+  const popperElement = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     setIsOpen(open ?? false);
   }, [open]);
 
-  const { styles, attributes } = usePopper(anchorElement, popperElement, {
+  const { styles, attributes, update } = usePopper(anchorElement.current, popperElement.current, {
     placement: "bottom-start",
     modifiers: [
       {
         name: "offset",
         options: {
-          offset: [0, 10],
+          offset: [0, 2.5],
         },
       },
     ],
@@ -50,14 +50,24 @@ const ColorPicker = ({
     onChange && onChange(e.target.value);
   };
 
+  const handleClickAway = useCallback(() => {
+    setIsOpen(false);
+  }, []);
+
+  useEffect(() => {
+    if (isOpen && update) {
+      update();
+    }
+  }, [isOpen, update]);
+
   return (
-    <ClickAwayListener onClickAway={() => setIsOpen(false)}>
+    <ClickAwayListener onClickAway={handleClickAway}>
       <div>
         <Input
           width={width}
           size={size}
           label={label}
-          ref={setAnchorElement}
+          ref={anchorElement}
           value={innerColor}
           onChange={_onInputChange}
           leadingIcon={
@@ -73,7 +83,7 @@ const ColorPicker = ({
           }
         />
         <StyledChromePicker
-          ref={setPopperElement}
+          ref={popperElement}
           $open={isOpen}
           style={{ ...styles.popper }}
           {...attributes.popper}
