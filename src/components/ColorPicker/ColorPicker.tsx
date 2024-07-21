@@ -15,6 +15,7 @@ const ColorPicker = ({
   color = "#ee9b00",
   open,
   size,
+  width,
   onChange,
 }: ColorPickerProps) => {
   const [isOpen, setIsOpen] = useState(open ?? false);
@@ -60,6 +61,7 @@ const ColorPicker = ({
   return (
     <ClickAwayListener onClickAway={() => setIsOpen(false)}>
       <Input
+        width={width}
         size={size}
         label={label}
         ref={setAnchorElement}

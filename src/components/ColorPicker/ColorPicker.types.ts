@@ -6,6 +6,7 @@ export interface ColorPickerProps {
   color?: string;
   label?: React.ReactNode;
   size?: "small" | "medium" | "large";
+  width?: string;
   onChange?: (color?: string) => void;
 }
 
