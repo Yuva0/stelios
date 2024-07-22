@@ -105,7 +105,7 @@ const Switch = forwardRef(
     const _ref = (ref ?? innerRef) as React.RefObject<HTMLInputElement>;
     const [isChecked, setIsChecked] = useState(checked ?? false);
 
-    const themeColor = useTheme().theme.themeColor;
+    const paletteColors = useTheme().theme.paletteColors;
 
     useEffect(() => {
       setIsChecked(checked ?? false);
@@ -127,7 +127,7 @@ const Switch = forwardRef(
         $disabled={disabled}
         $size={size}
         $color={color}
-        $colorGradient={themeColor}
+        $colorGradient={paletteColors}
         {...props}
       >
         <input
@@ -142,7 +142,7 @@ const Switch = forwardRef(
           $disabled={disabled}
           $size={size}
           $color={color}
-          $colorGradient={themeColor}
+          $colorGradient={paletteColors}
         >
           <span
             className={`${isChecked ? "ste-switch-content-selected" : "ste-switch-content-unselected"}`}

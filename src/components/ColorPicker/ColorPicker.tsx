@@ -27,17 +27,21 @@ const ColorPicker = ({
     setIsOpen(open ?? false);
   }, [open]);
 
-  const { styles, attributes, update } = usePopper(anchorElement.current, popperElement.current, {
-    placement: "bottom-start",
-    modifiers: [
-      {
-        name: "offset",
-        options: {
-          offset: [0, 2.5],
+  const { styles, attributes, update } = usePopper(
+    anchorElement.current,
+    popperElement.current,
+    {
+      placement: "bottom-start",
+      modifiers: [
+        {
+          name: "offset",
+          options: {
+            offset: [0, 2.5],
+          },
         },
-      },
-    ],
-  });
+      ],
+    }
+  );
 
   const _onChange = (color: ColorResult) => {
     setInnerColor(color.hex);
@@ -45,9 +49,12 @@ const ColorPicker = ({
   };
 
   const _onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setIsOpen(true);
     setInnerColor(e.target.value);
     onChange && onChange(e.target.value);
+  };
+
+  const _onInputClick = () => {
+    setIsOpen(true);
   };
 
   const handleClickAway = useCallback(() => {
@@ -70,6 +77,7 @@ const ColorPicker = ({
           ref={anchorElement}
           value={innerColor}
           onChange={_onInputChange}
+          onClick={_onInputClick}
           leadingIcon={
             <div
               onClick={() => setIsOpen(!isOpen)}
@@ -88,11 +96,7 @@ const ColorPicker = ({
           style={{ ...styles.popper }}
           {...attributes.popper}
         >
-          <ChromePicker
-            disableAlpha
-            color={innerColor}
-            onChange={_onChange}
-          />
+          <ChromePicker disableAlpha color={innerColor} onChange={_onChange} />
         </StyledChromePicker>
       </div>
     </ClickAwayListener>

@@ -1,3 +1,5 @@
+import { DefaultTheme } from "../ThemeProvider/ThemeProvider.types";
+
 export interface TextProps {
   variant?:
     | "h1"
@@ -35,6 +37,7 @@ export interface TextStyleProps {
   $strong?: number;
   $align?: TextProps["align"];
   $color?: TextProps["color"];
+  $paletteColors?: DefaultTheme["theme"]["paletteColors"];
   $wrap?: boolean;
   $size?: TextProps["size"];
   $fontSize?: string;

@@ -1,23 +1,15 @@
 import React from "react";
 
-import { HeaderProps } from "./Header.types";
+import { HeaderProps, HeaderStyleProps } from "./Header.types";
 import styled from "styled-components";
 import {
   IconChevronCompactDown,
   IconChevronCompactUp,
 } from "@tabler/icons-react";
 import colors from "../../tokens/colors.json";
+import { useTheme } from "../ThemeProvider/ThemeProvider";
 
-interface ExpandProps {
-  expanded?: boolean;
-  height?: string;
-  iconWidth?: string;
-  iconHeight?: string;
-  iconRight?: string;
-  iconBottom?: string;
-}
-
-const StyledHeader = styled.header<ExpandProps>`
+const StyledHeader = styled.header<HeaderStyleProps>`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -25,30 +17,30 @@ const StyledHeader = styled.header<ExpandProps>`
   width: 100%;
   box-sizing: border-box;
   transition: height 330ms ease-in-out;
-  background-color: ${colors.white[0]};
+  background-color: ${(props) => props.$paletteColors.primary.background};
   z-index: 1000;
   padding: 0 1rem;
-  height: ${(props) => (props.expanded ? props.height ?? "5rem" : "0rem")};
+  height: ${(props) => (props.$expanded ? props.$height ?? "5rem" : "0rem")};
   position: fixed;
   box-shadow: ${(props) =>
-    props.expanded ? "none" : "0 0 10px 0 rgba(0, 0, 0, 0.35)"};
+    props.$expanded ? "none" : "0 0 10px 0 rgba(0, 0, 0, 0.35)"};
   outline: ${(props) =>
-    props.expanded ? `1px solid ${colors.white[200]}` : "none"};
+    props.$expanded ? `1px solid ${colors.white[200]}` : "none"};
 `;
 
-const StyledExpandIcon = styled.div<ExpandProps>`
+const StyledExpandIcon = styled.div<HeaderStyleProps>`
   border-radius: 0 0 0.25rem 0.25rem;
   cursor: pointer;
   position: absolute;
-  right: ${(props) => props.iconRight ?? `5rem`};
-  bottom: ${(props) => props.iconBottom ?? `-1.75rem`};
-  width: ${(props) => props.iconWidth ?? `3rem`};
-  height: ${(props) => props.iconHeight ?? `1.75rem`};
+  right: ${(props) => props.$iconRight ?? `5rem`};
+  bottom: ${(props) => props.$iconBottom ?? `-1.75rem`};
+  width: ${(props) => props.$iconWidth ?? `3rem`};
+  height: ${(props) => props.$iconHeight ?? `1.75rem`};
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${colors.white[0]};
-  color: ${colors.black[100]};
+  background-color: ${(props) => props.$paletteColors.primary.background};
+  color: ${(props) => props.$paletteColors.primary.grayScale[11]};
   box-shadow:
     -4px 5px 5px 0 rgba(0, 0, 0, 0.15),
     4px 5px 5px 0 rgba(0, 0, 0, 0.15);
@@ -71,20 +63,32 @@ const Header = ({
 }: HeaderProps) => {
   const [expanded, setExpanded] = React.useState<boolean>(true);
 
+  const paletteColors = useTheme().theme.paletteColors;
+  console.log(paletteColors)
+
   const _onExpandHandler = () => {
     setExpanded(!expanded);
   };
 
   return (
     <StyledHeader
-      height={height}
-      expanded={expanded}
+      $height={height}
+      $expanded={expanded}
+      $paletteColors={paletteColors}
       className={className}
       style={style}
     >
       {expanded && children}
       {expandable && (
-        <StyledExpandIcon expanded={expanded} onClick={_onExpandHandler}>
+        <StyledExpandIcon
+          $paletteColors={paletteColors}
+          $expanded={expanded}
+          $iconWidth={iconWidth}
+          $iconHeight={iconHeight}
+          $iconRight={iconRight}
+          $iconBottom={iconBottom}
+          onClick={_onExpandHandler}
+        >
           {expanded ? <IconChevronCompactUp /> : <IconChevronCompactDown />}
         </StyledExpandIcon>
       )}

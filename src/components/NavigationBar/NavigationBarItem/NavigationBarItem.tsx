@@ -1,10 +1,11 @@
 import React from "react";
-import { NavigationBarItemProps } from "./NavigationBarItem.types";
+import { NavigationBarItemProps, NavigationBarItemStyleProps } from "./NavigationBarItem.types";
 import colors from "../../../tokens/colors.json";
 import styled from "styled-components";
 import Text from "../../Text/Text";
+import { useTheme } from "../../ThemeProvider/ThemeProvider";
 
-const StyledNavBarItem = styled.li`
+const StyledNavBarItem = styled.li<NavigationBarItemStyleProps>`
   display: flex;
   flex-direction: row;
   gap: 0.5rem;
@@ -14,7 +15,11 @@ const StyledNavBarItem = styled.li`
   padding: 0.3rem 0.75rem;
   margin: 0 0.5rem;
   &:hover {
-    background-color: ${colors.white[100]};
+    background-color: ${(props) => props.$paletteColors.primary.grayScale[1]};
+  }
+  &:active {
+    background-color: ${(props) => props.$paletteColors.primary.grayScale[2]};
+  
   }
 `;
 
@@ -30,8 +35,11 @@ const NavigationBarItem = ({
   style,
   size,
 }: NavigationBarItemProps) => {
+
+  const paletteColors = useTheme().theme.paletteColors;
+
   return (
-    <StyledNavBarItem className={className} style={style}>
+    <StyledNavBarItem $paletteColors={paletteColors} className={className} style={style}>
       {leadingIcon && <StyledNavBarIcon>{leadingIcon}</StyledNavBarIcon>}
       {typeof children === "string" ? (
         <Text variant="span" size={size}>

@@ -21,8 +21,8 @@ type Story = StoryObj<typeof Button>;
 export const Variants: Story = {
   render: () => {
     return (
-      <ThemeProvider accent={{primary: "#DD3C74", success:"#DD843C"}}>
-        <div>
+      <ThemeProvider accent={{primary: "#DD3C74", success:"#DD843C"}} appearance="dark">
+        <div style={{background: "#212529"}}>
           <table style={{ width: "100%", textAlign: "center" }}>
             <thead>
               <tr>

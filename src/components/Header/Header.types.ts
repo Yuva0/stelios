@@ -1,3 +1,5 @@
+import { DefaultTheme } from "../ThemeProvider/ThemeProvider.types";
+
 export interface HeaderProps {
   children?: React.ReactNode | [React.ReactNode];
   height?: string;
@@ -10,4 +12,15 @@ export interface HeaderProps {
   iconHeight?: string;
   iconRight?: string;
   iconBottom?: string;
+}
+
+export interface HeaderStyleProps {
+  $paletteColors: DefaultTheme["theme"]["paletteColors"];
+  //Expand Props
+  $expanded?: boolean;
+  $height?: string;
+  $iconWidth?: string;
+  $iconHeight?: string;
+  $iconRight?: string;
+  $iconBottom?: string;
 }

@@ -168,14 +168,14 @@ const ButtonInternal = ({
   ...rest
 }: ButtonProps & ButtonInternalProps) => {
   const theme = useTheme();
-  const themeColor = theme.theme.themeColor;
+  const paletteColors = theme.theme.paletteColors;
 
   return (
     <StyledButton
       $size={size}
       $variant={variant}
       $color={color}
-      $colorGradient={themeColor}
+      $colorGradient={paletteColors}
       $disabled={disabled}
       $fullWidth={fullWidth}
       aria-disabled={disabled}

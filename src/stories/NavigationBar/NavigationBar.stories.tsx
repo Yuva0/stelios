@@ -11,6 +11,7 @@ import SideBar from "../../components/SideBar/SideBar";
 import SideBarItem from "../../components/SideBar/SideBarItem/SideBarItem";
 import SideBarGroup from "../../components/SideBar/SideBarGroup/SideBarGroup";
 import SideBarGroupItem from "../../components/SideBar/SideBarGroupItem/SideBarGroupItem";
+import { ThemeProvider } from "../../components/ThemeProvider/ThemeProvider";
 
 const meta: Meta<typeof NavigationBar> = {
   title: "Components/NavigationBar",
@@ -26,8 +27,7 @@ type Story = StoryObj<typeof NavigationBar>;
 export const Default: Story = {
   render: () => {
     return (
-      <>
-        {/* <Header/> */}
+      <ThemeProvider appearance="dark">
         <NavigationBar>
           <NavigationBarGroup title="Components 1">
             <NavigationBarHeader>Header</NavigationBarHeader>
@@ -67,7 +67,7 @@ export const Default: Story = {
             <SideBarGroupItem>Test</SideBarGroupItem>
           </SideBarGroup>
         </SideBar>
-      </>
+      </ThemeProvider>
     );
   },
 };

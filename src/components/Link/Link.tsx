@@ -3,12 +3,15 @@ import { LinkProps, LinkStyleProps } from "./Link.types";
 import Text from "../Text/Text";
 import styled from "styled-components";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
+import { colorTypes } from "../ThemeProvider/ThemeProvider.types";
 
 const StyledLink = styled.a<LinkStyleProps>`
   text-decoration: ${(props) =>
     props.$variant === "underline" ? "underline" : "none"};
   color: ${(props) =>
-    props.color ?? props.$colorGradient[props.$color].accentScale[10]};
+    colorTypes.includes(props.$color)
+      ? props.$colorGradient["primary"].accentScale[10]
+      : props.$color};
   cursor: pointer;
   display: inline-block;
   &:hover {
@@ -28,13 +31,13 @@ const Link = ({
   color = "primary",
   onClick,
 }: LinkProps) => {
-  const themeColor = useTheme().theme.themeColor;
+  const paletteColors = useTheme().theme.paletteColors;
 
   return (
     <StyledLink
       $color={color}
       $variant={variant}
-      $colorGradient={themeColor}
+      $colorGradient={paletteColors}
       target={target}
       href={href}
       className={className}

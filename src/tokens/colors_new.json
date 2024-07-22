@@ -17,8 +17,8 @@
   "success": {
     "accent": "#639765"
   },
-
+  "light_background": "#F5F5F5",
+  "dark_background": "#212121",
   "gray": "#1C1C1C",
-  "background": "#FFFFFF",
   "appearance": "light"
 }
