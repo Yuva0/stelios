@@ -1,11 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { SideBarProps } from "./SideBar.types";
-
-interface SideBarStyleProps {
-  top?: string;
-  right?: string;
-}
+import { SideBarProps, SideBarStyleProps } from "./SideBar.types";
+import { useTheme } from "../ThemeProvider/ThemeProvider";
 
 const StyledSideBar = styled.div<SideBarStyleProps>`
   display: flex;
@@ -16,11 +12,20 @@ const StyledSideBar = styled.div<SideBarStyleProps>`
   overflow: scroll;
   right: ${(props) => props.right ?? 0};
   top: ${(props) => props.top ?? 0};
+  background-color: ${(props) => props.$colorPalette.primary.background};
+  color: ${(props) => props.$colorPalette.primary.grayScale[11]};
 `;
 
 const SideBar = ({ children, className, style, top, right }: SideBarProps) => {
+  const colorPalette = useTheme().theme.colorPalette;
   return (
-    <StyledSideBar className={className} style={style} top={top} right={right}>
+    <StyledSideBar
+      $colorPalette={colorPalette}
+      className={className}
+      style={style}
+      top={top}
+      right={right}
+    >
       {children}
     </StyledSideBar>
   );

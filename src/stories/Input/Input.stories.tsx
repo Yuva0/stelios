@@ -4,6 +4,7 @@ import colors from "../../tokens/colors.json";
 // import { fn } from "@storybook/test";
 
 import Input from "../../components/Input/Input";
+import { ThemeProvider } from "../../components/ThemeProvider/ThemeProvider";
 
 const meta: Meta<typeof Input> = {
   title: "Components/Input",
@@ -23,6 +24,12 @@ type Story = StoryObj<typeof Input>;
 
 export const Default: Story = {
   render: (args) => {
-    return <Input inputBgColor={colors.white[0]} label="Input Label" {...args} />;
+    return (
+      <div style={{background: "#212121"}}>
+      <ThemeProvider appearance="dark">
+        <Input label="Input Label" {...args} />
+      </ThemeProvider>
+      </div>
+    );
   },
 };

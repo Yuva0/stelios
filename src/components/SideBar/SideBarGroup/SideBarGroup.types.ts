@@ -1,3 +1,5 @@
+import { DefaultTheme } from "../../ThemeProvider/ThemeProvider.types";
+
 export interface SideBarGroupProps {
   children: React.ReactNode | React.ReactNode[];
   className?: string;
@@ -5,7 +7,10 @@ export interface SideBarGroupProps {
   title?: React.ReactNode;
   leadingIcon?: React.ReactNode;
   trailingIcon?: React.ReactNode;
-
   // Events
   onClick?: (e: React.MouseEvent) => void;
+}
+
+export interface SideBarGroupStyleProps {
+  $colorPalette: DefaultTheme["theme"]["colorPalette"];
 }

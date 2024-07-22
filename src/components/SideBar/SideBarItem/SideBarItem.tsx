@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { SideBarItemProps } from "./SideBarItem.types";
+import { SideBarItemProps, SideBarItemStyleProps } from "./SideBarItem.types";
 import Link from "../../Link/Link";
 import colors from "../../../tokens/colors.json";
+import { useTheme } from "../../ThemeProvider/ThemeProvider";
 
 const StyledSideBarLink = styled(Link)`
   padding: 0.25rem 0.5rem 0.25rem 1rem;
@@ -10,28 +11,19 @@ const StyledSideBarLink = styled(Link)`
   position: relative;
 `;
 
-const StyledSideBarItem = styled.div`
+const StyledSideBarItem = styled.div<SideBarItemStyleProps>`
   display: flex;
   flex-direction: column;
   padding: 0.5rem 0.5rem 0.25rem 1rem;
-  border-bottom: 1px solid #ffffff;
-
-  &::after {
-    content: "";
-    position: absolute;
-    height: 100%;
-    margin-left: 0.43rem;
-    border-left: 1px solid ${colors.white[200]};
-    top: 0;
-    left: 0;
-  }
 `;
 
 const SideBarItem = ({ children, className, style }: SideBarItemProps) => {
+  const colorPalette = useTheme().theme.colorPalette;
+
   if (children && typeof children === "string")
     return (
       <StyledSideBarLink
-        color={colors.black[0]}
+        color={colorPalette.primary.grayScale[11]}
         variant="hover"
         className={className}
         style={style}
@@ -40,7 +32,11 @@ const SideBarItem = ({ children, className, style }: SideBarItemProps) => {
       </StyledSideBarLink>
     );
 
-  return <StyledSideBarItem>{children}</StyledSideBarItem>;
+  return (
+    <StyledSideBarItem $colorPalette={colorPalette}>
+      {children}
+    </StyledSideBarItem>
+  );
 };
 
 export default SideBarItem;

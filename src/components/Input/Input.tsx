@@ -96,7 +96,7 @@ const StyledInputContent = styled.div<InputStyleProps>`
   gap: 0.5rem;
   cursor: ${(props) => props.$cursor ?? "text"};
   user-select: none;
-  background-color: ${(props) => props.$inputBgColor ?? "transparent"};
+  background-color: ${(props) => props.$inputBgColor ?? props.$colorGradient[props.$color].grayScale[1]};
   box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.1);
   & input {
       font-family: 'Source Sans 3', sans-serif;
@@ -108,7 +108,8 @@ const StyledInputContent = styled.div<InputStyleProps>`
       font-size: ${(props) => getFontSize(props).fontSize};
       line-height: ${(props) => getFontSize(props).lineHeight};
       outline-offset: -1px;
-      background-color: ${(props) => props.$inputBgColor ?? "transparent"};
+      background-color: ${(props) => props.$inputBgColor ?? props.$colorGradient[props.$color].grayScale[1]};
+      color: ${(props) => props.$colorGradient[props.$color].grayScale[11]};
       &::placeholder {
         color: ${(props) => props.$colorGradient[props.$color].grayScale[8]};
       },

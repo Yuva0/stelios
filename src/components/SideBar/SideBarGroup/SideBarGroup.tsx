@@ -1,9 +1,13 @@
 import React from "react";
-import { SideBarGroupProps } from "./SideBarGroup.types";
+import {
+  SideBarGroupProps,
+  SideBarGroupStyleProps,
+} from "./SideBarGroup.types";
 import styled from "styled-components";
 import Text from "../../Text/Text";
 import Link from "../../Link/Link";
 import colors from "../../../tokens/colors.json";
+import { useTheme } from "../../ThemeProvider/ThemeProvider";
 
 const StyledSideBarGroup = styled.ul`
   display: flex;
@@ -13,10 +17,11 @@ const StyledSideBarGroup = styled.ul`
   list-style-type: none;
 `;
 
-const StyledSideBarGroupHeader = styled.li`
+const StyledSideBarGroupHeader = styled.li<SideBarGroupStyleProps>`
   display: flex;
   flex-direction: row;
   padding: 0.5rem 0.5rem 0.25rem 1rem;
+  color: ${(props) => props.$colorPalette.primary.grayScale[11]};
 `;
 
 const SideBarGroup = ({
@@ -26,18 +31,21 @@ const SideBarGroup = ({
   title,
   leadingIcon,
   trailingIcon,
-
   // Events
   onClick,
 }: SideBarGroupProps) => {
+  const colorPalette = useTheme().theme.colorPalette;
+
   return (
     <StyledSideBarGroup className={className} style={style}>
       {(title || leadingIcon || trailingIcon) && (
-        <StyledSideBarGroupHeader>
+        <StyledSideBarGroupHeader $colorPalette={colorPalette}>
           {leadingIcon && <span>{leadingIcon}</span>}
           {title && typeof title === "string" ? (
             onClick ? (
-              <Link variant="hover" color={colors.black[0]} onClick={onClick}>{title}</Link>
+              <Link variant="hover" onClick={onClick}>
+                {title}
+              </Link>
             ) : (
               <Text variant="span">{title}</Text>
             )

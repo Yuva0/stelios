@@ -1,13 +1,18 @@
 import React from "react";
-import { SideBarGroupItemProps } from "./SideBarGroupItem.types";
+import {
+  SideBarGroupItemProps,
+  SideBarGroupItemStyleProps,
+} from "./SideBarGroupItem.types";
 import Text from "../../Text/Text";
 import styled from "styled-components";
 import Link from "../../Link/Link";
 import colors from "../../../tokens/colors.json";
+import { useTheme } from "../../ThemeProvider/ThemeProvider";
 
-const StyledSideBarGroupItem = styled(Link)`
+const StyledSideBarGroupItem = styled(Link)<SideBarGroupItemStyleProps>`
   display: flex;
   padding: 0.25rem 0.5rem 0.25rem 1.75rem;
+  color: ${(props) => props.$colorPalette.primary.grayScale[11]};
 `;
 
 const SideBarGroupItem = ({
@@ -15,10 +20,20 @@ const SideBarGroupItem = ({
   className,
   style,
 }: SideBarGroupItemProps) => {
+  const colorPalette = useTheme().theme.colorPalette;
+  const _color = colorPalette.primary.grayScale[11];
+
   return (
-    <StyledSideBarGroupItem variant="hover" color={colors.black[0]} className={className} style={style}>
+    <StyledSideBarGroupItem
+      variant="hover"
+      $colorPalette={colorPalette}
+      className={className}
+      style={style}
+    >
       {typeof children === "string" ? (
-        <Text variant="span">{children}</Text>
+        <Text color={_color} variant="span">
+          {children}
+        </Text>
       ) : (
         children
       )}

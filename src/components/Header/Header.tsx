@@ -25,7 +25,9 @@ const StyledHeader = styled.header<HeaderStyleProps>`
   box-shadow: ${(props) =>
     props.$expanded ? "none" : "0 0 10px 0 rgba(0, 0, 0, 0.35)"};
   outline: ${(props) =>
-    props.$expanded ? `1px solid ${colors.white[200]}` : "none"};
+    props.$expanded
+      ? `1px solid ${props.$colorPalette.primary.grayScale[5]}`
+      : "none"};
 `;
 
 const StyledExpandIcon = styled.div<HeaderStyleProps>`
@@ -64,7 +66,7 @@ const Header = ({
   const [expanded, setExpanded] = React.useState<boolean>(true);
 
   const colorPalette = useTheme().theme.colorPalette;
-  console.log(colorPalette)
+  console.log(colorPalette);
 
   const _onExpandHandler = () => {
     setExpanded(!expanded);
