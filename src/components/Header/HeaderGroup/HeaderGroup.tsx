@@ -5,7 +5,7 @@ import styled from "styled-components";
 const StyledHeaderGroup = styled.span`
   display: inline-flex;
   flex-direction: row;
-  justify-conten: center;
+  justify-content: center;
   align-items: center;
   gap: 1rem;
 `;
