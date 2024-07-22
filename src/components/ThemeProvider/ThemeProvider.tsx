@@ -106,11 +106,9 @@ const useUpdateTheme = () => {
     },
     gray = colors_new.gray,
     appearance = colors_new.appearance as "light" | "dark",
-    background = (colors_new.appearance as "light" | "dark") === "light"
-      ? colors_new.light_background
-      : colors_new.dark_background,
-  }: ThemeProviderProps) =>
-    setTheme({
+  }: ThemeProviderProps) => {
+
+    return setTheme({
       colorPalette: {
         primary: {
           main: accent["primary"] ?? colors_new.primary.accent,
@@ -118,7 +116,7 @@ const useUpdateTheme = () => {
           ...generateRadixColors({
             appearance,
             accent: accent["primary"] ?? colors_new.primary.accent,
-            background: background,
+            background: appearance === "light" ? colors_new.light_background : colors_new.dark_background,
             gray,
           }),
         },
@@ -128,7 +126,7 @@ const useUpdateTheme = () => {
           ...generateRadixColors({
             appearance,
             accent: accent["secondary"] ?? colors_new.secondary.accent,
-            background,
+            background: appearance === "light" ? colors_new.light_background : colors_new.dark_background,
             gray,
           }),
         },
@@ -138,7 +136,7 @@ const useUpdateTheme = () => {
           ...generateRadixColors({
             appearance,
             accent: accent["danger"] ?? colors_new.danger.accent,
-            background,
+            background: appearance === "light" ? colors_new.light_background : colors_new.dark_background,
             gray,
           }),
         },
@@ -148,7 +146,7 @@ const useUpdateTheme = () => {
           ...generateRadixColors({
             appearance,
             accent: accent["warning"] ?? colors_new.warning.accent,
-            background,
+            background: appearance === "light" ? colors_new.light_background : colors_new.dark_background,
             gray,
           }),
         },
@@ -158,7 +156,7 @@ const useUpdateTheme = () => {
           ...generateRadixColors({
             appearance,
             accent: accent["success"] ?? colors_new.success.accent,
-            background,
+            background: appearance === "light" ? colors_new.light_background : colors_new.dark_background,
             gray,
           }),
         },
@@ -168,12 +166,13 @@ const useUpdateTheme = () => {
           ...generateRadixColors({
             appearance,
             accent: accent["info"] ?? colors_new.info.accent,
-            background,
+            background: appearance === "light" ? colors_new.light_background : colors_new.dark_background,
             gray,
           }),
         },
       },
     });
+  };
 };
 
 const ThemeProvider = ({

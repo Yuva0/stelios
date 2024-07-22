@@ -184,7 +184,7 @@ const ButtonInternal = ({
     >
       {leadingIcon && <StyledButtonIcon>{leadingIcon}</StyledButtonIcon>}
       {typeof children === "string" ? (
-        <Text variant="span" size={size}>
+        <Text noColor variant="span" size={size}>
           {children}
         </Text>
       ) : (

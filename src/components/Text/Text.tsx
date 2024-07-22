@@ -1,15 +1,9 @@
 import React from "react";
 import { TextProps, TextStyleProps } from "./Text.types";
-import styled, { createGlobalStyle } from "styled-components";
+import styled from "styled-components";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
 
-const GlobalStyle = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 
-  body {
-    font-family: "Lato", sans-serif;
-  }
-`;
 const commonStyles = `
   font-family: "Lato", sans-serif;
   padding: 0;
@@ -76,6 +70,29 @@ const StyledH4 = styled.h4<TextStyleProps>`
       : props.$size === "medium"
         ? "1.5rem"
         : "1.25rem"};
+    default:
+      return (
+        <>
+          <GlobalStyle />
+          <StyledP
+            $variant={variant}
+            $strong={strong}
+            $align={align}
+            $color={color}
+            $wrap={wrap}
+            $size={size}
+            $fontSize={fontSize}
+            $lineHeight={lineHeight}
+            style={style}
+            className={className}
+            {...rest}
+          >
+            {children}
+          </StyledP>
+        </>
+      );
+  }
+};
   line-height: ${(props) =>
     props.$lineHeight ?? props.$size === "large"
       ? "2.5rem"
