@@ -69,29 +69,6 @@ const StyledH4 = styled.h4<TextStyleProps>`
       : props.$size === "medium"
         ? "1.5rem"
         : "1.25rem"};
-    default:
-      return (
-        <>
-          <GlobalStyle />
-          <StyledP
-            $variant={variant}
-            $strong={strong}
-            $align={align}
-            $color={color}
-            $wrap={wrap}
-            $size={size}
-            $fontSize={fontSize}
-            $lineHeight={lineHeight}
-            style={style}
-            className={className}
-            {...rest}
-          >
-            {children}
-          </StyledP>
-        </>
-      );
-  }
-};
   line-height: ${(props) =>
     props.$lineHeight ?? props.$size === "large"
       ? "2.5rem"
@@ -224,7 +201,8 @@ const Text = ({
   const _color = color
     ? colorPalette[color].main
     : colorPalette.primary.grayScale[11];
-  rest = { ...rest, $noColor: noColor };
+
+  rest = { ...rest, $noColor: noColor, $color: _color };
 
   switch (variant) {
     case "h1":
@@ -249,7 +227,6 @@ const Text = ({
         <StyledH2
           $strong={strong}
           $align={align}
-          $color={color}
           $wrap={wrap}
           $size={size}
           $fontSize={fontSize}
@@ -267,7 +244,6 @@ const Text = ({
           $variant={variant}
           $strong={strong}
           $align={align}
-          $color={color}
           $wrap={wrap}
           $size={size}
           $fontSize={fontSize}
@@ -285,7 +261,6 @@ const Text = ({
           $variant={variant}
           $strong={strong}
           $align={align}
-          $color={color}
           $wrap={wrap}
           $size={size}
           $fontSize={fontSize}
@@ -303,7 +278,6 @@ const Text = ({
           $variant={variant}
           $strong={strong}
           $align={align}
-          $color={color}
           $wrap={wrap}
           $size={size}
           $fontSize={fontSize}
@@ -321,7 +295,6 @@ const Text = ({
           $variant={variant}
           $strong={strong}
           $align={align}
-          $color={color}
           $wrap={wrap}
           $size={size}
           $fontSize={fontSize}
@@ -339,7 +312,6 @@ const Text = ({
           $variant={variant}
           $strong={strong}
           $align={align}
-          $color={color}
           $wrap={wrap}
           $size={size}
           $fontSize={fontSize}
@@ -357,7 +329,6 @@ const Text = ({
           $variant={variant}
           $strong={strong}
           $align={align}
-          $color={color}
           $wrap={wrap}
           $size={size}
           $fontSize={fontSize}
@@ -375,7 +346,6 @@ const Text = ({
           $variant={variant}
           $strong={strong}
           $align={align}
-          $color={color}
           $wrap={wrap}
           $size={size}
           $fontSize={fontSize}
@@ -393,7 +363,6 @@ const Text = ({
           $variant={variant}
           $strong={strong}
           $align={align}
-          $color={color}
           $wrap={wrap}
           $size={size}
           $fontSize={fontSize}
@@ -411,7 +380,6 @@ const Text = ({
           $variant={variant}
           $strong={strong}
           $align={align}
-          $color={color}
           $wrap={wrap}
           $size={size}
           $fontSize={fontSize}

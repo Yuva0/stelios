@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { SideBarItemProps, SideBarItemStyleProps } from "./SideBarItem.types";
 import Link from "../../Link/Link";
-import colors from "../../../tokens/colors.json";
 import { useTheme } from "../../ThemeProvider/ThemeProvider";
 
 const StyledSideBarLink = styled(Link)`
@@ -20,10 +19,9 @@ const StyledSideBarItem = styled.div<SideBarItemStyleProps>`
 const SideBarItem = ({ children, className, style }: SideBarItemProps) => {
   const colorPalette = useTheme().theme.colorPalette;
 
-  if (children && typeof children === "string")
+  if (typeof children === "string")
     return (
       <StyledSideBarLink
-        color={colorPalette.primary.grayScale[11]}
         variant="hover"
         className={className}
         style={style}

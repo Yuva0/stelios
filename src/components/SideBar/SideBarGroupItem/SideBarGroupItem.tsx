@@ -3,16 +3,18 @@ import {
   SideBarGroupItemProps,
   SideBarGroupItemStyleProps,
 } from "./SideBarGroupItem.types";
-import Text from "../../Text/Text";
 import styled from "styled-components";
 import Link from "../../Link/Link";
-import colors from "../../../tokens/colors.json";
 import { useTheme } from "../../ThemeProvider/ThemeProvider";
 
 const StyledSideBarGroupItem = styled(Link)<SideBarGroupItemStyleProps>`
   display: flex;
   padding: 0.25rem 0.5rem 0.25rem 1.75rem;
   color: ${(props) => props.$colorPalette.primary.grayScale[11]};
+`;
+
+const StyledSideBarGroupItemLink = styled(Link)`
+  padding: 0.25rem 0.5rem 0.25rem 1.75rem;
 `;
 
 const SideBarGroupItem = ({
@@ -22,6 +24,17 @@ const SideBarGroupItem = ({
 }: SideBarGroupItemProps) => {
   const colorPalette = useTheme().theme.colorPalette;
 
+  if (typeof children === "string")
+    return (
+      <StyledSideBarGroupItemLink
+        variant="hover"
+        className={className}
+        style={style}
+      >
+        {children}
+      </StyledSideBarGroupItemLink>
+    );
+
   return (
     <StyledSideBarGroupItem
       variant="hover"
@@ -29,13 +42,7 @@ const SideBarGroupItem = ({
       className={className}
       style={style}
     >
-      {typeof children === "string" ? (
-        <Text noColor variant="span">
-          {children}
-        </Text>
-      ) : (
-        children
-      )}
+      {children}
     </StyledSideBarGroupItem>
   );
 };

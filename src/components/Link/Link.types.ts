@@ -9,12 +9,11 @@ export interface LinkProps {
   className?: string;
   style?: React.CSSProperties;
   onClick?: (e: React.MouseEvent) => void;
-  color?: "primary" | "secondary" | "tertiary" | "success" | "warning" | "danger" | "info" | "light" | "dark" | string;
+  color?: "primary" | "secondary" | "success" | "warning" | "danger" | "info";
   target?: "_blank" | "_self" | "_parent" | "_top";
 }
 
 export type LinkStyleProps = {
   $variant: NonNullable<LinkProps["variant"]>;
-  $color: NonNullable<LinkProps["color"]>;
-  $colorPalette: DefaultTheme["theme"]["colorPalette"];
+  $color?: string;
 };

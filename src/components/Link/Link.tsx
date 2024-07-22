@@ -8,7 +8,7 @@ import { colorTypes } from "../ThemeProvider/ThemeProvider.types";
 const StyledLink = styled.a<LinkStyleProps>`
   text-decoration: ${(props) =>
     props.$variant === "underline" ? "underline" : "none"};
-  color: ${(props) => props.$colorPalette["primary"].accentScale[10]};
+  color: ${(props) => props.$color};
   cursor: pointer;
   display: inline-block;
   &:hover {
@@ -25,16 +25,20 @@ const Link = ({
   className,
   target,
   style,
-  color = "primary",
+  color,
+  // Events
   onClick,
 }: LinkProps) => {
   const colorPalette = useTheme().theme.colorPalette;
 
+  const _color = color
+    ? colorPalette[color].accentScale[10]
+    : colorPalette.primary.grayScale[11];
+
   return (
     <StyledLink
-      $color={color}
+      $color={_color}
       $variant={variant}
-      $colorPalette={colorPalette}
       target={target}
       href={href}
       className={className}
