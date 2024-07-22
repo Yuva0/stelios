@@ -11,6 +11,7 @@ import Text from "../../components/Text/Text";
 
 const TestDiv = ({ children }: any) => {
   const [appearance, setAppearance] = React.useState("light");
+  const background = useTheme().theme.colorPalette.primary.background;
   const useUpdateTheme1 = useUpdateTheme();
 
   // const theme = useTheme().theme.colorPalette;
@@ -21,11 +22,11 @@ const TestDiv = ({ children }: any) => {
   };
 
   return (
-    <div>
+    <div style={{ background: background, height: "100vh" }}>
       {children}
       <ToggleButtonGroup
         value={appearance}
-        style={{paddingTop:"8rem"}}
+        style={{ paddingTop: "8rem" }}
         onClick={_handleAppearanceChange}
       >
         <ToggleButton value="light">

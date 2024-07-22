@@ -17,7 +17,7 @@ type ArrayOf12<T> = [T, T, T, T, T, T, T, T, T, T, T, T];
 type ColorPaletteProps = {
   // Default Colors
   main: string;
-  appearance: string;
+  appearance: "light" | "dark";
   
   // Radix Colors
   accentContrast: string;

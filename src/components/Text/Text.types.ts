@@ -19,12 +19,10 @@ export interface TextProps {
   color?:
     | "primary"
     | "secondary"
-    | "tertiary"
     | "danger"
     | "warning"
     | "success"
     | "info"
-    | string;
   wrap?: boolean;
   className?: string;
   style?: React.CSSProperties;
@@ -37,8 +35,7 @@ export interface TextStyleProps {
   $variant?: TextProps["variant"];
   $strong?: number;
   $align?: TextProps["align"];
-  $color?: TextProps["color"];
-  $colorPalette?: DefaultTheme["theme"]["colorPalette"];
+  $color?: string;
   $wrap?: boolean;
   $size?: TextProps["size"];
   $fontSize?: string;
