@@ -21,7 +21,6 @@ const SideBarGroupItem = ({
   style,
 }: SideBarGroupItemProps) => {
   const colorPalette = useTheme().theme.colorPalette;
-  const _color = colorPalette.primary.grayScale[11];
 
   return (
     <StyledSideBarGroupItem
@@ -31,7 +30,7 @@ const SideBarGroupItem = ({
       style={style}
     >
       {typeof children === "string" ? (
-        <Text color={_color} variant="span">
+        <Text noColor variant="span">
           {children}
         </Text>
       ) : (
