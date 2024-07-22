@@ -23,6 +23,10 @@ const ColorPicker = ({
   const anchorElement = useRef<HTMLDivElement | null>(null);
   const popperElement = useRef<HTMLDivElement | null>(null);
 
+  React.useEffect(() => {
+    setInnerColor(color);
+  }, [color]);
+
   useEffect(() => {
     setIsOpen(open ?? false);
   }, [open]);
