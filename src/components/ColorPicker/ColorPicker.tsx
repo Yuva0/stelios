@@ -54,7 +54,7 @@ const ColorPicker = ({
   };
 
   const _onInputClick = () => {
-    setIsOpen(true);
+    setIsOpen(!isOpen);
   };
 
   const handleClickAway = useCallback(() => {
@@ -69,36 +69,34 @@ const ColorPicker = ({
 
   return (
     <ClickAwayListener onClickAway={handleClickAway}>
-      <div>
-        <Input
-          width={width}
-          size={size}
-          label={label}
-          ref={anchorElement}
-          value={innerColor}
-          onChange={_onInputChange}
-          onClick={_onInputClick}
-          leadingIcon={
-            <div
-              onClick={() => setIsOpen(!isOpen)}
-              style={{
-                width: "20px",
-                height: "20px",
-                backgroundColor: innerColor,
-                borderRadius: "4px",
-              }}
-            />
-          }
-        />
-        <StyledChromePicker
-          ref={popperElement}
-          $open={isOpen}
-          style={{ ...styles.popper }}
-          {...attributes.popper}
-        >
-          <ChromePicker disableAlpha color={innerColor} onChange={_onChange} />
-        </StyledChromePicker>
-      </div>
+      <Input
+        width={width}
+        size={size}
+        label={label}
+        ref={anchorElement}
+        value={innerColor}
+        onChange={_onInputChange}
+        onClick={_onInputClick}
+        leadingIcon={
+          <div
+            onClick={() => setIsOpen(!isOpen)}
+            style={{
+              width: "20px",
+              height: "20px",
+              backgroundColor: innerColor,
+              borderRadius: "4px",
+            }}
+          />
+        }
+      />
+      <StyledChromePicker
+        ref={popperElement}
+        $open={isOpen}
+        style={{ ...styles.popper }}
+        {...attributes.popper}
+      >
+        <ChromePicker disableAlpha color={innerColor} onChange={_onChange} />
+      </StyledChromePicker>
     </ClickAwayListener>
   );
 };
