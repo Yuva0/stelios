@@ -4,6 +4,7 @@ import Drawer from "../../components/Drawer/Drawer";
 import IconButton from "../../components/IconButton/IconButton";
 import { Icon123 } from "@tabler/icons-react";
 import Text from "../../components/Text/Text";
+import { ThemeProvider } from "../../components/ThemeProvider/ThemeProvider";
 
 const meta: Meta<typeof Drawer> = {
   title: "Components/Drawer",
@@ -23,7 +24,7 @@ export const Default: Story = {
     const [open, setOpen] = React.useState(false);
 
     return (
-      <div>
+      <ThemeProvider appearance="dark">
         <IconButton
           icon={<Icon123 />}
           onClick={() => {
@@ -41,7 +42,7 @@ export const Default: Story = {
         >
           <Text variant="paragraph">Drawer</Text>
         </Drawer>
-      </div>
+      </ThemeProvider>
     );
   },
 };

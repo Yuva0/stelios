@@ -32,8 +32,7 @@ const StyledH1 = styled.h1<TextStyleProps>`
         ? "3.5rem"
         : "3rem"};
   font-weight: ${(props) => (props.$strong ? "700" : "400")};
-  color: ${(props) =>
-    props.$color ?? props.$colorPalette?.primary.grayScale[11]};
+  ${props => !props.$noColor && `color: ${props.$color ?? props.$colorPalette?.primary.grayScale[11]};`}
   ${commonStyles}
 `;
 const StyledH2 = styled.h2<TextStyleProps>`
@@ -50,8 +49,7 @@ const StyledH2 = styled.h2<TextStyleProps>`
         ? "3rem"
         : "2.5rem"};
   font-weight: ${(props) => (props.$strong ? "700" : "400")};
-  color: ${(props) =>
-    props.$color ?? props.$colorPalette?.primary.grayScale[11]};
+  ${props => !props.$noColor && `color: ${props.$color ?? props.$colorPalette?.primary.grayScale[11]};`}
   ${commonStyles}
 `;
 const StyledH3 = styled.h3<TextStyleProps>`
@@ -68,8 +66,7 @@ const StyledH3 = styled.h3<TextStyleProps>`
         ? "2.5rem"
         : "2rem"};
   font-weight: ${(props) => (props.$strong ? "700" : "400")};
-  color: ${(props) =>
-    props.$color ?? props.$colorPalette?.primary.grayScale[11]};
+  ${props => !props.$noColor && `color: ${props.$color ?? props.$colorPalette?.primary.grayScale[11]};`}
   ${commonStyles}
 `;
 const StyledH4 = styled.h4<TextStyleProps>`
@@ -86,8 +83,7 @@ const StyledH4 = styled.h4<TextStyleProps>`
         ? "2rem"
         : "1.75rem"};
   font-weight: ${(props) => (props.$strong ? "700" : "400")};
-  color: ${(props) =>
-    props.$color ?? props.$colorPalette?.primary.grayScale[11]};
+  ${props => !props.$noColor && `color: ${props.$color ?? props.$colorPalette?.primary.grayScale[11]};`}
   ${commonStyles}
 `;
 const StyledH5 = styled.h5<TextStyleProps>`
@@ -104,8 +100,7 @@ const StyledH5 = styled.h5<TextStyleProps>`
         ? "1.75rem"
         : "1.5rem"};
   font-weight: ${(props) => (props.$strong ? "700" : "400")};
-  color: ${(props) => {
-    return props.$color ?? props.$colorPalette?.primary.grayScale[11];
+  ${props => !props.$noColor && `color: ${props.$color ?? props.$colorPalette?.primary.grayScale[11]};`}
   }};
   ${commonStyles}
 `;
@@ -123,8 +118,7 @@ const StyledH6 = styled.h6<TextStyleProps>`
         ? "1.5rem"
         : "1.25rem"};
   font-weight: ${(props) => (props.$strong ? "700" : "400")};
-  color: ${(props) =>
-    props.$color ?? props.$colorPalette?.primary.grayScale[11]};
+  ${props => !props.$noColor && `color: ${props.$color ?? props.$colorPalette?.primary.grayScale[11]};`}
   ${commonStyles}
 `;
 const StyledDiv = styled.div<TextStyleProps>`
@@ -141,8 +135,7 @@ const StyledDiv = styled.div<TextStyleProps>`
         ? "1.5rem"
         : "1.25rem"};
   font-weight: ${(props) => (props.$strong ? "700" : "400")};
-  color: ${(props) =>
-    props.$color ?? props.$colorPalette?.primary.grayScale[11]};
+  ${props => !props.$noColor && `color: ${props.$color ?? props.$colorPalette?.primary.grayScale[11]};`}
   ${commonStyles}
 `;
 const StyledLabel = styled.label<TextStyleProps>`
@@ -159,8 +152,7 @@ const StyledLabel = styled.label<TextStyleProps>`
         ? "1.5rem"
         : "1.25rem"};
   font-weight: ${(props) => (props.$strong ? "700" : "400")};
-  color: ${(props) =>
-    props.$color ?? props.$colorPalette?.primary.grayScale[11]};
+  ${props => !props.$noColor && `color: ${props.$color ?? props.$colorPalette?.primary.grayScale[11]};`}
   ${commonStyles}
 `;
 const StyledSpan = styled.span<TextStyleProps>`
@@ -177,8 +169,7 @@ const StyledSpan = styled.span<TextStyleProps>`
         ? "1.5rem"
         : "1.25rem"};
   font-weight: ${(props) => (props.$strong ? "700" : "400")};
-  color: ${(props) =>
-    props.$color ?? props.$colorPalette?.primary.grayScale[11]};
+  ${props => !props.$noColor && `color: ${props.$color ?? props.$colorPalette?.primary.grayScale[11]};`}
   ${commonStyles}
 `;
 const StyledP = styled.p<TextStyleProps>`
@@ -195,8 +186,7 @@ const StyledP = styled.p<TextStyleProps>`
         ? "1.5rem"
         : "1.25rem"};
   font-weight: ${(props) => (props.$strong ? "700" : "400")};
-  color: ${(props) =>
-    props.$color ?? props.$colorPalette?.primary.grayScale[11]};
+  ${props => !props.$noColor && `color: ${props.$color ?? props.$colorPalette?.primary.grayScale[11]};`}
   ${commonStyles}
 `;
 
@@ -208,6 +198,7 @@ const Text = ({
   color,
   wrap = false,
   size = "medium",
+  noColor = false,
   fontSize,
   lineHeight,
   style,
@@ -215,7 +206,7 @@ const Text = ({
   ...rest
 }: TextProps) => {
   const colorPalette = useTheme().theme.colorPalette;
-  rest = { ...rest, $colorPalette: colorPalette };
+  rest = { ...rest, $colorPalette: colorPalette, $noColor: noColor };
 
   switch (variant) {
     case "h1":

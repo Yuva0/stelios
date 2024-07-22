@@ -4,6 +4,7 @@ import { DrawerProps, DrawerStyleProps } from "./Drawer.types";
 import Text from "../Text/Text";
 import IconButton from "../IconButton/IconButton";
 import { IconX } from "@tabler/icons-react";
+import { useTheme } from "../ThemeProvider/ThemeProvider";
 // import ClickAwayListener from "../ClickAwayListener/ClickAwayListener";
 
 type DrawerBackdropProps = {
@@ -42,7 +43,8 @@ const StyledDrawer = styled.div<DrawerStyleProps>`
   ${(props) => props.$position}: ${(props) =>
     props.$open ? 0 : `${-1 * getSize(props.$size)}px`};
   height: 100%;
-  background-color: white;
+  background-color: ${(props) => props.$colorPalette.primary.background};
+  color: ${(props) => props.$colorPalette.primary.grayScale[11]};
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   transition: ${(props) => `${props.$position} 0.3s ease-in-out;`}  
   z-index: ${(props) => props.$zIndex};
@@ -56,12 +58,13 @@ const StyledBackdrop = styled.div<DrawerBackdropProps>`
   z-index: 999;
   background-color: ${(props) => getBackdropStrength(props.$backdropStrength)};
 `;
-const StyledHeader = styled.div`
+const StyledHeader = styled.div<DrawerStyleProps>`
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  border-bottom: 1px solid #ddd;
+  border-bottom: ${(props) =>
+    `1px solid ${props.$colorPalette.primary.grayScale[5]}`};
 `;
 
 const Drawer = ({
@@ -80,10 +83,11 @@ const Drawer = ({
   onClose,
 }: DrawerProps) => {
   const [isOpen, setIsOpen] = React.useState(open);
-
   React.useEffect(() => {
     setIsOpen(open);
   }, [open]);
+
+  const colorPalette = useTheme().theme.colorPalette;
 
   const _onOutsideClick = (e: React.MouseEvent) => {
     if (hideOnOutsideClick) {
@@ -112,7 +116,7 @@ const Drawer = ({
   );
 
   const headerDrawer = (title || hasCloseIcon) && (
-    <StyledHeader>
+    <StyledHeader $colorPalette={colorPalette}>
       <div style={{ flexGrow: 1 }}>{Title}</div>
       {CloseIcon}
     </StyledHeader>
@@ -122,6 +126,7 @@ const Drawer = ({
     <>
       <StyledDrawer
         $open={isOpen}
+        $colorPalette={colorPalette}
         $position={position}
         $size={size}
         className={className}

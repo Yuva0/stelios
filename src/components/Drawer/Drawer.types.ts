@@ -1,3 +1,5 @@
+import { DefaultTheme } from "../ThemeProvider/ThemeProvider.types";
+
 export type DrawerProps = {
   open?: boolean;
   position?: "left" | "right";
@@ -14,9 +16,10 @@ export type DrawerProps = {
 };
 
 export type DrawerStyleProps = {
-  $open: boolean;
-  $position: "left" | "right";
-  $size: "small" | "medium" | "large";
-  $zIndex: number;
+  $open?: boolean;
+  $position?: "left" | "right";
+  $size?: "small" | "medium" | "large";
+  $zIndex?: number;
   $backdropStrength?: "light" | "medium" | "strong";
+  $colorPalette: DefaultTheme["theme"]["colorPalette"];
 };
