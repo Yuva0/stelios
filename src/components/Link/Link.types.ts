@@ -16,5 +16,5 @@ export interface LinkProps {
 export type LinkStyleProps = {
   $variant: NonNullable<LinkProps["variant"]>;
   $color: NonNullable<LinkProps["color"]>;
-  $colorGradient: DefaultTheme["theme"]["paletteColors"];
+  $colorGradient: DefaultTheme["theme"]["colorPalette"];
 };

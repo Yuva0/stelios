@@ -4,7 +4,6 @@ import {
   NavigationBarStyleProps,
 } from "./NavigationBar.types";
 import styled from "styled-components";
-import colors from "../../tokens/colors.json";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
 
 const StyledNavigationBarCtr = styled.div<NavigationBarStyleProps>`
@@ -16,8 +15,8 @@ const StyledNavigationBarCtr = styled.div<NavigationBarStyleProps>`
   height: 100vh;
   width: 15rem;
   overflow: scroll;
-  border-right: ${(props) => `1px solid ${props.$paletteColors.primary.grayScale[5]}`};
-  background-color: ${(props) => props.$paletteColors.primary.background};
+  border-right: ${(props) => `1px solid ${props.$colorPalette.primary.grayScale[5]}`};
+  background-color: ${(props) => props.$colorPalette.primary.background};
 `;
 
 const NavigationBar: React.FC<NavigationBarProps> = ({
@@ -25,11 +24,11 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
   className,
   style,
 }) => {
-  const paletteColors = useTheme().theme.paletteColors;
+  const colorPalette = useTheme().theme.colorPalette;
 
   return (
     <StyledNavigationBarCtr
-      $paletteColors={paletteColors}
+      $colorPalette={colorPalette}
       className={className}
       style={style}
     >

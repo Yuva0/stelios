@@ -117,7 +117,7 @@ const ToggleButton = ({
   // Events
   onClick,
 }: ToggleButtonProps) => {
-  const paletteColors = useTheme().theme.paletteColors;
+  const colorPalette = useTheme().theme.colorPalette;
   const isSelected = selected ?? defaultSelected ?? false;
 
   const _onClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -129,7 +129,7 @@ const ToggleButton = ({
       $size={size}
       $selected={isSelected}
       $color={color}
-      $colorGradient={paletteColors}
+      $colorGradient={colorPalette}
       className={className}
       style={style}
       onClick={_onClick}

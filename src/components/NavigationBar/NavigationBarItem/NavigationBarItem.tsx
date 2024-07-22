@@ -15,11 +15,10 @@ const StyledNavBarItem = styled.li<NavigationBarItemStyleProps>`
   padding: 0.3rem 0.75rem;
   margin: 0 0.5rem;
   &:hover {
-    background-color: ${(props) => props.$paletteColors.primary.grayScale[1]};
+    background-color: ${(props) => props.$colorPalette.primary.grayScale[1]};
   }
   &:active {
-    background-color: ${(props) => props.$paletteColors.primary.grayScale[2]};
-  
+    background-color: ${(props) => props.$colorPalette.primary.grayScale[2]};
   }
 `;
 
@@ -36,10 +35,10 @@ const NavigationBarItem = ({
   size,
 }: NavigationBarItemProps) => {
 
-  const paletteColors = useTheme().theme.paletteColors;
+  const colorPalette = useTheme().theme.colorPalette;
 
   return (
-    <StyledNavBarItem $paletteColors={paletteColors} className={className} style={style}>
+    <StyledNavBarItem $colorPalette={colorPalette} className={className} style={style}>
       {leadingIcon && <StyledNavBarIcon>{leadingIcon}</StyledNavBarIcon>}
       {typeof children === "string" ? (
         <Text variant="span" size={size}>

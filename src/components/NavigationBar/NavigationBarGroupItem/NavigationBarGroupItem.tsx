@@ -1,10 +1,14 @@
 import React from "react";
-import { NavigationBarGroupItemProps } from "./NavigationBarGroupItem.types";
+import {
+  NavigationBarGroupItemProps,
+  NavigationBarGroupItemStyleProps,
+} from "./NavigationBarGroupItem.types";
 import colors from "../../../tokens/colors.json";
 import styled from "styled-components";
 import Text from "../../Text/Text";
+import { useTheme } from "../../ThemeProvider/ThemeProvider";
 
-const StyledNavBarGroupItem = styled.li`
+const StyledNavBarGroupItem = styled.li<NavigationBarGroupItemStyleProps>`
   display: flex;
   position: relative;
   flex-direction: row;
@@ -15,14 +19,17 @@ const StyledNavBarGroupItem = styled.li`
   padding: 0.4rem 0 0.4rem 1.75rem;
   margin: 0 0.5rem;
   &:hover {
-    background-color: ${colors.white[100]};
+    background-color: ${(props) => props.$colorPalette.primary.grayScale[1]};
+  }
+  &:active {
+    background-color: ${(props) => props.$colorPalette.primary.grayScale[2]};
   }
   &:after {
     content: "";
     position: absolute;
     height: 100%;
     margin-left: 0.43rem;
-    border-left: 1px solid ${colors.white[200]};
+    border-left: 1px solid ${(props) => props.$colorPalette.primary.grayScale[5]};
     top: 0;
     left: 0;
   }
@@ -40,8 +47,14 @@ const NavigationBarGroupItem = ({
   style,
   size,
 }: NavigationBarGroupItemProps) => {
+  const colorPalette = useTheme().theme.colorPalette;
+
   return (
-    <StyledNavBarGroupItem className={className} style={style}>
+    <StyledNavBarGroupItem
+      $colorPalette={colorPalette}
+      className={className}
+      style={style}
+    >
       {leadingIcon && (
         <StyledNavBarGrpItemIcon>{leadingIcon}</StyledNavBarGrpItemIcon>
       )}

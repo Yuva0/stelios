@@ -5,7 +5,7 @@ import colors_new from "../../tokens/colors_new.json";
 
 const ThemeContext = createContext<DefaultTheme>({
   theme: {
-    paletteColors: {
+    colorPalette: {
       primary: {
         main: colors_new.primary.accent,
         appearance: colors_new.appearance as "light" | "dark",
@@ -111,7 +111,7 @@ const useUpdateTheme = () => {
       : colors_new.dark_background,
   }: ThemeProviderProps) =>
     setTheme({
-      paletteColors: {
+      colorPalette: {
         primary: {
           main: accent["primary"] ?? colors_new.primary.accent,
           appearance: appearance,
@@ -190,7 +190,7 @@ const ThemeProvider = ({
   children,
 }: ThemeProviderProps) => {
   const [theme, setTheme] = React.useState({
-    paletteColors: {
+    colorPalette: {
       primary: {
         main: accent["primary"] ?? colors_new.primary.accent,
         appearance,

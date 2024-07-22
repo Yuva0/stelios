@@ -37,7 +37,7 @@ export interface TextStyleProps {
   $strong?: number;
   $align?: TextProps["align"];
   $color?: TextProps["color"];
-  $paletteColors?: DefaultTheme["theme"]["paletteColors"];
+  $colorPalette?: DefaultTheme["theme"]["colorPalette"];
   $wrap?: boolean;
   $size?: TextProps["size"];
   $fontSize?: string;

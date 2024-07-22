@@ -47,32 +47,32 @@ const MenuItem = ({
   value,
   onClick,
 }: MenuItemProps) => {
-  const paletteColors = useTheme().theme.paletteColors;
+  const colorPalette = useTheme().theme.colorPalette;
 
   const _onClick = (event: React.MouseEvent<HTMLLIElement>) => {
     onClick && onClick(event, { title, value });
   };
 
   return (
-    <StyledMenuItem $colorGradient={paletteColors} onClick={_onClick}>
+    <StyledMenuItem $colorGradient={colorPalette} onClick={_onClick}>
       {leadingIcon && <StyledMenuItemIcon>{leadingIcon}</StyledMenuItemIcon>}
       {children ? (
         typeof children === "string" ? (
-          <StyledMenuItemContent $colorGradient={paletteColors}>
+          <StyledMenuItemContent $colorGradient={colorPalette}>
             <Text variant="paragraph">{children}</Text>
           </StyledMenuItemContent>
         ) : (
-          <StyledMenuItemContent $colorGradient={paletteColors}>
+          <StyledMenuItemContent $colorGradient={colorPalette}>
             {children}
           </StyledMenuItemContent>
         )
       ) : (
-        <StyledMenuItemContent $colorGradient={paletteColors}>
+        <StyledMenuItemContent $colorGradient={colorPalette}>
           <Text variant="paragraph">{title}</Text>
         </StyledMenuItemContent>
       )}
       {trailingIcon && (
-        <StyledMenuItemContent $colorGradient={paletteColors}>
+        <StyledMenuItemContent $colorGradient={colorPalette}>
           {trailingIcon}
         </StyledMenuItemContent>
       )}

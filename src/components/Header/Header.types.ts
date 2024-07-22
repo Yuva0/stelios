@@ -15,7 +15,7 @@ export interface HeaderProps {
 }
 
 export interface HeaderStyleProps {
-  $paletteColors: DefaultTheme["theme"]["paletteColors"];
+  $colorPalette: DefaultTheme["theme"]["colorPalette"];
   //Expand Props
   $expanded?: boolean;
   $height?: string;

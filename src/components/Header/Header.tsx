@@ -17,7 +17,7 @@ const StyledHeader = styled.header<HeaderStyleProps>`
   width: 100%;
   box-sizing: border-box;
   transition: height 330ms ease-in-out;
-  background-color: ${(props) => props.$paletteColors.primary.background};
+  background-color: ${(props) => props.$colorPalette.primary.background};
   z-index: 1000;
   padding: 0 1rem;
   height: ${(props) => (props.$expanded ? props.$height ?? "5rem" : "0rem")};
@@ -39,8 +39,8 @@ const StyledExpandIcon = styled.div<HeaderStyleProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${(props) => props.$paletteColors.primary.background};
-  color: ${(props) => props.$paletteColors.primary.grayScale[11]};
+  background-color: ${(props) => props.$colorPalette.primary.background};
+  color: ${(props) => props.$colorPalette.primary.grayScale[11]};
   box-shadow:
     -4px 5px 5px 0 rgba(0, 0, 0, 0.15),
     4px 5px 5px 0 rgba(0, 0, 0, 0.15);
@@ -63,8 +63,8 @@ const Header = ({
 }: HeaderProps) => {
   const [expanded, setExpanded] = React.useState<boolean>(true);
 
-  const paletteColors = useTheme().theme.paletteColors;
-  console.log(paletteColors)
+  const colorPalette = useTheme().theme.colorPalette;
+  console.log(colorPalette)
 
   const _onExpandHandler = () => {
     setExpanded(!expanded);
@@ -74,14 +74,14 @@ const Header = ({
     <StyledHeader
       $height={height}
       $expanded={expanded}
-      $paletteColors={paletteColors}
+      $colorPalette={colorPalette}
       className={className}
       style={style}
     >
       {expanded && children}
       {expandable && (
         <StyledExpandIcon
-          $paletteColors={paletteColors}
+          $colorPalette={colorPalette}
           $expanded={expanded}
           $iconWidth={iconWidth}
           $iconHeight={iconHeight}

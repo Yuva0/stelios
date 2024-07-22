@@ -89,7 +89,7 @@ const Radio = forwardRef(
       setIsSelected(selected);
     }, [selected, focused]);
 
-    const paletteColors = useTheme().theme.paletteColors;
+    const colorPalette = useTheme().theme.colorPalette;
 
     // Events
     const _onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -106,7 +106,7 @@ const Radio = forwardRef(
         $disabled={disabled}
         $size={size}
         $color={color}
-        $colorGradient={paletteColors}
+        $colorGradient={colorPalette}
         aria-checked={isSelected}
         className={`${className}`}
         {...props}

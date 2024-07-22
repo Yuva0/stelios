@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { NavigationBarGroupProps } from "./NavigationBarGroup.types";
+import {
+  NavigationBarGroupProps,
+  NavigationBarGroupStyleProps,
+} from "./NavigationBarGroup.types";
 import Text from "../../Text/Text";
 import styled from "styled-components";
 import colors from "../../../tokens/colors.json";
 import { IconChevronRight } from "@tabler/icons-react";
-
-interface StyledNavBarGroupProps {
-  expand?: boolean;
-}
+import { useTheme } from "../../ThemeProvider/ThemeProvider";
 
 const StyledNavBarGroup = styled.ul`
   display: flex;
@@ -16,7 +16,7 @@ const StyledNavBarGroup = styled.ul`
   margin: 0.25rem 0 0 0;
   padding: 0;
 `;
-const StyledNavBarGroupHeader = styled.li`
+const StyledNavBarGroupHeader = styled.li<NavigationBarGroupStyleProps>`
   display: flex;
   flex-direction: row;
   gap: 0.5rem;
@@ -28,24 +28,28 @@ const StyledNavBarGroupHeader = styled.li`
   font-weight: 600;
   cursor: pointer;
   &:hover {
-    background-color: ${colors.white[100]};
+    background-color: ${(props) => props.$colorPalette.primary.grayScale[1]};
+  }
+  &:active {
+    background-color: ${(props) => props.$colorPalette.primary.grayScale[2]};
   }
 `;
-const StyledNavBarGroupIcon = styled.span<StyledNavBarGroupProps>`
+const StyledNavBarGroupIcon = styled.span<NavigationBarGroupStyleProps>`
   display: flex;
   justify-content: center;
   align-items: center;
   transition: rotate 0.15s ease-in-out;
-  rotate: ${(props) => (props.expand ? "90deg" : "")};
+  rotate: ${(props) => (props.$expand ? "90deg" : "")};
   svg {
     width: 1rem;
     height: 1rem;
   }
+  color: ${(props) => props.$colorPalette?.primary.grayScale[11]};
 `;
 
-const StyledNavBarGroupItemContainer = styled.ul<StyledNavBarGroupProps>`
+const StyledNavBarGroupItemContainer = styled.ul<NavigationBarGroupStyleProps>`
   height: auto;
-  max-height: ${(props) => (props.expand ? "100vh" : "0")};
+  max-height: ${(props) => (props.$expand ? "100vh" : "0")};
   overflow: hidden;
   transition: max-height 0.3s ease-in-out;
   gap: 0.25rem;
@@ -61,6 +65,7 @@ const NavigationBarGroup = ({
 }: NavigationBarGroupProps) => {
   const navigationBarGrpItmContnrRef = React.useRef(null);
   const [expand, setExpand] = useState(isDefaultExpanded ?? false);
+  const colorPalette = useTheme().theme.colorPalette;
 
   const _toggleExpand = (e: React.MouseEvent) => {
     setExpand((expand) => !expand);
@@ -68,10 +73,15 @@ const NavigationBarGroup = ({
 
   return (
     <StyledNavBarGroup className={className}>
-      <StyledNavBarGroupHeader onClick={_toggleExpand}>
+      <StyledNavBarGroupHeader
+        $colorPalette={colorPalette}
+        onClick={_toggleExpand}
+      >
         <span>
           {leadingIcon && (
-            <StyledNavBarGroupIcon>{leadingIcon}</StyledNavBarGroupIcon>
+            <StyledNavBarGroupIcon $colorPalette={colorPalette}>
+              {leadingIcon}
+            </StyledNavBarGroupIcon>
           )}
           {title && typeof title === "string" ? (
             <Text variant="span">{title}</Text>
@@ -80,7 +90,10 @@ const NavigationBarGroup = ({
           )}
         </span>
         {
-          <StyledNavBarGroupIcon expand={expand}>
+          <StyledNavBarGroupIcon
+            $colorPalette={colorPalette}
+            $expand={expand}
+          >
             <IconChevronRight />
           </StyledNavBarGroupIcon>
         }
@@ -88,7 +101,8 @@ const NavigationBarGroup = ({
       {
         <StyledNavBarGroupItemContainer
           ref={navigationBarGrpItmContnrRef}
-          expand={expand}
+          $colorPalette={colorPalette}
+          $expand={expand}
         >
           {children}
         </StyledNavBarGroupItemContainer>

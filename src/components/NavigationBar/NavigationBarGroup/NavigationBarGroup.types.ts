@@ -1,3 +1,5 @@
+import { DefaultTheme } from "../../ThemeProvider/ThemeProvider.types";
+
 export interface NavigationBarGroupProps {
   children?: React.ReactNode | [React.ReactNode];
   title?: React.ReactNode;
@@ -8,5 +10,6 @@ export interface NavigationBarGroupProps {
 }
 
 export interface NavigationBarGroupStyleProps {
-  expand?: boolean;
+  $expand?: boolean;
+  $colorPalette: DefaultTheme["theme"]["colorPalette"];
 }

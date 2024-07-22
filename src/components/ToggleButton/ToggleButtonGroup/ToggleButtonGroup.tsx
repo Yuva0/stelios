@@ -96,7 +96,7 @@ const ToggleButtonGroup = ({
     setSelectedIndex(value ? getIndexFromValue(value, children) : null);
   }, [value, children]);
 
-  const paletteColors = useTheme().theme.paletteColors;
+  const colorPalette = useTheme().theme.colorPalette;
 
   const _onClick = (e: React.MouseEvent, value?: string, index?: number) => {
     setSelectedIndex(index ?? null);
@@ -107,7 +107,7 @@ const ToggleButtonGroup = ({
     <StyledToggleBtnGroup
       $width={width}
       $color={color}
-      $colorGradient={paletteColors}
+      $colorGradient={colorPalette}
       className={className}
       style={style}
     >

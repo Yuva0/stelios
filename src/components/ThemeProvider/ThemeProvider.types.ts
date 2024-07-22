@@ -44,7 +44,7 @@ export const colorTypes = ["primary", "secondary", "danger", "warning", "success
 
 export interface DefaultTheme {
   theme: {
-    paletteColors: {
+    colorPalette: {
       primary: ColorPaletteProps,
       secondary: ColorPaletteProps,
       danger: ColorPaletteProps,

@@ -82,7 +82,7 @@ const Checkbox = forwardRef(
     const _ref = (ref ?? innerRef) as React.RefObject<HTMLInputElement>;
     const [isChecked, setIsChecked] = useState(checked ?? false);
 
-    const paletteColors = useTheme().theme.paletteColors;
+    const colorPalette = useTheme().theme.colorPalette;
 
     useEffect(() => {
       setIsChecked(checked ?? false);
@@ -100,7 +100,7 @@ const Checkbox = forwardRef(
         role="checkbox"
         aria-checked={isChecked}
         $size={size}
-        $colorGradient={paletteColors}
+        $colorGradient={colorPalette}
         $color={color}
         // className={`${classNames["ste-checkbox"]} ${className}`}
         {...props}

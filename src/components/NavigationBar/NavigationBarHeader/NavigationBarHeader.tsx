@@ -1,10 +1,14 @@
 import React from "react";
-import { NavigationBarHeaderProps } from "./NavigationBarHeader.types";
+import {
+  NavigationBarHeaderProps,
+  NavigationBarHeaderStyleProps,
+} from "./NavigationBarHeader.types";
 import colors from "../../../tokens/colors.json";
 import styled from "styled-components";
 import Text from "../../Text/Text";
+import { useTheme } from "../../ThemeProvider/ThemeProvider";
 
-const StyledNavBarHeader = styled.li`
+const StyledNavBarHeader = styled.li<NavigationBarHeaderStyleProps>`
   display: flex;
   position: relative;
   flex-direction: row;
@@ -12,7 +16,7 @@ const StyledNavBarHeader = styled.li`
   align-items: center;
   border-radius: 0.5rem;
   padding: 0.25rem 0 0.25rem 2.25rem;
-  color: ${colors.white[800]};
+  color: ${(props) => props.$colorPalette.primary.grayScale[11]};
   &:before {
     content: "";
     position: absolute;
@@ -21,14 +25,15 @@ const StyledNavBarHeader = styled.li`
     left: 0;
     margin-left: 0.75rem;
     border-radius: 50%;
-    border: 1px solid ${colors.white[300]};
+    border: 1px solid ${(props) => props.$colorPalette.primary.grayScale[5]};
   }
   &:after {
     content: "";
     position: absolute;
     height: 50%;
     margin-left: 0.93rem;
-    border-left: 1px solid ${colors.white[300]};
+    border-left: 1px solid
+      ${(props) => props.$colorPalette.primary.grayScale[5]};
     top: calc(50% + 0.175rem);
     left: 0;
   }
@@ -42,8 +47,13 @@ const NavigationBarHeader = ({
   trailingIcon,
   size,
 }: NavigationBarHeaderProps) => {
+  const colorPalette = useTheme().theme.colorPalette;
   return (
-    <StyledNavBarHeader style={style} className={className}>
+    <StyledNavBarHeader
+      $colorPalette={colorPalette}
+      style={style}
+      className={className}
+    >
       {leadingIcon && <span>{leadingIcon}</span>}
       {typeof children === "string" ? (
         <Text variant="span" size={size ?? "small"}>

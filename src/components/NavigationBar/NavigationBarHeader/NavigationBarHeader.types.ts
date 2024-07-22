@@ -1,3 +1,5 @@
+import { DefaultTheme } from "../../ThemeProvider/ThemeProvider.types";
+
 export interface NavigationBarHeaderProps {
   children: string | React.ReactNode;
   leadingIcon?: React.ReactNode;
@@ -7,4 +9,6 @@ export interface NavigationBarHeaderProps {
   size?: "small" | "medium" | "large";
 }
 
-export interface NavigationBarHeaderStyleProps {}
+export interface NavigationBarHeaderStyleProps {
+  $colorPalette: DefaultTheme["theme"]["colorPalette"];
+}
