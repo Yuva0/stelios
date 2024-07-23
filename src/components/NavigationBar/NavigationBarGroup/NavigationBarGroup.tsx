@@ -5,7 +5,6 @@ import {
 } from "./NavigationBarGroup.types";
 import Text from "../../Text/Text";
 import styled from "styled-components";
-import colors from "../../../tokens/colors.json";
 import { IconChevronRight } from "@tabler/icons-react";
 import { useTheme } from "../../ThemeProvider/ThemeProvider";
 
@@ -90,10 +89,7 @@ const NavigationBarGroup = ({
           )}
         </span>
         {
-          <StyledNavBarGroupIcon
-            $colorPalette={colorPalette}
-            $expand={expand}
-          >
+          <StyledNavBarGroupIcon $colorPalette={colorPalette} $expand={expand}>
             <IconChevronRight />
           </StyledNavBarGroupIcon>
         }

@@ -28,34 +28,36 @@ export const Default: Story = {
   render: () => {
     return (
       <ThemeProvider appearance="dark">
-        <NavigationBar>
+        <NavigationBar onChange={(value) => console.log(value)}>
           <NavigationBarGroup title="Components 1">
             <NavigationBarHeader>Header</NavigationBarHeader>
-            <NavigationBarGroupItem>Content</NavigationBarGroupItem>
-            <NavigationBarGroupItem>Content</NavigationBarGroupItem>
-            <NavigationBarGroupItem>Content</NavigationBarGroupItem>
-            <NavigationBarGroupItem>Content</NavigationBarGroupItem>
-            <NavigationBarGroupItem>Content</NavigationBarGroupItem>
-            <NavigationBarGroupItem>Content</NavigationBarGroupItem>
-            <NavigationBarGroupItem>Content</NavigationBarGroupItem>
-            <NavigationBarGroupItem>Content</NavigationBarGroupItem>
-            <NavigationBarGroupItem>Content</NavigationBarGroupItem>
+            <NavigationBarGroupItem value="1">Content</NavigationBarGroupItem>
+            <NavigationBarGroupItem value="2">Content</NavigationBarGroupItem>
+            <NavigationBarGroupItem value="3">Content</NavigationBarGroupItem>
+            <NavigationBarGroupItem value="4">Content</NavigationBarGroupItem>
+            <NavigationBarGroupItem value="5">Content</NavigationBarGroupItem>
+            <NavigationBarGroupItem value="6">Content</NavigationBarGroupItem>
+            <NavigationBarGroupItem value="7">Content</NavigationBarGroupItem>
+            <NavigationBarGroupItem value="8">Content</NavigationBarGroupItem>
+            <NavigationBarGroupItem value="9">Content</NavigationBarGroupItem>
           </NavigationBarGroup>
-          <NavigationBarItem>Content</NavigationBarItem>
+          <NavigationBarItem value="10">Content</NavigationBarItem>
+          <NavigationBarItem value="11">Content</NavigationBarItem>
+          <NavigationBarItem value="12">Content</NavigationBarItem>
           <NavigationBarGroup title="Components 2">
             <NavigationBarHeader>Header</NavigationBarHeader>
-            <NavigationBarGroupItem>Content</NavigationBarGroupItem>
-            <NavigationBarGroupItem>Content</NavigationBarGroupItem>
-            <NavigationBarGroupItem>Content</NavigationBarGroupItem>
-            <NavigationBarGroupItem>Content</NavigationBarGroupItem>
-            <NavigationBarGroupItem>Content</NavigationBarGroupItem>
-            <NavigationBarGroupItem>Content</NavigationBarGroupItem>
-            <NavigationBarGroupItem>Content</NavigationBarGroupItem>
-            <NavigationBarGroupItem>Content</NavigationBarGroupItem>
-            <NavigationBarGroupItem>Content</NavigationBarGroupItem>
+            <NavigationBarGroupItem value="13">Content</NavigationBarGroupItem>
+            <NavigationBarGroupItem value="14">Content</NavigationBarGroupItem>
+            <NavigationBarGroupItem value="15">Content</NavigationBarGroupItem>
+            <NavigationBarGroupItem value="16">Content</NavigationBarGroupItem>
+            <NavigationBarGroupItem value="17">Content</NavigationBarGroupItem>
+            <NavigationBarGroupItem value="18">Content</NavigationBarGroupItem>
+            <NavigationBarGroupItem value="19">Content</NavigationBarGroupItem>
+            <NavigationBarGroupItem value="20">Content</NavigationBarGroupItem>
+            <NavigationBarGroupItem value="21">Content</NavigationBarGroupItem>
           </NavigationBarGroup>
         </NavigationBar>
-        <SideBar style={{ marginTop: "5rem" }}>
+        {/* <SideBar style={{ marginTop: "5rem" }}>
           <SideBarItem>Test</SideBarItem>
           <SideBarItem>Test</SideBarItem>
           <SideBarItem>Test</SideBarItem>
@@ -66,7 +68,7 @@ export const Default: Story = {
             <SideBarGroupItem>Test</SideBarGroupItem>
             <SideBarGroupItem>Test</SideBarGroupItem>
           </SideBarGroup>
-        </SideBar>
+        </SideBar> */}
       </ThemeProvider>
     );
   },
