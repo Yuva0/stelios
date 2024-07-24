@@ -41,7 +41,7 @@ export const Default: Story = {
             <NavigationBarGroupItem value="8">Content</NavigationBarGroupItem>
             <NavigationBarGroupItem value="9">Content</NavigationBarGroupItem>
           </NavigationBarGroup>
-          <NavigationBarItem value="10">Content</NavigationBarItem>
+          <NavigationBarItem value="10" selected>Content</NavigationBarItem>
           <NavigationBarItem value="11">Content</NavigationBarItem>
           <NavigationBarItem value="12">Content</NavigationBarItem>
           <NavigationBarGroup title="Components 2">

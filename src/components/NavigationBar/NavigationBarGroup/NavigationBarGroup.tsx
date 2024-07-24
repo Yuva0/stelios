@@ -59,11 +59,11 @@ const NavigationBarGroup = ({
   leadingIcon,
   children,
   title,
-  isDefaultExpanded,
+  expanded,
   className,
 }: NavigationBarGroupProps) => {
   const navigationBarGrpItmContnrRef = React.useRef(null);
-  const [expand, setExpand] = useState(isDefaultExpanded ?? false);
+  const [expand, setExpand] = useState(expanded ?? false);
   const colorPalette = useTheme().theme.colorPalette;
 
   const _toggleExpand = (e: React.MouseEvent) => {

@@ -53,7 +53,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
       index++;
       return React.cloneElement(child, {
         _index: index,
-        selected: selectedIndex === index,
+        selected: selectedIndex ? selectedIndex === index : child.props.selected,
         _getSelectedIndex: _handleSelectedIndex,
       } as Partial<NavigationBarGroupProps>);
     }
@@ -68,8 +68,9 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
             return React.cloneElement(child, {
               _index: index,
               _getSelectedIndex: _handleSelectedIndex,
-              selected: selectedIndex === index,
-            } as Partial<NavigationBarGroupProps>);
+              // todo
+              selected: selectedIndex ? selectedIndex === index : (child.props as any).selected,
+            } as Partial<NavigationBarGroupItemProps>);
           }
         ),
       } as Partial<NavigationBarGroupProps>);

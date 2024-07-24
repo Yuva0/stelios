@@ -7,7 +7,7 @@ export interface NavigationBarGroupProps {
   title?: React.ReactNode;
   leadingIcon?: React.ReactNode;
   trailingIcon?: React.ReactNode;
-  isDefaultExpanded?: boolean;
+  expanded?: boolean;
   className?: string;
   _getSelectedIndex?: (index?: number) => void;
 }
