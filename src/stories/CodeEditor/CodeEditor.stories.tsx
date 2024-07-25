@@ -43,7 +43,11 @@ export const Default: Story = {
 
     return (
       <ThemeProvider appearance="dark">
-        <CodeEditor code={ButtonCode} text={Text} />
+        <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
+          <CodeEditor code={ButtonCode} text={Text} />
+          <CodeEditor text={Text} />
+          <CodeEditor code={ButtonCode} />
+        </div>
       </ThemeProvider>
     );
   },

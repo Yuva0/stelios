@@ -17,13 +17,13 @@ const StyledCode = styled.div<CodeEditorStyleProps>`
   padding: 1.5rem;
   background-color: ${(props) => props.$colorPalette.primary.accentScale[0]};
   border: 1px solid ${(props) => props.$colorPalette.primary.grayScale[5]};
-  border-radius: 0.5rem 0.5rem 0 0;
+  border-radius: 0.5rem;
 `;
 const StyledContainer = styled.div<CodeEditorStyleProps>`
   display: block;
   background-color: ${(props) => props.$colorPalette.primary.accentScale[1]};
   border: 1px solid ${(props) => props.$colorPalette.primary.grayScale[5]};
-  border-radius: 0 0 0.5rem 0.5rem;
+  border-radius: 0.5rem;
 `;
 
 const StyledSyntaxHighlighter = styled(SyntaxHighlighter)<CodeEditorStyleProps>`
@@ -37,16 +37,18 @@ const CodeEditor = ({ code, text, width }: CodeEditorProps) => {
 
   return (
     <StyledCodeEditor $colorPalette={colorPalette} $width={width}>
-      <StyledCode $colorPalette={colorPalette}>{code}</StyledCode>
-      <StyledContainer $colorPalette={colorPalette}>
-        <StyledSyntaxHighlighter
-          language="javascript"
-          style={appearance === "light" ? docco : dark}
-          $colorPalette={colorPalette}
-        >
-          {text}
-        </StyledSyntaxHighlighter>
-      </StyledContainer>
+      {code && <StyledCode $colorPalette={colorPalette}>{code}</StyledCode>}
+      {text && (
+        <StyledContainer $colorPalette={colorPalette}>
+          <StyledSyntaxHighlighter
+            language="javascript"
+            style={appearance === "light" ? docco : dark}
+            $colorPalette={colorPalette}
+          >
+            {text}
+          </StyledSyntaxHighlighter>
+        </StyledContainer>
+      )}
     </StyledCodeEditor>
   );
 };
