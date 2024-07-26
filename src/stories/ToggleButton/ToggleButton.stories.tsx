@@ -40,11 +40,11 @@ export const Default: Story = {
             >
               <ToggleButton value="1">
                 <IconSun />
-                <Text variant="paragraph">Light</Text>
+                <Text noColor variant="paragraph">Light</Text>
               </ToggleButton>
               <ToggleButton>
                 <IconMoon width={20} height={20} />
-                <Text variant="paragraph">Dark</Text>
+                <Text noColor variant="paragraph">Dark</Text>
               </ToggleButton>
             </ToggleButtonGroup>
           </div>
@@ -61,11 +61,11 @@ export const Default: Story = {
             >
               <ToggleButton value="1">
                 <IconSun width={20} height={20} />
-                <Text variant="paragraph">Light</Text>
+                <Text noColor variant="paragraph">Light</Text>
               </ToggleButton>
               <ToggleButton>
                 <IconMoon width={20} height={20} />
-                <Text variant="paragraph">Dark</Text>
+                <Text noColor variant="paragraph">Dark</Text>
               </ToggleButton>
             </ToggleButtonGroup>
           </div>
@@ -82,11 +82,11 @@ export const Default: Story = {
             >
               <ToggleButton value="1">
                 <IconSun width={20} height={20} />
-                <Text variant="paragraph">Light</Text>
+                <Text noColor variant="paragraph">Light</Text>
               </ToggleButton>
               <ToggleButton>
                 <IconMoon width={20} height={20} />
-                <Text variant="paragraph">Dark</Text>
+                <Text noColor variant="paragraph">Dark</Text>
               </ToggleButton>
             </ToggleButtonGroup>
           </div>

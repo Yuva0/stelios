@@ -33,7 +33,7 @@ const getColor = (
     };
   }
   return {
-    default: `${colorGradient[color].accentScale[9]}`,
+    default: `${colorGradient[color].accentScale[10]}`,
   };
 };
 const getPadding = (size: ToggleButtonStyleProps["$size"]) => {
@@ -82,7 +82,8 @@ const StyledToggleBtn = styled.button<ToggleButtonStyleProps>`
   width: 100%;
   gap: ${(props) => getGap(props.$size)};
   cursor: pointer;
-  color: ${(props) => props.$colorGradient[props.$color].accentScale[10]};
+  color: ${(props) =>
+    getColor(props.$color, props.$colorGradient, props.$selected).default};
   background-color: ${(props) =>
     getBgColor(props.$color, props.$colorGradient, props.$selected).default};
   color: ${(props) =>

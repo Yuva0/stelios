@@ -15,7 +15,7 @@ const StyledCode = styled.div<CodeDisplayStyleProps>`
   display: flex;
   align-items: center;
   padding: 0.5rem 2rem;
-  background-color: ${(props) => props.$colorPalette.primary.grayScale[0]};
+  background-color: ${(props) => props.$colorPalette.primary.accentScale[0]};
   border: 1px solid ${(props) => props.$colorPalette.primary.grayScale[5]};
   border-radius: 0.5rem 0.5rem 0 0;
 `;
