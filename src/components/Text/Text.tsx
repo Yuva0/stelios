@@ -199,7 +199,6 @@ const StyledP = styled.p<TextStyleProps>`
 `;
 
 const Text = ({
-  id,
   variant = "div",
   strong,
   children,
@@ -218,8 +217,7 @@ const Text = ({
   const _color = color
     ? colorPalette[color].main
     : colorPalette.primary.grayScale[11];
-
-  rest = { ...rest, id: id, $noColor: noColor, $color: _color };
+  const _styleProps = { $noColor: noColor, $color: _color };
 
   switch (variant) {
     case "h1":
@@ -227,7 +225,6 @@ const Text = ({
         <StyledH1
           $strong={strong}
           $align={align}
-          $color={_color}
           $wrap={wrap}
           $size={size}
           $fontSize={fontSize}
@@ -235,6 +232,7 @@ const Text = ({
           style={style}
           className={className}
           {...rest}
+          {..._styleProps}
         >
           {children}
         </StyledH1>
@@ -251,6 +249,7 @@ const Text = ({
           style={style}
           className={className}
           {...rest}
+          {..._styleProps}
         >
           {children}
         </StyledH2>
@@ -268,6 +267,7 @@ const Text = ({
           style={style}
           className={className}
           {...rest}
+          {..._styleProps}
         >
           {children}
         </StyledH3>
@@ -285,6 +285,7 @@ const Text = ({
           style={style}
           className={className}
           {...rest}
+          {..._styleProps}
         >
           {children}
         </StyledH4>
@@ -302,6 +303,7 @@ const Text = ({
           style={style}
           className={className}
           {...rest}
+          {..._styleProps}
         >
           {children}
         </StyledH5>
@@ -319,6 +321,7 @@ const Text = ({
           style={style}
           className={className}
           {...rest}
+          {..._styleProps}
         >
           {children}
         </StyledH6>
@@ -336,6 +339,7 @@ const Text = ({
           style={style}
           className={className}
           {...rest}
+          {..._styleProps}
         >
           {children}
         </StyledDiv>
@@ -353,6 +357,7 @@ const Text = ({
           style={style}
           className={className}
           {...rest}
+          {..._styleProps}
         >
           {children}
         </StyledP>
@@ -370,6 +375,7 @@ const Text = ({
           style={style}
           className={className}
           {...rest}
+          {..._styleProps}
         >
           {children}
         </StyledLabel>
@@ -387,6 +393,7 @@ const Text = ({
           style={style}
           className={className}
           {...rest}
+          {..._styleProps}
         >
           {children}
         </StyledSpan>
@@ -404,6 +411,7 @@ const Text = ({
           style={style}
           className={className}
           {...rest}
+          {..._styleProps}
         >
           {children}
         </StyledDiv>
