@@ -199,6 +199,7 @@ const StyledP = styled.p<TextStyleProps>`
 `;
 
 const Text = ({
+  id,
   variant = "div",
   strong,
   children,
@@ -218,7 +219,7 @@ const Text = ({
     ? colorPalette[color].main
     : colorPalette.primary.grayScale[11];
 
-  rest = { ...rest, $noColor: noColor, $color: _color };
+  rest = { ...rest, id: id, $noColor: noColor, $color: _color };
 
   switch (variant) {
     case "h1":

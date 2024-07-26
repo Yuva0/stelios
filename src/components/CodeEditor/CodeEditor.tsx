@@ -24,11 +24,23 @@ const StyledContainer = styled.div<CodeEditorStyleProps>`
   background-color: ${(props) => props.$colorPalette.primary.accentScale[1]};
   border: 1px solid ${(props) => props.$colorPalette.primary.grayScale[5]};
   border-radius: 0.5rem;
+  padding: 1rem 2rem;
+
+  pre {
+    margin: 0;
+    white-space: pre-wrap;
+    word-break: break-word;
+    code {
+      font-size: 16px;
+      font-family: "Lato", sans-serif;
+    }
+  }
 `;
 
 const StyledSyntaxHighlighter = styled(SyntaxHighlighter)<CodeEditorStyleProps>`
   background-color: ${(props) =>
     props.$colorPalette.primary.accentScale[1]} !important;
+  font-family: "Lato", sans-serif;
 `;
 
 const CodeEditor = ({ code, text, width }: CodeEditorProps) => {

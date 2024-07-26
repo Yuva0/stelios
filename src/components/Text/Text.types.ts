@@ -1,6 +1,6 @@
-import { DefaultTheme } from "../ThemeProvider/ThemeProvider.types";
 
 export interface TextProps {
+  id?: string;
   variant?:
     | "h1"
     | "h2"

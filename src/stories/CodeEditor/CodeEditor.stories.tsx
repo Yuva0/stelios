@@ -19,13 +19,12 @@ type Story = StoryObj<typeof CodeEditor>;
 
 export const Default: Story = {
   render: () => {
-    const Text = `    <Button variant="contained">Contained</Button>
-    <Button variant="contained" disabled>
-      Disabled
-    </Button>
-    <Button variant="contained" href="#contained-buttons">
-      Link
-    </Button>`;
+    const Text = `<Button variant="contained">Contained</Button>
+<Button variant="contained" disabled>Disabled</Button>
+<Button variant="contained" href="#contained-buttons">Link</Button>`;
+
+    const ArrayText = `//JavaScript
+const array = [1, 2, 3, 4, 5];`;
 
     const ButtonCode = (
       <div style={{ display: "flex", gap: "2rem" }}>
@@ -45,7 +44,7 @@ export const Default: Story = {
       <ThemeProvider appearance="dark">
         <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
           <CodeEditor code={ButtonCode} text={Text} />
-          <CodeEditor text={Text} />
+          <CodeEditor text={ArrayText} />
           <CodeEditor code={ButtonCode} />
         </div>
       </ThemeProvider>
