@@ -2,20 +2,20 @@ import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 // import { generateRadixColors } from "../../helpers/colors/generateRadixColors";
 
-import CodeEditor from "../../components/CodeEditor/CodeEditor";
+import CodeDisplay from "../../components/CodeDisplay/CodeDisplay";
 import { ThemeProvider } from "../../components/ThemeProvider/ThemeProvider";
 import Text from "../../components/Text/Text";
 import Button from "../../components/Button/Button";
 
-const meta: Meta<typeof CodeEditor> = {
-  title: "Components/CodeEditor",
-  component: CodeEditor,
+const meta: Meta<typeof CodeDisplay> = {
+  title: "Components/CodeDisplay",
+  component: CodeDisplay,
   parameters: {},
   argTypes: {},
 };
 
 export default meta;
-type Story = StoryObj<typeof CodeEditor>;
+type Story = StoryObj<typeof CodeDisplay>;
 
 export const Default: Story = {
   render: () => {
@@ -43,7 +43,7 @@ const array = [1, 2, 3, 4, 5];`;
     return (
       <ThemeProvider appearance="dark">
         <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
-          <CodeEditor code={ButtonCode} text={Text} />
+          <CodeDisplay text={Text} language="jsx" />
         </div>
       </ThemeProvider>
     );
