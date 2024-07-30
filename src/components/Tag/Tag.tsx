@@ -136,7 +136,7 @@ const Tag = ({
         </StyledTagIcon>
       )}
       {typeof children === "string" ? (
-        <Text variant="span" size={size}>
+        <Text noColor variant="span" size={size}>
           {children}
         </Text>
       ) : (
