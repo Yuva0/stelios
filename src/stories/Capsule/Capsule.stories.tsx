@@ -25,7 +25,7 @@ export const Default: Story = {
           <Capsule
             image="https://htmlcolorcodes.com/assets/images/colors/red-color-solid-background-1920x1080.png"
             title="Test1"
-            description="Description1 Description1Description1 Description1 Description1 Description1 Description1 Description1 Description1"
+            description="Description1"
           />
         </div>
       </ThemeProvider>

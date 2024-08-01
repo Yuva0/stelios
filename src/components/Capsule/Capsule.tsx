@@ -17,8 +17,8 @@ const StyledCapsuleContainer = styled.div<{ $width: string; $height: string }>`
 const StyledTextContainer = styled.span`
   display: flex;
   flex-direction: column;
-  padding: 1rem;
-  gap: 0.8rem;
+  padding: 0.4rem;
+  gap: 0.2rem;
 `;
 
 const StyledImgContainer = styled.span<{ $imagePosition: string }>`
@@ -43,8 +43,8 @@ const Capsule: React.FunctionComponent<CapsuleProps> = ({
   title,
   description,
   imagePosition = "left",
-  width = "100%",
-  height = "10rem",
+  width = "25rem",
+  height = "4em",
 }: CapsuleProps) => {
   const TextContent = () => {
     if (!title && !description) return null;
@@ -60,7 +60,7 @@ const Capsule: React.FunctionComponent<CapsuleProps> = ({
     ) : null;
     const descriptionContent = description ? (
       typeof description === "string" ? (
-        <Text noColor variant="paragraph">
+        <Text noColor variant="paragraph" size="small">
           {description}
         </Text>
       ) : (
