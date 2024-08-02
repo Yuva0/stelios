@@ -13,6 +13,7 @@ import Header from "./components/Header/Header";
 import HeaderGroup from "./components/Header/HeaderGroup/HeaderGroup";
 import HeaderItem from "./components/Header/HeaderItem/HeaderItem";
 import IconButton from "./components/IconButton/IconButton";
+import ImageHighlight from "./components/ImageHighlight/ImageHighlight";
 import Input from "./components/Input/Input";
 import Link from "./components/Link/Link";
 import List from "./components/List/List";
@@ -60,6 +61,7 @@ export {
   HeaderGroup,
   HeaderItem,
   IconButton,
+  ImageHighlight,
   Input,
   Link,
   List,

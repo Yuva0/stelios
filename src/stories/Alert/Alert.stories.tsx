@@ -2,7 +2,7 @@ import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 
 import Alert from "../../components/Alert/Alert";
-import { IconArrowBackUp, IconBulb } from "@tabler/icons-react";
+import { IconArrowBackUp } from "@tabler/icons-react";
 import { ThemeProvider } from "../../components/ThemeProvider/ThemeProvider";
 // import { AlertProps } from "../../components/Alert/Alert.types";
 
@@ -27,7 +27,8 @@ export const Default: Story = {
             color="warning"
             leadingIcon={<IconArrowBackUp />}
             title="Title"
-            titleIcon={<IconBulb />}
+            width="20rem"
+            // titleIcon={<IconBulb />}
             description="Big Big Very Big Description"
           />
         </ThemeProvider>

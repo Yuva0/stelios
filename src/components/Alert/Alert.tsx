@@ -8,12 +8,13 @@ interface AlertProps {
   description: React.ReactNode;
   leadingIcon?: React.ReactNode;
   color?: "primary" | "secondary" | "danger" | "warning" | "success" | "info";
-  variant?: "contained" | "outlined";
+  width?: string;
 }
 
 const StyledContainer = styled.div<{
   $colorPalette: any;
   $color: AlertProps["color"];
+  $width: string;
 }>`
   display: flex;
   flex-direction: row;
@@ -22,6 +23,7 @@ const StyledContainer = styled.div<{
   align-items: center;
   padding: 1rem 1rem 1rem 1rem;
   border-radius: 0.8rem;
+  width: ${(props) => props.$width};
   color: ${(props) =>
     props.$colorPalette[props.$color ?? "primary"].accentScale[11]};
   background-color: ${(props) =>
@@ -63,7 +65,7 @@ const Alert: React.FunctionComponent<AlertProps> = ({
   description,
   leadingIcon,
   color,
-  variant,
+  width = "auto",
 }: AlertProps) => {
   const colorPalette = useTheme().theme.colorPalette;
 
@@ -107,7 +109,7 @@ const Alert: React.FunctionComponent<AlertProps> = ({
   }, [leadingIcon]);
 
   return (
-    <StyledContainer $color={color} $colorPalette={colorPalette}>
+    <StyledContainer $width={width} $color={color} $colorPalette={colorPalette}>
       <LeadingIcon />
       <Content />
     </StyledContainer>
