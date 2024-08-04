@@ -3,6 +3,8 @@ import AccordionItem from "./components/Accordion/AccordionItem/AccordionItem";
 import Alert from "./components/Alert/Alert";
 import Autocomplete from "./components/Autocomplete/Autocomplete";
 import Button from "./components/Button/Button";
+import Breadcrumbs from "./components/Breadcrumbs/Breadcrumbs";
+import BreadcrumbsItem from "./components/Breadcrumbs/BreadcrumbsItem/BreadcrumbsItem";
 import Checkbox from "./components/Checkbox/Checkbox";
 import ClickAwayListener from "./components/ClickAwayListener/ClickAwayListener";
 import CodeDisplay from "./components/CodeDisplay/CodeDisplay";
@@ -51,6 +53,8 @@ export {
   AccordionItem,
   Alert,
   Autocomplete,
+  Breadcrumbs,
+  BreadcrumbsItem,
   Button,
   Checkbox,
   ClickAwayListener,
