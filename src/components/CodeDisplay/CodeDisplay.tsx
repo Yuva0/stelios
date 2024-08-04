@@ -10,7 +10,6 @@ const StyledCodeDisplay = styled.div<CodeDisplayStyleProps>`
   flex-direction: column;
   border-radius: 0.5rem;
   width: ${(props) => props.$width ?? "auto"};
-  border: 2px solid ${(props) => props.$colorPalette.primary.accentScale[6]};
 `;
 const StyledCode = styled.div<CodeDisplayStyleProps>`
   display: flex;
