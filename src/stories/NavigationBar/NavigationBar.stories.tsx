@@ -27,7 +27,7 @@ type Story = StoryObj<typeof NavigationBar>;
 export const Default: Story = {
   render: () => {
     return (
-      <ThemeProvider appearance="dark">
+      <ThemeProvider appearance="light">
         <NavigationBar onChange={(value) => console.log(value)}>
           <NavigationBarGroup title="Components 1">
             <NavigationBarHeader>Header</NavigationBarHeader>

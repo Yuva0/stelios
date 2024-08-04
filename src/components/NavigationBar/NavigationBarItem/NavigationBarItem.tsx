@@ -59,6 +59,8 @@ const NavigationBarItem = ({
   const colorPalette = useTheme().theme.colorPalette;
   const [_selected, setSelected] = React.useState(selected);
 
+  console.log(colorPalette.primary);
+
   React.useEffect(() => {
     setSelected(selected);
   }, [selected]);

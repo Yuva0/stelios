@@ -19,7 +19,7 @@ const StyledNavigationBarCtr = styled.div<NavigationBarStyleProps>`
   overflow: scroll;
   border-right: ${(props) =>
     `1px solid ${props.$colorPalette.primary.grayScale[5]}`};
-  background-color: ${(props) => props.$colorPalette.primary.background};
+  background-color: ${(props) => props.$colorPalette.primary.grayScale[0]};
 `;
 
 const NavigationBar: React.FC<NavigationBarProps> = ({
