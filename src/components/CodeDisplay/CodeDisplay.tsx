@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import SyntaxHighlighter from "react-syntax-highlighter";
-import { dark, docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import { CodeDisplayProps, CodeDisplayStyleProps } from "./CodeDisplay.types";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
 import Text from "../Text/Text";
+import { vs, dark } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
 const StyledCodeDisplay = styled.div<CodeDisplayStyleProps>`
   display: flex;
@@ -15,12 +15,12 @@ const StyledCode = styled.div<CodeDisplayStyleProps>`
   display: flex;
   align-items: center;
   padding: 0.5rem 2rem;
-  background-color: ${(props) => props.$colorPalette.primary.accentScale[6]};
+  background-color: ${(props) => props.$colorPalette.primary.accentScale[7]};
   border-radius: 0.5rem 0.5rem 0 0;
 `;
 const StyledContainer = styled.div<CodeDisplayStyleProps>`
   display: block;
-  background-color: ${(props) => props.$colorPalette.primary.accentScale[7]};
+  background-color: ${(props) => props.$colorPalette.primary.accentScale[6]};
   border-radius: 0 0 0.5rem 0.5rem;
   padding: 1rem 2rem;
 
@@ -40,11 +40,11 @@ const StyledSyntaxHighlighter = styled(
   SyntaxHighlighter
 )<CodeDisplayStyleProps>`
   background-color: ${(props) =>
-    props.$colorPalette.primary.accentScale[7]} !important;
+    props.$colorPalette.primary.accentScale[6]} !important;
   font-family: "Lato", sans-serif;
 `;
 
-const CodeDisplay = ({ text, width, language }: CodeDisplayProps) => {
+const CodeDisplay = ({ text, width, language, syntaxStyle }: CodeDisplayProps) => {
   const colorPalette = useTheme().theme.colorPalette;
   const appearance = colorPalette.primary.appearance;
 
@@ -57,8 +57,8 @@ const CodeDisplay = ({ text, width, language }: CodeDisplayProps) => {
       </StyledCode>
       <StyledContainer $colorPalette={colorPalette}>
         <StyledSyntaxHighlighter
-          language="javascript"
-          style={appearance === "light" ? docco : dark}
+          language="tsx"
+          style={appearance === "light" ? vs : dark}
           $colorPalette={colorPalette}
         >
           {text}
