@@ -44,7 +44,12 @@ const StyledSyntaxHighlighter = styled(
   font-family: "Lato", sans-serif;
 `;
 
-const CodeDisplay = ({ text, width, language, syntaxStyle }: CodeDisplayProps) => {
+const CodeDisplay = ({
+  text,
+  width,
+  language,
+  syntaxStyle,
+}: CodeDisplayProps) => {
   const colorPalette = useTheme().theme.colorPalette;
   const appearance = colorPalette.primary.appearance;
 
@@ -57,7 +62,7 @@ const CodeDisplay = ({ text, width, language, syntaxStyle }: CodeDisplayProps) =
       </StyledCode>
       <StyledContainer $colorPalette={colorPalette}>
         <StyledSyntaxHighlighter
-          language="tsx"
+          language={language}
           style={appearance === "light" ? vs : dark}
           $colorPalette={colorPalette}
         >

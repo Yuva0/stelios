@@ -1,5 +1,6 @@
 import Accordion from "./components/Accordion/Accordion";
 import AccordionItem from "./components/Accordion/AccordionItem/AccordionItem";
+import Alert from "./components/Alert/Alert";
 import Autocomplete from "./components/Autocomplete/Autocomplete";
 import Button from "./components/Button/Button";
 import Checkbox from "./components/Checkbox/Checkbox";
@@ -48,6 +49,7 @@ import {
 export {
   Accordion,
   AccordionItem,
+  Alert,
   Autocomplete,
   Button,
   Checkbox,
