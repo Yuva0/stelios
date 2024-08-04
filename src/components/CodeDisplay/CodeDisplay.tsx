@@ -15,19 +15,18 @@ const StyledCode = styled.div<CodeDisplayStyleProps>`
   display: flex;
   align-items: center;
   padding: 0.5rem 2rem;
-  background-color: ${(props) => props.$colorPalette.primary.accentScale[0]};
-  border: 1px solid ${(props) => props.$colorPalette.primary.grayScale[5]};
+  background-color: ${(props) => props.$colorPalette.primary.accentScale[6]};
   border-radius: 0.5rem 0.5rem 0 0;
 `;
 const StyledContainer = styled.div<CodeDisplayStyleProps>`
   display: block;
-  background-color: ${(props) => props.$colorPalette.primary.accentScale[1]};
-  border: 1px solid ${(props) => props.$colorPalette.primary.grayScale[5]};
+  background-color: ${(props) => props.$colorPalette.primary.accentScale[7]};
   border-radius: 0 0 0.5rem 0.5rem;
-  padding: 0.5rem 2rem;
+  padding: 1rem 2rem;
 
   pre {
     margin: 0;
+    padding: 0 !important;
     white-space: pre-wrap;
     word-break: break-word;
     code {
@@ -41,7 +40,7 @@ const StyledSyntaxHighlighter = styled(
   SyntaxHighlighter
 )<CodeDisplayStyleProps>`
   background-color: ${(props) =>
-    props.$colorPalette.primary.accentScale[1]} !important;
+    props.$colorPalette.primary.accentScale[7]} !important;
   font-family: "Lato", sans-serif;
 `;
 
@@ -52,7 +51,9 @@ const CodeDisplay = ({ text, width, language }: CodeDisplayProps) => {
   return (
     <StyledCodeDisplay $colorPalette={colorPalette} $width={width}>
       <StyledCode $colorPalette={colorPalette}>
-        <Text variant="paragraph" size="small">{language}</Text>
+        <Text variant="paragraph" size="small">
+          {language}
+        </Text>
       </StyledCode>
       <StyledContainer $colorPalette={colorPalette}>
         <StyledSyntaxHighlighter
