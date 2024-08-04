@@ -27,14 +27,14 @@ export const Default: Story = {
           <div
             style={{ display: "flex", flexDirection: "column", gap: "2rem" }}
           >
-            <CodeDisplay text={Text} language="jsx" />
+            <CodeDisplay text={Text} language="JSX" />
           </div>
         </ThemeProvider>
         <ThemeProvider appearance="dark">
           <div
             style={{ display: "flex", flexDirection: "column", gap: "2rem" }}
           >
-            <CodeDisplay text={Text} language="jsx" />
+            <CodeDisplay text={Text} language="JSX" />
           </div>
         </ThemeProvider>
       </>

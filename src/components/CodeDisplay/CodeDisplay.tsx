@@ -15,12 +15,12 @@ const StyledCode = styled.div<CodeDisplayStyleProps>`
   display: flex;
   align-items: center;
   padding: 0.5rem 2rem;
-  background-color: ${(props) => props.$colorPalette.primary.accentScale[7]};
+  background-color: ${(props) => props.$colorPalette.primary.accentScale[6]};
   border-radius: 0.5rem 0.5rem 0 0;
 `;
 const StyledContainer = styled.div<CodeDisplayStyleProps>`
   display: block;
-  background-color: ${(props) => props.$colorPalette.primary.accentScale[6]};
+  background-color: ${(props) => props.$colorPalette.primary.accentScale[4]};
   border-radius: 0 0 0.5rem 0.5rem;
   padding: 1rem 2rem;
 
@@ -40,7 +40,7 @@ const StyledSyntaxHighlighter = styled(
   SyntaxHighlighter
 )<CodeDisplayStyleProps>`
   background-color: ${(props) =>
-    props.$colorPalette.primary.accentScale[6]} !important;
+    props.$colorPalette.primary.accentScale[4]} !important;
   font-family: "Lato", sans-serif;
 `;
 
