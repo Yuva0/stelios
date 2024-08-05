@@ -6,7 +6,7 @@ import { useTheme } from "../ThemeProvider/ThemeProvider";
 const StyledSideBar = styled.div<SideBarStyleProps>`
   display: flex;
   flex-direction: column;
-  position: fixed;
+  position: sticky;
   width: 10rem;
   height: 100vh;
   overflow: scroll;
