@@ -15,6 +15,7 @@ const StyledHeader = styled.header<HeaderStyleProps>`
   align-items: center;
   width: 100%;
   box-sizing: border-box;
+  z-index: 1000;
   transition: height 330ms ease-in-out;
   background-color: ${(props) => props.$colorPalette.primary.background};
   padding: 0 1rem;
