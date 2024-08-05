@@ -11,7 +11,7 @@ import { NavigationBarGroupItemProps } from "./NavigationBarGroupItem/Navigation
 const StyledNavigationBarCtr = styled.div<NavigationBarStyleProps>`
   display: flex;
   flex-direction: column;
-  position: fixed;
+  position: sticky;
   left: 0;
   top: 0;
   height: 100vh;

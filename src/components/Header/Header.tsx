@@ -17,10 +17,10 @@ const StyledHeader = styled.header<HeaderStyleProps>`
   box-sizing: border-box;
   transition: height 330ms ease-in-out;
   background-color: ${(props) => props.$colorPalette.primary.background};
-  z-index: 1000;
   padding: 0 1rem;
   height: ${(props) => (props.$expanded ? props.$height ?? "5rem" : "0rem")};
-  position: fixed;
+  position: sticky;
+  top:0;
   box-shadow: ${(props) =>
     props.$expanded ? "none" : "0 0 10px 0 rgba(0, 0, 0, 0.35)"};
   outline: ${(props) =>
