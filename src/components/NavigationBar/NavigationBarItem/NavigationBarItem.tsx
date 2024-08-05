@@ -23,7 +23,7 @@ const StyledNavBarItem = styled.li<NavigationBarItemStyleProps>`
   background-color: ${(props) =>
     props.$selected
       ? props.$colorPalette.primary.accentScale[2]
-      : props.$colorPalette.primary.grayScale[0]};
+      : "transparent"};
   &:hover {
     background-color: ${(props) =>
       props.$selected
