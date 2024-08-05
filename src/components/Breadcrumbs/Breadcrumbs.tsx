@@ -5,6 +5,7 @@ interface BreadcrumbsProps {
   children: React.ReactNode | React.ReactNode[];
   delimiter?: string;
   color?: "primary" | "secondary" | "info" | "success" | "warning" | "danger";
+  size?: "small" | "medium" | "large";
 }
 
 const StyledDelimiterSpan = styled.span`
@@ -18,6 +19,7 @@ const Breadcrumbs: React.FunctionComponent<BreadcrumbsProps> = ({
   children,
   delimiter,
   color,
+  size
 }) => {
   return (
     <div>
@@ -26,6 +28,7 @@ const Breadcrumbs: React.FunctionComponent<BreadcrumbsProps> = ({
           <>
             {React.cloneElement(child as React.ReactElement, {
               color: color,
+              size: size,
             })}
 
             <StyledDelimiterSpan>

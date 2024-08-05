@@ -17,10 +17,29 @@ type Story = StoryObj<typeof Breadcrumbs>;
 export const Default: Story = {
   render: () => {
     return (
-      <Breadcrumbs delimiter="/" color="primary">
-        <BreadcrumbsItem title="Guides" />
-        <BreadcrumbsItem title="Function Components" link="/guides/function-components" />
-      </Breadcrumbs>
+      <>
+        <Breadcrumbs size="large" delimiter="/" color="primary">
+          <BreadcrumbsItem title="Guides" />
+          <BreadcrumbsItem
+            title="Function Components"
+            link="/guides/function-components"
+          />
+        </Breadcrumbs>
+        <Breadcrumbs size="medium" delimiter="/" color="primary">
+          <BreadcrumbsItem title="Guides" />
+          <BreadcrumbsItem
+            title="Function Components"
+            link="/guides/function-components"
+          />
+        </Breadcrumbs>
+        <Breadcrumbs size="small" delimiter="/" color="primary">
+          <BreadcrumbsItem title="Guides" />
+          <BreadcrumbsItem
+            title="Function Components"
+            link="/guides/function-components"
+          />
+        </Breadcrumbs>
+      </>
     );
   },
 };

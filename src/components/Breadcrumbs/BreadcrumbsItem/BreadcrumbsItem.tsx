@@ -6,17 +6,23 @@ interface BreadcrumbsItemProps {
   link?: string;
   title?: React.ReactNode;
   color?: "primary" | "secondary" | "info" | "success" | "warning" | "danger";
+  size?: "small" | "medium" | "large";
 }
 
 const BreadcrumbsItem: React.FunctionComponent<BreadcrumbsItemProps> = ({
   link,
   title,
-  color = "info"
+  color = "info",
+  size,
 }: BreadcrumbsItemProps) => {
   return link ? (
-    <Link color={color} variant="hover" href={link}>{title}</Link>
+    <Link size={size} color={color} variant="hover" href={link}>
+      {title}
+    </Link>
   ) : (
-    <Text variant="span">{title}</Text>
+    <Text size={size} variant="span">
+      {title}
+    </Text>
   );
 };
 
