@@ -6,7 +6,6 @@ import {
   IconChevronCompactDown,
   IconChevronCompactUp,
 } from "@tabler/icons-react";
-import colors from "../../tokens/colors.json";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
 
 const StyledHeader = styled.header<HeaderStyleProps>`
@@ -53,6 +52,7 @@ const StyledExpandIcon = styled.div<HeaderStyleProps>`
 `;
 
 const Header = ({
+  id,
   children,
   height,
   className,
@@ -73,6 +73,7 @@ const Header = ({
 
   return (
     <StyledHeader
+      id={id}
       $height={height}
       $expanded={expanded}
       $colorPalette={colorPalette}

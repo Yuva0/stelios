@@ -1,6 +1,7 @@
 import { DefaultTheme } from "../ThemeProvider/ThemeProvider.types";
 
 export interface HeaderProps {
+  id?: string;
   children?: React.ReactNode | [React.ReactNode];
   height?: string;
   style?: React.CSSProperties;
