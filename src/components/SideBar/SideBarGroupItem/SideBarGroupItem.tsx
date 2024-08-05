@@ -21,12 +21,14 @@ const SideBarGroupItem = ({
   children,
   className,
   style,
+  size,
 }: SideBarGroupItemProps) => {
   const colorPalette = useTheme().theme.colorPalette;
 
   if (typeof children === "string")
     return (
       <StyledSideBarGroupItemLink
+        size={size}
         variant="hover"
         className={className}
         style={style}

@@ -16,12 +16,13 @@ const StyledSideBarItem = styled.div<SideBarItemStyleProps>`
   padding: 0.5rem 0.5rem 0.25rem 1rem;
 `;
 
-const SideBarItem = ({ children, className, style }: SideBarItemProps) => {
+const SideBarItem = ({ children, className, style, size }: SideBarItemProps) => {
   const colorPalette = useTheme().theme.colorPalette;
 
   if (typeof children === "string")
     return (
       <StyledSideBarLink
+        size={size}
         variant="hover"
         className={className}
         style={style}

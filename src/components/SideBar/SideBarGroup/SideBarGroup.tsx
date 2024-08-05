@@ -6,7 +6,6 @@ import {
 import styled from "styled-components";
 import Text from "../../Text/Text";
 import Link from "../../Link/Link";
-import colors from "../../../tokens/colors.json";
 import { useTheme } from "../../ThemeProvider/ThemeProvider";
 
 const StyledSideBarGroup = styled.ul`
@@ -31,6 +30,7 @@ const SideBarGroup = ({
   title,
   leadingIcon,
   trailingIcon,
+  size,
   // Events
   onClick,
 }: SideBarGroupProps) => {
@@ -43,11 +43,13 @@ const SideBarGroup = ({
           {leadingIcon && <span>{leadingIcon}</span>}
           {title && typeof title === "string" ? (
             onClick ? (
-              <Link variant="hover" onClick={onClick}>
+              <Link size={size} variant="hover" onClick={onClick}>
                 {title}
               </Link>
             ) : (
-              <Text variant="span">{title}</Text>
+              <Text size={size} variant="span">
+                {title}
+              </Text>
             )
           ) : (
             title
