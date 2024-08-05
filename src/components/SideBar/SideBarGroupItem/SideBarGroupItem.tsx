@@ -10,7 +10,6 @@ import { useTheme } from "../../ThemeProvider/ThemeProvider";
 const StyledSideBarGroupItem = styled(Link)<SideBarGroupItemStyleProps>`
   display: flex;
   padding: 0.25rem 0.5rem 0.25rem 1.75rem;
-  color: ${(props) => props.$colorPalette.primary.grayScale[11]};
 `;
 
 const StyledSideBarGroupItemLink = styled(Link)`
@@ -22,6 +21,7 @@ const SideBarGroupItem = ({
   className,
   style,
   size,
+  selected,
 }: SideBarGroupItemProps) => {
   const colorPalette = useTheme().theme.colorPalette;
 
@@ -30,6 +30,7 @@ const SideBarGroupItem = ({
       <StyledSideBarGroupItemLink
         size={size}
         variant="hover"
+        color={selected ? "primary" : undefined}
         className={className}
         style={style}
       >

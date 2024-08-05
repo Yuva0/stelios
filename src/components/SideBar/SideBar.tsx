@@ -12,7 +12,6 @@ const StyledSideBar = styled.div<SideBarStyleProps>`
   overflow: scroll;
   right: ${(props) => props.right ?? 0};
   top: ${(props) => props.top ?? 0};
-  background-color: ${(props) => props.$colorPalette.primary.background};
   color: ${(props) => props.$colorPalette.primary.grayScale[11]};
 `;
 

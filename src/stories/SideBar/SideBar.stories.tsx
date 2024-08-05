@@ -25,7 +25,7 @@ export const Default: Story = {
         <SideBarItem>Test</SideBarItem>
         <SideBarItem>Test</SideBarItem>
         <SideBarGroup title="Group 1" onClick={() => {}}>
-          <SideBarGroupItem>Test</SideBarGroupItem>
+          <SideBarGroupItem selected>Test</SideBarGroupItem>
           <SideBarGroupItem>Test</SideBarGroupItem>
           <SideBarGroupItem>Test</SideBarGroupItem>
           <SideBarGroupItem>Test</SideBarGroupItem>

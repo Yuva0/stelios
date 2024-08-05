@@ -5,8 +5,10 @@ export interface SideBarGroupItemProps {
   className?: string;
   style?: React.CSSProperties;
   size?: "small" | "medium" | "large";
+  selected?: boolean;
 }
 
 export interface SideBarGroupItemStyleProps {
   $colorPalette: DefaultTheme["theme"]["colorPalette"];
+  $selected?: boolean;
 }

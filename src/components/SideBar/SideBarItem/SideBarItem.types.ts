@@ -5,8 +5,10 @@ export interface SideBarItemProps {
   className?: string;
   style?: React.CSSProperties;
   size?: "small" | "medium" | "large";
+  selected?: boolean;
 }
 
 export interface SideBarItemStyleProps {
   $colorPalette: DefaultTheme["theme"]["colorPalette"];
+  $selected?: boolean;
 }

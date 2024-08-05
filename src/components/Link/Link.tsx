@@ -3,7 +3,6 @@ import { LinkProps, LinkStyleProps } from "./Link.types";
 import Text from "../Text/Text";
 import styled from "styled-components";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
-import { colorTypes } from "../ThemeProvider/ThemeProvider.types";
 
 const StyledLink = styled.a<LinkStyleProps>`
   text-decoration: ${(props) =>
