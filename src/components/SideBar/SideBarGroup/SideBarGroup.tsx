@@ -31,6 +31,7 @@ const SideBarGroup = ({
   leadingIcon,
   trailingIcon,
   size,
+  selected,
   // Events
   onClick,
 }: SideBarGroupProps) => {
@@ -43,7 +44,12 @@ const SideBarGroup = ({
           {leadingIcon && <span>{leadingIcon}</span>}
           {title && typeof title === "string" ? (
             onClick ? (
-              <Link size={size} variant="hover" onClick={onClick}>
+              <Link
+                size={size}
+                variant="hover"
+                color={selected ? "primary" : undefined}
+                onClick={onClick}
+              >
                 {title}
               </Link>
             ) : (

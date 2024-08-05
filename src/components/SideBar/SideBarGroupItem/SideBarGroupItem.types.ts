@@ -6,6 +6,8 @@ export interface SideBarGroupItemProps {
   style?: React.CSSProperties;
   size?: "small" | "medium" | "large";
   selected?: boolean;
+  // Events
+  onClick?: (e: React.MouseEvent) => void;
 }
 
 export interface SideBarGroupItemStyleProps {

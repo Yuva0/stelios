@@ -8,6 +8,7 @@ export interface SideBarGroupProps {
   leadingIcon?: React.ReactNode;
   trailingIcon?: React.ReactNode;
   size?: "small" | "medium" | "large";
+  selected?: boolean;
   // Events
   onClick?: (e: React.MouseEvent) => void;
 }

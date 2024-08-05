@@ -22,6 +22,8 @@ const SideBarGroupItem = ({
   style,
   size,
   selected,
+  // Events
+  onClick
 }: SideBarGroupItemProps) => {
   const colorPalette = useTheme().theme.colorPalette;
 
@@ -33,6 +35,7 @@ const SideBarGroupItem = ({
         color={selected ? "primary" : undefined}
         className={className}
         style={style}
+        onClick={onClick}
       >
         {children}
       </StyledSideBarGroupItemLink>
@@ -44,6 +47,7 @@ const SideBarGroupItem = ({
       $colorPalette={colorPalette}
       className={className}
       style={style}
+      onClick={onClick}
     >
       {children}
     </StyledSideBarGroupItem>
