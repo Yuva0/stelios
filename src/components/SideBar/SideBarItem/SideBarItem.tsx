@@ -14,7 +14,10 @@ const StyledSideBarItem = styled.div<SideBarItemStyleProps>`
   display: flex;
   flex-direction: column;
   padding: 0.5rem 0.5rem 0.25rem 1rem;
-  color: ${(props) => props.$selected ? props.$colorPalette.primary.accentScale[11] : props.$colorPalette.primary.grayScale[11]};
+  color: ${(props) =>
+    props.$selected
+      ? props.$colorPalette.primary.accentScale[11]
+      : props.$colorPalette.primary.grayScale[11]};
 `;
 
 const SideBarItem = ({
@@ -23,10 +26,10 @@ const SideBarItem = ({
   style,
   size,
   selected,
+  //Events
+  onClick,
 }: SideBarItemProps) => {
   const colorPalette = useTheme().theme.colorPalette;
-
-  console.log(colorPalette.primary.accentScale[11]);
 
   if (typeof children === "string")
     return (
@@ -36,13 +39,14 @@ const SideBarItem = ({
         variant="hover"
         className={className}
         style={style}
+        onClick={onClick}
       >
         {children}
       </StyledSideBarLink>
     );
 
   return (
-    <StyledSideBarItem $colorPalette={colorPalette}>
+    <StyledSideBarItem $colorPalette={colorPalette} onClick={onClick}>
       {children}
     </StyledSideBarItem>
   );
