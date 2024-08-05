@@ -68,7 +68,6 @@ const StyledInput = styled.div<InputStyleProps>`
 
 const StyledInputIcon = styled.div<InputStyleProps>`
   color: ${(props) => props.$colorGradient[props.$color].grayScale[8]};
-  padding: 0.25rem 0.25rem;
   cursor: pointer;
   width: ${(props) => getIconSize(props.$size)};
   height: ${(props) => getIconSize(props.$size)};
