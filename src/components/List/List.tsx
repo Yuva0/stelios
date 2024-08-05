@@ -7,10 +7,6 @@ interface ListStyleProps {
   $variant: ListProps["variant"];
 }
 
-const StyledListContainer = styled.div`
-  margin-bottom: 1rem;
-`;
-
 const StyledList = styled.ul<ListStyleProps>`
   margin: 0;
   padding: 0 0 0 2rem;
@@ -34,12 +30,19 @@ const Title = (title?: React.ReactNode, size?: ListProps["size"]) => {
   );
 };
 
-const List = ({ title, children, variant = "ordered", size }: ListProps) => {
+const List = ({
+  title,
+  children,
+  variant = "ordered",
+  size,
+  style,
+  className,
+}: ListProps) => {
   return (
-    <StyledListContainer>
+    <div style={style} className={className}>
       {Title(title, size)}
       <StyledList $variant={variant}>{children}</StyledList>
-    </StyledListContainer>
+    </div>
   );
 };
 
