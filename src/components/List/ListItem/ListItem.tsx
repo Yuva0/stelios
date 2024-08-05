@@ -13,7 +13,7 @@ const StyledListItem = styled.li<ListItemStyleProps>`
   margin: 0.5rem 0;
 `;
 
-const ListItem = ({ children }: ListItemProps) => {
+const ListItem = ({ children, style, className }: ListItemProps) => {
   const colorPalette = useTheme().theme.colorPalette;
 
   const ChildrenElement =
@@ -24,7 +24,7 @@ const ListItem = ({ children }: ListItemProps) => {
     );
 
   return (
-    <StyledListItem $colorPalette={colorPalette}>
+    <StyledListItem style={style} className={className} $colorPalette={colorPalette}>
       {ChildrenElement}
     </StyledListItem>
   );
