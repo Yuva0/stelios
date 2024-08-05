@@ -5,6 +5,7 @@ export interface CodeDisplayProps {
   language: string;
   width?: string;
   syntaxStyle?: any;
+  style?: React.CSSProperties;
 }
 
 export interface CodeDisplayStyleProps {

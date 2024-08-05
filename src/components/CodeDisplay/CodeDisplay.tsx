@@ -49,12 +49,13 @@ const CodeDisplay = ({
   width,
   language,
   syntaxStyle,
+  style
 }: CodeDisplayProps) => {
   const colorPalette = useTheme().theme.colorPalette;
   const appearance = colorPalette.primary.appearance;
 
   return (
-    <StyledCodeDisplay $colorPalette={colorPalette} $width={width}>
+    <StyledCodeDisplay style={style} $colorPalette={colorPalette} $width={width}>
       <StyledCode $colorPalette={colorPalette}>
         <Text variant="paragraph" size="small">
           {language}
