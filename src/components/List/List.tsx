@@ -39,9 +39,11 @@ const List = ({
   className,
 }: ListProps) => {
   return (
-    <div style={style} className={className}>
+    <div>
       {Title(title, size)}
-      <StyledList $variant={variant}>{children}</StyledList>
+      <StyledList $variant={variant} style={style} className={className}>
+        {children}
+      </StyledList>
     </div>
   );
 };
