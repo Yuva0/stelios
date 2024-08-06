@@ -7,7 +7,7 @@ export type DrawerProps = {
   className?: string;
   style?: React.CSSProperties;
   hideOnOutsideClick?: boolean;
-  onClose?: (e: React.MouseEvent) => void;
+  onClose?: (e: React.MouseEvent | KeyboardEvent) => void;
   children: React.ReactNode | React.ReactNode[];
   zIndex?: number;
   backdropStrength?: "light" | "medium" | "strong";

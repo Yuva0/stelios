@@ -85,7 +85,20 @@ const Drawer = ({
   const [isOpen, setIsOpen] = React.useState(open);
   React.useEffect(() => {
     setIsOpen(open);
-  }, [open]);
+
+    const handleEscapeKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsOpen(false);
+        onClose && onClose(e);
+      }
+    };
+
+    if (open) document.addEventListener("keydown", handleEscapeKey);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscapeKey);
+    };
+  }, [open, onClose]);
 
   const colorPalette = useTheme().theme.colorPalette;
 
