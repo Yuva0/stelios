@@ -28,6 +28,7 @@ import NavigationBarGroup from "./components/NavigationBar/NavigationBarGroup/Na
 import NavigationBarGroupItem from "./components/NavigationBar/NavigationBarGroupItem/NavigationBarGroupItem";
 import NavigationBarHeader from "./components/NavigationBar/NavigationBarHeader/NavigationBarHeader";
 import NavigationBarItem from "./components/NavigationBar/NavigationBarItem/NavigationBarItem";
+import NotFound from "./components/NotFound/NotFound";
 import NumberInput from "./components/NumberInput/NumberInput";
 import Password from "./components/Password/Password";
 import Radio from "./components/Radio/Radio";
@@ -79,6 +80,7 @@ export {
   NavigationBarHeader,
   NavigationBarItem,
   NavigationBarGroupItem,
+  NotFound,
   NumberInput,
   Password,
   Radio,
