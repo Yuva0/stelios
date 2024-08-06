@@ -183,14 +183,14 @@ export const Variants: Story = {
           <tr style={{ height: "64px" }}>
             <td>
               <Text size="large" variant="paragraph">
-                Text
+                Soft
               </Text>
             </td>
             <td>
               <IconButton
                 icon={<Icon12Hours />}
                 size="large"
-                variant="text"
+                variant="soft"
                 color="primary"
               ></IconButton>
             </td>
@@ -198,7 +198,7 @@ export const Variants: Story = {
               <IconButton
                 icon={<Icon12Hours />}
                 size="large"
-                variant="text"
+                variant="soft"
                 color="secondary"
               ></IconButton>
             </td>
@@ -206,7 +206,7 @@ export const Variants: Story = {
               <IconButton
                 icon={<Icon12Hours />}
                 size="large"
-                variant="text"
+                variant="soft"
                 color="danger"
               ></IconButton>
             </td>
@@ -214,7 +214,7 @@ export const Variants: Story = {
               <IconButton
                 icon={<Icon12Hours />}
                 size="large"
-                variant="text"
+                variant="soft"
                 color="warning"
               ></IconButton>
             </td>
@@ -222,7 +222,7 @@ export const Variants: Story = {
               <IconButton
                 icon={<Icon12Hours />}
                 size="large"
-                variant="text"
+                variant="soft"
                 color="success"
               ></IconButton>
             </td>
@@ -230,7 +230,7 @@ export const Variants: Story = {
               <IconButton
                 icon={<Icon12Hours />}
                 size="large"
-                variant="text"
+                variant="soft"
                 color="info"
               ></IconButton>
             </td>
@@ -353,14 +353,14 @@ export const Variants: Story = {
           <tr style={{ height: "64px" }}>
             <td>
               <Text size="large" variant="paragraph">
-                Text
+                Soft
               </Text>
             </td>
             <td>
               <IconButton
                 icon={<Icon12Hours />}
                 size="medium"
-                variant="text"
+                variant="soft"
                 color="primary"
               ></IconButton>
             </td>
@@ -368,7 +368,7 @@ export const Variants: Story = {
               <IconButton
                 icon={<Icon12Hours />}
                 size="medium"
-                variant="text"
+                variant="soft"
                 color="secondary"
               ></IconButton>
             </td>
@@ -376,7 +376,7 @@ export const Variants: Story = {
               <IconButton
                 icon={<Icon12Hours />}
                 size="medium"
-                variant="text"
+                variant="soft"
                 color="danger"
               ></IconButton>
             </td>
@@ -384,7 +384,7 @@ export const Variants: Story = {
               <IconButton
                 icon={<Icon12Hours />}
                 size="medium"
-                variant="text"
+                variant="soft"
                 color="warning"
               ></IconButton>
             </td>
@@ -392,7 +392,7 @@ export const Variants: Story = {
               <IconButton
                 icon={<Icon12Hours />}
                 size="medium"
-                variant="text"
+                variant="soft"
                 color="success"
               ></IconButton>
             </td>
@@ -400,7 +400,7 @@ export const Variants: Story = {
               <IconButton
                 icon={<Icon12Hours />}
                 size="medium"
-                variant="text"
+                variant="soft"
                 color="info"
               ></IconButton>
             </td>
@@ -523,14 +523,14 @@ export const Variants: Story = {
           <tr style={{ height: "64px" }}>
             <td>
               <Text size="large" variant="paragraph">
-                Text
+                Soft
               </Text>
             </td>
             <td>
               <IconButton
                 icon={<Icon12Hours />}
                 size="small"
-                variant="text"
+                variant="soft"
                 color="primary"
               ></IconButton>
             </td>
@@ -538,7 +538,7 @@ export const Variants: Story = {
               <IconButton
                 icon={<Icon12Hours />}
                 size="small"
-                variant="text"
+                variant="soft"
                 color="secondary"
               ></IconButton>
             </td>
@@ -546,7 +546,7 @@ export const Variants: Story = {
               <IconButton
                 icon={<Icon12Hours />}
                 size="small"
-                variant="text"
+                variant="soft"
                 color="danger"
               ></IconButton>
             </td>
@@ -554,7 +554,7 @@ export const Variants: Story = {
               <IconButton
                 icon={<Icon12Hours />}
                 size="small"
-                variant="text"
+                variant="soft"
                 color="warning"
               ></IconButton>
             </td>
@@ -562,7 +562,7 @@ export const Variants: Story = {
               <IconButton
                 icon={<Icon12Hours />}
                 size="small"
-                variant="text"
+                variant="soft"
                 color="success"
               ></IconButton>
             </td>
@@ -570,7 +570,7 @@ export const Variants: Story = {
               <IconButton
                 icon={<Icon12Hours />}
                 size="small"
-                variant="text"
+                variant="soft"
                 color="info"
               ></IconButton>
             </td>

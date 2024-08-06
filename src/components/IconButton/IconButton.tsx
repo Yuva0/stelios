@@ -4,6 +4,14 @@ import styled from "styled-components";
 import Text from "../Text/Text";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
 
+const getFocusOutlineColor = (
+  color: IconButtonStyleProps["$color"],
+  colorGradient: IconButtonStyleProps["$colorGradient"]
+) => {
+  return colorGradient[color].accentScale[5];
+}
+
+
 const getBackgroundColor = (
   variant: IconButtonStyleProps["$variant"],
   color: IconButtonStyleProps["$color"],
@@ -16,17 +24,17 @@ const getBackgroundColor = (
         hover: colorGradient[color].accentScale[9],
         active: colorGradient[color].accentScale[9],
       };
-    case "outlined":
+    case "soft":
       return {
         default: colorGradient[color].accentScale[2],
         hover: colorGradient[color].accentScale[3],
         active: colorGradient[color].accentScale[4],
       };
-    case "text":
+    case "outlined":
       return {
-        default: colorGradient[color].accentScale[0],
-        hover: colorGradient[color].accentScale[1],
-        active: colorGradient[color].accentScale[2],
+        default: "transparent",
+        hover: "transparent",
+        active: "transparent",
       };
     default:
       return {
@@ -49,13 +57,13 @@ const getColor = (
         hover: colorGradient[color].accentContrast,
         active: colorGradient[color].accentContrast,
       };
-    case "outlined":
+    case "soft":
       return {
         default: colorGradient[color].accentScale[10],
         hover: colorGradient[color].accentScale[10],
         active: colorGradient[color].accentScale[10],
       };
-    case "text":
+    case "outlined":
       return {
         default: colorGradient[color].accentScale[10],
         hover: colorGradient[color].accentScale[10],
@@ -81,7 +89,7 @@ const getPadding = (size: "small" | "medium" | "large") => {
   }
 };
 
-const getOutline = (
+const getBorder = (
   variant: IconButtonStyleProps["$variant"],
   color: IconButtonStyleProps["$color"],
   colorGradient: IconButtonStyleProps["$colorGradient"]
@@ -117,9 +125,8 @@ const StyledIconBtn = styled.button<IconButtonStyleProps>`
       .default};
   color: ${(props) =>
     getColor(props.$variant, props.$color, props.$colorGradient).default};
-  outline: ${(props) =>
-    getOutline(props.$variant, props.$color, props.$colorGradient)};
-  border: 0;
+  border: ${(props) =>
+    getBorder(props.$variant, props.$color, props.$colorGradient).default};
   border-radius: 50%;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
   padding: ${(props) => getPadding(props.$size ?? "medium")};
@@ -133,10 +140,16 @@ const StyledIconBtn = styled.button<IconButtonStyleProps>`
         .hover};
     color: ${(props) =>
       getColor(props.$variant, props.$color, props.$colorGradient).hover};
-    outline: ${(props) =>
-      getOutline(props.$variant, props.$color, props.$colorGradient).hover};
+    border: ${(props) =>
+      getBorder(props.$variant, props.$color, props.$colorGradient).hover};
     box-shadow: ${(props) =>
-      props.$variant === "text" ? "none" : "0 2px 4px 0 rgba(0, 0, 0, 0.1)"};
+      props.$variant === "outlined" ? "none" : "0 2px 4px 0 rgba(0, 0, 0, 0.1)"};
+  }
+  &:focus-visible {
+  outline-offset: 2px;
+    outline: 2px solid
+      ${(props) =>
+        getFocusOutlineColor(props.$color, props.$colorGradient)};
   }
   &:active {
     background-color: ${(props) =>
@@ -144,14 +157,14 @@ const StyledIconBtn = styled.button<IconButtonStyleProps>`
         .active};
     color: ${(props) =>
       getColor(props.$variant, props.$color, props.$colorGradient).active};
-    outline: ${(props) =>
-      getOutline(props.$variant, props.$color, props.$colorGradient).active};
+    border: ${(props) =>
+      getBorder(props.$variant, props.$color, props.$colorGradient).active};
     filter: ${(props) =>
       props.$variant === "contained"
         ? "brightness(0.92) saturate(1.1)"
         : "none"};
     box-shadow: ${(props) =>
-      props.$variant === "text" ? "none" : "0 1px 2px 0 rgba(0, 0, 0, 0.05)"};
+      props.$variant === "outlined" ? "none" : "0 1px 2px 0 rgba(0, 0, 0, 0.05)"};
   }
 `;
 
