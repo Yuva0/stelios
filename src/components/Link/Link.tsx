@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
 
 const StyledLink = styled.a<LinkStyleProps>`
+  width: fit-content;
   text-decoration: ${(props) =>
     props.$variant === "underline" ? "underline" : "none"};
   color: ${(props) => props.$color};
@@ -13,6 +14,11 @@ const StyledLink = styled.a<LinkStyleProps>`
   &:hover {
     text-decoration: ${(props) =>
       props.$variant === "default" ? "none" : "underline"};
+  }
+  &:focus-visible {
+    outline: 1px solid ${(props) => props.$color};
+    outline-offset: 2px;
+    border-radius: 0.25rem;
   }
 `;
 

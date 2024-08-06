@@ -43,6 +43,33 @@ export const Variants: StoryObj<typeof Link> = {
         <Link href="https://www.google.com" variant="underline" size="large">
           Click me
         </Link>
+        <Link href="https://www.google.com" variant="default" color="primary" size="small">
+          Click me
+        </Link>
+        <Link href="https://www.google.com" variant="hover" color="primary" size="small">
+          Click me
+        </Link>
+        <Link href="https://www.google.com" variant="underline" color="primary" size="small">
+          Click me
+        </Link>
+        <Link href="https://www.google.com" variant="default" color="primary">
+          Click me
+        </Link>
+        <Link href="https://www.google.com" variant="hover" color="primary">
+          Click me
+        </Link>
+        <Link href="https://www.google.com" variant="underline" color="primary">
+          Click me
+        </Link>
+        <Link href="https://www.google.com" variant="default" color="primary" size="large">
+          Click me
+        </Link>
+        <Link href="https://www.google.com" variant="hover" color="primary" size="large">
+          Click me
+        </Link>
+        <Link href="https://www.google.com" variant="underline" color="primary" size="large">
+          Click me
+        </Link>
       </div>
     );
   },
