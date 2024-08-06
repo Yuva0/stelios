@@ -10,6 +10,7 @@ interface NotFoundProps {
   height?: string;
   iconHeight?: string;
   style?: React.CSSProperties;
+  notFoundText?: string;
 }
 
 interface NotFoundStyleProps {
@@ -23,7 +24,7 @@ const StyledNotFoundCtr = styled.div<NotFoundStyleProps>`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  gap: 2rem;
   width: ${(props) => props.$width};
   height: ${(props) => props.$height};
   color: ${(props) => props.$colorPalette.primary.grayScale[10]};
@@ -37,6 +38,7 @@ const NotFound: React.FunctionComponent<NotFoundProps> = ({
   height = "800px",
   iconHeight,
   style,
+  notFoundText = "Page Not Found",
 }) => {
   const colorPalette = useTheme().theme.colorPalette;
 
@@ -49,6 +51,13 @@ const NotFound: React.FunctionComponent<NotFoundProps> = ({
       NotFoundComponent = Cone;
   }
 
+  const NotFoundElement =
+    typeof notFoundText === "string" ? (
+      <Text variant="h4">{notFoundText}</Text>
+    ) : (
+      notFoundText
+    );
+
   return (
     <StyledNotFoundCtr
       $width={width}
@@ -57,7 +66,7 @@ const NotFound: React.FunctionComponent<NotFoundProps> = ({
       style={style}
     >
       <NotFoundComponent width={iconWidth} height={iconHeight} />
-      <Text variant="h4">Page Not Found</Text>
+      {NotFoundElement}
     </StyledNotFoundCtr>
   );
 };

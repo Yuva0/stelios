@@ -9,6 +9,8 @@ interface AlertProps {
   leadingIcon?: React.ReactNode;
   color?: "primary" | "secondary" | "danger" | "warning" | "success" | "info";
   width?: string;
+  style?: React.CSSProperties;
+  className?: string;
 }
 
 const StyledContainer = styled.div<{
@@ -66,6 +68,8 @@ const Alert: React.FunctionComponent<AlertProps> = ({
   leadingIcon,
   color,
   width = "auto",
+  style,
+  className,
 }: AlertProps) => {
   const colorPalette = useTheme().theme.colorPalette;
 
@@ -109,7 +113,13 @@ const Alert: React.FunctionComponent<AlertProps> = ({
   }, [leadingIcon]);
 
   return (
-    <StyledContainer $width={width} $color={color} $colorPalette={colorPalette}>
+    <StyledContainer
+      style={style}
+      className={className}
+      $width={width}
+      $color={color}
+      $colorPalette={colorPalette}
+    >
       <LeadingIcon />
       <Content />
     </StyledContainer>
