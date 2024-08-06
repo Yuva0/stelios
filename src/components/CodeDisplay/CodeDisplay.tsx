@@ -31,7 +31,7 @@ const StyledContainer = styled.div<CodeDisplayStyleProps>`
     word-break: break-word;
     code {
       font-size: 14px;
-      font-family: "Lato", sans-serif;
+      font-family: "Source Code Pro", monospace;
     }
   }
 `;
@@ -41,7 +41,6 @@ const StyledSyntaxHighlighter = styled(
 )<CodeDisplayStyleProps>`
   background-color: ${(props) =>
     props.$colorPalette.primary.accentScale[4]} !important;
-  font-family: "Lato", sans-serif;
 `;
 
 const CodeDisplay = ({
