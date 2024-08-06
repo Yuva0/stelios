@@ -6,24 +6,36 @@ import { useTheme } from "../ThemeProvider/ThemeProvider";
 interface NotFoundProps {
   name?: string;
   width?: string;
+  iconWidth?: string;
   height?: string;
+  iconHeight?: string;
   style?: React.CSSProperties;
 }
 
-const StyledNotFoundCtr = styled.div<{ $colorPalette: any }>`
+interface NotFoundStyleProps {
+  $colorPalette: any;
+  $width: string;
+  $height: string;
+}
+
+const StyledNotFoundCtr = styled.div<NotFoundStyleProps>`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 1rem;
+  width: ${(props) => props.$width};
+  height: ${(props) => props.$height};
   color: ${(props) => props.$colorPalette.primary.grayScale[10]};
   background-color: ${(props) => props.$colorPalette.primary.grayScale[0]};
 `;
 
 const NotFound: React.FunctionComponent<NotFoundProps> = ({
   name,
-  width,
-  height,
+  width = "800px",
+  iconWidth,
+  height = "800px",
+  iconHeight,
   style,
 }) => {
   const colorPalette = useTheme().theme.colorPalette;
@@ -38,8 +50,13 @@ const NotFound: React.FunctionComponent<NotFoundProps> = ({
   }
 
   return (
-    <StyledNotFoundCtr $colorPalette={colorPalette} style={style}>
-      <NotFoundComponent width={width} height={height} />
+    <StyledNotFoundCtr
+      $width={width}
+      $height={height}
+      $colorPalette={colorPalette}
+      style={style}
+    >
+      <NotFoundComponent width={iconWidth} height={iconHeight} />
       <Text variant="h4">Page Not Found</Text>
     </StyledNotFoundCtr>
   );
