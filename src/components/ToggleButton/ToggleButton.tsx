@@ -72,6 +72,13 @@ const getGap = (size: ToggleButtonStyleProps["$size"]) => {
       return "0.5rem";
   }
 };
+const getOutlineFocus = (
+  color: ToggleButtonStyleProps["$color"],
+  colorGradient: ToggleButtonStyleProps["$colorGradient"],
+  selected: ToggleButtonStyleProps["$selected"]
+) => {
+  return `2px solid ${colorGradient[color].accentScale[7]}`;
+};
 
 const StyledToggleBtn = styled.button<ToggleButtonStyleProps>`
   display: flex;
@@ -88,6 +95,12 @@ const StyledToggleBtn = styled.button<ToggleButtonStyleProps>`
     getBgColor(props.$color, props.$colorGradient, props.$selected).default};
   color: ${(props) =>
     getColor(props.$color, props.$colorGradient, props.$selected).default};
+
+  &:focus-visible {
+    outline-offset: -2px;
+    outline: ${(props) =>
+      getOutlineFocus(props.$color, props.$colorGradient, props.$selected)};
+  }
 
   &:hover {
     background-color: ${(props) =>

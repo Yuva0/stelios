@@ -149,32 +149,32 @@ export const Variants: Story = {
                 </Text>
               </td>
               <td>
-                <Button size="large" variant="text" color="primary">
+                <Button size="large" variant="soft" color="primary">
                   Label
                 </Button>
               </td>
               <td>
-                <Button size="large" variant="text" color="secondary">
+                <Button size="large" variant="soft" color="secondary">
                   Label
                 </Button>
               </td>
               <td>
-                <Button size="large" variant="text" color="danger">
+                <Button size="large" variant="soft" color="danger">
                   Label
                 </Button>
               </td>
               <td>
-                <Button size="large" variant="text" color="warning">
+                <Button size="large" variant="soft" color="warning">
                   Label
                 </Button>
               </td>
               <td>
-                <Button size="large" variant="text" color="success">
+                <Button size="large" variant="soft" color="success">
                   Label
                 </Button>
               </td>
               <td>
-                <Button size="large" variant="text" color="info">
+                <Button size="large" variant="soft" color="info">
                   Label
                 </Button>
               </td>
@@ -265,32 +265,32 @@ export const Variants: Story = {
                 </Text>
               </td>
               <td>
-                <Button size="medium" variant="text" color="primary">
+                <Button size="medium" variant="soft" color="primary">
                   Label
                 </Button>
               </td>
               <td>
-                <Button size="medium" variant="text" color="secondary">
+                <Button size="medium" variant="soft" color="secondary">
                   Label
                 </Button>
               </td>
               <td>
-                <Button size="medium" variant="text" color="danger">
+                <Button size="medium" variant="soft" color="danger">
                   Label
                 </Button>
               </td>
               <td>
-                <Button size="medium" variant="text" color="warning">
+                <Button size="medium" variant="soft" color="warning">
                   Label
                 </Button>
               </td>
               <td>
-                <Button size="medium" variant="text" color="success">
+                <Button size="medium" variant="soft" color="success">
                   Label
                 </Button>
               </td>
               <td>
-                <Button size="medium" variant="text" color="info">
+                <Button size="medium" variant="soft" color="info">
                   Label
                 </Button>
               </td>
@@ -381,32 +381,32 @@ export const Variants: Story = {
                 </Text>
               </td>
               <td>
-                <Button size="small" variant="text" color="primary">
+                <Button size="small" variant="soft" color="primary">
                   Label
                 </Button>
               </td>
               <td>
-                <Button size="small" variant="text" color="secondary">
+                <Button size="small" variant="soft" color="secondary">
                   Label
                 </Button>
               </td>
               <td>
-                <Button size="small" variant="text" color="danger">
+                <Button size="small" variant="soft" color="danger">
                   Label
                 </Button>
               </td>
               <td>
-                <Button size="small" variant="text" color="warning">
+                <Button size="small" variant="soft" color="warning">
                   Label
                 </Button>
               </td>
               <td>
-                <Button size="small" variant="text" color="success">
+                <Button size="small" variant="soft" color="success">
                   Label
                 </Button>
               </td>
               <td>
-                <Button size="small" variant="text" color="info">
+                <Button size="small" variant="soft" color="info">
                   Label
                 </Button>
               </td>

@@ -10,7 +10,7 @@ export interface ButtonProps
   trailingIcon?: React.ReactNode;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   size?: "small" | "medium" | "large";
-  variant?: "contained" | "outlined" | "text";
+  variant?: "contained" | "outlined" | "soft";
   color?: "primary" | "secondary" | "danger" | "warning" | "success" | "info";
   children?: React.ReactNode | React.ReactNode[];
   disabled?: boolean;

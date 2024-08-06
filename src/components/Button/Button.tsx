@@ -35,11 +35,11 @@ const getBackgroundColor = (
       };
     case "outlined":
       return {
-        default: colorGradient[color].accentScale[0],
-        hover: colorGradient[color].accentScale[1],
-        active: colorGradient[color].accentScale[1],
+        default: "transparent",
+        hover: "transparent",
+        active: "transparent",
       };
-    case "text":
+    case "soft":
       return {
         default: colorGradient[color].accentScale[0],
         hover: colorGradient[color].accentScale[1],
@@ -66,7 +66,7 @@ const getColor = (
         hover: colorGradient[color].accentScale[10],
         active: colorGradient[color].accentScale[10],
       };
-    case "text":
+    case "soft":
       return {
         default: colorGradient[color].accentScale[10],
         hover: colorGradient[color].accentScale[10],
@@ -81,7 +81,7 @@ const getColor = (
   }
 };
 
-const getOutline = (
+const getBorder = (
   variant: ButtonStyleProps["$variant"],
   color: ButtonStyleProps["$color"],
   colorGradient: ButtonStyleProps["$colorGradient"]
@@ -101,31 +101,29 @@ const StyledButton = styled.button<ButtonStyleProps>`
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  border: none;
   background-color: ${(props) =>
     getBackgroundColor(props.$variant, props.$color, props.$colorGradient)
       .default};
   color: ${(props) =>
     getColor(props.$variant, props.$color, props.$colorGradient).default};
   padding: ${(props) => getPadding(props.$size)};
-  outline: ${(props) =>
-    getOutline(props.$variant, props.$color, props.$colorGradient).default};
-  outline-offset: -1px;
+  border: ${(props) =>
+    getBorder(props.$variant, props.$color, props.$colorGradient).default};
   width: ${(props) => (props.$fullWidth ? "100%" : "auto")};
   cursor: ${(props) => (props.$disabled ? "not-allowed" : "pointer")};
   border-radius: 0.25rem;
   box-shadow: ${(props) =>
-    props.$variant === "text" ? "none" : "0 1px 2px 0 rgba(0, 0, 0, 0.05)"};
+    props.$variant === "soft" ? "none" : "0 1px 2px 0 rgba(0, 0, 0, 0.05)"};
   &:hover {
     background-color: ${(props) =>
       getBackgroundColor(props.$variant, props.$color, props.$colorGradient)
         .hover};
     color: ${(props) =>
       getColor(props.$variant, props.$color, props.$colorGradient).hover};
-    outline: ${(props) =>
-      getOutline(props.$variant, props.$color, props.$colorGradient).hover};
+    border: ${(props) =>
+      getBorder(props.$variant, props.$color, props.$colorGradient).hover};
     box-shadow: ${(props) =>
-      props.$variant === "text" ? "none" : "0 2px 4px 0 rgba(0, 0, 0, 0.1)"};
+      props.$variant === "soft" ? "none" : "0 2px 4px 0 rgba(0, 0, 0, 0.1)"};
   }
   &:active {
     background-color: ${(props) =>
@@ -133,14 +131,18 @@ const StyledButton = styled.button<ButtonStyleProps>`
         .active};
     color: ${(props) =>
       getColor(props.$variant, props.$color, props.$colorGradient).active};
-    outline: ${(props) =>
-      getOutline(props.$variant, props.$color, props.$colorGradient).active};
+    border: ${(props) =>
+      getBorder(props.$variant, props.$color, props.$colorGradient).active};
     filter: ${(props) =>
       props.$variant === "contained"
         ? "brightness(0.92) saturate(1.1)"
         : "none"};
     box-shadow: ${(props) =>
-      props.$variant === "text" ? "none" : "0 1px 2px 0 rgba(0, 0, 0, 0.05)"};
+      props.$variant === "outlined" ? "none" : "0 1px 2px 0 rgba(0, 0, 0, 0.05)"};
+  }
+  &:focus-visible{
+    outline-offset: 2px;
+    outline: 2px solid ${(props) => props.$colorGradient[props.$color].accentScale[8]};
   }
 `;
 
