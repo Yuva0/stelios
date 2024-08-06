@@ -1,20 +1,13 @@
 import React from "react";
 import { ListItemProps } from "./ListItem.types";
-import styled from "styled-components";
+// import styled from "styled-components";
 import Text from "../../Text/Text";
-import { DefaultTheme } from "../../ThemeProvider/ThemeProvider.types";
-import { useTheme } from "../../ThemeProvider/ThemeProvider";
+// import { DefaultTheme } from "../../ThemeProvider/ThemeProvider.types";
+// import { useTheme } from "../../ThemeProvider/ThemeProvider";
 
-interface ListItemStyleProps {
-  $colorPalette: DefaultTheme["theme"]["colorPalette"];
-}
-
-const StyledListItem = styled.li<ListItemStyleProps>`
-  margin: 0.5rem 0;
-`;
 
 const ListItem = ({ children, style, className }: ListItemProps) => {
-  const colorPalette = useTheme().theme.colorPalette;
+  // const colorPalette = useTheme().theme.colorPalette;
 
   const ChildrenElement =
     typeof children === "string" ? (
@@ -24,9 +17,9 @@ const ListItem = ({ children, style, className }: ListItemProps) => {
     );
 
   return (
-    <StyledListItem style={style} className={className} $colorPalette={colorPalette}>
+    <li style={style} className={className}>
       {ChildrenElement}
-    </StyledListItem>
+    </li>
   );
 };
 

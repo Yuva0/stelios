@@ -8,6 +8,9 @@ interface ListStyleProps {
 }
 
 const StyledList = styled.ul<ListStyleProps>`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
   margin: 0;
   padding: 0 0 0 2rem;
   font-family: "Lato", sans-serif;
