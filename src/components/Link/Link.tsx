@@ -31,6 +31,7 @@ const Link = ({
   target,
   style,
   color,
+  tabIndex,
   // Events
   onClick,
 }: LinkProps) => {
@@ -42,6 +43,7 @@ const Link = ({
 
   return (
     <StyledLink
+      tabIndex={tabIndex}
       $color={_color}
       $variant={variant}
       target={target}

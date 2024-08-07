@@ -12,10 +12,6 @@ const StyledSideBarGroupItem = styled(Link)<SideBarGroupItemStyleProps>`
   padding: 0.25rem 0.5rem 0.25rem 1.75rem;
 `;
 
-const StyledSideBarGroupItemLink = styled(Link)`
-  padding: 0.25rem 0.5rem 0.25rem 1.75rem;
-`;
-
 const SideBarGroupItem = ({
   children,
   className,
@@ -23,23 +19,9 @@ const SideBarGroupItem = ({
   size,
   selected,
   // Events
-  onClick
+  onClick,
 }: SideBarGroupItemProps) => {
   const colorPalette = useTheme().theme.colorPalette;
-
-  if (typeof children === "string")
-    return (
-      <StyledSideBarGroupItemLink
-        size={size}
-        variant="hover"
-        color={selected ? "primary" : undefined}
-        className={className}
-        style={style}
-        onClick={onClick}
-      >
-        {children}
-      </StyledSideBarGroupItemLink>
-    );
 
   return (
     <StyledSideBarGroupItem
@@ -49,7 +31,21 @@ const SideBarGroupItem = ({
       style={style}
       onClick={onClick}
     >
-      {children}
+      {typeof children === "string" ? (
+        <Link
+          tabIndex={onClick ? 0 : undefined}
+          size={size}
+          variant="hover"
+          color={selected ? "primary" : undefined}
+          className={className}
+          style={style}
+          onClick={onClick}
+        >
+          {children}
+        </Link>
+      ) : (
+        children
+      )}
     </StyledSideBarGroupItem>
   );
 };

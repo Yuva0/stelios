@@ -4,6 +4,7 @@ import SideBar from "../../components/SideBar/SideBar";
 import SideBarItem from "../../components/SideBar/SideBarItem/SideBarItem";
 import SideBarGroup from "../../components/SideBar/SideBarGroup/SideBarGroup";
 import SideBarGroupItem from "../../components/SideBar/SideBarGroupItem/SideBarGroupItem";
+import Button from "../../components/Button/Button";
 
 const meta: Meta<typeof SideBar> = {
   title: "Components/SideBar",
@@ -20,15 +21,16 @@ export const Default: Story = {
   render: () => {
     return (
       <SideBar style={{ marginTop: "5rem" }}>
-        <SideBarItem>Test</SideBarItem>
-        <SideBarItem>Test</SideBarItem>
-        <SideBarItem>Test</SideBarItem>
-        <SideBarItem>Test</SideBarItem>
+        <Button>test</Button>
+        <SideBarItem onClick={() => {}}>Test</SideBarItem>
+        <SideBarItem onClick={() => {}}>Test</SideBarItem>
+        <SideBarItem onClick={() => {}}>Test</SideBarItem>
+        <SideBarItem onClick={() => {}}>Test</SideBarItem>
         <SideBarGroup title="Group 1" onClick={() => {}}>
-          <SideBarGroupItem selected>Test</SideBarGroupItem>
-          <SideBarGroupItem>Test</SideBarGroupItem>
-          <SideBarGroupItem>Test</SideBarGroupItem>
-          <SideBarGroupItem>Test</SideBarGroupItem>
+          <SideBarGroupItem selected onClick={() => {}}>Test</SideBarGroupItem>
+          <SideBarGroupItem onClick={() => {}}>Test</SideBarGroupItem>
+          <SideBarGroupItem onClick={() => {}}>Test</SideBarGroupItem>
+          <SideBarGroupItem onClick={() => {}}>Test</SideBarGroupItem>
         </SideBarGroup>
       </SideBar>
     );

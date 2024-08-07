@@ -1,4 +1,3 @@
-import { DefaultTheme } from "../ThemeProvider/ThemeProvider.types";
 
 export interface LinkProps {
   rel?: string;
@@ -11,6 +10,7 @@ export interface LinkProps {
   onClick?: (e: React.MouseEvent) => void;
   color?: "primary" | "secondary" | "success" | "warning" | "danger" | "info";
   target?: "_blank" | "_self" | "_parent" | "_top";
+  tabIndex?: number;
 }
 
 export type LinkStyleProps = {
