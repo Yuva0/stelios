@@ -5,6 +5,7 @@ import Text from "../Text/Text";
 import IconButton from "../IconButton/IconButton";
 import { IconX } from "@tabler/icons-react";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
+import { useDebounce } from "../../helpers/CustomHooks";
 // import ClickAwayListener from "../ClickAwayListener/ClickAwayListener";
 
 type DrawerBackdropProps = {
@@ -83,6 +84,8 @@ const Drawer = ({
   onClose,
 }: DrawerProps) => {
   const [isOpen, setIsOpen] = React.useState(open);
+  const debouncedOpen = useDebounce(open, 300);
+
   React.useEffect(() => {
     setIsOpen(open);
 
@@ -135,6 +138,7 @@ const Drawer = ({
     </StyledHeader>
   );
 
+  if(!open && !debouncedOpen) return null; 
   return (
     <>
       <StyledDrawer
