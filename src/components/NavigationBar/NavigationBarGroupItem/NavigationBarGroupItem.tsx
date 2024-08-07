@@ -37,6 +37,9 @@ const StyledNavBarGroupItem = styled.li<NavigationBarGroupItemStyleProps>`
         ? props.$colorPalette.primary.accentScale[4]
         : props.$colorPalette.primary.grayScale[2]};
   }
+  &:focus-visible {
+    outline: 1px solid ${(props) => props.$colorPalette.primary.accentScale[5]};
+  }
   &:after {
     content: "";
     position: absolute;
@@ -75,19 +78,26 @@ const NavigationBarGroupItem = ({
     setSelected(selected);
   }, [selected]);
 
-  const _onClick = (e: React.MouseEvent) => {
+  const _onClick = (e: React.MouseEvent | React.KeyboardEvent) => {
     setSelected(true);
     _getSelectedIndex && _getSelectedIndex(_index, value);
     onClick && onClick(e);
   };
+  const _handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" || e.key === " ") {
+      _onClick(e);
+    }
+  };
 
   return (
     <StyledNavBarGroupItem
+      tabIndex={0}
       $selected={_selected}
       $colorPalette={colorPalette}
       className={className}
       style={style}
       onClick={_onClick}
+      onKeyDown={_handleKeyDown}
     >
       {leadingIcon && (
         <StyledNavBarGrpItemIcon>{leadingIcon}</StyledNavBarGrpItemIcon>

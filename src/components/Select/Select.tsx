@@ -48,8 +48,6 @@ const Select = ({
     else return _handleSingleSelectOnClick(e, { title, value });
   };
 
-  console.log(setAnchorElement);
-
   return (
     <div>
       <Input
