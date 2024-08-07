@@ -24,7 +24,6 @@ const StyledNavBarGroupHeader = styled.li<NavigationBarGroupStyleProps>`
   padding: 0.3rem 0.75rem;
   border-radius: 0.5rem;
   margin: 0 0.5rem;
-  font-weight: 600;
   cursor: pointer;
   &:hover {
     background-color: ${(props) => props.$colorPalette.primary.grayScale[1]};
@@ -56,6 +55,13 @@ const StyledNavBarGroupItemContainer = styled.ul<NavigationBarGroupStyleProps>`
   transition: max-height 0.3s ease-in-out;
   gap: 0.25rem;
   padding: 0;
+
+  li:first-child {
+    margin-top: 0.1rem;
+  }
+  li:last-child {
+    margin-bottom: 0.1rem;
+  }
 `;
 
 const NavigationBarGroup = ({
