@@ -41,6 +41,12 @@ const Link = ({
     ? colorPalette[color].accentScale[10]
     : colorPalette.primary.grayScale[11];
 
+  const _handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" || e.key === " ") {
+      onClick && onClick(e);
+    }
+  }
+
   return (
     <StyledLink
       tabIndex={tabIndex}
@@ -51,6 +57,7 @@ const Link = ({
       className={className}
       style={style}
       onClick={onClick}
+      onKeyDown={_handleKeyDown}
     >
       {typeof children === "string" ? (
         <Text noColor size={size} variant="span">

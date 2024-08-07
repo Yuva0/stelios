@@ -7,7 +7,7 @@ export interface LinkProps {
   children: React.ReactNode;
   className?: string;
   style?: React.CSSProperties;
-  onClick?: (e: React.MouseEvent) => void;
+  onClick?: (e: React.MouseEvent | React.KeyboardEvent) => void;
   color?: "primary" | "secondary" | "success" | "warning" | "danger" | "info";
   target?: "_blank" | "_self" | "_parent" | "_top";
   tabIndex?: number;
