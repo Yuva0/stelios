@@ -36,6 +36,9 @@ const StyledNavBarItem = styled.li<NavigationBarItemStyleProps>`
         ? props.$colorPalette.primary.accentScale[4]
         : props.$colorPalette.primary.grayScale[2]};
   }
+  &:focus-visible {
+    outline: 1px solid ${(props) => props.$colorPalette.primary.accentScale[6]};
+  }
 `;
 
 const StyledNavBarIcon = styled.span`
@@ -70,14 +73,23 @@ const NavigationBarItem = ({
     _getSelectedIndex && _getSelectedIndex(_index, value);
     onClick && onClick(e);
   };
+  const _onKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" || e.key === " ") {
+      setSelected(true);
+      _getSelectedIndex && _getSelectedIndex(_index, value);
+      onClick && onClick(e);
+    }
+  };
 
   return (
     <StyledNavBarItem
+      tabIndex={0}
       $selected={_selected}
       $colorPalette={colorPalette}
       className={className}
       style={style}
       onClick={_onClick}
+      onKeyDown={_onKeyDown}
     >
       {leadingIcon && <StyledNavBarIcon>{leadingIcon}</StyledNavBarIcon>}
       {typeof children === "string" ? (

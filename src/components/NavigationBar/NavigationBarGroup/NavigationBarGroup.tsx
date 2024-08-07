@@ -32,6 +32,9 @@ const StyledNavBarGroupHeader = styled.li<NavigationBarGroupStyleProps>`
   &:active {
     background-color: ${(props) => props.$colorPalette.primary.grayScale[2]};
   }
+  &:focus-visible {
+    outline: 1px solid ${(props) => props.$colorPalette.primary.accentScale[6]};
+  }
 `;
 const StyledNavBarGroupIcon = styled.span<NavigationBarGroupStyleProps>`
   display: flex;
@@ -66,15 +69,22 @@ const NavigationBarGroup = ({
   const [expand, setExpand] = useState(expanded ?? false);
   const colorPalette = useTheme().theme.colorPalette;
 
-  const _toggleExpand = (e: React.MouseEvent) => {
+  const _toggleExpand = (e: React.MouseEvent | React.KeyboardEvent) => {
     setExpand((expand) => !expand);
   };
+  const _handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" || e.key === " ") {
+      _toggleExpand(e);
+    }
+  }
 
   return (
     <StyledNavBarGroup className={className}>
       <StyledNavBarGroupHeader
+        tabIndex={0}
         $colorPalette={colorPalette}
         onClick={_toggleExpand}
+        onKeyDown={_handleKeyDown}
       >
         <span>
           {leadingIcon && (

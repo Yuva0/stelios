@@ -7,10 +7,6 @@ import NavigationBarItem from "../../components/NavigationBar/NavigationBarItem/
 import NavigationBarHeader from "../../components/NavigationBar/NavigationBarHeader/NavigationBarHeader";
 import NavigationBarGroup from "../../components/NavigationBar/NavigationBarGroup/NavigationBarGroup";
 import NavigationBarGroupItem from "../../components/NavigationBar/NavigationBarGroupItem/NavigationBarGroupItem";
-import SideBar from "../../components/SideBar/SideBar";
-import SideBarItem from "../../components/SideBar/SideBarItem/SideBarItem";
-import SideBarGroup from "../../components/SideBar/SideBarGroup/SideBarGroup";
-import SideBarGroupItem from "../../components/SideBar/SideBarGroupItem/SideBarGroupItem";
 import { ThemeProvider } from "../../components/ThemeProvider/ThemeProvider";
 
 const meta: Meta<typeof NavigationBar> = {
