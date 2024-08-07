@@ -76,7 +76,7 @@ const NavigationBarGroup = ({
     if (e.key === "Enter" || e.key === " ") {
       _toggleExpand(e);
     }
-  }
+  };
 
   return (
     <StyledNavBarGroup className={className}>
@@ -110,7 +110,12 @@ const NavigationBarGroup = ({
           $colorPalette={colorPalette}
           $expand={expand}
         >
-          {children}
+          {React.Children.map(children, (child, index) => 
+            child && React.cloneElement(child as React.ReactElement, {
+              tabIndex: expand ? 0 : -1,
+              key: index,
+            } as Partial<NavigationBarGroupProps>)
+          )}
         </StyledNavBarGroupItemContainer>
       }
     </StyledNavBarGroup>

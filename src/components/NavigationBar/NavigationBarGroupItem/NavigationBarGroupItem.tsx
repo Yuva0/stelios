@@ -67,6 +67,7 @@ const NavigationBarGroupItem = ({
   style,
   size,
   selected,
+  tabIndex = 0,
   // Events
   _getSelectedIndex,
   onClick,
@@ -91,7 +92,7 @@ const NavigationBarGroupItem = ({
 
   return (
     <StyledNavBarGroupItem
-      tabIndex={0}
+      tabIndex={tabIndex}
       $selected={_selected}
       $colorPalette={colorPalette}
       className={className}

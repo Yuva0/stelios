@@ -10,6 +10,7 @@ export interface NavigationBarGroupItemProps {
   style?: React.CSSProperties;
   size?: "small" | "medium" | "large";
   selected?: boolean;
+  tabIndex?: number;
   // Events
   onClick?: (e: React.MouseEvent | React.KeyboardEvent) => void;
   _getSelectedIndex?: (index?: number, value?: string) => void;
