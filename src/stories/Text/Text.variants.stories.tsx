@@ -1,3 +1,4 @@
+import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 
 import Text from "../../components/Text/Text";
@@ -147,7 +148,7 @@ export const Variants: Story = {
         <Text variant="h5" style={{ marginTop: "2rem" }}>
           Color
         </Text>
-        <Text variant="paragraph" size="large" color="red">
+        <Text variant="paragraph" size="large" color="primary">
           {DUMMY_TEXT}
         </Text>
         <Text variant="h5" style={{ marginTop: "2rem" }} align="center">

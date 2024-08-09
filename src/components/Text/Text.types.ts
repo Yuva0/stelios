@@ -29,6 +29,7 @@ export interface TextProps {
   fontSize?: string;
   lineHeight?: string;
   noColor?: boolean;
+  fontFamily?: string;
 }
 
 export interface TextStyleProps {
@@ -41,4 +42,5 @@ export interface TextStyleProps {
   $fontSize?: string;
   $lineHeight?: string;
   $noColor?: boolean;
+  $fontFamily?: string;
 }
