@@ -6,7 +6,7 @@ export interface SideBarItemProps {
   style?: React.CSSProperties;
   size?: "small" | "medium" | "large";
   selected?: boolean;
-  onClick?: (e: React.MouseEvent) => void;
+  onClick?: (e: React.MouseEvent | React.KeyboardEvent) => void;
 }
 
 export interface SideBarItemStyleProps {
