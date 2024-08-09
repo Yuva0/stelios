@@ -188,6 +188,7 @@ const StyledSpan = styled.span<TextStyleProps>`
         ? "1.5rem"
         : "1.25rem"};
   font-weight: ${(props) => (props.$strong ? "700" : "400")};
+  font-family: ${(props) => props.$fontFamily ?? `'Varela Round', sans-serif`};
   ${(props) => !props.$noColor && `color: ${props.$color};`}
   ${commonStyles}
 `;
