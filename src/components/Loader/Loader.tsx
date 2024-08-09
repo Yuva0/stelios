@@ -9,6 +9,7 @@ interface LoaderProps {
   borderRadius?: string;
   style?: React.CSSProperties;
   className?: string;
+  startTime?: number;
 }
 
 interface LoaderStyleProps {
@@ -17,11 +18,12 @@ interface LoaderStyleProps {
   $width: LoaderProps["width"];
   $colorPalette: DefaultTheme["theme"]["colorPalette"];
   $borderRadius?: LoaderProps["borderRadius"];
+  $startTime?: LoaderProps["startTime"];
 }
 
 const loadingAnimation = keyframes`
   0% {
-    left: -10px
+    left: -3rem;
   }
   50% {
     left: 100%
@@ -42,8 +44,9 @@ const StyledLoaderProps = styled.div<LoaderStyleProps>`
     content: "";
     display: block;
     position: absolute;
-    animation: ${loadingAnimation} 2s infinite;
+    animation: ${loadingAnimation} 2s infinite ${props => props.$startTime}s;
     width: 3rem;
+    left:-3rem;
     height: 100%;
     background: ${(props) => `linear-gradient(90deg, transparent, ${props.$colorPalette.primary.grayScale[0]}, transparent)`};
   }
@@ -56,6 +59,7 @@ const Loader: React.FunctionComponent<LoaderProps> = ({
   borderRadius = shape === "circle" ? "50%" : "0.5rem",
   style,
   className,
+  startTime = 0
 }) => {
   const colorPalette = useTheme().theme.colorPalette;
 
@@ -66,6 +70,7 @@ const Loader: React.FunctionComponent<LoaderProps> = ({
       $shape={shape}
       $colorPalette={colorPalette}
       $borderRadius={borderRadius}
+      $startTime={startTime}
       style={style}
       className={className}
     />
