@@ -7,6 +7,8 @@ interface LoaderProps {
   height?: string;
   width?: string;
   borderRadius?: string;
+  style?: React.CSSProperties;
+  className?: string;
 }
 
 interface LoaderStyleProps {
@@ -52,6 +54,8 @@ const Loader: React.FunctionComponent<LoaderProps> = ({
   height = "2rem",
   width = "2rem",
   borderRadius = shape === "circle" ? "50%" : "0.5rem",
+  style,
+  className,
 }) => {
   const colorPalette = useTheme().theme.colorPalette;
 
@@ -62,6 +66,8 @@ const Loader: React.FunctionComponent<LoaderProps> = ({
       $shape={shape}
       $colorPalette={colorPalette}
       $borderRadius={borderRadius}
+      style={style}
+      className={className}
     />
   );
 };
