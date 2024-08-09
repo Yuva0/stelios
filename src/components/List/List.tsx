@@ -38,11 +38,12 @@ const List = ({
   children,
   variant = "ordered",
   size,
+  containerStyle,
   style,
   className,
 }: ListProps) => {
   return (
-    <div>
+    <div style={containerStyle}>
       {Title(title, size)}
       <StyledList $variant={variant} style={style} className={className}>
         {children}
