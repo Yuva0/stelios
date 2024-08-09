@@ -23,7 +23,7 @@ export const Default: Story = {
     return (
       <ThemeProvider appearance="light">
         <div style={{backgroundColor:"white", height:"100vh", marginLeft:"10rem"}} >
-        <Loader shape="circle"/>
+        <Loader width="10rem" height="2rem"/>
         </div>
       </ThemeProvider>
     );

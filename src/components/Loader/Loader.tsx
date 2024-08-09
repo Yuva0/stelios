@@ -43,9 +43,9 @@ const StyledLoaderProps = styled.div<LoaderStyleProps>`
     display: block;
     position: absolute;
     animation: ${loadingAnimation} 2s infinite;
-    width: 1rem;
+    width: 3rem;
     height: 100%;
-    background-color: ${(props) => props.$colorPalette.primary.grayScale[0]};
+    background: ${(props) => `linear-gradient(90deg, transparent, ${props.$colorPalette.primary.grayScale[0]}, transparent)`};
   }
 `;
 
