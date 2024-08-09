@@ -21,6 +21,7 @@ import Input from "./components/Input/Input";
 import Link from "./components/Link/Link";
 import List from "./components/List/List";
 import ListItem from "./components/List/ListItem/ListItem";
+import Loader from "./components/Loader/Loader";
 import Menu from "./components/Menu/Menu";
 import MenuItem from "./components/MenuItem/MenuItem";
 import NavigationBar from "./components/NavigationBar/NavigationBar";
@@ -73,6 +74,7 @@ export {
   Link,
   List,
   ListItem,
+  Loader,
   Menu,
   MenuItem,
   NavigationBar,

@@ -28,6 +28,4 @@ export const Default: Story = {
       </ThemeProvider>
     );
   },
-  args: {
-  },
 };
