@@ -29,8 +29,6 @@ const StyledH1 = styled.h1<TextStyleProps>`
         : "3rem"};
   font-weight: ${(props) => (props.$strong ? "700" : "400")};
   ${(props) => !props.$noColor && `color: ${props.$color};`}
-  display: flex;
-  align-items: center;
   font-family: ${(props) => props.$fontFamily ?? `"Lato", sans-serif`};
   ${commonStyles}
 `;
@@ -48,8 +46,6 @@ const StyledH2 = styled.h2<TextStyleProps>`
         ? "3rem"
         : "2.5rem"};
   font-weight: ${(props) => (props.$strong ? "700" : "400")};
-  display: flex;
-  align-items: center;
   font-family: ${(props) => props.$fontFamily ?? `"Lato", sans-serif`};
   ${(props) => !props.$noColor && `color: ${props.$color};`}
   ${commonStyles}
@@ -68,8 +64,6 @@ const StyledH3 = styled.h3<TextStyleProps>`
         ? "2.5rem"
         : "2rem"};
   font-weight: ${(props) => (props.$strong ? "700" : "400")};
-  display: flex;
-  align-items: center;
   font-family: ${(props) => props.$fontFamily ?? `"Lato", sans-serif`};
   ${(props) => !props.$noColor && `color: ${props.$color};`}
   ${commonStyles}
@@ -88,8 +82,6 @@ const StyledH4 = styled.h4<TextStyleProps>`
         ? "2rem"
         : "1.75rem"};
   font-weight: ${(props) => (props.$strong ? "700" : "400")};
-  display: flex;
-  align-items: center;
   font-family: ${(props) => props.$fontFamily ?? `"Lato", sans-serif`};
   ${(props) => !props.$noColor && `color: ${props.$color};`}
   ${commonStyles}
@@ -108,8 +100,6 @@ const StyledH5 = styled.h5<TextStyleProps>`
         ? "1.75rem"
         : "1.5rem"};
   font-weight: ${(props) => (props.$strong ? "700" : "400")};
-  display: flex;
-  align-items: center;
   font-family: ${(props) => props.$fontFamily ?? `"Lato", sans-serif`};
   ${(props) => !props.$noColor && `color: ${props.$color};`}
   ${commonStyles}
@@ -128,8 +118,6 @@ const StyledH6 = styled.h6<TextStyleProps>`
         ? "1.5rem"
         : "1.25rem"};
   font-weight: ${(props) => (props.$strong ? "700" : "400")};
-  display: flex;
-  align-items: center;
   font-family: ${(props) => props.$fontFamily ?? `"Lato", sans-serif`};
   ${(props) => !props.$noColor && `color: ${props.$color};`}
   ${commonStyles}
@@ -148,8 +136,6 @@ const StyledDiv = styled.div<TextStyleProps>`
         ? "1.5rem"
         : "1.25rem"};
   font-weight: ${(props) => (props.$strong ? "700" : "400")};
-  display: flex;
-  align-items: center;
   font-family: ${(props) => props.$fontFamily ?? `'Varela Round', sans-serif`};
   ${(props) => !props.$noColor && `color: ${props.$color};`}
   ${commonStyles}
@@ -168,8 +154,6 @@ const StyledLabel = styled.label<TextStyleProps>`
         ? "1.5rem"
         : "1.25rem"};
   font-weight: ${(props) => (props.$strong ? "700" : "400")};
-  display: flex;
-  align-items: center;
   font-family: ${(props) => props.$fontFamily ?? `'Varela Round', sans-serif`};
   ${(props) => !props.$noColor && `color: ${props.$color};`}
   ${commonStyles}
@@ -206,8 +190,6 @@ const StyledP = styled.p<TextStyleProps>`
         ? "1.5rem"
         : "1.25rem"};
   font-weight: ${(props) => (props.$strong ? "700" : "400")};
-  display: flex;
-  align-items: center;
   font-family: ${(props) => props.$fontFamily ?? `'Varela Round', sans-serif`};
   ${(props) => !props.$noColor && `color: ${props.$color};`}
   ${commonStyles}
