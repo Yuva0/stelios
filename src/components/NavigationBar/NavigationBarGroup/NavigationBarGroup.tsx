@@ -70,6 +70,7 @@ const NavigationBarGroup = ({
   title,
   expanded,
   className,
+  onClick
 }: NavigationBarGroupProps) => {
   const navigationBarGrpItmContnrRef = React.useRef(null);
   const [expand, setExpand] = useState(expanded ?? false);
@@ -77,10 +78,12 @@ const NavigationBarGroup = ({
 
   const _toggleExpand = (e: React.MouseEvent | React.KeyboardEvent) => {
     setExpand((expand) => !expand);
+    onClick && onClick(e);
   };
   const _handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter" || e.key === " ") {
       _toggleExpand(e);
+      onClick && onClick(e);
     }
   };
 

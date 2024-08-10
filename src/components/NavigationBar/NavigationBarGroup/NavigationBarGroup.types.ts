@@ -10,6 +10,7 @@ export interface NavigationBarGroupProps {
   expanded?: boolean;
   className?: string;
   _getSelectedIndex?: (index?: number) => void;
+  onClick?: (e: React.MouseEvent | React.KeyboardEvent) => void;
 }
 
 export interface NavigationBarGroupStyleProps {
