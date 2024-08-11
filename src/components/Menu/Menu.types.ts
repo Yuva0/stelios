@@ -1,4 +1,5 @@
 import { MenuItemKeyProps } from "../MenuItem/MenuItem.types";
+import { DefaultTheme } from "../ThemeProvider/ThemeProvider.types";
 
 export interface MenuProps {
   children: React.ReactNode | React.ReactNode[];
@@ -34,10 +35,11 @@ export interface MenuProps {
     e: React.MouseEvent<HTMLLIElement>,
     { title, value }: MenuItemKeyProps
   ) => void;
-  onClose?: (e:MouseEvent) => void;
+  onClose?: (e: MouseEvent) => void;
 }
 
 export interface MenuStyleProps {
   $open: NonNullable<MenuProps["open"]>;
   $minWidth: NonNullable<MenuProps["minWidth"]>;
+  $colorPalette?: DefaultTheme["theme"]["colorPalette"];
 }

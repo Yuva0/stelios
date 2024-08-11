@@ -2,6 +2,7 @@ import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import Autocomplete from "../../components/Autocomplete/Autocomplete";
 import Text from "../../components/Text/Text";
+import { ThemeProvider } from "../../components/ThemeProvider/ThemeProvider";
 
 const meta: Meta<typeof Autocomplete> = {
   title: "Components/Autocomplete",
@@ -25,7 +26,8 @@ export const Variants: Story = {
     >();
 
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: "10rem" }}>
+      <ThemeProvider appearance="light">
+      <div style={{ display: "flex", flexDirection: "column", gap: "1rem", backgroundColor:"white" }}>
         <Autocomplete
           label="Variant1"
           options={[
@@ -36,11 +38,16 @@ export const Variants: Story = {
           onInputChange={(event, value) => setInputValue(value)}
           onChange={(event, { title, value }) => setSelectedValue(value)}
         />
-        <div>
-          <Text variant="paragraph">Input Value: {inputValue}</Text>
+        <Autocomplete
+          onChange={(event, { title, value }) => setSelectedValue(value)}
+          style={{background:"white"}}
+        />
+        {/* <div>
+          <Tetxt variant="paragraph">Input Value: {inputValue}</Text>
           <Text variant="paragraph">Selected Value: {selectedValue}</Text>
-        </div>
+        </div> */}
       </div>
+      </ThemeProvider>
     );
   },
 };

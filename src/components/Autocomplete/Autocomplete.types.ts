@@ -5,13 +5,17 @@ export interface AutocompleteProps {
   id?: string;
   placeholder?: string;
   value?: string | string[];
+  width?: string;
+  fullWidth?: boolean;
   className?: string;
   style?: React.CSSProperties;
   label?: React.ReactNode;
   open?: boolean;
   options?: MenuItemProps[];
   multiSelect?: boolean;
+  color?: "primary" | "secondary" | "danger" | "warning" | "success" | "info";
 
+  // Events
   onChange?: (
     e: React.ChangeEvent<HTMLInputElement> | React.MouseEvent,
     { title, value }: MenuItemKeyProps

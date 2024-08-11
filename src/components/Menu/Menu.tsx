@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { usePopper } from "react-popper";
 import { MenuItemProps } from "../MenuItem/MenuItem.types";
 import ClickAwayListener from "../ClickAwayListener/ClickAwayListener";
+import { useTheme } from "../ThemeProvider/ThemeProvider";
 
 const StyledMenuContainer = styled.div<MenuStyleProps>`
   display: ${(props) => (props.$open ? "block" : "none")};
@@ -12,7 +13,9 @@ const StyledMenuContainer = styled.div<MenuStyleProps>`
   border: 1px solid #c4c4c4;
   border-radius: 0.5rem;
   padding: 0.5rem 0;
-  background-color: #fff;
+  background-color: ${(props) => props.$colorPalette?.primary.grayScale[1]}
+  color: ${(props) => props.$colorPalette?.primary.grayScale[11]};
+  border:${(props) => `1px solid ${props.$colorPalette?.primary.grayScale[6]}`};
 `;
 
 const StyledMenu = styled.ul`
@@ -48,6 +51,7 @@ const Menu = forwardRef<HTMLDivElement, MenuProps>(
     const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(
       null
     );
+    const colorPalette = useTheme().theme.colorPalette;
 
     useEffect(() => {
       setIsOpen(open ?? false);

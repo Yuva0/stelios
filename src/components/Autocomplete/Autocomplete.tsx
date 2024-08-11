@@ -6,6 +6,7 @@ import Input from "../Input/Input";
 import { AutocompleteProps } from "./Autocomplete.types";
 import { MenuItemKeyProps } from "../MenuItem/MenuItem.types";
 import MenuItem from "../MenuItem/MenuItem";
+import { useTheme } from "../ThemeProvider/ThemeProvider";
 
 const Autocomplete = ({
   id,
@@ -17,6 +18,8 @@ const Autocomplete = ({
   label,
   open,
   multiSelect,
+  color = "primary",
+  width = "15rem",
   // Events
   onChange,
   onClick,
@@ -36,6 +39,7 @@ const Autocomplete = ({
       : ""
   );
   const [filteredOptions, setFilteredOptions] = React.useState(options);
+  const colorPalette = useTheme().theme.colorPalette;
 
   useEffect(() => {
     setInputValue(value ?? "");
@@ -90,7 +94,6 @@ const Autocomplete = ({
   const _onInputClick = (e: React.MouseEvent) => {
     setIsOpen(!isOpen);
   };
-
   const _onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsOpen(true);
     setInputValue(e.target.value);
@@ -100,6 +103,8 @@ const Autocomplete = ({
   return (
     <div>
       <Input
+        color={color}
+        width={width}
         placeholder={placeholder}
         value={inputValue}
         ref={setInputAnchor}
@@ -115,6 +120,7 @@ const Autocomplete = ({
         anchorElement={inputAnchor}
         minWidth={`${inputAnchor?.offsetWidth}px`}
         onClick={_onMenuClick}
+        style={{ backgroundColor: colorPalette.primary.grayScale[1] }}
       >
         {filteredOptions?.map((option, index) => (
           <MenuItem title={option.title} value={option.value} key={index} />
