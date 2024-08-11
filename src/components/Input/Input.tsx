@@ -117,7 +117,7 @@ const StyledInputContent = styled.div<InputStyleProps>`
       },
   };
   & span.ste-input-content {
-      font-family: 'Source Sans 3', sans-serif;
+      font-family: 'Varela Round', sans-serif;
       height: ${(props) => getFontSize(props).lineHeight};
       width: 100%;
       font-size: ${(props) => getFontSize(props).fontSize};

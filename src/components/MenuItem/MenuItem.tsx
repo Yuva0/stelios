@@ -12,10 +12,10 @@ const StyledMenuItem = styled.li<MenuItemStyleProps>`
   gap: 0.25rem;
   cursor: pointer;
   &:hover {
-    background: ${(props) => props.$colorGradient["primary"].grayScale[1]};
+    background: ${(props) => props.$colorGradient["primary"].grayScale[2]};
   }
   &:focus {
-    background: ${(props) => props.$colorGradient["primary"].grayScale[1]};
+    background: ${(props) => props.$colorGradient["primary"].grayScale[3]};
     outline: ${(props) =>
       `1px solid ${props.$colorGradient["primary"].accentScale[5]}`};
     outline-offset: -1px;
