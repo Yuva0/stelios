@@ -98,7 +98,7 @@ const StyledInputContent = styled.div<InputStyleProps>`
   background-color: ${(props) => props.$inputBgColor ?? props.$colorGradient[props.$color].grayScale[1]};
   box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.1);
   & input {
-      font-family: 'Source Sans 3', sans-serif;
+      font-family: 'Varela Round', sans-serif;
       padding: 0;
       margin: 0;
       border: 0;

@@ -31,7 +31,7 @@ export const Variants: Story = {
         <Autocomplete
           label="Variant1"
           options={[
-            { title: "Test1", value: "Test1" },
+            { title: "Test1", value: "Test1"},
             { title: "Test2", value: "Test2" },
             { title: "Test3", value: "Test3" },
           ]}
