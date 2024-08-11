@@ -49,7 +49,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
     if (!React.isValidElement(child) || !child.type) return child;
     if (typeof child.type === "string") return child;
 
-    if (child.type.name === "NavigationBarItem") {
+    if ((child.type as any).displayName === "NavigationBarItem") {
       index++;
       return React.cloneElement(child, {
         _index: index,
@@ -60,7 +60,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
       } as Partial<NavigationBarGroupProps>);
     }
 
-    if (child.type.name === "NavigationBarGroup") {
+    if ((child.type as any).displayName === "NavigationBarGroup") {
       return React.cloneElement(child, {
         children: React.Children.map(
           child.props.children,
@@ -93,5 +93,6 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
     </StyledNavigationBarCtr>
   );
 };
+NavigationBar.displayName = "NavigationBar";
 
 export default NavigationBar;

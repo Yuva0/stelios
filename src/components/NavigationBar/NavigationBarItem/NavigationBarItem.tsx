@@ -101,5 +101,6 @@ const NavigationBarItem = ({
     </StyledNavBarItem>
   );
 };
+NavigationBarItem.displayName = "NavigationBarItem";
 
 export default NavigationBarItem;

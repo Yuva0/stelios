@@ -117,13 +117,14 @@ const ToggleButtonGroup = ({
           const childType = childElement.type;
 
           if (typeof childType === "string") return child;
-          if (childType.name === "ToggleButton") {
-            return React.cloneElement(childElement, {
-              index: index,
-              selected: selectedIndex === index,
-              ...(!childElement.props.size && size && { size }),
-              onClick: _onClick,
-            });
+          /* causing an issue in production build as they define a custom name for the component */
+          if ((childType as any).displayName === "ToggleButton") {
+          return React.cloneElement(childElement, {
+            index: index,
+            selected: selectedIndex === index,
+            ...(!childElement.props.size && size && { size }),
+            onClick: _onClick,
+          });
           }
         }
         return child;

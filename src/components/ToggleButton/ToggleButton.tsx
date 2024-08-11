@@ -152,5 +152,6 @@ const ToggleButton = ({
     </StyledToggleBtn>
   );
 };
+ToggleButton.displayName = "ToggleButton";
 
 export default ToggleButton;

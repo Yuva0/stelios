@@ -130,5 +130,6 @@ const NavigationBarGroup = ({
     </StyledNavBarGroup>
   );
 };
+NavigationBarGroup.displayName = "NavigationBarGroup";
 
 export default NavigationBarGroup;
