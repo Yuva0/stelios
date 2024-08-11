@@ -20,20 +20,19 @@ interface ComponentHighlightStyleProps {
 
 const StyledComponentCtr = styled.div<ComponentHighlightStyleProps>`
   position: relative;
-  border: 0.25rem solid transparent;
-  border-radius: 1rem;
   width: ${(props) => props.$width};
   height: ${(props) => props.$height};
   background-color: ${(props) => props.$colorPalette.primary.grayScale[0]};
   background-clip: padding-box;
+  border-radius: 0.75rem;
   padding: 0.5rem;
 
   &::after {
     position: absolute;
-    top: -4px;
-    bottom: -4px;
-    left: -4px;
-    right: -4px;
+    top: -3px;
+    bottom: -3px;
+    left: -3px;
+    right: -3px;
     background: ${(props) => {
       if (!props.$gradientColors)
         return `linear-gradient(to bottom left, #fb6f92, #f7cb5e)`;
@@ -41,7 +40,7 @@ const StyledComponentCtr = styled.div<ComponentHighlightStyleProps>`
     }};
     content: "";
     z-index: -1;
-    border-radius: 16px;
+    border-radius: 1rem;
   }
 `;
 
