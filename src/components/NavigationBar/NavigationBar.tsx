@@ -27,7 +27,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
   className,
   style,
   // Events
-  onChange
+  onChange,
 }) => {
   const colorPalette = useTheme().theme.colorPalette;
   const [selectedIndex, setSelectedIndex] = React.useState<
@@ -38,7 +38,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
 
   const _handleSelectedIndex = (index?: number, value?: string) => {
     if (!index || !value) return;
-    if(index === selectedIndex) return;
+    if (index === selectedIndex) return;
     setSelectedIndex(index);
     onChange && onChange(value);
   };
@@ -53,7 +53,9 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
       index++;
       return React.cloneElement(child, {
         _index: index,
-        selected: selectedIndex ? selectedIndex === index : child.props.selected,
+        selected: selectedIndex
+          ? selectedIndex === index
+          : child.props.selected,
         _getSelectedIndex: _handleSelectedIndex,
       } as Partial<NavigationBarGroupProps>);
     }
@@ -69,7 +71,9 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
               _index: index,
               _getSelectedIndex: _handleSelectedIndex,
               // todo
-              selected: selectedIndex ? selectedIndex === index : (child.props as any).selected,
+              selected: selectedIndex
+                ? selectedIndex === index
+                : (child.props as any).selected,
             } as Partial<NavigationBarGroupItemProps>);
           }
         ),

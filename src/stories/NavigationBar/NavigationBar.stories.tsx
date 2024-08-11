@@ -53,18 +53,6 @@ export const Default: Story = {
             <NavigationBarGroupItem value="21">Content</NavigationBarGroupItem>
           </NavigationBarGroup>
         </NavigationBar>
-        {/* <SideBar style={{ marginTop: "5rem" }}>
-          <SideBarItem>Test</SideBarItem>
-          <SideBarItem>Test</SideBarItem>
-          <SideBarItem>Test</SideBarItem>
-          <SideBarItem>Test</SideBarItem>
-          <SideBarGroup title="Group 1" onClick={() => {}}>
-            <SideBarGroupItem>Test</SideBarGroupItem>
-            <SideBarGroupItem>Test</SideBarGroupItem>
-            <SideBarGroupItem>Test</SideBarGroupItem>
-            <SideBarGroupItem>Test</SideBarGroupItem>
-          </SideBarGroup>
-        </SideBar> */}
       </ThemeProvider>
     );
   },

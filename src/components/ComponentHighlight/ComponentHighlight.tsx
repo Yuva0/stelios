@@ -9,6 +9,8 @@ interface ComponentHighlightProps {
   gradientColors?: Array<string>;
   borderRadius?: string;
   children: React.ReactNode | React.ReactNode[];
+  style?: React.CSSProperties;
+  className?: string;
 }
 interface ComponentHighlightStyleProps {
   $width: string;
@@ -50,6 +52,8 @@ const ComponentHighlight: React.FunctionComponent<ComponentHighlightProps> = ({
   height = "auto",
   gradientColors,
   borderRadius = "1rem",
+  style,
+  className,
 }) => {
   const colorPalette = useTheme().theme.colorPalette;
 
@@ -58,6 +62,8 @@ const ComponentHighlight: React.FunctionComponent<ComponentHighlightProps> = ({
 
   return (
     <StyledComponentCtr
+      style={style}
+      className={className}
       $width={width}
       $height={height}
       $borderRadius={borderRadius}
