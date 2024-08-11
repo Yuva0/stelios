@@ -1,6 +1,6 @@
 {
   "name": "stelios",
-  "version": "0.1.107",
+  "version": "0.1.108",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "dependencies": {
