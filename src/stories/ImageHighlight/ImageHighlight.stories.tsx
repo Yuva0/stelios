@@ -20,7 +20,7 @@ export const Default: Story = {
   render: () => {
     return (
       // <div style={{ height: "100vh", width: "100%", background: "black" }}>
-      <ThemeProvider appearance="dark">
+      <ThemeProvider appearance="light">
         <ImageHighlight
           imgAlt="dog"
           imgSrc="https://cdn.pixabay.com/photo/2016/10/10/14/13/dog-1728494_1280.png"

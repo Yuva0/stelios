@@ -1,5 +1,7 @@
 import * as React from "react";
 import styled, { keyframes } from "styled-components";
+import { useTheme } from "../ThemeProvider/ThemeProvider";
+import { DefaultTheme } from "../ThemeProvider/ThemeProvider.types";
 
 interface ImageHighlightProps {
   imgSrc: string;
@@ -35,12 +37,14 @@ const StyledImgHighlightCtr = styled.div<{ $gradientColors?: Array<string> }>`
   animation: ${gradientMove} 1s infinite linear;
 `;
 
-const StyledImgCtr = styled.div`
+const StyledImgCtr = styled.div<{
+  $colorPalette?: DefaultTheme["theme"]["colorPalette"];
+}>`
   width: calc(100% - 1rem);
   height: calc(100% - 1rem);
   border-radius: 50%;
   border: 0.25rem solid white;
-  background-color: lightgrey;
+  background-color: ${(props) => props.$colorPalette?.primary.grayScale[0]};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -59,9 +63,11 @@ const ImageHighlight: React.FunctionComponent<ImageHighlightProps> = ({
   imgAlt,
   gradientColors,
 }) => {
+  const colorPalette = useTheme().theme.colorPalette;
+
   return (
     <StyledImgHighlightCtr $gradientColors={gradientColors}>
-      <StyledImgCtr>
+      <StyledImgCtr $colorPalette={colorPalette}>
         <StyledImg src={imgSrc} alt={imgAlt} />
       </StyledImgCtr>
     </StyledImgHighlightCtr>

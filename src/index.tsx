@@ -10,6 +10,7 @@ import ClickAwayListener from "./components/ClickAwayListener/ClickAwayListener"
 import CodeDisplay from "./components/CodeDisplay/CodeDisplay";
 import CodeEditor from "./components/CodeEditor/CodeEditor";
 import ColorPicker from "./components/ColorPicker/ColorPicker";
+import ComponentHighlight from "./components/ComponentHighlight/ComponentHighlight";
 import Drawer from "./components/Drawer/Drawer";
 import FormControlLabel from "./components/FormControlLabel/FormControlLabel";
 import Header from "./components/Header/Header";
@@ -62,6 +63,7 @@ export {
   ClickAwayListener,
   CodeDisplay,
   CodeEditor,
+  ComponentHighlight,
   ColorPicker,
   Drawer,
   FormControlLabel,

@@ -1,0 +1,73 @@
+import * as React from "react";
+import styled, { keyframes } from "styled-components";
+import { useTheme } from "../ThemeProvider/ThemeProvider";
+import { DefaultTheme } from "../ThemeProvider/ThemeProvider.types";
+import Text from "../Text/Text";
+interface ComponentHighlightProps {
+  width?: string;
+  height?: string;
+  gradientColors?: Array<string>;
+  borderRadius?: string;
+  children: React.ReactNode | React.ReactNode[];
+}
+interface ComponentHighlightStyleProps {
+  $width: string;
+  $height: string;
+  $borderRadius: string;
+  $colorPalette: DefaultTheme["theme"]["colorPalette"];
+  $gradientColors?: Array<string>;
+}
+
+const StyledComponentCtr = styled.div<ComponentHighlightStyleProps>`
+  position: relative;
+  border: 0.25rem solid transparent;
+  border-radius: 1rem;
+  width: ${(props) => props.$width};
+  height: ${(props) => props.$height};
+  background-color: ${(props) => props.$colorPalette.primary.grayScale[0]};
+  background-clip: padding-box;
+  padding: 0.5rem;
+
+  &::after {
+    position: absolute;
+    top: -4px;
+    bottom: -4px;
+    left: -4px;
+    right: -4px;
+    background: ${(props) => {
+      if (!props.$gradientColors)
+        return `linear-gradient(to bottom left, #fb6f92, #f7cb5e)`;
+      return `linear-gradient(to bottom left, ${props.$gradientColors.toString()})`;
+    }};
+    content: "";
+    z-index: -1;
+    border-radius: 16px;
+  }
+`;
+
+const ComponentHighlight: React.FunctionComponent<ComponentHighlightProps> = ({
+  children,
+  width = "auto",
+  height = "auto",
+  gradientColors,
+  borderRadius = "1rem",
+}) => {
+  const colorPalette = useTheme().theme.colorPalette;
+
+  const CHILDREN =
+    typeof children === "string" ? <Text>{children}</Text> : children;
+
+  return (
+    <StyledComponentCtr
+      $width={width}
+      $height={height}
+      $borderRadius={borderRadius}
+      $colorPalette={colorPalette}
+      $gradientColors={gradientColors}
+    >
+      {CHILDREN}
+    </StyledComponentCtr>
+  );
+};
+
+export default ComponentHighlight;
