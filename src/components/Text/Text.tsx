@@ -1,13 +1,9 @@
 import React from "react";
-import { createGlobalStyle } from "styled-components";
 import { TextProps, TextStyleProps } from "./Text.types";
 import styled from "styled-components";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
+import { Helmet } from "react-helmet";
 
-const GlobalStyle = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
-  @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
-`;
 
 const commonStyles = `
   padding: 0;
@@ -420,7 +416,14 @@ const Text = ({
 
   return (
     <>
-      <GlobalStyle />
+      <Helmet>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap"
+          rel="stylesheet"
+        />
+      </Helmet>
       {_Text()}
     </>
   );
