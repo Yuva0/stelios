@@ -75,7 +75,9 @@
     "eslint-plugin-storybook": "^0.8.0",
     "prop-types": "^15.8.1",
     "storybook": "^8.1.11",
-    "tailwindcss": "^3.4.10",
     "webpack": "^5.92.1"
+  },
+  "peerDependencies": {
+    "tailwindcss": "^3.4.10"
   }
 }
