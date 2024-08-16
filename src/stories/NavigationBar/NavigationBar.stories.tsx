@@ -26,11 +26,13 @@ export const Default: Story = {
       <ThemeProvider appearance="light">
         <NavigationBar onChange={(value) => console.log(value)}>
           <NavigationBarGroup title="Components 1">
+            <NavigationBarHeader>Header</NavigationBarHeader>
             <NavigationBarGroupItem value="1">Content</NavigationBarGroupItem>
             <NavigationBarGroupItem value="2">Content</NavigationBarGroupItem>
             <NavigationBarGroupItem value="3">Content</NavigationBarGroupItem>
             <NavigationBarGroupItem value="4">Content</NavigationBarGroupItem>
             <NavigationBarGroupItem value="5">Content</NavigationBarGroupItem>
+            <NavigationBarHeader>Header</NavigationBarHeader>
             <NavigationBarGroupItem value="6">Content</NavigationBarGroupItem>
             <NavigationBarGroupItem value="7">Content</NavigationBarGroupItem>
             <NavigationBarGroupItem value="8">Content</NavigationBarGroupItem>

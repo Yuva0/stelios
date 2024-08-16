@@ -1,3 +1,4 @@
+import "./styles.css";
 import Accordion from "./components/Accordion/Accordion";
 import AccordionItem from "./components/Accordion/AccordionItem/AccordionItem";
 import Alert from "./components/Alert/Alert";
