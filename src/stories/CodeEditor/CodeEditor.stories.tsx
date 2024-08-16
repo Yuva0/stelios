@@ -34,9 +34,6 @@ const array = [1, 2, 3, 4, 5];`;
         <Button variant="outlined" color="primary">
           Button
         </Button>
-        <Button variant="text" color="primary">
-          Button
-        </Button>
       </div>
     );
 

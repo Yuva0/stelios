@@ -1,4 +1,9 @@
-import "./styles.css";
+/* Tailwind CSS */
+import "tailwindcss/base";
+import "tailwindcss/components";
+import "tailwindcss/utilities";
+
+/* Components */
 import Accordion from "./components/Accordion/Accordion";
 import AccordionItem from "./components/Accordion/AccordionItem/AccordionItem";
 import Alert from "./components/Alert/Alert";
