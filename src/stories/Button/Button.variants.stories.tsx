@@ -5,6 +5,7 @@ import Button from "../../components/Button/Button";
 import Text from "../../components/Text/Text";
 import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
 import { ThemeProvider } from "../../components/ThemeProvider/ThemeProvider";
+import colors_new from "../../tokens/colors_new.json";
 
 const meta: Meta<typeof Button> = {
   title: "Components/Button",
@@ -21,8 +22,18 @@ type Story = StoryObj<typeof Button>;
 export const Variants: Story = {
   render: () => {
     return (
-      <ThemeProvider accent={{primary: "#DD3C74", success:"#DD843C"}} appearance="dark">
-        <div style={{background: "#212529"}}>
+      <ThemeProvider
+        accent={{
+          primary: colors_new.primary.accent,
+          secondary: colors_new.secondary.accent,
+          danger: colors_new.danger.accent,
+          warning: colors_new.warning.accent,
+          success: colors_new.success.accent,
+          info: colors_new.info.accent,
+        }}
+        appearance="dark"
+      >
+        <div style={{ background: "#212529" }}>
           <table style={{ width: "100%", textAlign: "center" }}>
             <thead>
               <tr>

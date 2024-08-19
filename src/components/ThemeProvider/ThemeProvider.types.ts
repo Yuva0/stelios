@@ -1,12 +1,7 @@
 export interface ThemeProviderProps {
   children?: React.ReactNode;
   accent?: {
-    primary?: string;
-    secondary?: string;
-    danger?: string;
-    warning?: string;
-    success?: string;
-    info?: string;
+    [key: string]: string;
   };
   background?: string;
   gray?: string;
@@ -14,7 +9,7 @@ export interface ThemeProviderProps {
 }
 
 type ArrayOf12<T> = [T, T, T, T, T, T, T, T, T, T, T, T];
-type ColorPaletteProps = {
+export type ColorPaletteProps = {
   // Default Colors
   main: string;
   appearance: "light" | "dark";
@@ -45,13 +40,8 @@ export const colorTypes = ["primary", "secondary", "danger", "warning", "success
 export interface DefaultTheme {
   theme: {
     colorPalette: {
-      primary: ColorPaletteProps,
-      secondary: ColorPaletteProps,
-      danger: ColorPaletteProps,
-      warning: ColorPaletteProps,
-      success: ColorPaletteProps,
-      info: ColorPaletteProps,
+      [key: string]: ColorPaletteProps
     }
   };
-  setTheme: any;
+  setTheme: React.Dispatch<React.SetStateAction<DefaultTheme["theme"]>>;
 }
