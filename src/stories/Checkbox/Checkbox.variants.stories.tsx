@@ -19,36 +19,21 @@ export default meta;
 
 type Story = StoryObj<typeof Checkbox>;
 
-export const Variants: Story = {
+export const Sizes: Story = {
   render: () => {
     return (
       <ThemeProvider accent={{
         primary: colors_new.primary.accent,
-        secondary: colors_new.secondary.accent,
-        danger: colors_new.danger.accent,
-        warning: colors_new.warning.accent,
-        success: colors_new.success.accent,
-        info: colors_new.info.accent,
       }}>
       <div style={{ display: "flex", flexDirection: "column" }}>
-        <FormControlLabel control={<Checkbox />} label="Info" />
+        <FormControlLabel control={<Checkbox size="small"/>} label="Small" />
         <FormControlLabel
-          control={<Checkbox color="success" />}
-          label="Success"
+          control={<Checkbox size="medium" />}
+          label="Medium"
         />
         <FormControlLabel
-          control={<Checkbox color="danger" />}
-          label="Danger"
-        />
-        <FormControlLabel
-          control={<Checkbox color="warning" />}
-          label="Warning"
-          size="small"
-        />
-        <FormControlLabel
-          control={<Checkbox color="primary" />}
-          label="Primary"
-          size="large"
+          control={<Checkbox size="large" />}
+          label="Large"
         />
       </div>
       </ThemeProvider>

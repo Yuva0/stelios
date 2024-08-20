@@ -3,10 +3,11 @@ export interface IconButtonProps
   icon: React.ReactNode;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   size?: "small" | "medium" | "large";
-  variant?: "contained" | "soft" | "outlined";
-  color?: "primary" | "secondary" | "danger" | "warning" | "success" | "info";
+  variant?: "contained" | "soft" | "outlined" | "outlined-soft" | "neumorph";
+  color?: string;
   disabled?: boolean;
   className?: string;
+  style?:React.CSSProperties;
 }
 
 export interface IconButtonStyleProps {
@@ -14,5 +15,5 @@ export interface IconButtonStyleProps {
   $variant: NonNullable<IconButtonProps["variant"]>;
   $color: NonNullable<IconButtonProps["color"]>;
   $disabled: boolean;
-  $colorGradient: any;
+  $colorPalette: any;
 }

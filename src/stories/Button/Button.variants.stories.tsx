@@ -32,15 +32,23 @@ export const Variants: Story = {
           info: colors_new.info.accent,
         }}
       >
-        <div style={{display:"grid", gridTemplateColumns: "auto auto auto", gridTemplateRows: "60px auto", gridAutoFlow:"column"}}>
-          <Text variant="h4">Contained</Text>
+        <div style={{display:"grid", gridTemplateColumns: "repeat(2, max-content)", gridTemplateRows: "40px auto", 
+            gridAutoFlow:"column", columnGap:"3rem", justifyContent: "center", alignItems:"center"}}>
+          <Text variant="paragraph">contained</Text>
           <span><Button variant="contained">Click Here</Button></span>
 
-          <Text variant="h4">Outlined</Text>
+          <Text variant="paragraph">outlined</Text>
           <span><Button variant="outlined">Click Here</Button></span>
 
-          <Text variant="h4">Soft</Text>
+          <Text variant="paragraph">soft</Text>
           <span><Button variant="soft">Click Here</Button></span>
+
+
+          <Text variant="paragraph">outlined-soft</Text>
+          <span><Button variant="outlined-soft">Click Here</Button></span>
+
+          <Text variant="paragraph">neumorph</Text>
+          <span><Button variant="neumorph">Click Here</Button></span>
         </div>
       </ThemeProvider>
     );
