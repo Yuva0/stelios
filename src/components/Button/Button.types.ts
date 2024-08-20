@@ -25,5 +25,5 @@ export interface ButtonStyleProps {
   $color: NonNullable<ButtonProps["color"]>;
   $disabled?: NonNullable<ButtonProps["disabled"]>;
   $fullWidth?: NonNullable<ButtonProps["fullWidth"]>;
-  $colorGradient: any;
+  $colorPalette: any;
 }

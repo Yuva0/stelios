@@ -8,154 +8,7 @@ import Text from "../Text/Text";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
 import styled from "styled-components";
 
-const getPadding = (size?: "small" | "medium" | "large") => {
-  switch (size) {
-    case "small":
-      return "0.25rem 0.5rem";
-    case "medium":
-      return "0.5rem 1rem";
-    case "large":
-      return "0.75rem 1.5rem";
-    default:
-      return "0.75rem 1.5rem";
-  }
-};
-
-const getBackgroundColor = (
-  variant: ButtonStyleProps["$variant"],
-  color: ButtonStyleProps["$color"],
-  colorGradient: ButtonStyleProps["$colorGradient"]
-) => {
-  switch (variant) {
-    case "contained":
-      return {
-        default: colorGradient[color].accentScale[8],
-        hover: colorGradient[color].accentScale[9],
-        active: colorGradient[color].accentScale[9],
-      };
-    case "outlined":
-      return {
-        default: "transparent",
-        hover: "transparent",
-        active: "transparent",
-      };
-    case "soft":
-      return {
-        default: colorGradient[color].accentScale[0],
-        hover: colorGradient[color].accentScale[1],
-        active: colorGradient[color].accentScale[2],
-      };
-  }
-};
-
-const getColor = (
-  variant: ButtonStyleProps["$variant"],
-  color: ButtonStyleProps["$color"],
-  colorGradient: ButtonStyleProps["$colorGradient"]
-) => {
-  switch (variant) {
-    case "contained":
-      return {
-        default: colorGradient[color].accentContrast,
-        hover: colorGradient[color].accentContrast,
-        active: colorGradient[color].accentContrast,
-      };
-    case "outlined":
-      return {
-        default: colorGradient[color].accentScale[10],
-        hover: colorGradient[color].accentScale[10],
-        active: colorGradient[color].accentScale[10],
-      };
-    case "soft":
-      return {
-        default: colorGradient[color].accentScale[10],
-        hover: colorGradient[color].accentScale[10],
-        active: colorGradient[color].accentScale[10],
-      };
-    default:
-      return {
-        default: colorGradient[color].accentContrast,
-        hover: colorGradient[color].accentContrast,
-        active: colorGradient[color].accentContrast,
-      };
-  }
-};
-
-const getBorder = (
-  variant: ButtonStyleProps["$variant"],
-  color: ButtonStyleProps["$color"],
-  colorGradient: ButtonStyleProps["$colorGradient"]
-) => {
-  if (variant === "outlined") {
-    return {
-      default: `1px solid ${colorGradient[color].accentScale[5]}`,
-      hover: `1px solid ${colorGradient[color].accentScale[6]}`,
-      active: `1px solid ${colorGradient[color].accentScale[7]}`,
-    };
-  }
-  return { default: "none", hover: "none", active: "none" };
-};
-
-const StyledButton = styled.button<ButtonStyleProps>`
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  background-color: ${(props) =>
-    getBackgroundColor(props.$variant, props.$color, props.$colorGradient)
-      .default};
-  color: ${(props) =>
-    getColor(props.$variant, props.$color, props.$colorGradient).default};
-  padding: ${(props) => getPadding(props.$size)};
-  border: ${(props) =>
-    getBorder(props.$variant, props.$color, props.$colorGradient).default};
-  width: ${(props) => (props.$fullWidth ? "100%" : "auto")};
-  cursor: ${(props) => (props.$disabled ? "not-allowed" : "pointer")};
-  border-radius: 0.25rem;
-  box-shadow: ${(props) =>
-    props.$variant === "soft" ? "none" : "0 1px 2px 0 rgba(0, 0, 0, 0.05)"};
-  &:hover {
-    background-color: ${(props) =>
-      getBackgroundColor(props.$variant, props.$color, props.$colorGradient)
-        .hover};
-    color: ${(props) =>
-      getColor(props.$variant, props.$color, props.$colorGradient).hover};
-    border: ${(props) =>
-      getBorder(props.$variant, props.$color, props.$colorGradient).hover};
-    box-shadow: ${(props) =>
-      props.$variant === "soft" ? "none" : "0 2px 4px 0 rgba(0, 0, 0, 0.1)"};
-  }
-  &:active {
-    background-color: ${(props) =>
-      getBackgroundColor(props.$variant, props.$color, props.$colorGradient)
-        .active};
-    color: ${(props) =>
-      getColor(props.$variant, props.$color, props.$colorGradient).active};
-    border: ${(props) =>
-      getBorder(props.$variant, props.$color, props.$colorGradient).active};
-    filter: ${(props) =>
-      props.$variant === "contained"
-        ? "brightness(0.92) saturate(1.1)"
-        : "none"};
-    box-shadow: ${(props) =>
-      props.$variant === "outlined" ? "none" : "0 1px 2px 0 rgba(0, 0, 0, 0.05)"};
-  }
-  &:focus-visible{
-    outline-offset: 2px;
-    outline: 2px solid ${(props) => props.$colorGradient[props.$color].accentScale[8]};
-  }
-`;
-
-const StyledButtonIcon = styled.span`
-  width: 1.25rem;
-  height: 1.25rem;
-  svg {
-    width: 100%;
-    height: 100%;
-  }
-`;
-
-const ButtonInternal = ({
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
   leadingIcon,
   trailingIcon,
   size = "medium",
@@ -168,18 +21,13 @@ const ButtonInternal = ({
   // Events
   onClick,
   ...rest
-}: ButtonProps & ButtonInternalProps) => {
-  const theme = useTheme();
-  const colorPalette = theme.theme.colorPalette;
+}: ButtonProps & ButtonInternalProps,
+ref) => {
+  const theme = useTheme().theme;
+  const colorPalette = theme.colorPalette;
 
   return (
-    <StyledButton
-      $size={size}
-      $variant={variant}
-      $color={color}
-      $colorGradient={colorPalette}
-      $disabled={disabled}
-      $fullWidth={fullWidth}
+    <StyledButton ref={ref} $size={size} $variant={variant} $color={color} $colorPalette={colorPalette} $disabled={disabled} $fullWidth={fullWidth}
       aria-disabled={disabled}
       onClick={onClick}
       {...rest}
@@ -195,10 +43,138 @@ const ButtonInternal = ({
       {trailingIcon && <StyledButtonIcon>{trailingIcon}</StyledButtonIcon>}
     </StyledButton>
   );
-};
-
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  (props, ref) => <ButtonInternal ref={ref} {...props} />
-);
+});
 
 export default Button;
+
+
+const getVariantProperties = (
+  variant: ButtonStyleProps["$variant"],
+  color: ButtonStyleProps["$color"],
+  colorPalette: ButtonStyleProps["$colorPalette"]
+) => {
+  switch (variant) {
+    case "contained":
+      return {
+        backgroundColor: {
+          default: colorPalette[color].accentScale[8],
+          hover: colorPalette[color].accentScale[9],
+          active: colorPalette[color].accentScale[9],
+        },
+        color: {
+          default: colorPalette[color].accentContrast,
+          hover: colorPalette[color].accentContrast,
+          active: colorPalette[color].accentContrast,
+        },
+        border: {
+          default: `2px solid ${colorPalette[color].accentScale[8]}`,
+          hover: `2px solid ${colorPalette[color].accentScale[9]}`,
+          active: `2px solid ${colorPalette[color].accentScale[9]}`,
+        },
+        filter: "brightness(0.92) saturate(1.1)", // Active state filter
+      };
+
+    case "outlined":
+      return {
+        backgroundColor: {
+          default: "transparent",
+          hover: "transparent",
+          active: "transparent",
+        },
+        color: {
+          default: colorPalette[color].accentScale[10],
+          hover: colorPalette[color].accentScale[10],
+          active: colorPalette[color].accentScale[10],
+        },
+        border: {
+          default: `2px solid ${colorPalette[color].accentScale[5]}`,
+          hover: `2px solid ${colorPalette[color].accentScale[6]}`,
+          active: `2px solid ${colorPalette[color].accentScale[7]}`,
+        }
+      };
+
+    case "soft":
+      return {
+        backgroundColor: {
+          default: colorPalette[color].accentScale[2],
+          hover: colorPalette[color].accentScale[3],
+          active: colorPalette[color].accentScale[3],
+        },
+        color: {
+          default: colorPalette[color].accentScale[10],
+          hover: colorPalette[color].accentScale[10],
+          active: colorPalette[color].accentScale[10],
+        },
+        border: {
+          default: "none",
+          hover: "none",
+          active: "none",
+        },
+        filter: "brightness(0.92) saturate(1.1)", // Active state filter
+      };
+  }
+};
+const getSizeProperties = (size: ButtonStyleProps["$size"]) => {
+  switch (size) {
+    case "small":
+      return { padding: "0.25rem 0.5rem" };
+    case "medium":
+      return { padding: "0.5rem 1rem" };
+    case "large":
+      return { padding: "0.75rem 1.5rem" };
+  }
+};
+const propertiesHandler = (
+  variant: ButtonStyleProps["$variant"],
+  color: ButtonStyleProps["$color"],
+  colorPalette: ButtonStyleProps["$colorPalette"],
+  size: ButtonStyleProps["$size"]
+) => {
+  return {
+    ...getVariantProperties(variant, color, colorPalette),
+    ...getSizeProperties(size),
+  };
+};
+
+const StyledButton = styled.button<ButtonStyleProps>`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 0.25rem;
+
+  ${props => {
+    const properties = propertiesHandler(props.$variant, props.$color, props.$colorPalette, props.$size);
+    return `
+      background-color: ${properties.backgroundColor.default};
+      color: ${properties.color.default};
+      border: ${properties.border.default};
+      padding: ${properties.padding};
+      &:hover {
+        background-color: ${properties.backgroundColor.hover};
+        color: ${properties.color.hover};
+        border: ${properties.border.hover};
+      }
+      &:active {
+        background-color: ${properties.backgroundColor.active};
+        color: ${properties.color.active};
+        border: ${properties.border.active};
+        filter: ${properties.filter};
+      }
+      &:focus-visible {
+        outline-offset: 2px;
+        outline: 2px solid ${props.$colorPalette[props.$color].accentScale[8]};
+      }
+      width: ${props.$fullWidth ? "100%" : "auto"};
+      cursor: ${props.$disabled ? "not-allowed" : "pointer"};
+    `;
+  }}
+`;
+const StyledButtonIcon = styled.span`
+  width: 1.25rem;
+  height: 1.25rem;
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+`;
