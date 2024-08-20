@@ -67,7 +67,7 @@ const StyledButton = styled.button<ButtonStyleProps>`
       width: ${props.$fullWidth ? "100%" : "auto"};
       cursor: ${props.$disabled ? "not-allowed" : "pointer"};
       ${hasPropertyChain(properties, ['border']) && `border: ${properties.border!.default};`}
-      ${hasPropertyChain(properties, ['boxShadow']) && `box-shadow: ${properties.boxShadow!.default};`}
+      // ${hasPropertyChain(properties, ['boxShadow']) && `box-shadow: ${properties.boxShadow!.default};`}
       
       &:hover {
         background-color: ${properties.backgroundColor.hover};

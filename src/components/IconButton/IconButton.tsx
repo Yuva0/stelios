@@ -65,7 +65,7 @@ const StyledIconBtn = styled.button<IconButtonStyleProps>`
       padding: ${properties.padding};
       border: ${properties.border.default};
       cursor: ${props.$disabled ? "not-allowed" : "pointer"};
-      ${hasPropertyChain(properties, ["boxShadow", "default"]) && `box-shadow: ${properties.boxShadow!.default};`}
+      // ${hasPropertyChain(properties, ["boxShadow", "default"]) && `box-shadow: ${properties.boxShadow!.default};`}
 
       &:hover {
         background-color: ${properties.backgroundColor.hover};

@@ -1,6 +1,6 @@
 export interface ThemeProviderProps {
   children?: React.ReactNode;
-  accent?: {
+  accents?: {
     [key: string]: string;
   };
   background?: string;

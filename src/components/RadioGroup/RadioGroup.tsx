@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { RadioGroupProps, RadioGroupStyleProps } from "./RadioGroup.types";
 import Text from "../Text/Text";
-import { getIncrementalGeneratedId } from "../../helpers/Utilities";
+import { getIncrementalGeneratedId } from "../../helpers/helpers";
 import styled from "styled-components";
 
 const StyledRadioGroup = styled.div<RadioGroupStyleProps>`

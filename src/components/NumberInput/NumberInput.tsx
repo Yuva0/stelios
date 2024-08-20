@@ -52,7 +52,7 @@ const NumberInputContainer = styled.div`
 const NumberInputContent = styled.div<NumberInputCalculateProps>`
   display: flex;
   flex-direction: row;
-  border: 1.5px solid ${colors.secondary["300"]};
+  border: 1.5px solid blue;
   border-radius: 4px;
   height: ${(props) => getSize(props.size).size};
 `;
@@ -63,8 +63,8 @@ const NumberInputCalculate = styled.button<NumberInputCalculateProps>`
   align-items: center;
   width: ${(props: NumberInputCalculateProps) => getSize(props.size).size};
   height: ${(props: NumberInputCalculateProps) => getSize(props.size).size};
-  background-color: ${colors.secondary["100"]};
-  color: ${colors.secondary["700"]};
+  background-color:  blue;
+  color: blue;
   border: none;
   border-radius: ${(props) =>
     props.position === "left" ? "4px 0 0 4px" : "0 4px 4px 0"};
@@ -76,7 +76,7 @@ const NumberInputCalculate = styled.button<NumberInputCalculateProps>`
       getSize(props.size).iconSize};
   }
   &:hover {
-    background-color: ${colors.secondary["200"]};
+    background-color: blue
   }
 `;
 

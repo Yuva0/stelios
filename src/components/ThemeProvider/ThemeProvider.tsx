@@ -5,93 +5,40 @@ import {
   ColorPaletteProps,
 } from "./ThemeProvider.types";
 import { generateRadixColors } from "../../helpers/colors/generateRadixColors";
-import colors_new from "../../tokens/colors_new.json";
+import colors from "../../tokens/colors.json";
 
 const ThemeContext = createContext<DefaultTheme>({
-  theme: {
-    colorPalette: {
-      primary: {
-        main: colors_new.primary.accent,
-        appearance: colors_new.appearance as "light" | "dark",
-        ...generateRadixColors({
-          appearance: colors_new.appearance as "light" | "dark",
-          accent: colors_new.primary.accent,
-          background:
-            colors_new.appearance === "light"
-              ? colors_new.light_background
-              : colors_new.dark_background,
-          gray: colors_new.gray,
-        }),
-      },
-    },
-  },
+  theme: null,
   setTheme: () => {},
 });
 
 const useTheme = () => {
   return useContext(ThemeContext);
 };
-const assignThemeAccent = (
-  accent: string,
-  appearance: "light" | "dark",
-  gray: string
-) => {
-  return {
-    main: accent,
-    appearance,
-    ...generateRadixColors({
-      appearance,
-      accent,
-      background:
-        appearance === "light"
-          ? colors_new.light_background
-          : colors_new.dark_background,
-      gray: gray,
-    }),
-  } as ColorPaletteProps;
-};
-
 const useUpdateTheme = () => {
   const { setTheme } = useTheme();
 
   return ({
-    accent = {
-      primary: colors_new.primary.accent,
-    },
-    gray = colors_new.gray,
-    appearance = colors_new.appearance as "light" | "dark",
+    accents,
+    gray = colors.color.theme.gray,
+    appearance = colors.color.theme.appearance.light as "light" | "dark",
   }: ThemeProviderProps) => {
-    const colorPalette = Object.keys(accent).reduce(
-      (palette, key) => {
-        return {
-          ...palette,
-          [key]: assignThemeAccent(accent[key], appearance, gray),
-        };
-      },
-      {} as { [key: string]: ColorPaletteProps }
-    );
 
-    return setTheme({
-      colorPalette,
-    });
+    const colorPalette = assignColorPalette(accents, appearance, gray);
+
+    return setTheme(colorPalette ? {
+      colorPalette
+    } : null);
   };
 };
 
 const ThemeProvider = ({
-  accent,
-  gray = colors_new.gray,
-  appearance = colors_new.appearance as "light" | "dark",
+  accents,
+  gray = colors.color.theme.gray,
+  appearance = colors.color.theme.appearance.light as "light" | "dark",
   children,
 }: ThemeProviderProps) => {
-  const colorPalette = accent ? Object.keys(accent).reduce(
-    (palette, key) => {
-      return {
-        ...palette,
-        [key]: assignThemeAccent(accent[key], appearance, gray),
-      };
-    },
-    {} as { [key: string]: ColorPaletteProps }
-  ) : null;
+  const colorPalette = assignColorPalette(accents, appearance, gray);
 
   const [theme, setTheme] = React.useState(colorPalette ? {
     colorPalette,
@@ -103,5 +50,29 @@ const ThemeProvider = ({
     </ThemeContext.Provider>
   );
 };
-
 export { ThemeProvider, useTheme, useUpdateTheme };
+
+const assignThemeAccent = (
+  accent: string,
+  appearance: "light" | "dark",
+  gray: string
+) => {
+  return {
+    main: accent,appearance,
+    ...generateRadixColors({
+      appearance, accent, gray,
+      background: appearance === "light" ? colors.color.theme.background.light : colors.color.theme.background.dark,
+    }),
+  };
+};
+const assignColorPalette = (
+  accents: ThemeProviderProps["accents"],
+  appearance: Exclude<ThemeProviderProps["appearance"], undefined>,
+  gray: Exclude<ThemeProviderProps["gray"], undefined>
+) => {
+  return accents ? Object.keys(accents).reduce((palette, key) => {
+      return { ...palette, [key]: assignThemeAccent(accents[key], appearance, gray)};
+    },
+    {} as { [key: string]: ColorPaletteProps }
+  ) : null;
+}
