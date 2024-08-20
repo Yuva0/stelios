@@ -72,12 +72,14 @@ const NavigationBarGroupItem = ({
   _getSelectedIndex,
   onClick,
 }: NavigationBarGroupItemProps) => {
-  const colorPalette = useTheme().theme.colorPalette;
   const [_selected, setSelected] = React.useState(selected);
 
   React.useEffect(() => {
     setSelected(selected);
   }, [selected]);
+  const theme = useTheme().theme;
+  if(!theme) return null;
+  const colorPalette = theme.colorPalette;
 
   const _onClick = (e: React.MouseEvent | React.KeyboardEvent) => {
     setSelected(true);

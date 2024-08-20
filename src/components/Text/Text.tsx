@@ -207,7 +207,9 @@ const Text = ({
   fontFamily,
   ...rest
 }: TextProps) => {
-  const colorPalette = useTheme().theme.colorPalette;
+  const theme = useTheme().theme;
+  if(!theme) return null;
+  const colorPalette = theme.colorPalette;
   const _color = color
     ? colorPalette[color].main
     : colorPalette.primary.grayScale[11];

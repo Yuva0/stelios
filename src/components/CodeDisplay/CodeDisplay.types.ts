@@ -9,6 +9,6 @@ export interface CodeDisplayProps {
 }
 
 export interface CodeDisplayStyleProps {
-  $colorPalette: DefaultTheme["theme"]["colorPalette"];
+  $colorPalette: any
   $width?: string;
 }

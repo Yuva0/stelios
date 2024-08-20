@@ -1,4 +1,3 @@
-import { DefaultTheme } from "../ThemeProvider/ThemeProvider.types";
 
 export interface SideBarProps {
   children: React.ReactNode | React.ReactNode[];
@@ -9,7 +8,7 @@ export interface SideBarProps {
 }
 
 export interface SideBarStyleProps {
-  $colorPalette: DefaultTheme["theme"]["colorPalette"];
+  $colorPalette: any;
   top?: string;
   right?: string;
 }

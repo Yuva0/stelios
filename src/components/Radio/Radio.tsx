@@ -89,7 +89,9 @@ const Radio = forwardRef(
       setIsSelected(selected);
     }, [selected, focused]);
 
-    const colorPalette = useTheme().theme.colorPalette;
+    const theme = useTheme().theme;
+    if(!theme) return null;
+    const colorPalette = theme.colorPalette;
 
     // Events
     const _onChange = (event: React.ChangeEvent<HTMLInputElement>) => {

@@ -47,7 +47,9 @@ const MenuItem = ({
   value,
   onClick,
 }: MenuItemProps) => {
-  const colorPalette = useTheme().theme.colorPalette;
+  const theme = useTheme().theme;
+  if(!theme) return null;
+  const colorPalette = theme.colorPalette;
 
   const _onClick = (event: React.MouseEvent<HTMLLIElement>) => {
     onClick && onClick(event, { title, value });

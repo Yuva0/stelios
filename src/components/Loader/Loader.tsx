@@ -16,7 +16,7 @@ interface LoaderStyleProps {
   $shape: LoaderProps["shape"];
   $height: LoaderProps["height"];
   $width: LoaderProps["width"];
-  $colorPalette: DefaultTheme["theme"]["colorPalette"];
+  $colorPalette: any;
   $borderRadius?: LoaderProps["borderRadius"];
   $startTime?: LoaderProps["startTime"];
 }
@@ -61,7 +61,9 @@ const Loader: React.FunctionComponent<LoaderProps> = ({
   className,
   startTime = 0
 }) => {
-  const colorPalette = useTheme().theme.colorPalette;
+  const theme = useTheme().theme;
+  if(!theme) return null;
+  const colorPalette = theme.colorPalette;
 
   return (
     <StyledLoaderProps

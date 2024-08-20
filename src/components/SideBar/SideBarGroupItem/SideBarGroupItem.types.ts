@@ -11,6 +11,6 @@ export interface SideBarGroupItemProps {
 }
 
 export interface SideBarGroupItemStyleProps {
-  $colorPalette: DefaultTheme["theme"]["colorPalette"];
+  $colorPalette: any;
   $selected?: boolean;
 }

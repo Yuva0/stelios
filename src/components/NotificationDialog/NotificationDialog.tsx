@@ -58,8 +58,6 @@ const NotificationDialog: React.FunctionComponent<NotificationDialogProps> = ({
   const debouncedOpen = useDebounce(open, 200);
   const [notifDialogRef, setNotifDialogRef] = React.useState<HTMLDivElement | null>(null);
 
-  const colorPalette = useTheme().theme.colorPalette;
-
   React.useEffect(() => {
     console.log(notifDialogRef);
   },[notifDialogRef]);
@@ -67,6 +65,10 @@ const NotificationDialog: React.FunctionComponent<NotificationDialogProps> = ({
   React.useEffect(() => {
     setIsOpen(open);
   }, [open]);
+
+  const theme = useTheme().theme;
+  if(!theme) return null;
+  const colorPalette = theme.colorPalette;
 
   const ChildrenEle =
     typeof children === "string" ? (

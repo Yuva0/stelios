@@ -44,7 +44,9 @@ const StyledSyntaxHighlighter = styled(SyntaxHighlighter)<CodeEditorStyleProps>`
 `;
 
 const CodeEditor = ({ code, text, width }: CodeEditorProps) => {
-  const colorPalette = useTheme().theme.colorPalette;
+  const theme = useTheme().theme;
+  if (!theme) return null;
+  const colorPalette = theme.colorPalette;
   const appearance = colorPalette.primary.appearance;
 
   return (

@@ -71,8 +71,6 @@ const Alert: React.FunctionComponent<AlertProps> = ({
   style,
   className,
 }: AlertProps) => {
-  const colorPalette = useTheme().theme.colorPalette;
-
   const Content = React.useCallback(() => {
     if (!title && !description) return null;
 
@@ -111,6 +109,10 @@ const Alert: React.FunctionComponent<AlertProps> = ({
 
     return <StyledIcon>{leadingIcon}</StyledIcon>;
   }, [leadingIcon]);
+  
+  const theme = useTheme().theme;
+  if (!theme) return null;
+  const colorPalette = theme.colorPalette;
 
   return (
     <StyledContainer

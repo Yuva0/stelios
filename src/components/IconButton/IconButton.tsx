@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Text from "../Text/Text";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
 import { hasPropertyChain } from "../../helpers/helpers";
+import { get } from "http";
 
 const IconButton = forwardRef(
   (
@@ -21,6 +22,7 @@ const IconButton = forwardRef(
     ref: React.ForwardedRef<HTMLButtonElement>
   ) => {
     const theme = useTheme().theme;
+    if(!theme) return null;
     const colorPalette = theme.colorPalette;
 
     return (
@@ -36,7 +38,7 @@ const IconButton = forwardRef(
             {icon}
           </Text>
         ) : (
-          icon
+          <IconButtonIcon icon={icon} size={size}/>
         )}
       </StyledIconBtn>
     );
@@ -44,6 +46,11 @@ const IconButton = forwardRef(
 );
 
 export default IconButton;
+const IconButtonIcon = ({icon,size}:{icon: React.ReactNode, size: "small" | "medium" | "large"}) => {
+  return (
+    <StyledIconButtonIcon $size={size}>{icon}</StyledIconButtonIcon>
+  );
+};
 
 const StyledIconBtn = styled.button<IconButtonStyleProps>`
   display: inline-flex;
@@ -80,6 +87,14 @@ const StyledIconBtn = styled.button<IconButtonStyleProps>`
     `;
   }}
   `;
+const StyledIconButtonIcon = styled.div<{$size: "small" | "medium" | "large"}>`
+  width: ${(props) => getSizeProps(props.$size).width};
+  height: ${(props) => getSizeProps(props.$size).height};
+  & svg {
+    width: 100%;
+    height: 100%;
+  }
+`;
 
 const propsHandler = (
   variant: IconButtonStyleProps["$variant"],
@@ -212,17 +227,20 @@ const getSizeProps = (size: IconButtonStyleProps["$size"]) => {
     case "small":
       return {
         padding: "0.5rem 0.5rem",
-        iconSize: "1.25rem",
+        width: "1.25rem",
+        height: "1.25rem"
       }
     case "medium":
       return {
-        padding: "0.5rem 0.5rem",
-        iconSize: "1.25rem",
+        padding: "0.75rem 0.75rem",
+        width: "1.5rem",
+        height: "1.5rem"
       }
     case "large":
       return {
         padding: "1rem 1rem",
-        iconSize: "1.5rem",
+        width: "2rem",
+        height: "2rem"
       }
   }
 };

@@ -51,7 +51,9 @@ const StyledAccordionItemContent = styled.div<AccordionItemStyleProps>`
 
 const AccordionItem = ({ title, children, expanded, variant }: AccordionItemProps) => {
   const [isExpanded, setIsExpanded] = React.useState(expanded);
-  const colorPalette = useTheme().theme.colorPalette;
+  const theme = useTheme().theme;
+  if(!theme) return;
+  const colorPalette = theme.colorPalette;
 
   const _onTitleClick = () => {
     setIsExpanded(!isExpanded);

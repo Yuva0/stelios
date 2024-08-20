@@ -38,7 +38,7 @@ const StyledImgHighlightCtr = styled.div<{ $gradientColors?: Array<string> }>`
 `;
 
 const StyledImgCtr = styled.div<{
-  $colorPalette?: DefaultTheme["theme"]["colorPalette"];
+  $colorPalette?: any;
 }>`
   width: calc(100% - 1rem);
   height: calc(100% - 1rem);
@@ -63,7 +63,9 @@ const ImageHighlight: React.FunctionComponent<ImageHighlightProps> = ({
   imgAlt,
   gradientColors,
 }) => {
-  const colorPalette = useTheme().theme.colorPalette;
+  const theme = useTheme().theme;
+  if(!theme) return null;
+  const colorPalette = theme.colorPalette;
 
   return (
     <StyledImgHighlightCtr $gradientColors={gradientColors}>

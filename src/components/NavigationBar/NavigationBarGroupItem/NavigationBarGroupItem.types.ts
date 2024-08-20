@@ -1,4 +1,3 @@
-import { DefaultTheme } from "../../ThemeProvider/ThemeProvider.types";
 
 export interface NavigationBarGroupItemProps {
   _index?: number;
@@ -17,6 +16,6 @@ export interface NavigationBarGroupItemProps {
 }
 
 export interface NavigationBarGroupItemStyleProps {
-  $colorPalette: DefaultTheme["theme"]["colorPalette"];
+  $colorPalette: any;
   $selected?: boolean;
 }

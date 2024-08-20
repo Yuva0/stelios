@@ -35,7 +35,9 @@ const SideBarGroup = ({
   // Events
   onClick,
 }: SideBarGroupProps) => {
-  const colorPalette = useTheme().theme.colorPalette;
+  const theme = useTheme().theme;
+  if(!theme) return;
+  const colorPalette = theme.colorPalette;
 
   return (
     <StyledSideBarGroup className={className} style={style}>

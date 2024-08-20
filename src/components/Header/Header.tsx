@@ -66,7 +66,9 @@ const Header = ({
 }: HeaderProps) => {
   const [expanded, setExpanded] = React.useState<boolean>(true);
 
-  const colorPalette = useTheme().theme.colorPalette;
+  const theme = useTheme().theme;
+  if(!theme) return null;
+  const colorPalette = theme.colorPalette;
 
   const _onExpandHandler = () => {
     setExpanded(!expanded);

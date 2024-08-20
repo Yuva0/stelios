@@ -74,7 +74,9 @@ const NavigationBarGroup = ({
 }: NavigationBarGroupProps) => {
   const navigationBarGrpItmContnrRef = React.useRef(null);
   const [expand, setExpand] = useState(expanded ?? false);
-  const colorPalette = useTheme().theme.colorPalette;
+  const theme = useTheme().theme;
+  if(!theme) return null;
+  const colorPalette = theme.colorPalette;
 
   const _toggleExpand = (e: React.MouseEvent | React.KeyboardEvent) => {
     setExpand((expand) => !expand);

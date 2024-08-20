@@ -51,8 +51,6 @@ const Menu = forwardRef<HTMLDivElement, MenuProps>(
     const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(
       null
     );
-    const colorPalette = useTheme().theme.colorPalette;
-
     useEffect(() => {
       setIsOpen(open ?? false);
     }, [open]);
@@ -68,6 +66,10 @@ const Menu = forwardRef<HTMLDivElement, MenuProps>(
         },
       ],
     });
+    const theme = useTheme().theme;
+    if(!theme) return null;
+    // const colorPalette = theme.colorPalette;
+
 
     const _onClick = (
       e: React.MouseEvent<HTMLLIElement>,

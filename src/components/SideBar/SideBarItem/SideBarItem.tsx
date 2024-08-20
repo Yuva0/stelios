@@ -25,7 +25,9 @@ const SideBarItem = ({
   //Events
   onClick,
 }: SideBarItemProps) => {
-  const colorPalette = useTheme().theme.colorPalette;
+  const theme = useTheme().theme;
+  if(!theme) return;
+  const colorPalette = theme.colorPalette;
 
   return (
     <StyledSideBarItem $colorPalette={colorPalette} onClick={onClick}>

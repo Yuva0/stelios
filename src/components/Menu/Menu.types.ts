@@ -41,5 +41,5 @@ export interface MenuProps {
 export interface MenuStyleProps {
   $open: NonNullable<MenuProps["open"]>;
   $minWidth: NonNullable<MenuProps["minWidth"]>;
-  $colorPalette?: DefaultTheme["theme"]["colorPalette"];
+  $colorPalette?: any;
 }

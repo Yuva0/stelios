@@ -1,4 +1,3 @@
-import { DefaultTheme } from "../../ThemeProvider/ThemeProvider.types";
 
 export interface NavigationBarHeaderProps {
   children: string | React.ReactNode;
@@ -10,5 +9,5 @@ export interface NavigationBarHeaderProps {
 }
 
 export interface NavigationBarHeaderStyleProps {
-  $colorPalette: DefaultTheme["theme"]["colorPalette"];
+  $colorPalette: any;
 }

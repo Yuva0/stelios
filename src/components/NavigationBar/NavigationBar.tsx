@@ -29,10 +29,12 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
   // Events
   onChange,
 }) => {
-  const colorPalette = useTheme().theme.colorPalette;
   const [selectedIndex, setSelectedIndex] = React.useState<
     number | undefined
   >();
+  const theme = useTheme().theme;
+  if(!theme) return null;
+  const colorPalette = theme.colorPalette;
 
   const childrenList = Array.isArray(children) ? children : [children];
 

@@ -27,14 +27,8 @@ export const Sizes: Story = {
       }}>
       <div style={{ display: "flex", flexDirection: "column" }}>
         <FormControlLabel control={<Checkbox size="small"/>} label="Small" />
-        <FormControlLabel
-          control={<Checkbox size="medium" />}
-          label="Medium"
-        />
-        <FormControlLabel
-          control={<Checkbox size="large" />}
-          label="Large"
-        />
+        <FormControlLabel control={<Checkbox size="medium" />} label="Medium" />
+        <FormControlLabel control={<Checkbox size="large" />} label="Large" />
       </div>
       </ThemeProvider>
     );

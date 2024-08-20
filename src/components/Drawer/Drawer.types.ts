@@ -21,5 +21,5 @@ export type DrawerStyleProps = {
   $size?: "small" | "medium" | "large";
   $zIndex?: number;
   $backdropStrength?: "light" | "medium" | "strong";
-  $colorPalette: DefaultTheme["theme"]["colorPalette"];
+  $colorPalette: any;
 };

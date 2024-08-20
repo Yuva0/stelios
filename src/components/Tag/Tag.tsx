@@ -113,7 +113,9 @@ const Tag = ({
   // Events
   onClick,
 }: TagProps) => {
-  const colorPalette = useTheme().theme.colorPalette;
+  const theme = useTheme().theme;
+  if(!theme) return;
+  const colorPalette = theme.colorPalette;
 
   return (
     <StyledTag

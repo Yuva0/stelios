@@ -78,14 +78,12 @@ const useUpdateTheme = () => {
 };
 
 const ThemeProvider = ({
-  accent = {
-    primary: colors_new.primary.accent,
-  },
+  accent,
   gray = colors_new.gray,
   appearance = colors_new.appearance as "light" | "dark",
   children,
 }: ThemeProviderProps) => {
-  const colorPalette = Object.keys(accent).reduce(
+  const colorPalette = accent ? Object.keys(accent).reduce(
     (palette, key) => {
       return {
         ...palette,
@@ -93,11 +91,11 @@ const ThemeProvider = ({
       };
     },
     {} as { [key: string]: ColorPaletteProps }
-  ); // Ensuring correct typing
+  ) : null;
 
-  const [theme, setTheme] = React.useState({
+  const [theme, setTheme] = React.useState(colorPalette ? {
     colorPalette,
-  });
+  }: null);
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>

@@ -131,7 +131,9 @@ const ToggleButton = ({
   // Events
   onClick,
 }: ToggleButtonProps) => {
-  const colorPalette = useTheme().theme.colorPalette;
+  const theme = useTheme().theme;
+  if(!theme) return;
+  const colorPalette = theme.colorPalette;
   const isSelected = selected ?? defaultSelected ?? false;
 
   const _onClick = (e: React.MouseEvent<HTMLButtonElement>) => {

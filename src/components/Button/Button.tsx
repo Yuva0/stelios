@@ -27,6 +27,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
 }: ButtonProps & ButtonInternalProps,
 ref) => {
   const theme = useTheme().theme;
+  if(!theme) return null;
   const colorPalette = theme.colorPalette;
 
   return (

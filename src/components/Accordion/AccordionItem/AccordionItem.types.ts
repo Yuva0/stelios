@@ -9,6 +9,6 @@ export interface AccordionItemProps {
 
 export interface AccordionItemStyleProps {
   $expanded?: boolean;
-  $colorPalette: DefaultTheme["theme"]["colorPalette"];
+  $colorPalette: any;
   $variant?: "transparent";
 }

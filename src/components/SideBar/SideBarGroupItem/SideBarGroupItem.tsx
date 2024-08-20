@@ -21,7 +21,9 @@ const SideBarGroupItem = ({
   // Events
   onClick,
 }: SideBarGroupItemProps) => {
-  const colorPalette = useTheme().theme.colorPalette;
+  const theme = useTheme().theme;
+  if(!theme) return;
+  const colorPalette = theme.colorPalette;
 
   return (
     <StyledSideBarGroupItem

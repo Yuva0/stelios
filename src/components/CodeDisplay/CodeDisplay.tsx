@@ -50,7 +50,9 @@ const CodeDisplay = ({
   syntaxStyle,
   style
 }: CodeDisplayProps) => {
-  const colorPalette = useTheme().theme.colorPalette;
+  const theme = useTheme().theme;
+  if(!theme) return;
+  const colorPalette = theme.colorPalette;
   const appearance = colorPalette.primary.appearance;
 
   return (

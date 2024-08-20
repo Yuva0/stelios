@@ -1,5 +1,3 @@
-import { DefaultTheme } from "../ThemeProvider/ThemeProvider.types";
-
 export interface AccordionProps {
   children: React.ReactNode | React.ReactNode[];
   title?: React.ReactNode;
@@ -9,5 +7,5 @@ export interface AccordionProps {
 
 export interface AccordionStyleProps {
   $width?: string;
-  $colorPalette?: DefaultTheme["theme"]["colorPalette"];
+  $colorPalette?: any;
 }

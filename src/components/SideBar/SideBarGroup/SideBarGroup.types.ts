@@ -14,5 +14,5 @@ export interface SideBarGroupProps {
 }
 
 export interface SideBarGroupStyleProps {
-  $colorPalette: DefaultTheme["theme"]["colorPalette"];
+  $colorPalette: any;
 }

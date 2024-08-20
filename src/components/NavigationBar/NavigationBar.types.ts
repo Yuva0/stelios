@@ -8,5 +8,5 @@ export interface NavigationBarProps {
 }
 
 export interface NavigationBarStyleProps {
-  $colorPalette: DefaultTheme["theme"]["colorPalette"];
+  $colorPalette: any;
 }

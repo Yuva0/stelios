@@ -35,13 +35,11 @@ export type ColorPaletteProps = {
   background: string;
 }
 
-export const colorTypes = ["primary", "secondary", "danger", "warning", "success", "info"];
-
 export interface DefaultTheme {
   theme: {
     colorPalette: {
       [key: string]: ColorPaletteProps
     }
-  };
+  } | null;
   setTheme: React.Dispatch<React.SetStateAction<DefaultTheme["theme"]>>;
 }

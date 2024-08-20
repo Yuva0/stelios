@@ -1,5 +1,3 @@
-import { DefaultTheme } from "../ThemeProvider/ThemeProvider.types";
-
 export interface CodeEditorProps {
   text: string;
   code: React.ReactNode | [React.ReactNode];
@@ -7,6 +5,6 @@ export interface CodeEditorProps {
 }
 
 export interface CodeEditorStyleProps {
-  $colorPalette: DefaultTheme["theme"]["colorPalette"];
+  $colorPalette: any;
   $width?: string;
 }

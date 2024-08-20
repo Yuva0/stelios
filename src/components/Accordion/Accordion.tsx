@@ -13,7 +13,9 @@ const StyledAccordion = styled.div<AccordionStyleProps>`
 `;
 
 const Accordion = ({ title, children, width }: AccordionProps) => {
-  const colorPalette = useTheme().theme.colorPalette;
+  const theme = useTheme().theme;
+  if (!theme) return null;
+  const colorPalette = theme.colorPalette;
 
   const Title =
     title &&

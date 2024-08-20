@@ -171,7 +171,9 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
       setInputValue(value ?? "");
     }, [value]);
 
-    const colorPalette = useTheme().theme.colorPalette;
+    const theme = useTheme().theme;
+    if(!theme) return null;
+    const colorPalette = theme.colorPalette;
 
     const Label = label ? (
       typeof label === "string" ? (

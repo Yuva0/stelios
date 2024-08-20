@@ -35,7 +35,9 @@ const Link = ({
   // Events
   onClick,
 }: LinkProps) => {
-  const colorPalette = useTheme().theme.colorPalette;
+  const theme = useTheme().theme;
+  if(!theme) return null;
+  const colorPalette = theme.colorPalette;
 
   const _color = color
     ? colorPalette[color].accentScale[10]

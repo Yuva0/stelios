@@ -38,9 +38,6 @@ const Autocomplete = ({
         : value
       : ""
   );
-  const [filteredOptions, setFilteredOptions] = React.useState(options);
-  const colorPalette = useTheme().theme.colorPalette;
-
   useEffect(() => {
     setInputValue(value ?? "");
   }, [value]);
@@ -60,6 +57,11 @@ const Autocomplete = ({
       );
     });
   }, [options, inputValue]);
+  const [filteredOptions, setFilteredOptions] = React.useState(options);
+  const theme = useTheme().theme;
+  if (!theme) return null;
+  const colorPalette = theme.colorPalette;
+
 
   const _handleMultiSelectOnClick = (
     e: React.MouseEvent,

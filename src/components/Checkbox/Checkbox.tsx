@@ -82,11 +82,13 @@ const Checkbox = forwardRef(
     const _ref = (ref ?? innerRef) as React.RefObject<HTMLInputElement>;
     const [isChecked, setIsChecked] = useState(checked ?? false);
 
-    const colorPalette = useTheme().theme.colorPalette;
-
     useEffect(() => {
       setIsChecked(checked ?? false);
     }, [checked]);
+
+    const theme = useTheme().theme;
+    if(!theme) return null;
+    const colorPalette = theme.colorPalette;
 
     const _onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       setIsChecked((prev) => {

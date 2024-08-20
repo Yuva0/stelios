@@ -3,7 +3,7 @@ import {
   NavigationBarHeaderProps,
   NavigationBarHeaderStyleProps,
 } from "./NavigationBarHeader.types";
-import colors from "../../../tokens/colors.json";
+// import colors from "../../../tokens/colors.json";
 import styled from "styled-components";
 import Text from "../../Text/Text";
 import { useTheme } from "../../ThemeProvider/ThemeProvider";
@@ -47,7 +47,9 @@ const NavigationBarHeader = ({
   trailingIcon,
   size,
 }: NavigationBarHeaderProps) => {
-  const colorPalette = useTheme().theme.colorPalette;
+  const theme = useTheme().theme;
+  if(!theme) return null;
+  const colorPalette = theme.colorPalette;
   return (
     <StyledNavBarHeader
       $colorPalette={colorPalette}

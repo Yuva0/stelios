@@ -16,7 +16,7 @@ interface ComponentHighlightStyleProps {
   $width: string;
   $height: string;
   $borderRadius: string;
-  $colorPalette: DefaultTheme["theme"]["colorPalette"];
+  $colorPalette: any;
   $gradientColors?: Array<string>;
 }
 
@@ -55,7 +55,9 @@ const ComponentHighlight: React.FunctionComponent<ComponentHighlightProps> = ({
   style,
   className,
 }) => {
-  const colorPalette = useTheme().theme.colorPalette;
+  const theme = useTheme().theme;
+  if(!theme) return null;
+  const colorPalette = theme.colorPalette;
 
   const CHILDREN =
     typeof children === "string" ? <Text>{children}</Text> : children;

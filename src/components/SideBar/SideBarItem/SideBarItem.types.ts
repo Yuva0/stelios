@@ -1,5 +1,3 @@
-import { DefaultTheme } from "../../ThemeProvider/ThemeProvider.types";
-
 export interface SideBarItemProps {
   children: React.ReactNode | React.ReactNode[];
   className?: string;
@@ -10,6 +8,6 @@ export interface SideBarItemProps {
 }
 
 export interface SideBarItemStyleProps {
-  $colorPalette: DefaultTheme["theme"]["colorPalette"];
+  $colorPalette: any;
   $selected?: boolean;
 }

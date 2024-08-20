@@ -96,7 +96,9 @@ const ToggleButtonGroup = ({
     setSelectedIndex(value ? getIndexFromValue(value, children) : null);
   }, [value, children]);
 
-  const colorPalette = useTheme().theme.colorPalette;
+  const theme = useTheme().theme;
+  if(!theme) return;
+  const colorPalette = theme.colorPalette;
 
   const _onClick = (e: React.MouseEvent, value?: string, index?: number) => {
     setSelectedIndex(index ?? null);

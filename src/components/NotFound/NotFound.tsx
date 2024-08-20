@@ -40,7 +40,9 @@ const NotFound: React.FunctionComponent<NotFoundProps> = ({
   style,
   notFoundText = "Page Not Found",
 }) => {
-  const colorPalette = useTheme().theme.colorPalette;
+  const theme = useTheme().theme;
+  if(!theme) return null;
+  const colorPalette = theme.colorPalette;
 
   let NotFoundComponent = null;
   switch (name) {
