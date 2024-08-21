@@ -28,12 +28,12 @@ export const getColorPalette = (theme?:DefaultTheme["theme"], color?: string) =>
   return {
     [color]: {
       main: color,
-      appearance: colors.color.theme.appearance.light,
+      appearance: colors.theme.appearance.light,
       ...generateRadixColors({
         accent: color,
-        appearance: colors.color.theme.appearance.light as "light" | "dark",
-        gray: colors.color.theme.gray,
-        background: colors.color.theme.background.light,
+        appearance: colors.theme.appearance.light as "light" | "dark",
+        gray: colors.theme.gray,
+        background: colors.theme.background.light,
       }),
     } as ColorPaletteProps,
   };

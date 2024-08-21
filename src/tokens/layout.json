@@ -1,0 +1,66 @@
+{
+  "spacing": {
+    "0": {
+      "multiplier": 0,
+      "rem": 0
+    },
+    "025": {
+      "multiplier": 0.25,
+      "rem": 0.125
+    },
+    "050": {
+      "multiplier": 0.5,
+      "rem": 0.25
+    },
+    "075": {
+      "multiplier": 1,
+      "rem": 0.5
+    },
+    "100": {
+      "multiplier": 1.25,
+      "rem": 0.625
+    },
+    "150": {
+      "multiplier": 1.5,
+      "rem": 0.75
+    },
+    "200": {
+      "multiplier": 2,
+      "rem": 1
+    },
+    "250": {
+      "multiplier": 2.5,
+      "rem": 1.25
+    },
+    "300": {
+      "multiplier": 3,
+      "rem": 1.5
+    },
+    "400": {
+      "multiplier": 4,
+      "rem": 2
+    },
+    "500": {
+      "multiplier": 5,
+      "rem": 2.5
+    },
+    "600": {
+      "multiplier": 6,
+      "rem": 3
+    },
+    "800": {
+      "multiplier": 8,
+      "rem": 3.5
+    },
+    "1000": {
+      "multiplier": 10,
+      "rem": 5
+    }
+  },
+  "rounded": {
+    "default": {
+      "multiplier": 0.5,
+      "rem": 0.25
+    }
+  }
+}

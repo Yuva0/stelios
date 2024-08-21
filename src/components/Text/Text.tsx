@@ -30,7 +30,7 @@ const Text = ({
     const colorPalette = getColorPalette(theme, color);
     const _color = color && colorPalette
       ? colorPalette[color].main
-      : colors.color.default.main;
+      : colors.default.main;
     _styleProps = { $noColor: noColor, $color: _color };
   }
 

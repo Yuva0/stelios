@@ -20,8 +20,8 @@ const useUpdateTheme = () => {
 
   return ({
     accents,
-    gray = colors.color.theme.gray,
-    appearance = colors.color.theme.appearance.light as "light" | "dark",
+    gray = colors.theme.gray,
+    appearance = colors.theme.appearance.light as "light" | "dark",
   }: ThemeProviderProps) => {
 
     const colorPalette = assignColorPalette(accents, appearance, gray);
@@ -34,8 +34,8 @@ const useUpdateTheme = () => {
 
 const ThemeProvider = ({
   accents,
-  gray = colors.color.theme.gray,
-  appearance = colors.color.theme.appearance.light as "light" | "dark",
+  gray = colors.theme.gray,
+  appearance = colors.theme.appearance.light as "light" | "dark",
   children,
 }: ThemeProviderProps) => {
   const colorPalette = assignColorPalette(accents, appearance, gray);
@@ -61,7 +61,7 @@ const assignThemeAccent = (
     main: accent,appearance,
     ...generateRadixColors({
       appearance, accent, gray,
-      background: appearance === "light" ? colors.color.theme.background.light : colors.color.theme.background.dark,
+      background: appearance === "light" ? colors.theme.background.light : colors.theme.background.dark,
     }),
   };
 };

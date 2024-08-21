@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect, useImperativeHandle, useRef } from "react";
 import styled from "styled-components";
 import { ButtonInternalProps, ButtonProps, ButtonStyleProps } from "./Button.types";
 import Text from "../Text/Text";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
 import { getColorPalette, hasPropertyChain } from "../../helpers/helpers";
 import colors from "../../tokens/colors.json";
+import layout from "../../tokens/layout.json";
 
 interface ButtonIconProps {
   $size: ButtonStyleProps["$size"];
@@ -15,7 +16,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
   trailingIcon,
   size = "medium",
   variant = "contained",
-  color = colors.color.default.main,
+  color = colors.default.main,
+  rounded = false,
   disabled = false,
   children,
   isFullWidth = false,
@@ -23,11 +25,21 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
   ...rest
 }: ButtonProps & ButtonInternalProps,
 ref) => {
+  const innerRef = useRef<HTMLButtonElement>(null);
+  useImperativeHandle(ref, () => innerRef.current!, [innerRef]);
   const theme = useTheme().theme;
   const colorPalette = getColorPalette(theme,color);
 
+  const [borderRadius, setBorderRadius] = React.useState<string>(rounded ? (innerRef.current ? `${innerRef.current.offsetHeight/2}px` : "") : `${layout.rounded.default.rem}rem`);
+  useEffect(() => {
+    if(!innerRef || !innerRef.current) return;
+    setBorderRadius(rounded ? `${innerRef.current.offsetHeight/2}px` : `${layout.rounded.default.rem}rem`);
+  },[rounded, innerRef, innerRef.current?.offsetHeight]);
+
   return (
-    <StyledButton ref={ref} $size={size} $variant={variant} $color={color} $colorPalette={colorPalette} $disabled={disabled} $isFullWidth={isFullWidth}
+    <StyledButton ref={innerRef} $size={size} $variant={variant} 
+      $color={color} $colorPalette={colorPalette} $disabled={disabled} 
+      $rounded={rounded} $isFullWidth={isFullWidth} $borderRadius={borderRadius}
       aria-disabled={disabled}
       onClick={onClick}
       {...rest}
@@ -51,10 +63,9 @@ const StyledButton = styled.button<ButtonStyleProps>`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 0.25rem;
 
   ${props => {
-    const properties = propsHandler(props.$variant, props.$color, props.$colorPalette, props.$size);
+    const properties = propsHandler(props.$variant, props.$color, props.$colorPalette, props.$size, props.$disabled);
     return `
       background-color: ${properties.backgroundColor.default};
       color: ${properties.color.default};
@@ -62,24 +73,34 @@ const StyledButton = styled.button<ButtonStyleProps>`
       gap: ${properties.gap};
       width: ${props.$isFullWidth ? "100%" : "auto"};
       cursor: ${props.$disabled ? "not-allowed" : "pointer"};
+      border-radius: ${props.$borderRadius};
       ${hasPropertyChain(properties, ['border']) ? `border: ${properties.border!.default};` : ""}
       ${hasPropertyChain(properties, ['boxShadow', 'default']) ? `box-shadow: ${properties.boxShadow!.default};` : ""}
-      &:hover {
-        background-color: ${properties.backgroundColor.hover};
-        color: ${properties.color.hover};
-        ${hasPropertyChain(properties, ["border", "hover"]) && `border: ${properties.border!.hover};`}
-        ${hasPropertyChain(properties, ["boxShadow", "hover"]) && `box-shadow: ${properties.boxShadow!.hover};`}
+      ${!props.disabled ? 
+        `&:hover {
+          background-color: ${properties.backgroundColor.hover};
+          color: ${properties.color.hover};
+          ${hasPropertyChain(properties, ["border", "hover"]) && `border: ${properties.border!.hover};`}
+          ${hasPropertyChain(properties, ["boxShadow", "hover"]) && `box-shadow: ${properties.boxShadow!.hover};`}
+        }` : 
+        ""
       }
-      &:active {
-        background-color: ${properties.backgroundColor.active};
-        color: ${properties.color.active};
-        ${properties.border && `border: ${properties.border.active};`}
-        ${properties.filter && properties.filter.active && `filter: ${properties.filter.active};`};
-        ${hasPropertyChain(properties, ["boxShadow", "active"]) && `box-shadow: ${properties.boxShadow!.active};`}
+      ${!props.disabled ? 
+        `&:active {
+          background-color: ${properties.backgroundColor.active};
+          color: ${properties.color.active};
+          ${properties.border && `border: ${properties.border.active};`}
+          ${properties.filter && properties.filter.active && `filter: ${properties.filter.active};`};
+          ${hasPropertyChain(properties, ["boxShadow", "active"]) && `box-shadow: ${properties.boxShadow!.active};`}
+        }` : 
+        ""
       }
-      &:focus-visible {
-        outline-offset: 2px;
-        outline: 2px solid ${props.$colorPalette[props.$color].accentScale[8]};
+      ${!props.disabled ?
+        `&:focus-visible {
+          outline-offset: 2px;
+          outline: 2px solid ${props.$colorPalette[props.$color].accentScale[8]};
+        }`:
+        ""
       }
     `;
   }}
@@ -102,20 +123,33 @@ const propsHandler = (
   variant: ButtonStyleProps["$variant"],
   color: ButtonStyleProps["$color"],
   colorPalette: ButtonStyleProps["$colorPalette"],
-  size: ButtonStyleProps["$size"]
+  size: ButtonStyleProps["$size"],
+  disabled: ButtonStyleProps["$disabled"]
 ) => {
   return {
-    ...getVariantProps(variant, color, colorPalette),
+    ...getVariantProps(variant, color, colorPalette, disabled),
     ...getSizeProps(size),
   };
 };
 const getVariantProps = (
   variant: ButtonStyleProps["$variant"],
   color: ButtonStyleProps["$color"],
-  colorPalette: ButtonStyleProps["$colorPalette"]
+  colorPalette: ButtonStyleProps["$colorPalette"],
+  disabled: ButtonStyleProps["$disabled"]
 ) => {
   switch (variant) {
     case "contained":
+      if(disabled) return {
+        backgroundColor: {
+          default: colorPalette[color].grayScale[8]
+        },
+        color: {
+          default: colorPalette[color].accentContrast
+        },
+        border: {
+          default: `2px solid ${colorPalette[color].grayScale[8]}`
+        }
+      }
       return {
         backgroundColor: {
           default: colorPalette[color].accentScale[8],
@@ -137,6 +171,17 @@ const getVariantProps = (
         }
       };
     case "outlined":
+      if(disabled) return {
+        backgroundColor: {
+          default: "transparent"
+        },
+        color: {
+          default: colorPalette[color].grayScale[10]
+        },
+        border: {
+          default: `2px solid ${colorPalette[color].grayScale[5]}`
+        }
+      }
       return {
         backgroundColor: {
           default: "transparent",
@@ -155,6 +200,17 @@ const getVariantProps = (
         }
       };
     case "soft":
+      if(disabled) return {
+        backgroundColor: {
+          default: colorPalette[color].grayScale[2]
+        },
+        color: {
+          default: colorPalette[color].grayScale[10]
+        },
+        border: {
+          default: `2px solid ${colorPalette[color].grayScale[2]}`
+        }
+      }
       return {
         backgroundColor: {
           default: colorPalette[color].accentScale[2],
@@ -176,6 +232,18 @@ const getVariantProps = (
         }
       };
     case "outlined-soft":
+      if(disabled)
+        return {
+          backgroundColor: {
+            default: colorPalette[color].grayScale[2]
+          },
+          color: {
+            default: colorPalette[color].grayScale[10]
+          },
+          border: {
+            default: `2px solid ${colorPalette[color].grayScale[5]}`
+          }
+        }
       return {
         backgroundColor: {
           default: colorPalette[color].accentScale[2],
@@ -193,7 +261,25 @@ const getVariantProps = (
           active: `2px solid ${colorPalette[color].accentScale[7]}`,
         },
       }
-    case "neumorph": 
+    case "neumorph":
+      if(disabled)
+        return {
+          backgroundColor: {
+            default: "transparent"
+          },
+          color: {
+            default: colorPalette[color].grayScale[5]
+          },
+          border: {
+            default: `2px solid transparent`
+          },
+          boxShadow: {
+            default: `-6px -6px 14px rgba(255, 255, 255, .7),
+              -6px -6px 10px rgba(255, 255, 255, .5),
+              6px 6px 8px rgba(255, 255, 255, .075),
+              6px 6px 10px rgba(0, 0, 0, .15)`,
+          }
+        }
       return {
         backgroundColor: {
           default: "transparent",

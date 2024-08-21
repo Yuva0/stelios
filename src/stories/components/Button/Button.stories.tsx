@@ -59,6 +59,12 @@ const ButtonStoryMeta: Meta<typeof Button> = {
         type: "boolean",
       },
     },
+    rounded: {
+      description: "If true, the button will be rounded.",
+      control: {
+        type: "boolean",
+      },
+    },
     isFullWidth: {
       control: {
         type: "boolean",
@@ -68,8 +74,8 @@ const ButtonStoryMeta: Meta<typeof Button> = {
 };
 export default ButtonStoryMeta;
 
-type Story = StoryObj<typeof Button>;
-const ButtonTemplate: Story = {
+type ButtonStory = StoryObj<typeof Button>;
+const ButtonTemplate: ButtonStory = {
   render: (args) => <Button {...args}>{args.children}</Button>,
 };
 
@@ -80,38 +86,94 @@ export const Contained = {
     children: "Click Here",
     variant: "contained",
   },
+  parameters: {
+    controls: {
+      hideNoControlsWarning: true,
+      disabled: true,
+      disable: true,
+    },
+    actions: {
+      hideNoControlsWarning: true,
+      disabled: true,
+      disable: true,
+    },
+  }
 };
-
 export const Outlined = {
   ...ButtonTemplate,
   args: {
     children: "Click Here",
     variant: "outlined",
   },
+  parameters: {
+    controls: {
+      hideNoControlsWarning: true,
+      disabled: true,
+      disable: true,
+    },
+    actions: {
+      hideNoControlsWarning: true,
+      disabled: true,
+      disable: true,
+    },
+  }
 };
-
 export const Soft = {
   ...ButtonTemplate,
   args: {
     children: "Click Here",
     variant: "soft",
   },
+  parameters: {
+    controls: {
+      hideNoControlsWarning: true,
+      disabled: true,
+      disable: true,
+    },
+    actions: {
+      hideNoControlsWarning: true,
+      disabled: true,
+      disable: true,
+    },
+  }
 };
-
 export const OutlinedSoft = {
   ...ButtonTemplate,
   args: {
     children: "Click Here",
     variant: "outlined-soft",
   },
+  parameters: {
+    controls: {
+      hideNoControlsWarning: true,
+      disabled: true,
+      disable: true,
+    },
+    actions: {
+      hideNoControlsWarning: true,
+      disabled: true,
+      disable: true,
+    },
+  }
 };
-
 export const Neuromorph = {
   ...ButtonTemplate,
   args: {
     children: "Click Here",
     variant: "neumorph",
   },
+  parameters: {
+    controls: {
+      hideNoControlsWarning: true,
+      disabled: true,
+      disable: true,
+    },
+    actions: {
+      hideNoControlsWarning: true,
+      disabled: true,
+      disable: true,
+    },
+  }
 };
 
 // Sizes
@@ -121,22 +183,56 @@ export const Small = {
     children: "Click Here",
     size: "small",
   },
+  parameters: {
+    controls: {
+      hideNoControlsWarning: true,
+      disabled: true,
+      disable: true,
+    },
+    actions: {
+      hideNoControlsWarning: true,
+      disabled: true,
+      disable: true,
+    },
+  }
 };
-
 export const Medium = {
   ...ButtonTemplate,
   args: {
     children: "Click Here",
     size: "medium",
   },
+  parameters: {
+    controls: {
+      hideNoControlsWarning: true,
+      disabled: true,
+      disable: true,
+    },
+    actions: {
+      hideNoControlsWarning: true,
+      disabled: true,
+      disable: true,
+    },
+  }
 };
-
 export const Large = {
   ...ButtonTemplate,
   args: {
     children: "Click Here",
     size: "large",
   },
+  parameters: {
+    controls: {
+      hideNoControlsWarning: true,
+      disabled: true,
+      disable: true,
+    },
+    actions: {
+      hideNoControlsWarning: true,
+      disabled: true,
+      disable: true,
+    },
+  }
 };
 
 // Icons
@@ -146,16 +242,38 @@ export const LeadingIcon = {
     children: "Click Here",
     leadingIcon: <IconAwardFilled />,
   },
+  parameters: {
+    controls: {
+      hideNoControlsWarning: true,
+      disabled: true,
+      disable: true,
+    },
+    actions: {
+      hideNoControlsWarning: true,
+      disabled: true,
+      disable: true,
+    },
+  }
 };
-
 export const TrailingIcon = {
   ...ButtonTemplate,
   args: {
     children: "Click Here",
     trailingIcon: <IconAwardFilled />,
   },
+  parameters: {
+    controls: {
+      hideNoControlsWarning: true,
+      disabled: true,
+      disable: true,
+    },
+    actions: {
+      hideNoControlsWarning: true,
+      disabled: true,
+      disable: true,
+    },
+  }
 };
-
 export const BothIcons = {
   ...ButtonTemplate,
   args: {
@@ -163,6 +281,18 @@ export const BothIcons = {
     leadingIcon: <IconAwardFilled />,
     trailingIcon: <IconAwardFilled />,
   },
+  parameters: {
+    controls: {
+      hideNoControlsWarning: true,
+      disabled: true,
+      disable: true,
+    },
+    actions: {
+      hideNoControlsWarning: true,
+      disabled: true,
+      disable: true,
+    },
+  }
 };
 
 export const Playground = {
@@ -172,23 +302,28 @@ export const Playground = {
   },
 };
 
-export const ButtonThemeProvider: Story = {
+// export const ButtonThemeStoryMeta: Meta<typeof Button> = {
+//   title: "Components/Button",
+//   component: Button,
+//   parameters: {
+//     layout: "centered",
+//     docsOnly: true
+//   },
+// }
+
+export const ButtonThemeProvider: ButtonStory = {
   render: (args) => (
     <ThemeProvider
       accents={{
         primary: colors_storybook.color.default.primary,
-        secondary: colors_storybook.color.default.secondary,
         success: colors_storybook.color.default.success,
         warning: colors_storybook.color.default.warning,
         critical: colors_storybook.color.default.critical,
         info: colors_storybook.color.default.info,
       }}
     >
-      <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+      <div style={{display:"flex", gap: "1rem"}}>
         <Button color="primary" {...args}>
-          {args.children}
-        </Button>
-        <Button color="secondary" {...args}>
           {args.children}
         </Button>
         <Button color="success" {...args}>
@@ -207,6 +342,18 @@ export const ButtonThemeProvider: Story = {
     </ThemeProvider>
   ),
   args: {
-    children: "Click Here"
+    children: "Click Here",
+  },
+  parameters: {
+    controls: {
+      hideNoControlsWarning: true,
+      disabled: true,
+      disable: true,
+    },
+    actions: {
+      hideNoControlsWarning: true,
+      disabled: true,
+      disable: true,
+    },
   }
 };

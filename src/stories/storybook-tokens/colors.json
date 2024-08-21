@@ -3,10 +3,10 @@
     "default": {
       "darkBackground": "#212121",
       "primary": "#6366f1",
-      "secondary": "#778da9",
-      "success": "#2dc653",
+      "secondary": "#1b4965",
+      "success": "#3a7d44",
       "warning": "#ffb703",
-      "critical": "#ef233c",
+      "critical": "#9d0208",
       "info": "#0077b6"
     }
   }
