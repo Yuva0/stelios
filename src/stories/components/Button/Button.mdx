@@ -1,7 +1,65 @@
 { /* Button.mdx */ }
-import { Canvas, Meta } from '@storybook/blocks';
- 
+import { Canvas, Meta, Controls } from '@storybook/blocks';
 import * as ButtonStories from './Button.stories';
 
-<Meta of={ButtonStories} name="Variants" />
-<Canvas of={ButtonStories.Default} />
+<Meta of={ButtonStories} name="Docs"/>
+# Button:
+Buttons are the most common way to interact with a website. They are used to trigger actions or to navigate to another page.\
+They are the most important element in a design system.
+
+
+## Variants:
+Every variant has it's own story. Neither is better than the other, they are just different.\
+Choose the one that fits your design system the best.\
+Default is Contained
+
+##### Contained
+<Canvas of={ButtonStories.Contained} />
+
+#### Outlined
+<Canvas of={ButtonStories.Outlined} />
+
+#### Soft
+<Canvas of={ButtonStories.Soft} />
+
+#### Outlined Soft
+<Canvas of={ButtonStories.OutlinedSoft} />
+
+#### Neuromorph
+<Canvas of={ButtonStories.Neuromorph} />
+
+
+## Sizes:
+Buttons can be small, medium or large. Default is medium.
+
+##### Small
+<Canvas of={ButtonStories.Small} />
+
+#### Medium
+<Canvas of={ButtonStories.Medium} />
+
+#### Large
+<Canvas of={ButtonStories.Large} />
+
+
+
+## Icons:
+Buttons can have icons. Icons can be leading or trailing.
+
+#### Leading Icon
+<Canvas of={ButtonStories.LeadingIcon}/>
+
+#### Trailing Icon
+<Canvas of={ButtonStories.TrailingIcon}/>
+
+### Both Icons
+<Canvas of={ButtonStories.BothIcons}/>
+
+### Playground
+Customize as per your needs using the controls below
+<Canvas of={ButtonStories.Playground}/>
+<Controls of={ButtonStories.Playground}/>
+
+### Using ThemeProvider
+ThemeProvider is the best way to deliver a uniform experience in your entire website.
+<Canvas of={ButtonStories.ButtonThemeProvider}/>

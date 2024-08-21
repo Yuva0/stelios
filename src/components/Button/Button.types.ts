@@ -14,9 +14,8 @@ export interface ButtonProps
   color?: string;
   children?: React.ReactNode | React.ReactNode[];
   disabled?: boolean;
-  fullWidth?: boolean;
+  isFullWidth?: boolean;
   className?: string;
-  ref?: React.Ref<HTMLButtonElement>;
 }
 
 export interface ButtonStyleProps {
@@ -24,6 +23,7 @@ export interface ButtonStyleProps {
   $variant: NonNullable<ButtonProps["variant"]>;
   $color: NonNullable<ButtonProps["color"]>;
   $disabled?: NonNullable<ButtonProps["disabled"]>;
-  $fullWidth?: NonNullable<ButtonProps["fullWidth"]>;
+  $isFullWidth?: NonNullable<ButtonProps["isFullWidth"]>;
+  // Theme: To be fixed
   $colorPalette: any;
 }

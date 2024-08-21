@@ -1,195 +1,10 @@
 import React from "react";
-import { TextProps, TextStyleProps } from "./Text.types";
 import styled from "styled-components";
-import { useTheme } from "../ThemeProvider/ThemeProvider";
+import { TextProps, TextStyleProps } from "./Text.types";
 import { Helmet } from "react-helmet";
-
-
-const commonStyles = `
-  padding: 0;
-  margin: 0;
-`;
-
-const StyledH1 = styled.h1<TextStyleProps>`
-  font-size: ${(props) =>
-    props.$fontSize ?? props.$size === "large"
-      ? "2.5rem"
-      : props.$size === "medium"
-        ? "2.25rem"
-        : "2rem"};
-  line-height: ${(props) =>
-    props.$lineHeight ?? props.$lineHeight === "large"
-      ? "4rem"
-      : props.$size === "medium"
-        ? "3.5rem"
-        : "3rem"};
-  font-weight: ${(props) => (props.$strong ? "700" : "400")};
-  ${(props) => !props.$noColor && `color: ${props.$color};`}
-  font-family: ${(props) => props.$fontFamily ?? `"Lato", sans-serif`};
-  ${commonStyles}
-`;
-const StyledH2 = styled.h2<TextStyleProps>`
-  font-size: ${(props) =>
-    props.$fontSize ?? props.$size === "large"
-      ? "2.25rem"
-      : props.$size === "medium"
-        ? "2rem"
-        : "1.75rem"};
-  line-height: ${(props) =>
-    props.$lineHeight ?? props.$size === "large"
-      ? "3.5rem"
-      : props.$size === "medium"
-        ? "3rem"
-        : "2.5rem"};
-  font-weight: ${(props) => (props.$strong ? "700" : "400")};
-  font-family: ${(props) => props.$fontFamily ?? `"Lato", sans-serif`};
-  ${(props) => !props.$noColor && `color: ${props.$color};`}
-  ${commonStyles}
-`;
-const StyledH3 = styled.h3<TextStyleProps>`
-  font-size: ${(props) =>
-    props.$fontSize ?? props.$size === "large"
-      ? "2rem"
-      : props.$size === "medium"
-        ? "1.75rem"
-        : "1.5rem"};
-  line-height: ${(props) =>
-    props.$lineHeight ?? props.$size === "large"
-      ? "3rem"
-      : props.$size === "medium"
-        ? "2.5rem"
-        : "2rem"};
-  font-weight: ${(props) => (props.$strong ? "700" : "400")};
-  font-family: ${(props) => props.$fontFamily ?? `"Lato", sans-serif`};
-  ${(props) => !props.$noColor && `color: ${props.$color};`}
-  ${commonStyles}
-`;
-const StyledH4 = styled.h4<TextStyleProps>`
-  font-size: ${(props) =>
-    props.$fontSize ?? props.$size === "large"
-      ? "1.75rem"
-      : props.$size === "medium"
-        ? "1.5rem"
-        : "1.25rem"};
-  line-height: ${(props) =>
-    props.$lineHeight ?? props.$size === "large"
-      ? "2.5rem"
-      : props.$size === "medium"
-        ? "2rem"
-        : "1.75rem"};
-  font-weight: ${(props) => (props.$strong ? "700" : "400")};
-  font-family: ${(props) => props.$fontFamily ?? `"Lato", sans-serif`};
-  ${(props) => !props.$noColor && `color: ${props.$color};`}
-  ${commonStyles}
-`;
-const StyledH5 = styled.h5<TextStyleProps>`
-  font-size: ${(props) =>
-    props.$fontSize ?? props.$size === "large"
-      ? "1.5rem"
-      : props.$size === "medium"
-        ? "1.25rem"
-        : "1rem"};
-  line-height: ${(props) =>
-    props.$lineHeight ?? props.$size === "large"
-      ? "2rem"
-      : props.$size === "medium"
-        ? "1.75rem"
-        : "1.5rem"};
-  font-weight: ${(props) => (props.$strong ? "700" : "400")};
-  font-family: ${(props) => props.$fontFamily ?? `"Lato", sans-serif`};
-  ${(props) => !props.$noColor && `color: ${props.$color};`}
-  ${commonStyles}
-`;
-const StyledH6 = styled.h6<TextStyleProps>`
-  font-size: ${(props) =>
-    props.$fontSize ?? props.$size === "large"
-      ? "1.25rem"
-      : props.$size === "medium"
-        ? "1rem"
-        : "0.875rem"};
-  line-height: ${(props) =>
-    props.$lineHeight ?? props.$size === "large"
-      ? "1.75rem"
-      : props.$size === "medium"
-        ? "1.5rem"
-        : "1.25rem"};
-  font-weight: ${(props) => (props.$strong ? "700" : "400")};
-  font-family: ${(props) => props.$fontFamily ?? `"Lato", sans-serif`};
-  ${(props) => !props.$noColor && `color: ${props.$color};`}
-  ${commonStyles}
-`;
-const StyledDiv = styled.div<TextStyleProps>`
-  font-size: ${(props) =>
-    props.$fontSize ?? props.$size === "large"
-      ? "1.25rem"
-      : props.$size === "medium"
-        ? "1rem"
-        : "0.875rem"};
-  line-height: ${(props) =>
-    props.$lineHeight ?? props.$size === "large"
-      ? "1.75rem"
-      : props.$size === "medium"
-        ? "1.5rem"
-        : "1.25rem"};
-  font-weight: ${(props) => (props.$strong ? "700" : "400")};
-  font-family: ${(props) => props.$fontFamily ?? `'Varela Round', sans-serif`};
-  ${(props) => !props.$noColor && `color: ${props.$color};`}
-  ${commonStyles}
-`;
-const StyledLabel = styled.label<TextStyleProps>`
-  font-size: ${(props) =>
-    props.$fontSize ?? props.$size === "large"
-      ? "1.25rem"
-      : props.$size === "medium"
-        ? "1rem"
-        : "0.75rem"};
-  line-height: ${(props) =>
-    props.$lineHeight ?? props.$size === "large"
-      ? "1.75rem"
-      : props.$size === "medium"
-        ? "1.5rem"
-        : "1.25rem"};
-  font-weight: ${(props) => (props.$strong ? "700" : "400")};
-  font-family: ${(props) => props.$fontFamily ?? `'Varela Round', sans-serif`};
-  ${(props) => !props.$noColor && `color: ${props.$color};`}
-  ${commonStyles}
-`;
-const StyledSpan = styled.span<TextStyleProps>`
-  font-size: ${(props) =>
-    props.$fontSize ?? props.$size === "large"
-      ? "1.25rem"
-      : props.$size === "medium"
-        ? "1rem"
-        : "0.875rem"};
-  line-height: ${(props) =>
-    props.$lineHeight ?? props.$size === "large"
-      ? "1.75rem"
-      : props.$size === "medium"
-        ? "1.5rem"
-        : "1.25rem"};
-  font-weight: ${(props) => (props.$strong ? "700" : "400")};
-  font-family: ${(props) => props.$fontFamily ?? `'Varela Round', sans-serif`};
-  ${(props) => !props.$noColor && `color: ${props.$color};`}
-  ${commonStyles}
-`;
-const StyledP = styled.p<TextStyleProps>`
-  font-size: ${(props) =>
-    props.$fontSize ?? props.$size === "large"
-      ? "1.25rem"
-      : props.$size === "medium"
-        ? "1rem"
-        : "0.875rem"};
-  line-height: ${(props) =>
-    props.$lineHeight ?? props.$size === "large"
-      ? "1.75rem"
-      : props.$size === "medium"
-        ? "1.5rem"
-        : "1.25rem"};
-  font-weight: ${(props) => (props.$strong ? "700" : "400")};
-  font-family: ${(props) => props.$fontFamily ?? `'Varela Round', sans-serif`};
-  ${(props) => !props.$noColor && `color: ${props.$color};`}
-  ${commonStyles}
-`;
+import { useTheme } from "../ThemeProvider/ThemeProvider";
+import { getColorPalette } from "../../helpers/helpers";
+import colors from "../../tokens/colors.json";
 
 const Text = ({
   variant = "div",
@@ -208,12 +23,16 @@ const Text = ({
   ...rest
 }: TextProps) => {
   const theme = useTheme().theme;
-  if(!theme) return null;
-  const colorPalette = theme.colorPalette;
-  const _color = color
-    ? colorPalette[color].main
-    : colorPalette.primary.grayScale[11];
-  const _styleProps = { $noColor: noColor, $color: _color };
+  let _styleProps;
+  if (noColor) {
+    _styleProps = { $noColor: noColor };
+  } else {
+    const colorPalette = getColorPalette(theme, color);
+    const _color = color && colorPalette
+      ? colorPalette[color].main
+      : colors.color.default.main;
+    _styleProps = { $noColor: noColor, $color: _color };
+  }
 
   const _Text = () => {
     switch (variant) {
@@ -420,7 +239,11 @@ const Text = ({
     <>
       <Helmet>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin=""
+        />
         <link
           href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap"
           rel="stylesheet"
@@ -430,5 +253,189 @@ const Text = ({
     </>
   );
 };
-
 export default Text;
+
+const commonStyles = `
+  padding: 0;
+  margin: 0;
+`;
+const StyledH1 = styled.h1<TextStyleProps>`
+  font-size: ${(props) =>
+    props.$fontSize ?? props.$size === "large"
+      ? "2.5rem"
+      : props.$size === "medium"
+        ? "2.25rem"
+        : "2rem"};
+  line-height: ${(props) =>
+    props.$lineHeight ?? props.$lineHeight === "large"
+      ? "4rem"
+      : props.$size === "medium"
+        ? "3.5rem"
+        : "3rem"};
+  font-weight: ${(props) => (props.$strong ? "700" : "400")};
+  ${(props) => !props.$noColor && `color: ${props.$color};`}
+  font-family: ${(props) => props.$fontFamily ?? `"Lato", sans-serif`};
+  ${commonStyles}
+`;
+const StyledH2 = styled.h2<TextStyleProps>`
+  font-size: ${(props) =>
+    props.$fontSize ?? props.$size === "large"
+      ? "2.25rem"
+      : props.$size === "medium"
+        ? "2rem"
+        : "1.75rem"};
+  line-height: ${(props) =>
+    props.$lineHeight ?? props.$size === "large"
+      ? "3.5rem"
+      : props.$size === "medium"
+        ? "3rem"
+        : "2.5rem"};
+  font-weight: ${(props) => (props.$strong ? "700" : "400")};
+  font-family: ${(props) => props.$fontFamily ?? `"Lato", sans-serif`};
+  ${(props) => !props.$noColor && `color: ${props.$color};`}
+  ${commonStyles}
+`;
+const StyledH3 = styled.h3<TextStyleProps>`
+  font-size: ${(props) =>
+    props.$fontSize ?? props.$size === "large"
+      ? "2rem"
+      : props.$size === "medium"
+        ? "1.75rem"
+        : "1.5rem"};
+  line-height: ${(props) =>
+    props.$lineHeight ?? props.$size === "large"
+      ? "3rem"
+      : props.$size === "medium"
+        ? "2.5rem"
+        : "2rem"};
+  font-weight: ${(props) => (props.$strong ? "700" : "400")};
+  font-family: ${(props) => props.$fontFamily ?? `"Lato", sans-serif`};
+  ${(props) => !props.$noColor && `color: ${props.$color};`}
+  ${commonStyles}
+`;
+const StyledH4 = styled.h4<TextStyleProps>`
+  font-size: ${(props) =>
+    props.$fontSize ?? props.$size === "large"
+      ? "1.75rem"
+      : props.$size === "medium"
+        ? "1.5rem"
+        : "1.25rem"};
+  line-height: ${(props) =>
+    props.$lineHeight ?? props.$size === "large"
+      ? "2.5rem"
+      : props.$size === "medium"
+        ? "2rem"
+        : "1.75rem"};
+  font-weight: ${(props) => (props.$strong ? "700" : "400")};
+  font-family: ${(props) => props.$fontFamily ?? `"Lato", sans-serif`};
+  ${(props) => !props.$noColor && `color: ${props.$color};`}
+  ${commonStyles}
+`;
+const StyledH5 = styled.h5<TextStyleProps>`
+  font-size: ${(props) =>
+    props.$fontSize ?? props.$size === "large"
+      ? "1.5rem"
+      : props.$size === "medium"
+        ? "1.25rem"
+        : "1rem"};
+  line-height: ${(props) =>
+    props.$lineHeight ?? props.$size === "large"
+      ? "2rem"
+      : props.$size === "medium"
+        ? "1.75rem"
+        : "1.5rem"};
+  font-weight: ${(props) => (props.$strong ? "700" : "400")};
+  font-family: ${(props) => props.$fontFamily ?? `"Lato", sans-serif`};
+  ${(props) => !props.$noColor && `color: ${props.$color};`}
+  ${commonStyles}
+`;
+const StyledH6 = styled.h6<TextStyleProps>`
+  font-size: ${(props) =>
+    props.$fontSize ?? props.$size === "large"
+      ? "1.25rem"
+      : props.$size === "medium"
+        ? "1rem"
+        : "0.875rem"};
+  line-height: ${(props) =>
+    props.$lineHeight ?? props.$size === "large"
+      ? "1.75rem"
+      : props.$size === "medium"
+        ? "1.5rem"
+        : "1.25rem"};
+  font-weight: ${(props) => (props.$strong ? "700" : "400")};
+  font-family: ${(props) => props.$fontFamily ?? `"Lato", sans-serif`};
+  ${(props) => !props.$noColor && `color: ${props.$color};`}
+  ${commonStyles}
+`;
+const StyledDiv = styled.div<TextStyleProps>`
+  font-size: ${(props) =>
+    props.$fontSize ?? props.$size === "large"
+      ? "1.25rem"
+      : props.$size === "medium"
+        ? "1rem"
+        : "0.875rem"};
+  line-height: ${(props) =>
+    props.$lineHeight ?? props.$size === "large"
+      ? "1.75rem"
+      : props.$size === "medium"
+        ? "1.5rem"
+        : "1.25rem"};
+  font-weight: ${(props) => (props.$strong ? "700" : "400")};
+  font-family: ${(props) => props.$fontFamily ?? `'Varela Round', sans-serif`};
+  ${(props) => !props.$noColor && `color: ${props.$color};`}
+  ${commonStyles}
+`;
+const StyledLabel = styled.label<TextStyleProps>`
+  font-size: ${(props) =>
+    props.$fontSize ?? props.$size === "large"
+      ? "1.25rem"
+      : props.$size === "medium"
+        ? "1rem"
+        : "0.75rem"};
+  line-height: ${(props) =>
+    props.$lineHeight ?? props.$size === "large"
+      ? "1.75rem"
+      : props.$size === "medium"
+        ? "1.5rem"
+        : "1.25rem"};
+  font-weight: ${(props) => (props.$strong ? "700" : "400")};
+  font-family: ${(props) => props.$fontFamily ?? `'Varela Round', sans-serif`};
+  ${(props) => !props.$noColor && `color: ${props.$color};`}
+  ${commonStyles}
+`;
+const StyledSpan = styled.span<TextStyleProps>`
+  font-size: ${(props) =>
+    props.$fontSize ?? props.$size === "large"
+      ? "1.25rem"
+      : props.$size === "medium"
+        ? "1rem"
+        : "0.875rem"};
+  line-height: ${(props) =>
+    props.$lineHeight ?? props.$size === "large"
+      ? "1.75rem"
+      : props.$size === "medium"
+        ? "1.5rem"
+        : "1.25rem"};
+  font-weight: ${(props) => (props.$strong ? "700" : "400")};
+  font-family: ${(props) => props.$fontFamily ?? `'Varela Round', sans-serif`};
+  ${(props) => !props.$noColor && `color: ${props.$color};`}
+  ${commonStyles}
+`;
+const StyledP = styled.p<TextStyleProps>`
+  font-size: ${(props) =>
+    props.$fontSize ?? props.$size === "large"
+      ? "1.25rem"
+      : props.$size === "medium"
+        ? "1rem"
+        : "0.875rem"};
+  line-height: ${(props) =>
+    props.$lineHeight ?? props.$size === "large"
+      ? "1.75rem"
+      : props.$size === "medium"
+        ? "1.5rem"
+        : "1.25rem"};
+  font-weight: ${(props) => (props.$strong ? "700" : "400")};
+  font-family: ${(props) => props.$fontFamily ?? `'Varela Round', sans-serif`};
+  ${(props) => !props.$noColor && `color: ${props.$color};`}
+  ${commonStyles}
+`;

@@ -1,13 +1,10 @@
 import React from "react";
-import {
-  ButtonInternalProps,
-  ButtonProps,
-  ButtonStyleProps,
-} from "./Button.types";
+import styled from "styled-components";
+import { ButtonInternalProps, ButtonProps, ButtonStyleProps } from "./Button.types";
 import Text from "../Text/Text";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
-import styled from "styled-components";
-import { hasPropertyChain } from "../../helpers/helpers";
+import { getColorPalette, hasPropertyChain } from "../../helpers/helpers";
+import colors from "../../tokens/colors.json";
 
 interface ButtonIconProps {
   $size: ButtonStyleProps["$size"];
@@ -18,20 +15,19 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
   trailingIcon,
   size = "medium",
   variant = "contained",
-  color = "primary",
+  color = colors.color.default.main,
   disabled = false,
   children,
-  fullWidth = false,
+  isFullWidth = false,
   onClick,
   ...rest
 }: ButtonProps & ButtonInternalProps,
 ref) => {
   const theme = useTheme().theme;
-  if(!theme) return null;
-  const colorPalette = theme.colorPalette;
+  const colorPalette = getColorPalette(theme,color);
 
   return (
-    <StyledButton ref={ref} $size={size} $variant={variant} $color={color} $colorPalette={colorPalette} $disabled={disabled} $fullWidth={fullWidth}
+    <StyledButton ref={ref} $size={size} $variant={variant} $color={color} $colorPalette={colorPalette} $disabled={disabled} $isFullWidth={isFullWidth}
       aria-disabled={disabled}
       onClick={onClick}
       {...rest}
@@ -64,11 +60,10 @@ const StyledButton = styled.button<ButtonStyleProps>`
       color: ${properties.color.default};
       padding: ${properties.padding};
       gap: ${properties.gap};
-      width: ${props.$fullWidth ? "100%" : "auto"};
+      width: ${props.$isFullWidth ? "100%" : "auto"};
       cursor: ${props.$disabled ? "not-allowed" : "pointer"};
-      ${hasPropertyChain(properties, ['border']) && `border: ${properties.border!.default};`}
-      // ${hasPropertyChain(properties, ['boxShadow']) && `box-shadow: ${properties.boxShadow!.default};`}
-      
+      ${hasPropertyChain(properties, ['border']) ? `border: ${properties.border!.default};` : ""}
+      ${hasPropertyChain(properties, ['boxShadow', 'default']) ? `box-shadow: ${properties.boxShadow!.default};` : ""}
       &:hover {
         background-color: ${properties.backgroundColor.hover};
         color: ${properties.color.hover};
@@ -172,9 +167,9 @@ const getVariantProps = (
           active: colorPalette[color].accentScale[10],
         },
         border: {
-          default: "none",
-          hover: "none",
-          active: "none",
+          default: `2px solid ${colorPalette[color].accentScale[2]}`,
+          hover: `2px solid ${colorPalette[color].accentScale[3]}`,
+          active: `2px solid ${colorPalette[color].accentScale[3]}`,
         },
         filter: {
           active: "brightness(0.92) saturate(1.1)",
@@ -198,7 +193,6 @@ const getVariantProps = (
           active: `2px solid ${colorPalette[color].accentScale[7]}`,
         },
       }
-
     case "neumorph": 
       return {
         backgroundColor: {
@@ -212,9 +206,9 @@ const getVariantProps = (
           active: colorPalette[color].accentScale[10],
         },
         border: {
-          default: "none",
-          hover: "none",
-          active: "none",
+          default: "2px solid transparent",
+          hover: "2px solid transparent",
+          active: "2px solid transparent",
         },
         boxShadow: {
           default: `-6px -6px 14px rgba(255, 255, 255, .7),
@@ -230,8 +224,7 @@ const getVariantProps = (
               inset 2px 2px 2px rgba(255, 255, 255, .075),
               inset 2px 2px 4px rgba(0, 0, 0, .15)`
         },
-      }
-        
+      }   
   }
 };
 const getSizeProps = (size: ButtonStyleProps["$size"]) => {

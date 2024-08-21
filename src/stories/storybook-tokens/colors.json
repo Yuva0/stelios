@@ -1,0 +1,13 @@
+{
+  "color": {
+    "default": {
+      "darkBackground": "#212121",
+      "primary": "#6366f1",
+      "secondary": "#778da9",
+      "success": "#2dc653",
+      "warning": "#ffb703",
+      "critical": "#ef233c",
+      "info": "#0077b6"
+    }
+  }
+}

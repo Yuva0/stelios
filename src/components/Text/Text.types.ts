@@ -16,13 +16,7 @@ export interface TextProps {
   size?: "small" | "medium" | "large";
   children?: React.ReactNode | React.ReactNode[];
   align?: "left" | "center" | "right" | "justify";
-  color?:
-    | "primary"
-    | "secondary"
-    | "danger"
-    | "warning"
-    | "success"
-    | "info"
+  color?: string;
   wrap?: boolean;
   className?: string;
   style?: React.CSSProperties;

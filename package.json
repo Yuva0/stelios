@@ -6,6 +6,7 @@
   "dependencies": {
     "@popperjs/core": "^2.11.8",
     "@radix-ui/colors": "^3.0.0",
+    "@storybook/addon-backgrounds": "^8.2.9",
     "@tabler/icons-react": "^3.9.0",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.101",
