@@ -1,14 +1,21 @@
-import { DefaultTheme } from "../../ThemeProvider/ThemeProvider.types";
-
 export interface AccordionItemProps {
   children: React.ReactNode | React.ReactNode[];
   expanded?: boolean;
   title?: React.ReactNode;
-  variant?: "transparent";
+  variant?: "contained";
+  color?: string;
 }
 
 export interface AccordionItemStyleProps {
   $expanded?: boolean;
   $colorPalette: any;
-  $variant?: "transparent";
+  $color: string;
+  $variant: "contained";
+}
+
+export interface AccordionItemContentStyleProps {
+  $variant: "contained";
+  $expanded?: boolean;
+  $colorPalette: any;
+  $color: string;
 }

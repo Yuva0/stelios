@@ -16,7 +16,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
   trailingIcon,
   size = "medium",
   variant = "contained",
-  color = colors.default.main,
+  color = colors.default.primary.main,
   rounded = false,
   disabled = false,
   children,
@@ -56,7 +56,6 @@ ref) => {
     </StyledButton>
   );
 });
-
 export default Button;
 
 const StyledButton = styled.button<ButtonStyleProps>`

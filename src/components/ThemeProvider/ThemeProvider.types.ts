@@ -34,12 +34,16 @@ export type ColorPaletteProps = {
   
   background: string;
 }
+export type ThemeProps = {
+  colorPalette: {
+    [key: string]: ColorPaletteProps
+  };
+  appearance: "light" | "dark";
+  gray: string;
+  background: string;
+}
 
 export interface DefaultTheme {
-  theme: {
-    colorPalette: {
-      [key: string]: ColorPaletteProps
-    }
-  } | null;
+  theme: ThemeProps | null;
   setTheme: React.Dispatch<React.SetStateAction<DefaultTheme["theme"]>>;
 }

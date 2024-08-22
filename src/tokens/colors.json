@@ -11,68 +11,72 @@
     "gray": "#1c1c1c"
   },
   "default": {
-    "main": "#6366f1",
+    "primary": {
+      "main": "#6366f1",
+      "appearance": "light",
+      "accentContrast": "#fff",
+      "background": "#f5f5f5",
+
+      "accentScale": [
+        "#f2f2f4",
+        "#ebedf4",
+        "#e2e5f3",
+        "#d6dbf7",
+        "#c8cff8",
+        "#b7c0f6",
+        "#a2acef",
+        "#8590e7",
+        "#6366f1",
+        "#5858e2",
+        "#4542c0",
+        "#262866"
+      ],
+      "accentScaleAlpha": [
+        "#3636b604",
+        "#0e3cde0b",
+        "#0329dc14",
+        "#5a73ff33",
+        "#6078ff4d",
+        "#0000ff1a",
+        "#0220e457",
+        "#0119d675",
+        "#0005ef98",
+        "#0101d8a4",
+        "#0501adbb",
+        "#01034dd8"
+      ],
+      "accentSurface": "#e9ebf4cc",
+
+      "grayScale": [
+        "#f1f1f1",
+        "#ededed",
+        "#e3e3e3",
+        "#dbdbdb",
+        "#d3d3d3",
+        "#cacaca",
+        "#bfbfbf",
+        "#acacac",
+        "#7e7e7e",
+        "#747474",
+        "#575757",
+        "#202020"
+      ],
+      "grayScaleAlpha": [
+        "#00000004",
+        "#00000008",
+        "#00000013",
+        "#0000001b",
+        "#00000023",
+        "#0000002d",
+        "#00000038",
+        "#0000004c",
+        "#0000007c",
+        "#00000086",
+        "#000000a4",
+        "#000000de"
+      ]
+    },
     "appearance": "light",
-    "accentContrast": "#fff",
-    "background": "#f5f5f5",
-
-    "accentScale": [
-      "#f2f2f4",
-      "#ebedf4",
-      "#e2e5f3",
-      "#d6dbf7",
-      "#c8cff8",
-      "#b7c0f6",
-      "#a2acef",
-      "#8590e7",
-      "#6366f1",
-      "#5858e2",
-      "#4542c0",
-      "#262866"
-    ],
-    "accentScaleAlpha": [
-      "#3636b604",
-      "#0e3cde0b",
-      "#0329dc14",
-      "#5a73ff33",
-      "#6078ff4d",
-      "#0000ff1a",
-      "#0220e457",
-      "#0119d675",
-      "#0005ef98",
-      "#0101d8a4",
-      "#0501adbb",
-      "#01034dd8"
-    ],
-    "accentSurface": "#e9ebf4cc",
-
-    "grayScale": [
-      "#f1f1f1",
-      "#ededed",
-      "#e3e3e3",
-      "#dbdbdb",
-      "#d3d3d3",
-      "#cacaca",
-      "#bfbfbf",
-      "#acacac",
-      "#7e7e7e",
-      "#747474",
-      "#575757",
-      "#202020"
-    ],
-    "grayScaleAlpha": [
-      "#00000004",
-      "#00000008",
-      "#00000013",
-      "#0000001b",
-      "#00000023",
-      "#0000002d",
-      "#00000038",
-      "#0000004c",
-      "#0000007c",
-      "#00000086",
-      "#000000a4",
-      "#000000de"
-    ]
+    "background": "#f5f5f5"
   }
 }

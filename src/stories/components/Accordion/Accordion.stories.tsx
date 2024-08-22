@@ -22,13 +22,10 @@ export const Default: Story = {
       <ThemeProvider appearance="dark">
         <Accordion>
           <AccordionItem title="Accordion Item Title 1" expanded={false}>
-            <div style={{background: "grey"}}>
-            <Text variant="div">Accordion Item Children 1</Text>
-            <div style={{height:"400px"}}>Test</div>
-            </div>
+            <Text noColor variant="div">Accordion Item Children 1</Text>
           </AccordionItem>
           <AccordionItem title="Accordion Item Title 2" expanded={false}>
-            Accordion Item Children 2
+            <Text noColor>Accordion Item Children 2</Text>
           </AccordionItem>
           <AccordionItem title="Accordion Item Title 3" expanded={false}>
             Accordion Item Children 3

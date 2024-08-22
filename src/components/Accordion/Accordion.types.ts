@@ -1,11 +1,15 @@
 export interface AccordionProps {
   children: React.ReactNode | React.ReactNode[];
-  title?: React.ReactNode;
   width?: string;
-  variant?: "transparent";
+  color?: string;
+  variant?: "contained" ;
+  isFullWidth?: boolean;
 }
 
 export interface AccordionStyleProps {
-  $width?: string;
-  $colorPalette?: any;
+  $variant: "contained" ;
+  $color: string;
+  $width: string;
+  $isFullWidth: boolean;
+  $colorPalette: any;
 }

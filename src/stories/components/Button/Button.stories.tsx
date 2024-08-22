@@ -302,15 +302,6 @@ export const Playground = {
   },
 };
 
-// export const ButtonThemeStoryMeta: Meta<typeof Button> = {
-//   title: "Components/Button",
-//   component: Button,
-//   parameters: {
-//     layout: "centered",
-//     docsOnly: true
-//   },
-// }
-
 export const ButtonThemeProvider: ButtonStory = {
   render: (args) => (
     <ThemeProvider

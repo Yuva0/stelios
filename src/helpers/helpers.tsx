@@ -20,21 +20,50 @@ export const getIncrementalGeneratedId = (() => {
   };
 })();
 
+/* ---------------------------------------------------------------------------
+              Fetch colorPalette from theme or generate a new one
+
+- If neither theme nor color is provided, return null
+- If theme is provided but not color, return the theme's colorPalette
+- If color is provided but not theme, generate a new colorPalette
+- If color && theme are provided, 
+    return the theme's colorPalette with the new color if it doesn't exist
+---------------------------------------------------------------------------- */
 export const getColorPalette = (theme?:DefaultTheme["theme"], color?: string) => {
-  if(!color) return null;
-  if (theme && theme.colorPalette && theme.colorPalette[color]) {
+  if (!theme && !color) return null;
+  if (theme && !color) {
     return theme.colorPalette;
   }
-  return {
-    [color]: {
-      main: color,
-      appearance: colors.theme.appearance.light,
-      ...generateRadixColors({
-        accent: color,
-        appearance: colors.theme.appearance.light as "light" | "dark",
-        gray: colors.theme.gray,
-        background: colors.theme.background.light,
-      }),
-    } as ColorPaletteProps,
-  };
+  if(!theme && color) {
+    return {
+      [color]: {
+        main: color,
+        appearance: colors.theme.appearance.light,
+        ...generateRadixColors({
+          accent: color,
+          appearance: colors.theme.appearance.light as "light" | "dark",
+          gray: colors.theme.gray,
+          background: colors.theme.background.light,
+        }),
+      } as ColorPaletteProps
+    };
+  }
+  if (color && theme) {
+    if(theme.colorPalette && theme.colorPalette[color]) {
+      return theme.colorPalette;
+    }
+    return {
+      ...theme.colorPalette,
+      [color]: {
+        main: color,
+        appearance: colors.theme.appearance.light,
+        ...generateRadixColors({
+          accent: color,
+          appearance: colors.theme.appearance.light as "light" | "dark",
+          gray: colors.theme.gray,
+          background: colors.theme.background.light,
+        }),
+      } as ColorPaletteProps
+    }
+  }
 };
