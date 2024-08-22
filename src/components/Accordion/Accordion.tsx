@@ -9,7 +9,7 @@ import { AccordionItemProps } from "./AccordionItem/AccordionItem.types";
 const Accordion = ({
   children,
   variant = "contained",
-  width = "340px",
+  width = "400px",
   color = colors.default.primary.main,
   isFullWidth = false,
 }: AccordionProps) => {
@@ -40,6 +40,34 @@ const StyledAccordion = styled.div<AccordionStyleProps>`
   display: flex;
   flex-direction: column;
   border-radius: 0.25rem;
-  background: ${({ $color, $colorPalette }) =>
-    $colorPalette[$color].accentScale[8]};
+  width: ${({ $width, $isFullWidth }) =>
+    $width ?? ($isFullWidth ? "100%" : "auto")};
 `;
+
+// const propsHandler = (
+//   variant: AccordionStyleProps["$variant"],
+//   color: AccordionStyleProps["$color"],
+//   colorPalette: AccordionStyleProps["$colorPalette"]
+// ) => {
+//   return { ...getVariantProps(variant, color, colorPalette) };
+// };
+// const getVariantProps = (
+//   variant: AccordionStyleProps["$variant"],
+//   color: AccordionStyleProps["$color"],
+//   colorPalette: AccordionStyleProps["$colorPalette"]
+// ) => {
+//   switch (variant) {
+//     case "contained":
+//       return {
+//         background: {
+//           default: colorPalette[color].accentScale[8],
+//         }
+//       };
+//     case "outlined":
+//       return {
+//         background: {
+//           default: "transparent",
+//         }
+//       };
+//   }
+// };

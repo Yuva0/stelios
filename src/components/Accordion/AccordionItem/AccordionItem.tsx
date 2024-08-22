@@ -59,14 +59,14 @@ const AccordionItem = ({
   return (
     <StyledAccordionItem>
       <AccordionItemTitle />
-      <StyledAccordionItemContent
+      {isExpanded && <StyledAccordionItemContent
         $variant={variant}
         $color={color}
         $colorPalette={colorPalette}
         $expanded={isExpanded}
       >
         <Children />
-      </StyledAccordionItemContent>
+      </StyledAccordionItemContent>}
     </StyledAccordionItem>
   );
 };
@@ -76,6 +76,7 @@ const StyledAccordionItem = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
 const StyledAccordionItemTitle = styled.div<AccordionItemStyleProps>`
   display: flex;
   flex-direction: row;
@@ -84,42 +85,44 @@ const StyledAccordionItemTitle = styled.div<AccordionItemStyleProps>`
   padding: 0.5rem 1rem;
 
   ${props => {
-    const properties = propsHandler(props.$variant, props.$color, props.$colorPalette, props.$expanded);
+    const properties = propsTitleHandler(props.$variant, props.$color, props.$colorPalette, props.$expanded);
     return `
       background-color: ${properties.backgroundColor.default};
       color: ${properties.color.default};
+      border: ${properties.border.default};
       cursor: pointer;
       user-select: none;
 
       &:hover {
         background-color: ${properties.backgroundColor.hover};
         color: ${properties.color.hover};
-        filter: ${properties.filter.hover};
+        border: ${properties.border.hover};
+        ${properties.filter ? `filter: ${properties.filter.hover}`:""};
       }
       &:active {
         background-color: ${properties.backgroundColor.active};
         color: ${properties.color.active};
-        filter: ${properties.filter.active};
+        border: ${properties.border.active};
+        ${properties.filter ? `filter: ${properties.filter.active}`:""};
       }
       & svg{
         width: 20px;
         height: 20px;
         transform: ${props.$expanded ? "rotate(180deg)" : "rotate(0deg)"};
-        color: ${props.$colorPalette[props.$color].accentContrast};
+        color: ${properties.svg.color.default};
       }
     `;
   }}
 `;
-
-const propsHandler = (
+const propsTitleHandler = (
   variant: AccordionItemStyleProps["$variant"],
   color: string,
   colorPalette: AccordionItemStyleProps["$colorPalette"],
   $expanded: AccordionItemStyleProps["$expanded"]
 ) => {
-  return {...getVariantProps(variant, color, colorPalette)};
+  return {...getVariantTitleProps(variant, color, colorPalette)};
 };
-const getVariantProps = (
+const getVariantTitleProps = (
   variant: AccordionItemStyleProps["$variant"],
   color: AccordionItemStyleProps["$color"],
   colorPalette: AccordionItemStyleProps["$colorPalette"]
@@ -128,7 +131,7 @@ const getVariantProps = (
     case "contained":
       return {
         backgroundColor: {
-          default: colorPalette[color].accentScale[9],
+          default: colorPalette[color].accentScale[8],
           hover: colorPalette[color].accentScale[9],
           active: colorPalette[color].accentScale[9],
         },
@@ -139,9 +142,98 @@ const getVariantProps = (
         },
         filter: {
           hover: "brightness(0.96) saturate(1.1)",
-          active: "brightness(0.92) saturate(1.1)",
+          active: "brightness(0.92) saturate(1.1)"
+        },
+        border: {
+          default: `1px solid ${colorPalette[color].accentScale[7]}`,
+          hover: `1px solid ${colorPalette[color].accentScale[8]}`,
+          active: `1px solid ${colorPalette[color].accentScale[8]}`
+        },
+        svg: {
+          color: {
+            default: colorPalette[color].accentContrast,
+          }
         }
       };
+    case "outlined":
+      return {
+        backgroundColor: {
+          default: "transparent",
+          hover: "transparent",
+          active: "transparent",
+        },
+        color: {
+          default: colorPalette[color].accentScale[10],
+          hover: colorPalette[color].accentScale[10],
+          active: colorPalette[color].accentScale[10],
+        },
+        border: {
+          default: `1px solid ${colorPalette[color].accentScale[6]}`,
+          hover: `1px solid ${colorPalette[color].accentScale[6]}`,
+          active: `1px solid ${colorPalette[color].accentScale[7]}`
+        },
+        svg: {
+          color: {
+            default: colorPalette[color].accentScale[10],
+          }
+        }
+      }
+    case "soft":
+      return {
+        backgroundColor: {
+          default: colorPalette[color].accentScale[2],
+          hover: colorPalette[color].accentScale[3],
+          active: colorPalette[color].accentScale[3],
+        },
+        color: {
+          default: colorPalette[color].accentScale[10],
+          hover: colorPalette[color].accentScale[10],
+          active: colorPalette[color].accentScale[10],
+        },
+        border: {
+          default: `1px solid ${colorPalette[color].accentScale[2]}`,
+          hover: `1px solid ${colorPalette[color].accentScale[3]}`,
+          active: `1px solid ${colorPalette[color].accentScale[3]}`
+        },
+        filter: {
+          hover: "brightness(0.96) saturate(1.1)",
+          active: "brightness(0.92) saturate(1.1)",
+        },
+        svg: {
+          color: {
+            default: colorPalette[color].accentScale[10],
+          }
+        }
+      }
+    case "outlined-soft":
+      return {
+        backgroundColor: {
+          default: colorPalette[color].accentScale[2],
+          hover: colorPalette[color].accentScale[3],
+          active: colorPalette[color].accentScale[3],
+        
+        },
+        color: {
+          default: colorPalette[color].accentScale[10],
+          hover: colorPalette[color].accentScale[10],
+          active: colorPalette[color].accentScale[10],
+        },
+        border: {
+          default: `1px solid ${colorPalette[color].accentScale[5]}`,
+          hover: `1px solid ${colorPalette[color].accentScale[6]}`,
+          active: `1px solid ${colorPalette[color].accentScale[6]}`
+        },
+        filter: {
+          hover: "brightness(0.96) saturate(1.1)",
+          active: "brightness(0.92) saturate(1.1)",
+        },
+        svg: {
+          color: {
+            default: colorPalette[color].accentScale[10],
+          }
+        }
+      }
+      
   }
 };
 
@@ -149,14 +241,18 @@ const StyledAccordionItemContent = styled.div<AccordionItemContentStyleProps>`
   display: flex;
   flex-direction: column;
   height: ${(props) => (props.$expanded ? "100%" : "0")};
-  color: ${(props) => props.$colorPalette[props.$color].accentContrast};
-  padding: ${(props) => (props.$expanded ? "0.5rem 1rem;" : "0")};
+  padding: ${(props) => (props.$expanded ? "0.5rem 1rem 1rem 1rem;" : "0")};
   overflow: hidden;
   ${props => {
-    const properties = propsContentHandler(props.$variant, props.$color, props.$colorPalette, props.$expanded);
+    const properties = propsContentHandler(props.$variant, props.$color, props.$colorPalette);
     return `
+      color: ${properties.color.default};
       background-color: ${properties.backgroundColor.default};
-      border-bottom: ${properties.borderBottom.default};
+      border-left: ${properties.borderLeft.default};
+      border-right: ${properties.borderRight.default};
+      &:last-child {
+        border-bottom: ${properties.borderLeft.default};
+      }
     `;
   }}
 `;
@@ -164,7 +260,6 @@ const propsContentHandler = (
   variant: AccordionItemContentStyleProps["$variant"],
   color: AccordionItemContentStyleProps["$color"],
   colorPalette: AccordionItemContentStyleProps["$colorPalette"],
-  $expanded: AccordionItemContentStyleProps["$expanded"]
 ) => {
   return {...getContentVariantProps(variant, color, colorPalette)};
 }
@@ -179,9 +274,60 @@ const getContentVariantProps = (
         backgroundColor: {
           default: colorPalette[color].accentScale[8],
         },
-        borderBottom: {
-          default: `1px solid ${colorPalette[color].accentScale[7]}`,
+        color: {
+          default: colorPalette[color].accentContrast,
+        },
+        borderLeft: {
+          default: `2px solid ${colorPalette[color].accentScale[8]}`,
+        },
+        borderRight: {
+          default: `2px solid ${colorPalette[color].accentScale[8]}`,
         }
       };
+    case "outlined":
+      return {
+        backgroundColor: {
+          default: "transparent",
+        },
+        color: {
+          default: colorPalette[color].accentScale[10],
+        },
+        borderLeft: {
+          default: `2px solid ${colorPalette[color].accentScale[6]}`,
+        },
+        borderRight: {
+          default: `2px solid ${colorPalette[color].accentScale[6]}`,
+        }
+      }
+    case "soft":
+      return {
+        backgroundColor: {
+          default: colorPalette[color].accentScale[2],
+        },
+        color: {
+          default: colorPalette[color].accentScale[10],
+        },
+        borderLeft: {
+          default: `2px solid ${colorPalette[color].accentScale[2]}`,
+        },
+        borderRight: {
+          default: `2px solid ${colorPalette[color].accentScale[2]}`,
+        }
+      }
+    case "outlined-soft":
+      return {
+        backgroundColor: {
+          default: colorPalette[color].accentScale[2],
+        },
+        color: {
+          default: colorPalette[color].accentScale[10],
+        },
+        borderLeft: {
+          default: `2px solid ${colorPalette[color].accentScale[5]}`,
+        },
+        borderRight: {
+          default: `2px solid ${colorPalette[color].accentScale[5]}`,
+        }
+      }
   }
 }

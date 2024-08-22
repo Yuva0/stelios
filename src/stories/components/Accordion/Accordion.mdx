@@ -1,0 +1,29 @@
+{/* Accordion.mdx */}
+import { Canvas, Meta, Controls } from '@storybook/blocks';
+import * as AccordionStories from './Accordion.stories';
+
+<Meta of={AccordionStories} name="Docs"/>
+# Accordion:
+Accordions are used to toggle the visibility of a section of content.\
+They are useful when you have a lot of content that you want to hide until the user needs it.
+
+## Variants:
+A variant a day keeps the doctor away.\
+Choose the one that fits your design system the best.\
+Default is Contained
+
+##### Contained
+<Canvas of={AccordionStories.Contained} />
+
+#### Outlined
+<Canvas of={AccordionStories.Outlined} />
+
+#### Soft
+<Canvas of={AccordionStories.Soft}/>
+
+#### Outlined Soft
+<Canvas of={AccordionStories.OutlinedSoft}/>
+
+#### Playground
+<Canvas of={AccordionStories.Playground}/>
+<Controls of={AccordionStories.Playground}/>

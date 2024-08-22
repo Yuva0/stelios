@@ -60,7 +60,7 @@ const ButtonStoryMeta: Meta<typeof Button> = {
       },
     },
     rounded: {
-      description: "If true, the button will be rounded.",
+      description: "If true, the button will be rounded. Doesn't work in storybook because parent takes child's content",
       control: {
         type: "boolean",
       },
