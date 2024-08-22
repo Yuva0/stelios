@@ -1,0 +1,36 @@
+{/* Alert.mdx */}
+import { Canvas, Meta, Controls } from '@storybook/blocks';
+import * as AlertStories from './Alert.stories';
+
+<Meta of={AlertStories} name="Docs" />
+# Alert:
+Alert components are used to inform users about a situation or to give feedback. They can be used to inform users about a
+successful action, an error, a warning or just to give information.
+
+## Variants:
+Choose either this or that, or maybe that one. It's up to you.\
+Choose the one that fits your design system the best.\
+Default is Contained
+
+#### Contained
+<Canvas of={AlertStories.Contained}/>
+
+#### Outlined
+<Canvas of={AlertStories.Outlined}/>
+
+#### Soft
+<Canvas of={AlertStories.Soft}/>
+
+## Icons:
+Alerts can have icons. Icons can be leading or title. (You thought it was trailing, didn't you?)
+
+#### Leading Icon
+<Canvas of={AlertStories.LeadingIcon}/>
+
+#### Title Icon
+<Canvas of={AlertStories.TitleIcon}/>
+
+#### Playground
+Customize as per your needs using the controls below
+<Canvas of={AlertStories.Playground}/>
+<Controls of={AlertStories.Playground}/>

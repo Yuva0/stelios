@@ -1,0 +1,45 @@
+{/* IconButton.mdx */}
+import { Canvas, Meta, Controls } from '@storybook/blocks';
+import * as IconButtonStories from './IconButton.stories';
+
+<Meta of={IconButtonStories} name="Docs"/>
+# IconButton:
+Icon buttons are used to trigger actions or to navigate to another page.\
+They are the most important element in a design system.
+
+## Variants:
+“Understanding variation is the key to success in quality and business.” ~ Some wise person\
+Choose the one that fits your design system the best.
+
+#### Contained
+<Canvas of={IconButtonStories.Contained} />
+
+#### Outlined
+<Canvas of={IconButtonStories.Outlined} />
+
+#### Soft
+<Canvas of={IconButtonStories.Soft} />
+
+#### Outlined Soft
+<Canvas of={IconButtonStories.OutlinedSoft} />
+
+#### Neumorph
+<Canvas of={IconButtonStories.Neumorph} />
+
+
+## Sizes:
+Icon buttons can be small, medium or large. Default is medium.
+
+#### Small
+<Canvas of={IconButtonStories.Small} />
+
+#### Medium
+<Canvas of={IconButtonStories.Medium} />
+
+#### Large
+<Canvas of={IconButtonStories.Large} />
+
+## Playground
+Customize as per your needs using the controls below
+<Canvas of={IconButtonStories.Playground}/>
+<Controls of={IconButtonStories.Playground}/>

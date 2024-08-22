@@ -1,17 +1,14 @@
-import React, { useEffect, useImperativeHandle, useRef } from "react";
+import React, { useEffect, useImperativeHandle, useRef, forwardRef } from "react";
 import styled from "styled-components";
-import { ButtonInternalProps, ButtonProps, ButtonStyleProps } from "./Button.types";
+import { ButtonProps, ButtonStyleProps, ButtonIconStyleProps } from "./Button.types";
 import Text from "../Text/Text";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
 import { getColorPalette, hasPropertyChain } from "../../helpers/helpers";
 import colors from "../../tokens/colors.json";
 import layout from "../../tokens/layout.json";
 
-interface ButtonIconProps {
-  $size: ButtonStyleProps["$size"];
-}
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
   leadingIcon,
   trailingIcon,
   size = "medium",
@@ -21,9 +18,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
   disabled = false,
   children,
   isFullWidth = false,
+  style,
   onClick,
   ...rest
-}: ButtonProps & ButtonInternalProps,
+}: ButtonProps,
 ref) => {
   const innerRef = useRef<HTMLButtonElement>(null);
   useImperativeHandle(ref, () => innerRef.current!, [innerRef]);
@@ -34,13 +32,13 @@ ref) => {
   useEffect(() => {
     if(!innerRef || !innerRef.current) return;
     setBorderRadius(rounded ? `${innerRef.current.offsetHeight/2}px` : `${layout.rounded.default.rem}rem`);
-  },[rounded, innerRef, innerRef.current?.offsetHeight]);
+  },[rounded, innerRef.current?.offsetHeight]);
 
   return (
     <StyledButton ref={innerRef} $size={size} $variant={variant} 
       $color={color} $colorPalette={colorPalette} $disabled={disabled} 
       $rounded={rounded} $isFullWidth={isFullWidth} $borderRadius={borderRadius}
-      aria-disabled={disabled}
+      aria-disabled={disabled} style={style}
       onClick={onClick}
       {...rest}
     >
@@ -62,7 +60,6 @@ const StyledButton = styled.button<ButtonStyleProps>`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
   ${props => {
     const properties = propsHandler(props.$variant, props.$color, props.$colorPalette, props.$size, props.$disabled);
     return `
@@ -104,7 +101,7 @@ const StyledButton = styled.button<ButtonStyleProps>`
     `;
   }}
 `;
-const StyledButtonIcon = styled.span<ButtonIconProps>`
+const StyledButtonIcon = styled.span<ButtonIconStyleProps>`
   ${props => {
     const size = getIconSizeProps(props.$size);
     return `

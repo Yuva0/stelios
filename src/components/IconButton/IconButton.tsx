@@ -3,8 +3,8 @@ import { IconButtonProps, IconButtonStyleProps } from "./IconButton.types";
 import styled from "styled-components";
 import Text from "../Text/Text";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
-import { hasPropertyChain } from "../../helpers/helpers";
-import { get } from "http";
+import { getColorPalette, hasPropertyChain } from "../../helpers/helpers";
+import colorTokens from "../../tokens/colors.json";
 
 const IconButton = forwardRef(
   (
@@ -12,7 +12,7 @@ const IconButton = forwardRef(
       icon,
       size = "medium",
       variant = "contained",
-      color = "primary",
+      color = colorTokens.default.primary.main,
       disabled = false,
       className,
       style,
@@ -22,11 +22,16 @@ const IconButton = forwardRef(
     ref: React.ForwardedRef<HTMLButtonElement>
   ) => {
     const theme = useTheme().theme;
-    if(!theme) return null;
-    const colorPalette = theme.colorPalette;
+    const colorPalette = getColorPalette(theme,color);
 
     return (
-      <StyledIconBtn ref={ref} $variant={variant} $size={size} $color={color} $disabled={disabled} $colorPalette={colorPalette}
+      <StyledIconBtn
+        ref={ref}
+        $variant={variant}
+        $size={size}
+        $color={color}
+        $disabled={disabled}
+        $colorPalette={colorPalette}
         aria-disabled={disabled}
         style={style}
         className={className}
@@ -38,7 +43,7 @@ const IconButton = forwardRef(
             {icon}
           </Text>
         ) : (
-          <IconButtonIcon icon={icon} size={size}/>
+          <IconButtonIcon icon={icon} size={size} />
         )}
       </StyledIconBtn>
     );
@@ -46,10 +51,14 @@ const IconButton = forwardRef(
 );
 
 export default IconButton;
-const IconButtonIcon = ({icon,size}:{icon: React.ReactNode, size: "small" | "medium" | "large"}) => {
-  return (
-    <StyledIconButtonIcon $size={size}>{icon}</StyledIconButtonIcon>
-  );
+const IconButtonIcon = ({
+  icon,
+  size,
+}: {
+  icon: React.ReactNode;
+  size: "small" | "medium" | "large";
+}) => {
+  return <StyledIconButtonIcon $size={size}>{icon}</StyledIconButtonIcon>;
 };
 
 const StyledIconBtn = styled.button<IconButtonStyleProps>`
@@ -57,15 +66,21 @@ const StyledIconBtn = styled.button<IconButtonStyleProps>`
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  ${props => {
-    const properties = propsHandler(props.$variant, props.$color, props.$colorPalette, props.$size);
+  ${(props) => {
+    const properties = propsHandler(
+      props.$variant,
+      props.$color,
+      props.$colorPalette,
+      props.$size,
+      props.$disabled
+    );
     return `
       background-color: ${properties.backgroundColor.default};
       color: ${properties.color.default};
       padding: ${properties.padding};
       border: ${properties.border.default};
       cursor: ${props.$disabled ? "not-allowed" : "pointer"};
-      // ${hasPropertyChain(properties, ["boxShadow", "default"]) && `box-shadow: ${properties.boxShadow!.default};`}
+      ${hasPropertyChain(properties, ["boxShadow", "default"]) ? `box-shadow: ${properties.boxShadow!.default};` : ""}
 
       &:hover {
         background-color: ${properties.backgroundColor.hover};
@@ -78,16 +93,20 @@ const StyledIconBtn = styled.button<IconButtonStyleProps>`
         color: ${properties.color.active};
         border: ${properties.border.active};
         ${hasPropertyChain(properties, ["boxShadow", "active"]) && `box-shadow: ${properties.boxShadow!.active};`}
-        ${hasPropertyChain(properties, ["filter", "active"]) && `filter: ${properties.filter!.active};`
-      }
+        ${
+          hasPropertyChain(properties, ["filter", "active"]) &&
+          `filter: ${properties.filter!.active};`
+        }
       &:focus-visible {
         outline-offset: 2px;
         outline: 2px solid ${props.$colorPalette[props.$color].accentScale[8]};
       }
     `;
   }}
-  `;
-const StyledIconButtonIcon = styled.div<{$size: "small" | "medium" | "large"}>`
+`;
+const StyledIconButtonIcon = styled.div<{
+  $size: "small" | "medium" | "large";
+}>`
   width: ${(props) => getSizeProps(props.$size).width};
   height: ${(props) => getSizeProps(props.$size).height};
   & svg {
@@ -100,20 +119,33 @@ const propsHandler = (
   variant: IconButtonStyleProps["$variant"],
   color: IconButtonStyleProps["$color"],
   colorPalette: IconButtonStyleProps["$colorPalette"],
-  size: IconButtonStyleProps["$size"]
+  size: IconButtonStyleProps["$size"],
+  disabled: IconButtonStyleProps["$disabled"]
 ) => {
   return {
-    ...getVariantProps(variant, color, colorPalette),
+    ...getVariantProps(variant, color, colorPalette, disabled),
     ...getSizeProps(size),
-  }
+  };
 };
 const getVariantProps = (
   variant: IconButtonStyleProps["$variant"],
   color: IconButtonStyleProps["$color"],
-  colorPalette: IconButtonStyleProps["$colorPalette"]
+  colorPalette: IconButtonStyleProps["$colorPalette"],
+  disabled: IconButtonStyleProps["$disabled"]
 ) => {
-  switch(variant){
+  switch (variant) {
     case "contained":
+      if(disabled) return {
+        backgroundColor: {
+          default: colorPalette[color].grayScale[8]
+        },
+        color: {
+          default: colorPalette[color].accentContrast
+        },
+        border: {
+          default: `2px solid ${colorPalette[color].grayScale[8]}`,
+        }
+      }
       return {
         backgroundColor: {
           default: colorPalette[color].accentScale[8],
@@ -130,8 +162,19 @@ const getVariantProps = (
           hover: `2px solid ${colorPalette[color].accentScale[9]}`,
           active: `2px solid ${colorPalette[color].accentScale[9]}`,
         },
-      }
+      };
     case "outlined":
+      if(disabled) return {
+        backgroundColor: {
+          default: "transparent"
+        },
+        color: {
+          default: colorPalette[color].grayScale[10]
+        },
+        border: {
+          default: `2px solid ${colorPalette[color].grayScale[5]}`,
+        }
+      }
       return {
         backgroundColor: {
           default: "transparent",
@@ -144,12 +187,23 @@ const getVariantProps = (
           active: colorPalette[color].accentScale[10],
         },
         border: {
-          default: `1px solid ${colorPalette[color].accentScale[5]}`,
-          hover: `1px solid ${colorPalette[color].accentScale[6]}`,
-          active: `1px solid ${colorPalette[color].accentScale[7]}`,
+          default: `2px solid ${colorPalette[color].accentScale[5]}`,
+          hover: `2px solid ${colorPalette[color].accentScale[6]}`,
+          active: `2px solid ${colorPalette[color].accentScale[7]}`,
         },
-      }
+      };
     case "soft":
+      if(disabled) return {
+        backgroundColor: {
+          default: colorPalette[color].grayScale[2]
+        },
+        color: {
+          default: colorPalette[color].grayScale[10]
+        },
+        border: {
+          default: `2px solid ${colorPalette[color].grayScale[2]}`
+        }
+      }
       return {
         backgroundColor: {
           default: colorPalette[color].accentScale[2],
@@ -162,15 +216,27 @@ const getVariantProps = (
           active: colorPalette[color].accentScale[10],
         },
         border: {
-          default: "none",
-          hover: "none",
-          active: "none",
+          default: `2px solid ${colorPalette[color].accentScale[2]}`,
+          hover: `2px solid ${colorPalette[color].accentScale[3]}`,
+          active: `2px solid ${colorPalette[color].accentScale[3]}`,
         },
         filter: {
           active: "brightness(0.92) saturate(1.1)",
-        }
-      }
+        },
+      };
     case "outlined-soft":
+      if(disabled)
+        return {
+          backgroundColor: {
+            default: colorPalette[color].grayScale[2]
+          },
+          color: {
+            default: colorPalette[color].grayScale[10]
+          },
+          border: {
+            default: `2px solid ${colorPalette[color].grayScale[5]}`
+          }
+        }
       return {
         backgroundColor: {
           default: colorPalette[color].accentScale[2],
@@ -186,9 +252,27 @@ const getVariantProps = (
           default: `2px solid ${colorPalette[color].accentScale[5]}`,
           hover: `2px solid ${colorPalette[color].accentScale[6]}`,
           active: `2px solid ${colorPalette[color].accentScale[7]}`,
-        }
-      }
+        },
+      };
     case "neumorph":
+      if(disabled)
+        return {
+          backgroundColor: {
+            default: "transparent"
+          },
+          color: {
+            default: colorPalette[color].grayScale[5]
+          },
+          border: {
+            default: `2px solid transparent`
+          },
+          boxShadow: {
+            default: `-6px -6px 14px rgba(255, 255, 255, .7),
+              -6px -6px 10px rgba(255, 255, 255, .5),
+              6px 6px 8px rgba(255, 255, 255, .075),
+              6px 6px 10px rgba(0, 0, 0, .15)`,
+          }
+        }
       return {
         backgroundColor: {
           default: "transparent",
@@ -201,9 +285,9 @@ const getVariantProps = (
           active: colorPalette[color].accentScale[10],
         },
         border: {
-          default: "none",
-          hover: "none",
-          active: "none",
+          default: `2px solid transparent`,
+          hover: `2px solid transparent`,
+          active: `2px solid transparent`,
         },
         boxShadow: {
           default: `-6px -6px 14px rgba(255, 255, 255, .7),
@@ -217,30 +301,30 @@ const getVariantProps = (
           active: `inset -2px -2px 6px rgba(255, 255, 255, .7),
               inset -2px -2px 4px rgba(255, 255, 255, .5),
               inset 2px 2px 2px rgba(255, 255, 255, .075),
-              inset 2px 2px 4px rgba(0, 0, 0, .15)`
-        }
-      }
+              inset 2px 2px 4px rgba(0, 0, 0, .15)`,
+        },
+      };
   }
-}
+};
 const getSizeProps = (size: IconButtonStyleProps["$size"]) => {
-  switch(size){
+  switch (size) {
     case "small":
       return {
         padding: "0.5rem 0.5rem",
         width: "1.25rem",
-        height: "1.25rem"
-      }
+        height: "1.25rem",
+      };
     case "medium":
       return {
         padding: "0.75rem 0.75rem",
         width: "1.5rem",
-        height: "1.5rem"
-      }
+        height: "1.5rem",
+      };
     case "large":
       return {
         padding: "1rem 1rem",
         width: "2rem",
-        height: "2rem"
-      }
+        height: "2rem",
+      };
   }
 };

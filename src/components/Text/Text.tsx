@@ -23,15 +23,15 @@ const Text = ({
   ...rest
 }: TextProps) => {
   const theme = useTheme().theme;
-  let _styleProps;
+  let _styledProps;
   if (noColor) {
-    _styleProps = { $noColor: noColor };
+    _styledProps = { $noColor: noColor };
   } else {
     const colorPalette = getColorPalette(theme, color);
     const _color = color && colorPalette
       ? colorPalette[color].main
       : colors.default.primary.main;
-    _styleProps = { $noColor: noColor, $color: _color };
+    _styledProps = { $noColor: noColor, $color: _color };
   }
 
   const _Text = () => {
@@ -48,7 +48,7 @@ const Text = ({
             style={style}
             className={className}
             {...rest}
-            {..._styleProps}
+            {..._styledProps}
           >
             {children}
           </StyledH1>
@@ -65,7 +65,7 @@ const Text = ({
             style={style}
             className={className}
             {...rest}
-            {..._styleProps}
+            {..._styledProps}
           >
             {children}
           </StyledH2>
@@ -83,7 +83,7 @@ const Text = ({
             style={style}
             className={className}
             {...rest}
-            {..._styleProps}
+            {..._styledProps}
           >
             {children}
           </StyledH3>
@@ -101,7 +101,7 @@ const Text = ({
             style={style}
             className={className}
             {...rest}
-            {..._styleProps}
+            {..._styledProps}
           >
             {children}
           </StyledH4>
@@ -119,7 +119,7 @@ const Text = ({
             style={style}
             className={className}
             {...rest}
-            {..._styleProps}
+            {..._styledProps}
           >
             {children}
           </StyledH5>
@@ -137,7 +137,7 @@ const Text = ({
             style={style}
             className={className}
             {...rest}
-            {..._styleProps}
+            {..._styledProps}
           >
             {children}
           </StyledH6>
@@ -155,7 +155,7 @@ const Text = ({
             style={style}
             className={className}
             {...rest}
-            {..._styleProps}
+            {..._styledProps}
           >
             {children}
           </StyledDiv>
@@ -173,7 +173,7 @@ const Text = ({
             style={style}
             className={className}
             {...rest}
-            {..._styleProps}
+            {..._styledProps}
           >
             {children}
           </StyledP>
@@ -191,7 +191,7 @@ const Text = ({
             style={style}
             className={className}
             {...rest}
-            {..._styleProps}
+            {..._styledProps}
           >
             {children}
           </StyledLabel>
@@ -209,7 +209,7 @@ const Text = ({
             style={style}
             className={className}
             {...rest}
-            {..._styleProps}
+            {..._styledProps}
           >
             {children}
           </StyledSpan>
@@ -227,7 +227,7 @@ const Text = ({
             style={style}
             className={className}
             {...rest}
-            {..._styleProps}
+            {..._styledProps}
           >
             {children}
           </StyledDiv>

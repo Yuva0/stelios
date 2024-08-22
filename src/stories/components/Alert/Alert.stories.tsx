@@ -2,40 +2,111 @@ import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 
 import Alert from "../../../components/Alert/Alert";
-import { IconArrowBackUp } from "@tabler/icons-react";
-import { ThemeProvider } from "../../../components/ThemeProvider/ThemeProvider";
-import colors from "../../../tokens/colors.json";
-// import { AlertProps } from "../../components/Alert/Alert.types";
+import { IconArrowBackUp, IconAwardFilled } from "@tabler/icons-react";
 
-const meta: Meta<typeof Alert> = {
+const AlertStoryMeta: Meta<typeof Alert> = {
   title: "Components/Alert",
   component: Alert,
   parameters: {
-    layout: "fullscreen",
+    layout: "centered",
   },
-  argTypes: {},
+  argTypes: {
+    variant: {
+      description: "Variant of the alert",
+      control: {
+        type: "select",
+        options: ["contained", "outlined", "soft"],
+      },
+    },
+    title: {
+      description: "Title of the alert",
+      control: {
+        type: "text",
+      },
+    },
+    description: {
+      description: "Description of the alert",
+      control: {
+        type: "text",
+      },
+    },
+    leadingIcon: {
+      description: "Leading icon of the alert",
+      options: [<IconAwardFilled />, undefined],
+      control: {
+        type: "inline-radio",
+      },
+    },
+    titleIcon: {
+      description: "Title icon of the alert",
+      options: [<IconAwardFilled />, undefined],
+      control: {
+        type: "inline-radio",
+      },
+    },
+  },
+};
+export default AlertStoryMeta;
+
+type AlertStory = StoryObj<typeof Alert>;
+const AlertTemplate: AlertStory = {
+  render: (args) => <Alert {...args} />,
 };
 
-export default meta;
-type Story = StoryObj<typeof Alert>;
+// Variant
+export const Contained = {
+  ...AlertTemplate,
+  args: {
+    title: "Gojo Satoru",
+    description:
+      "Gojo Satoru is a prominent character in the anime and manga series Jujutsu Kaisen, created by Gege Akutami. He is one of the most powerful sorcerers in the series and a teacher at Tokyo Jujutsu High, where he trains young sorcerers to fight against cursed spirits.",
+  },
+};
+export const Outlined = {
+  ...AlertTemplate,
+  args: {
+    title: "Gojo Satoru",
+    description:
+      "Gojo Satoru is a prominent character in the anime and manga series Jujutsu Kaisen, created by Gege Akutami. He is one of the most powerful sorcerers in the series and a teacher at Tokyo Jujutsu High, where he trains young sorcerers to fight against cursed spirits.",
+    variant: "outlined",
+  }
+}
+export const Soft = {
+  ...AlertTemplate,
+  args: {
+    title: "Gojo Satoru",
+    description:
+      "Gojo Satoru is a prominent character in the anime and manga series Jujutsu Kaisen, created by Gege Akutami. He is one of the most powerful sorcerers in the series and a teacher at Tokyo Jujutsu High, where he trains young sorcerers to fight against cursed spirits.",
+    variant: "soft",
+  }
+}
 
-export const Default: Story = {
-  render: () => {
-    return (
-      <div style={{ height: "100vh", width: "100%", background: "black" }}>
-        <ThemeProvider
-          appearance="dark"
-        >
-          <Alert
-            color="warning"
-            leadingIcon={<IconArrowBackUp />}
-            title="Title"
-            width="20rem"
-            // titleIcon={<IconBulb />}
-            description="Big Big Very Big Description"
-          />
-        </ThemeProvider>
-      </div>
-    );
+// Icons
+export const LeadingIcon = {
+  ...AlertTemplate,
+  args: {
+    title: "Gojo Satoru",
+    description:
+      "Gojo Satoru is a prominent character in the anime and manga series Jujutsu Kaisen, created by Gege Akutami.",
+    leadingIcon: <IconArrowBackUp/>,
+  }
+}
+export const TitleIcon = {
+  ...AlertTemplate,
+  args: {
+    title: "Gojo Satoru",
+    description:
+      "Gojo Satoru is a prominent character in the anime and manga series Jujutsu Kaisen, created by Gege Akutami.",
+    titleIcon: <IconArrowBackUp />,
+  }
+}
+
+// Playground
+export const Playground = {
+  ...AlertTemplate,
+  args: {
+    title: "Gojo Satoru",
+    description:
+      "Gojo Satoru is a prominent character in the anime and manga series Jujutsu Kaisen, created by Gege Akutami.",
   },
 };

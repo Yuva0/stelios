@@ -1,23 +1,111 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-// import { fn } from "@storybook/test";
 
 import IconButton from "../../../components/IconButton/IconButton";
-import { IconPackage } from "@tabler/icons-react";
+import { IconAwardFilled } from "@tabler/icons-react";
 
-const meta: Meta<typeof IconButton> = {
+const IconButtonMeta: Meta<typeof IconButton> = {
   title: "Components/IconButton",
   component: IconButton,
-  parameters: {},
-  argTypes: {},
+  parameters: {
+    layout: "centered",
+  },
+  argTypes: {
+    size: {
+      control: {
+        type: "select",
+        options: ["small", "medium", "large"],
+      },
+    },
+    variant: {
+      control: {
+        type: "select",
+        options: ["contained", "soft", "outlined", "outlined-soft", "neumorph"],
+      },
+    },
+    color: {
+      control: {
+        type: "color",
+      },
+    },
+    disabled: {
+      description: "If true, the button will be disabled.",
+      control: {
+        type: "boolean",
+      },
+    }
+  },
 };
 
-export default meta;
+export default IconButtonMeta;
 type Story = StoryObj<typeof IconButton>;
 
-export const Default: Story = {
+const IconButtonTemplate: Story = {
   render: (args) => {
-    return <IconButton {...args} icon={<IconPackage />} />;
+    return <IconButton {...args} />;
   },
-  args: {},
 };
+export const Contained = {
+  ...IconButtonTemplate,
+  args: {
+    icon: <IconAwardFilled />,
+    variant: "contained",
+  },
+}
+export const Outlined = {
+  ...IconButtonTemplate,
+  args: {
+    icon: <IconAwardFilled />,
+    variant: "outlined",
+  },
+}
+export const Soft = {
+  ...IconButtonTemplate,
+  args: {
+    icon: <IconAwardFilled />,
+    variant: "soft",
+  },
+}
+export const OutlinedSoft = {
+  ...IconButtonTemplate,
+  args: {
+    icon: <IconAwardFilled />,
+    variant: "outlined-soft",
+  },
+}
+export const Neumorph = {
+  ...IconButtonTemplate,
+  args: {
+    icon: <IconAwardFilled />,
+    variant: "neumorph",
+  },
+}
+
+export const Small = {
+  ...IconButtonTemplate,
+  args: {
+    icon: <IconAwardFilled />,
+    size: "small",
+  },
+}
+export const Medium = {
+  ...IconButtonTemplate,
+  args: {
+    icon: <IconAwardFilled />,
+    size: "medium",
+  },
+}
+export const Large = {
+  ...IconButtonTemplate,
+  args: {
+    icon: <IconAwardFilled />,
+    size: "large",
+  },
+}
+
+export const Playground = {
+  ...IconButtonTemplate,
+  args: {
+    icon: <IconAwardFilled />,
+  },
+}

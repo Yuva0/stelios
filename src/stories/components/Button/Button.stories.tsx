@@ -156,7 +156,7 @@ export const OutlinedSoft = {
     },
   }
 };
-export const Neuromorph = {
+export const Neumorph = {
   ...ButtonTemplate,
   args: {
     children: "Click Here",

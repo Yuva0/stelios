@@ -1,9 +1,3 @@
-export interface ButtonInternalProps {
-  // Accessibility Props
-  ariaLabel?: string;
-  ariaHidden?: boolean;
-}
-
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   leadingIcon?: React.ReactNode;
@@ -17,6 +11,7 @@ export interface ButtonProps
   disabled?: boolean;
   isFullWidth?: boolean;
   className?: string;
+  style?: React.CSSProperties;
 }
 
 export interface ButtonStyleProps {
@@ -29,4 +24,8 @@ export interface ButtonStyleProps {
   $borderRadius: string;
   // Theme: To be fixed
   $colorPalette: any;
+}
+
+export interface ButtonIconStyleProps {
+  $size: NonNullable<ButtonProps["size"]>;
 }
