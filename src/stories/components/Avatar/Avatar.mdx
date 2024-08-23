@@ -1,0 +1,39 @@
+{/* Avatar.mdx */}
+import { Canvas, Meta, Controls } from '@storybook/blocks';
+import * as AvatarStories from './Avatar.stories';
+
+<Meta of={AvatarStories} name="Docs"/>
+# Avatar:
+Avatars are used to represent users or entities. They are used in various places like user profiles, comments, etc.
+
+## Variants:
+A for Apple, B for Ball, V for Variant.\
+Choose the one that fits your design system the best.
+
+#### Image
+<Canvas of={AvatarStories.AvatarImage} />
+
+#### Initials
+<Canvas of={AvatarStories.AvatarInitials} />
+
+
+## Sizes:
+Customize the size of the avatar as per your needs. Default is medium.
+
+#### Small
+<Canvas of={AvatarStories.Small} />
+
+#### Medium
+<Canvas of={AvatarStories.Medium} />
+
+#### Large
+<Canvas of={AvatarStories.Large} />
+
+#### Extra Large
+<Canvas of={AvatarStories.ExtraLarge} />
+
+## Playground
+Customize as per your needs using the controls below
+
+<Canvas of={AvatarStories.Playground}/>
+<Controls of={AvatarStories.Playground}/>

@@ -1,9 +1,6 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import { IconAwardFilled } from "@tabler/icons-react";
 import Avatar from "../../../components/Avatar/Avatar";
-import colors_storybook from "../../storybook-tokens/colors.json";
-import { ThemeProvider } from "../../../components/ThemeProvider/ThemeProvider";
 
 const IMG_SRC = `https://img.freepik.com/free-psd/3d-illustration-human-avatar-profile_23-2150671116.jpg`;
 
@@ -22,6 +19,7 @@ const AvatarTemplate: AvatarStory = {
   render: (args) => <Avatar {...args} />,
 };
 
+// Variants
 export const AvatarImage = {
   ...AvatarTemplate,
   args: { 
@@ -37,3 +35,33 @@ export const AvatarInitials = {
     initials: "JD"
   },
 };
+
+// Sizes
+export const Small = {
+  ...AvatarTemplate,
+  args: { size: "small", src: IMG_SRC, alt: "profile picture" },
+};
+export const Medium = {
+  ...AvatarTemplate,
+  args: { size: "medium", src: IMG_SRC, alt: "profile picture" },
+};
+export const Large = {
+  ...AvatarTemplate,
+  args: { size: "large", src: IMG_SRC, alt: "profile picture" },
+};
+export const ExtraLarge = {
+  ...AvatarTemplate,
+  args: { size: "xlarge", src: IMG_SRC, alt: "profile picture" },
+};
+
+export const Playground = {
+  ...AvatarTemplate,
+  args: { 
+    src: IMG_SRC, 
+    alt: "profile picture",
+    size: "medium",
+    shape: "rounded",
+    variant: "contained",
+    type: "image",
+  },
+}

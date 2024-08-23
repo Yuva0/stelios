@@ -7,6 +7,7 @@ import { ThemeProvider } from "../../../components/ThemeProvider/ThemeProvider";
 import ImageHighlight from "../../../components/ImageHighlight/ImageHighlight";
 import { IconArrowBack, IconArrowLeft, IconMenu, IconPlayerPauseFilled, IconPlayerTrackNextFilled, IconPlayerTrackPrevFilled } from "@tabler/icons-react";
 import Text from "../../../components/Text/Text";
+import Avatar from "../../../components/Avatar/Avatar";
 
 const MusicPlayerStoryMeta: Meta<typeof MusicPlayer> = {
   title: "Samples/MusicPlayer",
@@ -56,7 +57,7 @@ export const MusicPlayer: MusicPlayerStory = {
       <ThemeProvider accents={{primary: "#ef476f", secondary: "#343a40"}} background="#e0e5ec">
         <Card width="400px" variant="neumorph" header={<Header/>} footer={<Footer/>}>
           <div style={{display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center", gap:"1rem"}}>
-            <ImageHighlight imgSrc="https://source.unsplash.com/random/400x400" imgAlt="Song Cover" gradientColors={["#fb6f92", "#f7cb5e"]} />
+            <Avatar size="xlarge" src="https://img.freepik.com/free-psd/3d-illustration-human-avatar-profile_23-2150671116.jpg" alt="profile picture" />
             <Text size="large" color="secondary">Song Title</Text>
             <Text color="secondary">Artist Name</Text>
           </div>

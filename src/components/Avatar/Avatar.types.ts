@@ -15,6 +15,7 @@ interface AvatarCommonProps {
   shape?: "rounded" | "square";
   color?: string;
   variant?: "contained" | "outlined";
+  type: "image" | "initials";
 }
 export type AvatarProps = AvatarCommonProps &
   (AvatarImageProps  | AvatarInitialsProps);

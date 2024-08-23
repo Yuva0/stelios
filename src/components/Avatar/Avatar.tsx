@@ -11,7 +11,7 @@ const Avatar: React.FunctionComponent<AvatarProps> = ({
   alt,
   initials,
   variant = "contained",
-  size = "large",
+  size = "medium",
   shape = "rounded",
   type = "image",
   color = colorTokens.default.primary.main,
@@ -23,7 +23,7 @@ const Avatar: React.FunctionComponent<AvatarProps> = ({
       case "image":
         return <img src={src} alt={alt} />;
       case "initials":
-        const _size = size === "xlarge" ? "large" : size;
+        const _size = size === "xlarge" || size === "medium" ? "large" : "medium";
         return <Text size={_size} noColor variant="span">{initials}</Text>;
     }
   };
