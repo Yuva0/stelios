@@ -6,7 +6,7 @@ export interface ToggleButtonProps {
   selected?: boolean;
   className?: string;
   style?: React.CSSProperties;
-  color?: "primary" | "secondary" | "danger" | "warning" | "success" | "info";
+  color?: string;
   size?: "small" | "medium" | "large";
   // Events:
   onClick?: (e: React.MouseEvent, value?: string, index?: number) => void;

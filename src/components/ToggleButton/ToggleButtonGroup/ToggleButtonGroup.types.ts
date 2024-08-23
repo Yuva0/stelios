@@ -2,7 +2,7 @@ export interface ToggleButtonGroupProps {
   children?: React.ReactNode | React.ReactNode[];
   value?: string;
   width?: string;
-  color?: "primary" | "secondary" | "danger" | "warning" | "success" | "info";
+  color?: string;
   size?: "small" | "medium" | "large";
   className?: string;
   style?: React.CSSProperties;

@@ -33,7 +33,6 @@ export const Default: Story = {
             <ToggleButtonGroup
               size="small"
               value="1"
-              color="primary"
               onClick={_onClick}
               width="100%"
               {...args}
@@ -55,7 +54,6 @@ export const Default: Story = {
             <ToggleButtonGroup
               size="medium"
               value="1"
-              color="primary"
               onClick={_onClick}
               {...args}
             >
@@ -76,7 +74,6 @@ export const Default: Story = {
             <ToggleButtonGroup
               size="large"
               value="1"
-              color="primary"
               onClick={_onClick}
               {...args}
             >

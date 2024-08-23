@@ -5,6 +5,8 @@ import {
 } from "./ToggleButton.types";
 import styled from "styled-components";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
+import { getColorPalette } from "../../helpers/helpers";
+import colorTokens from "../../tokens/colors.json"
 
 const getBgColor = (
   color: ToggleButtonStyleProps["$color"],
@@ -124,7 +126,7 @@ const ToggleButton = ({
   value,
   defaultSelected,
   selected,
-  color = "primary",
+  color = colorTokens.default.primary.main,
   size = "medium",
   className,
   style,
@@ -132,8 +134,7 @@ const ToggleButton = ({
   onClick,
 }: ToggleButtonProps) => {
   const theme = useTheme().theme;
-  if(!theme) return;
-  const colorPalette = theme.colorPalette;
+  const colorPalette = getColorPalette(theme,color);
   const isSelected = selected ?? defaultSelected ?? false;
 
   const _onClick = (e: React.MouseEvent<HTMLButtonElement>) => {

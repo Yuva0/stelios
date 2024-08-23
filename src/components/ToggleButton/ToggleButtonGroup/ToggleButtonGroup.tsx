@@ -5,6 +5,8 @@ import {
 } from "./ToggleButtonGroup.types";
 import styled from "styled-components";
 import { useTheme } from "../../ThemeProvider/ThemeProvider";
+import colorTokens from "../../../tokens/colors.json";
+import { getColorPalette } from "../../../helpers/helpers";
 
 const getBorder = (
   color: ToggleButtonStyleGroupProps["$color"],
@@ -80,7 +82,7 @@ const getIndexFromValue = (value: string, children: React.ReactNode) => {
 const ToggleButtonGroup = ({
   children,
   value,
-  color = "primary",
+  color = colorTokens.default.primary.main,
   className,
   size,
   style,
@@ -97,8 +99,7 @@ const ToggleButtonGroup = ({
   }, [value, children]);
 
   const theme = useTheme().theme;
-  if(!theme) return;
-  const colorPalette = theme.colorPalette;
+  const colorPalette = getColorPalette(theme,color);
 
   const _onClick = (e: React.MouseEvent, value?: string, index?: number) => {
     setSelectedIndex(index ?? null);
