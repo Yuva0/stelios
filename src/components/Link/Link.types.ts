@@ -8,7 +8,8 @@ export interface LinkProps {
   className?: string;
   style?: React.CSSProperties;
   onClick?: (e: React.MouseEvent | React.KeyboardEvent) => void;
-  color?: "primary" | "secondary" | "success" | "warning" | "danger" | "info";
+  color?: string;
+  noColor?: boolean;
   target?: "_blank" | "_self" | "_parent" | "_top";
   tabIndex?: number;
 }
@@ -16,4 +17,5 @@ export interface LinkProps {
 export type LinkStyleProps = {
   $variant: NonNullable<LinkProps["variant"]>;
   $color?: string;
+  $noColor?: boolean;
 };

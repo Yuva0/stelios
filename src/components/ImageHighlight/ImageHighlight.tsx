@@ -2,6 +2,8 @@ import * as React from "react";
 import styled, { keyframes } from "styled-components";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
 import { DefaultTheme } from "../ThemeProvider/ThemeProvider.types";
+import { getColorPalette } from "../../helpers/helpers";
+import colorTokens from "../../tokens/colors.json";
 
 interface ImageHighlightProps {
   imgSrc: string;
@@ -64,8 +66,7 @@ const ImageHighlight: React.FunctionComponent<ImageHighlightProps> = ({
   gradientColors,
 }) => {
   const theme = useTheme().theme;
-  if(!theme) return null;
-  const colorPalette = theme.colorPalette;
+  const colorPalette = getColorPalette(theme);
 
   return (
     <StyledImgHighlightCtr $gradientColors={gradientColors}>

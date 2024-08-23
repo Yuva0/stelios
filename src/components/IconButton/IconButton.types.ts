@@ -3,7 +3,7 @@ export interface IconButtonProps
   icon: React.ReactNode;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   size?: "small" | "medium" | "large";
-  variant?: "contained" | "soft" | "outlined" | "outlined-soft" | "neumorph";
+  variant?: "contained" | "soft" | "outlined" | "outlined-soft" | "neumorph" | "neumorph-contained";
   color?: string;
   disabled?: boolean;
   className?: string;

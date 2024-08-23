@@ -76,8 +76,8 @@ const StyledButton = styled.button<ButtonStyleProps>`
         `&:hover {
           background-color: ${properties.backgroundColor.hover};
           color: ${properties.color.hover};
-          ${hasPropertyChain(properties, ["border", "hover"]) && `border: ${properties.border!.hover};`}
-          ${hasPropertyChain(properties, ["boxShadow", "hover"]) && `box-shadow: ${properties.boxShadow!.hover};`}
+          ${hasPropertyChain(properties, ["border", "hover"]) ? `border: ${properties.border!.hover};` : ""}
+          ${hasPropertyChain(properties, ["boxShadow", "hover"]) ? `box-shadow: ${properties.boxShadow!.hover};` : ""}
         }` : 
         ""
       }
@@ -85,10 +85,10 @@ const StyledButton = styled.button<ButtonStyleProps>`
         `&:active {
           background-color: ${properties.backgroundColor.active};
           color: ${properties.color.active};
-          ${properties.border && `border: ${properties.border.active};`}
-          ${properties.filter && properties.filter.active && `filter: ${properties.filter.active};`};
-          ${hasPropertyChain(properties, ["boxShadow", "active"]) && `box-shadow: ${properties.boxShadow!.active};`}
-        }` : 
+          ${properties.border ? `border: ${properties.border.active};` : ""}
+          ${hasPropertyChain(properties, ["filter","active"]) ? `filter: ${properties.filter!.active};` : ""};
+          ${hasPropertyChain(properties, ["boxShadow", "active"]) ? `box-shadow: ${properties.boxShadow!.active};` : ""}
+        };` : 
         ""
       }
       ${!props.disabled ?

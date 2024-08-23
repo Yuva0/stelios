@@ -1,0 +1,35 @@
+{/* Card.mdx */}
+import { Canvas, Meta, Controls } from '@storybook/blocks';
+import * as CardStories from './Card.stories';
+
+<Meta of={CardStories} name="Docs"/>
+# Card:
+Cards are used to group related information in a layout. They are used to display information in a structured way.\
+They are the most common way to display content in a design system.\
+It's just a container for Header, Body and Footer.
+
+## Variants:
+There aren't that many variants for you to be indecisive.\
+Choose the one that fits your design system the best.\
+Default is Contained
+
+#### Contained
+<Canvas of={CardStories.Contained} />
+
+#### Outlined
+<Canvas of={CardStories.Outlined} />
+
+#### Soft
+<Canvas of={CardStories.Soft} />
+
+#### Outlined Soft
+<Canvas of={CardStories.OutlinedSoft} />
+
+#### Neumorph
+<Canvas of={CardStories.Neumorph} />
+
+## Playground
+Customize as per your needs using the controls below
+
+<Canvas of={CardStories.Playground}/>
+<Controls of={CardStories.Playground} />

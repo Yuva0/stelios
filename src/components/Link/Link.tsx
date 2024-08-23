@@ -3,12 +3,14 @@ import { LinkProps, LinkStyleProps } from "./Link.types";
 import Text from "../Text/Text";
 import styled from "styled-components";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
+import { getColorPalette } from "../../helpers/helpers";
+import colorTokens from "../../tokens/colors.json";
 
 const StyledLink = styled.a<LinkStyleProps>`
   width: fit-content;
   text-decoration: ${(props) =>
     props.$variant === "underline" ? "underline" : "none"};
-  color: ${(props) => props.$color};
+  ${props => !props.$noColor ? `color: ${props.$color};`: ""}
   cursor: pointer;
   display: inline-block;
   &:hover {
@@ -30,18 +32,16 @@ const Link = ({
   className,
   target,
   style,
-  color,
+  color = colorTokens.default.primary.main,
+  noColor,
   tabIndex,
   // Events
   onClick,
 }: LinkProps) => {
   const theme = useTheme().theme;
-  if(!theme) return null;
-  const colorPalette = theme.colorPalette;
+  const colorPalette = getColorPalette(theme,color);
 
-  const _color = color
-    ? colorPalette[color].accentScale[10]
-    : colorPalette.primary.grayScale[11];
+  const _color = colorPalette ? colorPalette[color].main : color;
 
   const _handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter" || e.key === " ") {
@@ -53,6 +53,7 @@ const Link = ({
     <StyledLink
       tabIndex={tabIndex}
       $color={_color}
+      $noColor={noColor}
       $variant={variant}
       target={target}
       href={href}

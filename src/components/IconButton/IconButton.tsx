@@ -86,20 +86,24 @@ const StyledIconBtn = styled.button<IconButtonStyleProps>`
         background-color: ${properties.backgroundColor.hover};
         color: ${properties.color.hover};
         border: ${properties.border.hover};
-        ${hasPropertyChain(properties, ["boxShadow", "hover"]) && `box-shadow: ${properties.boxShadow!.hover};`}
+        ${hasPropertyChain(properties, ["boxShadow", "hover"]) ? `box-shadow: ${properties.boxShadow!.hover};` : ""}
       }
       &:active {
         background-color: ${properties.backgroundColor.active};
         color: ${properties.color.active};
         border: ${properties.border.active};
-        ${hasPropertyChain(properties, ["boxShadow", "active"]) && `box-shadow: ${properties.boxShadow!.active};`}
+        ${hasPropertyChain(properties, ["boxShadow", "active"]) ? `box-shadow: ${properties.boxShadow!.active};` : ""}
         ${
-          hasPropertyChain(properties, ["filter", "active"]) &&
-          `filter: ${properties.filter!.active};`
+          hasPropertyChain(properties, ["filter", "active"]) ?
+          `filter: ${properties.filter!.active};` : ""
         }
-      &:focus-visible {
-        outline-offset: 2px;
-        outline: 2px solid ${props.$colorPalette[props.$color].accentScale[8]};
+      };
+      ${!props.disabled ?
+        `&:focus-visible {
+          outline-offset: 2px;
+          outline: 2px solid ${props.$colorPalette[props.$color].accentScale[8]};
+        }`:
+        ""
       }
     `;
   }}
@@ -298,6 +302,57 @@ const getVariantProps = (
               -2px -2px 4px rgba(255, 255, 255, .4),
               2px 2px 2px rgba(255, 255, 255, .05),
               2px 2px 4px rgba(0, 0, 0, .1)`,
+          active: `inset -2px -2px 6px rgba(255, 255, 255, .7),
+              inset -2px -2px 4px rgba(255, 255, 255, .5),
+              inset 2px 2px 2px rgba(255, 255, 255, .075),
+              inset 2px 2px 4px rgba(0, 0, 0, .15)`,
+        },
+      };
+    case "neumorph-contained":
+      if(disabled)
+        return {
+          backgroundColor: {
+            default: colorPalette[color].grayScale[8]
+          },
+          color: {
+            default: colorPalette[color].accentContrast
+          },
+          border: {
+            default: `2px solid ${colorPalette[color].background}`
+          },
+          boxShadow: {
+            default: `-6px -6px 14px rgba(255, 255, 255, .7),
+              -6px -6px 10px rgba(255, 255, 255, .5),
+              6px 6px 8px rgba(255, 255, 255, .075),
+              6px 6px 10px rgba(0, 0, 0, .15)`,
+          }
+        }
+      return {
+        backgroundColor: {
+          default: colorPalette[color].accentScale[8],
+          hover: colorPalette[color].accentScale[9],
+          active: colorPalette[color].accentScale[9],
+        },
+        color: {
+          default: colorPalette[color].accentContrast,
+          hover: colorPalette[color].accentContrast,
+          active: colorPalette[color].accentContrast,
+        },
+        border: {
+          default: `2px solid ${colorPalette[color].background}`,
+          hover: `2px solid ${colorPalette[color].background}`,
+          active: `2px solid ${colorPalette[color].background}`,
+        },
+        boxShadow: {
+          default: `-6px -6px 14px rgba(255, 255, 255, .7),
+              -6px -6px 10px rgba(255, 255, 255, .5),
+              6px 6px 8px rgba(255, 255, 255, .075),
+              6px 6px 10px rgba(0, 0, 0, .15)`,
+          hover: `-2px -2px 6px rgba(255, 255, 255, .6),
+              -2px -2px 4px rgba(255, 255, 255, .4),
+              2px 2px 2px rgba(255, 255, 255, .05),
+              2px 2px 4px rgba(0,
+              0, 0, .1)`,
           active: `inset -2px -2px 6px rgba(255, 255, 255, .7),
               inset -2px -2px 4px rgba(255, 255, 255, .5),
               inset 2px 2px 2px rgba(255, 255, 255, .075),

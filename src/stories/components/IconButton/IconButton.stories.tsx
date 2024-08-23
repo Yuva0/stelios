@@ -80,6 +80,13 @@ export const Neumorph = {
     variant: "neumorph",
   },
 }
+export const NeumorphContained = {
+  ...IconButtonTemplate,
+  args: {
+    icon: <IconAwardFilled />,
+    variant: "neumorph-contained",
+  },
+}
 
 export const Small = {
   ...IconButtonTemplate,
