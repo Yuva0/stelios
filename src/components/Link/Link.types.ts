@@ -9,7 +9,7 @@ export interface LinkProps {
   style?: React.CSSProperties;
   onClick?: (e: React.MouseEvent | React.KeyboardEvent) => void;
   color?: string;
-  noColor?: boolean;
+  preciseColor?: string;
   target?: "_blank" | "_self" | "_parent" | "_top";
   tabIndex?: number;
 }

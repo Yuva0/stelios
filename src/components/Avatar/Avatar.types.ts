@@ -16,6 +16,9 @@ interface AvatarCommonProps {
   color?: string;
   variant?: "contained" | "outlined";
   type: "image" | "initials";
+  initials?: string;
+  src?: string;
+  alt?: string;
 }
 export type AvatarProps = AvatarCommonProps &
   (AvatarImageProps  | AvatarInitialsProps);

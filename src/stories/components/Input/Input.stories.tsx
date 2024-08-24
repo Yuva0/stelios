@@ -25,11 +25,9 @@ type Story = StoryObj<typeof Input>;
 export const Default: Story = {
   render: (args) => {
     return (
-      <div style={{background: "#212121"}}>
-      <ThemeProvider appearance="dark">
+      <ThemeProvider appearance="light">
         <Input label="Input Label" {...args} />
       </ThemeProvider>
-      </div>
     );
   },
 };

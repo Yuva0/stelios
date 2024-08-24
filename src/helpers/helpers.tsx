@@ -29,7 +29,7 @@ export const getIncrementalGeneratedId = (() => {
 - If color && theme are provided, 
     return the theme's colorPalette with the new color if it doesn't exist
 ---------------------------------------------------------------------------- */
-export const getColorPalette = (theme?:DefaultTheme["theme"], color?: string) => {
+export const getColorPalette = (theme?:DefaultTheme["theme"], color?: string | null) => {
   if (!theme && !color) return null;
   if (theme && !color) {
     return theme.colorPalette;

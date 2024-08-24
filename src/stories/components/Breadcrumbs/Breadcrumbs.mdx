@@ -1,0 +1,41 @@
+{/* Breadcrumbs.mdx */}
+import { Canvas, Meta, Controls } from '@storybook/blocks';
+import * as BreadcrumbsStories from './Breadcrumbs.stories';
+
+<Meta of={BreadcrumbsStories} name="Docs"/>
+# Breadcrumbs:
+Breadcrumbs are a secondary navigation aid that helps users understand where they are in the website.
+
+## Variants
+Some variants are just for the sake of it. This one is not.\
+Choose the one that fits your design system the best.\
+Default is Contained
+
+#### Contained
+<Canvas of={BreadcrumbsStories.Contained} />
+
+#### Outlined
+<Canvas of={BreadcrumbsStories.Outlined} />
+
+#### Soft
+<Canvas of={BreadcrumbsStories.Soft} />
+
+#### Text
+<Canvas of={BreadcrumbsStories.Text} />
+
+## Sizes
+Breadcrumbs come in 3 sizes: Large, Medium, and Small. Don't eat them all at once.
+#### Large
+<Canvas of={BreadcrumbsStories.Large} />
+
+#### Medium
+<Canvas of={BreadcrumbsStories.Medium} />
+
+#### Small
+<Canvas of={BreadcrumbsStories.Small} />
+
+## Playground
+Customize as per your needs using the controls below
+
+<Canvas of={BreadcrumbsStories.Playground}/>
+<Controls of={BreadcrumbsStories.Playground}/>

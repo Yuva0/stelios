@@ -6,6 +6,7 @@ import { usePopper } from "react-popper";
 import { MenuItemProps } from "../MenuItem/MenuItem.types";
 import ClickAwayListener from "../ClickAwayListener/ClickAwayListener";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
+import { getColorPalette } from "../../helpers/helpers";
 
 const StyledMenuContainer = styled.div<MenuStyleProps>`
   display: ${(props) => (props.$open ? "block" : "none")};
@@ -67,8 +68,7 @@ const Menu = forwardRef<HTMLDivElement, MenuProps>(
       ],
     });
     const theme = useTheme().theme;
-    if(!theme) return null;
-    // const colorPalette = theme.colorPalette;
+    const colorPalette = getColorPalette(theme,null);
 
 
     const _onClick = (
@@ -90,6 +90,7 @@ const Menu = forwardRef<HTMLDivElement, MenuProps>(
         ref={setPopperElement}
         $open={isOpen}
         $minWidth={minWidth}
+        $colorPalette={colorPalette}
         style={{ ...styles.popper, ...style }}
         {...attributes.popper}
       >

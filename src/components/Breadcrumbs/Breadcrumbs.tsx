@@ -1,44 +1,54 @@
-import { delimiter } from "path";
 import * as React from "react";
 import styled from "styled-components";
-interface BreadcrumbsProps {
-  children: React.ReactNode | React.ReactNode[];
-  delimiter?: string;
-  color?: "primary" | "secondary" | "info" | "success" | "warning" | "danger";
-  size?: "small" | "medium" | "large";
-}
+import colorTokens from "../../tokens/colors.json";
+import { BreadcrumbsProps } from "./Breadcrumbs.types";
 
-const StyledDelimiterSpan = styled.span`
+const StyledDelimiterSpan = styled.span<{ size: BreadcrumbsProps["size"] }>`
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  margin: 0 0.5rem 0rem 0.5rem;
+  margin: ${props => sizeHandler(props.size)};
 `;
 
 const Breadcrumbs: React.FunctionComponent<BreadcrumbsProps> = ({
   children,
   delimiter,
-  color,
-  size
+  color = colorTokens.default.primary.main,
+  size = "medium",
+  variant = "contained",
 }) => {
   return (
-    <div>
+    <div style={{ display: "inline-flex" }}>
       {React.Children.map(children, (child, index) => {
+        if (!React.isValidElement(child)) return child;
         return (
           <>
             {React.cloneElement(child as React.ReactElement, {
-              color: color,
-              size: size,
+              ...(!child.props.variant && { variant: variant }),
+              ...(!child.props.size && { size: size }),
+              ...(!child.props.color && { color: color }),
             })}
 
-            <StyledDelimiterSpan>
-              {index < React.Children.count(children) - 1 && (delimiter ?? ">")}
-            </StyledDelimiterSpan>
+            {index < React.Children.count(children) - 1 && (
+              <StyledDelimiterSpan size={size}>
+                {delimiter ?? ">"}
+              </StyledDelimiterSpan>
+            )}
           </>
         );
       })}
     </div>
   );
+};
+const sizeHandler = (size: BreadcrumbsProps["size"]) => {
+  switch (size) {
+    case "small":
+      return "0 0.25rem";
+    case "medium":
+      return "0 0.25rem";
+    case "large":
+      return "0 0.5rem";
+  }
 };
 
 export default Breadcrumbs;

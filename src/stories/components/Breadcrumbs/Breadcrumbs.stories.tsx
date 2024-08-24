@@ -7,39 +7,72 @@ import BreadcrumbsItem from "../../../components/Breadcrumbs/BreadcrumbsItem/Bre
 const meta: Meta<typeof Breadcrumbs> = {
   title: "Components/Breadcrumbs",
   component: Breadcrumbs,
-  parameters: {},
+  parameters: {
+    layout: ["centered"],
+  },
   argTypes: {},
 };
-
 export default meta;
-type Story = StoryObj<typeof Breadcrumbs>;
 
-export const Default: Story = {
-  render: () => {
-    return (
-      <>
-        <Breadcrumbs size="large" delimiter="/" color="primary">
-          <BreadcrumbsItem title="Guides" />
-          <BreadcrumbsItem
-            title="Function Components"
-            link="/guides/function-components"
-          />
-        </Breadcrumbs>
-        <Breadcrumbs size="medium" delimiter="/" color="primary">
-          <BreadcrumbsItem title="Guides" />
-          <BreadcrumbsItem
-            title="Function Components"
-            link="/guides/function-components"
-          />
-        </Breadcrumbs>
-        <Breadcrumbs size="small" delimiter="/" color="primary">
-          <BreadcrumbsItem title="Guides" />
-          <BreadcrumbsItem
-            title="Function Components"
-            link="/guides/function-components"
-          />
-        </Breadcrumbs>
-      </>
-    );
+type Story = StoryObj<typeof Breadcrumbs>;
+const BreadcrumbsTemplate: Story = {
+  render: (args) => (
+    <Breadcrumbs {...args}>
+      <BreadcrumbsItem title="Guides" />
+      <BreadcrumbsItem
+        title="Function Components"
+        link="/guides/function-components"
+      />
+    </Breadcrumbs>
+  ),
+};
+
+// Variants
+export const Contained = {
+  ...BreadcrumbsTemplate,
+  args: {
+    variant: "contained",
   },
 };
+export const Outlined = {
+  ...BreadcrumbsTemplate,
+  args: {
+    variant: "outlined",
+  },
+};
+export const Soft = {
+  ...BreadcrumbsTemplate,
+  args: {
+    variant: "soft",
+  },
+};
+export const Text = {
+  ...BreadcrumbsTemplate,
+  args: {
+    variant: "text",
+  },
+};
+
+// Sizes
+export const Large = {
+  ...BreadcrumbsTemplate,
+  args: {
+    size: "large",
+  },
+};
+export const Medium = {
+  ...BreadcrumbsTemplate,
+  args: {
+    size: "medium",
+  },
+};
+export const Small = {
+  ...BreadcrumbsTemplate,
+  args: {
+    size: "small",
+  },
+};
+
+export const Playground = {
+  ...BreadcrumbsTemplate
+}

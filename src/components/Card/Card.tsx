@@ -47,7 +47,8 @@ const CardFooter: React.FunctionComponent<CardFooterProps> = ({ children }) => {
   return <Children children={children} />;
 };
 const Children: React.FunctionComponent<ChildrenProps> = ({ children }) => {
-  if (!children) return null;
+  if(!React.isValidElement(children)) return null;
+
   return typeof children === "string" ? (
     <Text noColor variant="paragraph">
       {children}

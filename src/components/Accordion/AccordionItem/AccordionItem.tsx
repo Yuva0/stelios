@@ -49,7 +49,7 @@ const AccordionItem = ({
   };
 
   const Children = () => {
-    if (!children) return null;
+    if (!React.isValidElement(children)) return null;
     if (typeof children  === "string") {
       return <Text noColor variant="paragraph">{children}</Text>;
     }

@@ -6,6 +6,11 @@ import { useTheme } from "../ThemeProvider/ThemeProvider";
 import { getColorPalette } from "../../helpers/helpers";
 import colors from "../../tokens/colors.json";
 
+interface StyledProps {
+  $noColor?: boolean;
+  $color?: string;
+}
+
 const Text = ({
   variant = "div",
   strong,
@@ -23,13 +28,13 @@ const Text = ({
   ...rest
 }: TextProps) => {
   const theme = useTheme().theme;
-  let _styledProps;
+  let _styledProps: StyledProps;
   if (noColor) {
     _styledProps = { $noColor: noColor };
   } else {
     const colorPalette = getColorPalette(theme, color);
     const _color = color && colorPalette
-      ? colorPalette[color].main
+      ? colorPalette[color].accentScale[10]
       : colors.default.primary.main;
     _styledProps = { $noColor: noColor, $color: _color };
   }

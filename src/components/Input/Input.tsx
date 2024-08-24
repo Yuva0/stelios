@@ -3,6 +3,8 @@ import { InputProps, InputStyleProps } from "./Input.types";
 import Text from "../Text/Text";
 import styled from "styled-components";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
+import colorTokens from "../../tokens/colors.json";
+import { getColorPalette } from "../../helpers/helpers";
 
 const getIconSize = (size?: "small" | "medium" | "large") => {
   switch (size) {
@@ -136,7 +138,7 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
   (
     {
       placeholder,
-      color = "primary",
+      color = colorTokens.default.primary.main,
       label,
       type = "text",
       size = "medium",
@@ -172,8 +174,7 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
     }, [value]);
 
     const theme = useTheme().theme;
-    if(!theme) return null;
-    const colorPalette = theme.colorPalette;
+    const colorPalette = getColorPalette(theme,color);
 
     const Label = label ? (
       typeof label === "string" ? (

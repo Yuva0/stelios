@@ -3,6 +3,8 @@ import Text from "../Text/Text";
 import { MenuItemProps, MenuItemStyleProps } from "./MenuItem.types";
 import styled from "styled-components";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
+import { getColorPalette } from "../../helpers/helpers";
+import colorTokens from "../../tokens/colors.json";
 
 const StyledMenuItem = styled.li<MenuItemStyleProps>`
   display: flex;
@@ -12,21 +14,19 @@ const StyledMenuItem = styled.li<MenuItemStyleProps>`
   gap: 0.25rem;
   cursor: pointer;
   &:hover {
-    background: ${(props) => props.$colorGradient["primary"].grayScale[2]};
+    background: ${(props) => props.$colorPalette[props.$color].grayScale[2]};
   }
   &:focus {
-    background: ${(props) => props.$colorGradient["primary"].grayScale[3]};
+    background: ${(props) => props.$colorPalette[props.$color].grayScale[3]};
     outline: ${(props) =>
-      `1px solid ${props.$colorGradient["primary"].accentScale[5]}`};
+      `1px solid ${props.$colorPalette[props.$color].accentScale[5]}`};
     outline-offset: -1px;
     border-radius: 0.25rem;
   }
 `;
-
 const StyledMenuItemContent = styled.span<MenuItemStyleProps>`
   width: 100%;
 `;
-
 const StyledMenuItemIcon = styled.span`
   display: flex;
   align-items: center;
@@ -45,36 +45,36 @@ const MenuItem = ({
   children,
   title,
   value,
+  color = colorTokens.default.primary.main,
   onClick,
 }: MenuItemProps) => {
   const theme = useTheme().theme;
-  if(!theme) return null;
-  const colorPalette = theme.colorPalette;
+  const colorPalette = getColorPalette(theme,color);
 
   const _onClick = (event: React.MouseEvent<HTMLLIElement>) => {
     onClick && onClick(event, { title, value });
   };
 
   return (
-    <StyledMenuItem $colorGradient={colorPalette} onClick={_onClick}>
+    <StyledMenuItem $colorPalette={colorPalette} $color={color} onClick={_onClick}>
       {leadingIcon && <StyledMenuItemIcon>{leadingIcon}</StyledMenuItemIcon>}
       {children ? (
         typeof children === "string" ? (
-          <StyledMenuItemContent $colorGradient={colorPalette}>
-            <Text variant="paragraph">{children}</Text>
+          <StyledMenuItemContent $color={color} $colorPalette={colorPalette}>
+            <Text noColor variant="paragraph">{children}</Text>
           </StyledMenuItemContent>
         ) : (
-          <StyledMenuItemContent $colorGradient={colorPalette}>
+          <StyledMenuItemContent $color={color} $colorPalette={colorPalette}>
             {children}
           </StyledMenuItemContent>
         )
       ) : (
-        <StyledMenuItemContent $colorGradient={colorPalette}>
-          <Text variant="paragraph">{title}</Text>
+        <StyledMenuItemContent $color={color} $colorPalette={colorPalette}>
+          <Text noColor variant="paragraph">{title}</Text>
         </StyledMenuItemContent>
       )}
       {trailingIcon && (
-        <StyledMenuItemContent $colorGradient={colorPalette}>
+        <StyledMenuItemContent $color={color} $colorPalette={colorPalette}>
           {trailingIcon}
         </StyledMenuItemContent>
       )}

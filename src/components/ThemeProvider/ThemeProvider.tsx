@@ -18,21 +18,30 @@ const useTheme = () => {
 const useUpdateTheme = () => {
   const { setTheme } = useTheme();
 
-  return ({
-    accents,
-    gray = colors.theme.gray,
-    appearance = colors.theme.appearance.light as "light" | "dark",
-  }: ThemeProviderProps) => {
+  return React.useCallback(
+    ({
+      accents,
+      gray = colors.theme.gray,
+      appearance = colors.theme.appearance.light as "light" | "dark",
+    }: ThemeProviderProps) => {
+      const colorPalette = generateColorPalette(accents, appearance, gray);
 
-    const colorPalette = assignColorPalette(accents, appearance, gray);
-
-    return setTheme(colorPalette ? {
-      colorPalette,
-      appearance,
-      gray,
-      background: appearance === "light" ? colors.theme.background.light : colors.theme.background.dark,
-    } : null);
-  };
+      setTheme(
+        colorPalette
+          ? {
+              colorPalette,
+              appearance,
+              gray,
+              background:
+                appearance === "light"
+                  ? colors.theme.background.light
+                  : colors.theme.background.dark,
+            }
+          : null
+      );
+    },
+    [setTheme]
+  );
 };
 
 const ThemeProvider = ({
@@ -42,7 +51,7 @@ const ThemeProvider = ({
   background,
   children,
 }: ThemeProviderProps) => {
-  const colorPalette = assignColorPalette(accents, appearance, gray);
+  const colorPalette = generateColorPalette(accents, appearance, gray);
 
   const [theme, setTheme] = React.useState(colorPalette ? {
     colorPalette,
@@ -59,7 +68,7 @@ const ThemeProvider = ({
 };
 export { ThemeProvider, useTheme, useUpdateTheme };
 
-const assignThemeAccent = (
+const generateThemeAccent = (
   accent: string,
   appearance: "light" | "dark",
   gray: string
@@ -74,13 +83,13 @@ const assignThemeAccent = (
     }),
   };
 };
-const assignColorPalette = (
+const generateColorPalette = (
   accents: ThemeProviderProps["accents"],
   appearance: "light" | "dark",
   gray: string
 ) => {
   return accents ? Object.keys(accents).reduce((palette, key) => {
-      return { ...palette, [key]: assignThemeAccent(accents[key], appearance, gray)};
+      return { ...palette, [key]: generateThemeAccent(accents[key], appearance, gray)};
     },
     {} as { [key: string]: ColorPaletteProps }
   ) : null;

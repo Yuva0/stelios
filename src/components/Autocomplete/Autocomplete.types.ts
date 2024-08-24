@@ -13,7 +13,7 @@ export interface AutocompleteProps {
   open?: boolean;
   options?: MenuItemProps[];
   multiSelect?: boolean;
-  color?: "primary" | "secondary" | "danger" | "warning" | "success" | "info";
+  color?: string;
 
   // Events
   onChange?: (

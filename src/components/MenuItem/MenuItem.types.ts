@@ -8,6 +8,7 @@ export interface MenuItemProps extends MenuItemKeyProps {
   leadingIcon?: React.ReactNode;
   trailingIcon?: React.ReactNode;
   children?: React.ReactNode | React.ReactNode[];
+  color?: string;
   onClick?: (
     e: React.MouseEvent<HTMLLIElement>,
     { value, title }: MenuItemKeyProps
@@ -15,5 +16,6 @@ export interface MenuItemProps extends MenuItemKeyProps {
 }
 
 export interface MenuItemStyleProps {
-  $colorGradient: any;
+  $colorPalette: any;
+  $color: string;
 }

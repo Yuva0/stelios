@@ -1,5 +1,5 @@
 export interface InputProps {
-  color?: "primary" | "secondary" | "danger" | "warning" | "success" | "info";
+  color?: string;
   size?: "small" | "medium" | "large";
   type?: "text" | "password" | "number" | "email" | "search";
   cursor?: "pointer" | "text";

@@ -65,41 +65,41 @@ export const Contained = {
 export const Outlined = {
   ...AlertTemplate,
   args: {
-    title: "Gojo Satoru",
+    title: "Lelouch Lamperouge",
     description:
-      "Gojo Satoru is a prominent character in the anime and manga series Jujutsu Kaisen, created by Gege Akutami. He is one of the most powerful sorcerers in the series and a teacher at Tokyo Jujutsu High, where he trains young sorcerers to fight against cursed spirits.",
+      "Lelouch vi Britannia, whose alias is Lelouch Lamperouge, is the main protagonist of the Sunrise anime series Code Geass: Lelouch of the Rebellion. In the series, Lelouch is a former prince from the superpower Britannia who is given the power of the `Geass` by a witch known as C.C. Using the Geass and his genius-level intellect, Lelouch becomes the leader of the resistance movement known as The Black Knights under his alter ego Zero (ゼロ) to destroy the Holy Britannian Empire, an imperial monarchy that has been conquering various countries under the control of his father.",
     variant: "outlined",
-  }
-}
+  },
+};
 export const Soft = {
   ...AlertTemplate,
   args: {
-    title: "Gojo Satoru",
+    title: "L",
     description:
-      "Gojo Satoru is a prominent character in the anime and manga series Jujutsu Kaisen, created by Gege Akutami. He is one of the most powerful sorcerers in the series and a teacher at Tokyo Jujutsu High, where he trains young sorcerers to fight against cursed spirits.",
+      "A weirdo if you have never met him. Once you do, there is no going back. He is a genius detective who is known for his eccentricity and his ability to solve any case, no matter how difficult it may be.",
     variant: "soft",
-  }
-}
+  },
+};
 
 // Icons
 export const LeadingIcon = {
   ...AlertTemplate,
   args: {
-    title: "Gojo Satoru",
+    title: "Joseph Joestar",
     description:
-      "Gojo Satoru is a prominent character in the anime and manga series Jujutsu Kaisen, created by Gege Akutami.",
-    leadingIcon: <IconArrowBackUp/>,
-  }
-}
+      "*sigh*, I don't why I have added him here but he is an inspiration to many (not me).",
+    leadingIcon: <IconArrowBackUp />,
+  },
+};
 export const TitleIcon = {
   ...AlertTemplate,
   args: {
-    title: "Gojo Satoru",
+    title: "Ken Kaneki",
     description:
-      "Gojo Satoru is a prominent character in the anime and manga series Jujutsu Kaisen, created by Gege Akutami.",
+      "Ken Kaneki, also known as the Black Reaper and the One-Eyed King, is the main protagonist of the Tokyo Ghoul franchise. Ken was a normal college student until his encounter with Rize Kamishiro left him transformed into a Ghoul.",
     titleIcon: <IconArrowBackUp />,
-  }
-}
+  },
+};
 
 // Playground
 export const Playground = {
