@@ -3,6 +3,8 @@ import SyntaxHighlighter from "react-syntax-highlighter";
 import { dark, docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import { CodeEditorProps, CodeEditorStyleProps } from "./CodeEditor.types";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
+import { getColorPalette } from "../../helpers/helpers";
+import colorTokens from "../../tokens/colors.json";
 
 const StyledCodeEditor = styled.div<CodeEditorStyleProps>`
   display: flex;
@@ -15,14 +17,14 @@ const StyledCode = styled.div<CodeEditorStyleProps>`
   justify-content: center;
   align-items: center;
   padding: 1.5rem;
-  background-color: ${(props) => props.$colorPalette.primary.accentScale[0]};
-  border: 1px solid ${(props) => props.$colorPalette.primary.grayScale[5]};
+  background-color: ${(props) => props.$colorPalette[props.$color].accentScale[0]};
+  border: 1px solid ${(props) => props.$colorPalette[props.$color].grayScale[5]};
   border-radius: 0.5rem 0.5rem 0 0;
 `;
 const StyledContainer = styled.div<CodeEditorStyleProps>`
   display: block;
-  background-color: ${(props) => props.$colorPalette.primary.accentScale[1]};
-  border: 1px solid ${(props) => props.$colorPalette.primary.grayScale[5]};
+  background-color: ${(props) => props.$colorPalette[props.$color].accentScale[1]};
+  border: 1px solid ${(props) => props.$colorPalette[props.$color].grayScale[5]};
   border-radius: 0 0 0.5rem 0.5rem;
   padding: 0.5rem 2rem;
 
@@ -36,28 +38,34 @@ const StyledContainer = styled.div<CodeEditorStyleProps>`
     }
   }
 `;
-
 const StyledSyntaxHighlighter = styled(SyntaxHighlighter)<CodeEditorStyleProps>`
   background-color: ${(props) =>
-    props.$colorPalette.primary.accentScale[1]} !important;
+    props.$colorPalette[props.$color].accentScale[1]} !important;
   font-family: "Lato", sans-serif;
 `;
 
-const CodeEditor = ({ code, text, width }: CodeEditorProps) => {
+const CodeEditor = ({
+  code,
+  text,
+  width,
+  color = colorTokens.default.primary.main,
+}: CodeEditorProps) => {
   const theme = useTheme().theme;
-  if (!theme) return null;
-  const colorPalette = theme.colorPalette;
-  const appearance = colorPalette.primary.appearance;
+  const colorPalette = getColorPalette(theme, color);
+  const appearance = colorPalette
+    ? colorPalette[color].appearance
+    : colorTokens.default.appearance;
 
   return (
-    <StyledCodeEditor $colorPalette={colorPalette} $width={width}>
-      <StyledCode $colorPalette={colorPalette}>{code}</StyledCode>
+    <StyledCodeEditor $colorPalette={colorPalette} $width={width} $color={color}>
+      <StyledCode $colorPalette={colorPalette} $color={color}>{code}</StyledCode>
 
-      <StyledContainer $colorPalette={colorPalette}>
+      <StyledContainer $colorPalette={colorPalette} $color={color}>
         <StyledSyntaxHighlighter
           language="javascript"
           style={appearance === "light" ? docco : dark}
           $colorPalette={colorPalette}
+          $color={color}
         >
           {text}
         </StyledSyntaxHighlighter>

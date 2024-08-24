@@ -1,14 +1,15 @@
-import { DefaultTheme } from "../ThemeProvider/ThemeProvider.types";
-
 export interface CodeDisplayProps {
   text: string;
-  language: string;
+  title?: string;
   width?: string;
-  syntaxStyle?: any;
+  language: string;
   style?: React.CSSProperties;
+  color?: string;
 }
 
 export interface CodeDisplayStyleProps {
   $colorPalette: any
+  $color: string;
   $width?: string;
+  $hasTitle?: boolean;
 }

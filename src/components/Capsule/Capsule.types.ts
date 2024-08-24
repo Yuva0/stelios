@@ -6,23 +6,21 @@ export interface CapsuleProps {
   width?: string;
   height?: string;
   image: string;
-  imageProps?: {
-    alt: string;
-  };
+  imageAlt: string;
   textProps?: {
-    padding: string;
-  }
+    padding?: string;
+  };
   imagePosition?: "left" | "right";
   title?: React.ReactNode;
   description?: React.ReactNode;
-  onClick?: (e: React.MouseEvent) => void;
+  onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
 }
 
-export interface CapsuleContainerStyleProps {
-  $width: string;
-  $height: string;
-}
 export interface CapsuleStyleProps {
-  $imagePosition: CapsuleProps["imagePosition"];
-  $variant: "contained" | "outlined" | "soft";
+  $variant: NonNullable<CapsuleProps["variant"]>;
+  $color: NonNullable<CapsuleProps["color"]>;
+  $imagePosition: NonNullable<CapsuleProps["imagePosition"]>;
+  $width: NonNullable<CapsuleProps["width"]>;
+  $height: NonNullable<CapsuleProps["height"]>;
+  $colorPalette: any; // Adjust this to match your theme's color palette type
 }

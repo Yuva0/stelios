@@ -3,6 +3,69 @@ import { CheckboxProps, CheckboxStyleProps } from "./Checkbox.types";
 import { IconCheck } from "@tabler/icons-react";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
 import styled from "styled-components";
+import colorTokens from "../../tokens/colors.json"
+import { getColorPalette } from "../../helpers/helpers";
+
+const Checkbox = forwardRef(
+  (
+    {
+      id,
+      value,
+      size = "medium",
+      color = colorTokens.default.primary.main,
+      checked,
+      disabled,
+      label,
+      name,
+      className,
+      style,
+
+      //Events
+      onChange,
+      ...props
+    }: CheckboxProps,
+    ref
+  ) => {
+    const innerRef = React.useRef<HTMLInputElement>(null);
+    const _ref = (ref ?? innerRef) as React.RefObject<HTMLInputElement>;
+    const [isChecked, setIsChecked] = useState(checked ?? false);
+
+    useEffect(() => {
+      setIsChecked(checked ?? false);
+    }, [checked]);
+
+    const theme = useTheme().theme;
+    const colorPalette = getColorPalette(theme,color);
+
+    const _onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      setIsChecked((prev) => {
+        return !prev;
+      });
+      onChange && onChange(event);
+    };
+
+    return (
+      <StyledCheckbox
+        role="checkbox"
+        aria-checked={isChecked}
+        $size={size}
+        $colorPalette={colorPalette}
+        $color={color}
+        {...props}
+      >
+        <input
+          ref={_ref}
+          checked={isChecked}
+          type="checkbox"
+          name={name}
+          onChange={_onChange}
+        />
+        <span>{isChecked && <IconCheck />}</span>
+      </StyledCheckbox>
+    );
+  }
+);
+export default Checkbox;
 
 const getSize = (size?: "small" | "medium" | "large") => {
   switch (size) {
@@ -26,7 +89,7 @@ const StyledCheckbox = styled.span<CheckboxStyleProps>`
   border-radius: 50%;
   "&:hover": {
     background: ${(props) =>
-      props.$colorGradient[props.$color ?? "info"].accentScale[1]};
+      props.$colorPalette[props.$color ?? "info"].accentScale[1]};
   }
   & input[type="checkbox"] {
     position: absolute;
@@ -37,7 +100,7 @@ const StyledCheckbox = styled.span<CheckboxStyleProps>`
     width: ${(props) => getSize(props.$size)}rem;
     height: ${(props) => getSize(props.$size)}rem;
     border: 1.5px solid
-      ${(props) => props.$colorGradient[props.$color ?? "info"].accentScale[8]};
+      ${(props) => props.$colorPalette[props.$color ?? "info"].accentScale[8]};
     border-radius: 0.25rem;
     position: relative;
 
@@ -45,79 +108,15 @@ const StyledCheckbox = styled.span<CheckboxStyleProps>`
       width: 100%;
       height: 100%;
       background-color: ${(props) =>
-        props.$colorGradient[props.$color ?? "info"].accentScale[8]};
+        props.$colorPalette[props.$color ?? "info"].accentScale[8]};
       color: ${(props) =>
-        props.$colorGradient[props.$color ?? "info"].accentContrast};
+        props.$colorPalette[props.$color ?? "info"].accentContrast};
       border-radius: 0.15rem;
     }
   }
   & input[type="checkbox"]:focus + span {
     outline: 1px solid
-      ${(props) => props.$colorGradient[props.$color ?? "info"].accentScale[8]};
+      ${(props) => props.$colorPalette[props.$color ?? "info"].accentScale[8]};
     outline-offset: 1px;
   }
 `;
-
-const Checkbox = forwardRef(
-  (
-    {
-      id,
-      value,
-      size = "medium",
-      color = "primary",
-      checked,
-      disabled,
-      label,
-      name,
-      className,
-      style,
-
-      //Events
-      onChange,
-      ...props
-    }: CheckboxProps,
-    ref
-  ) => {
-    const innerRef = React.useRef<HTMLInputElement>(null);
-    const _ref = (ref ?? innerRef) as React.RefObject<HTMLInputElement>;
-    const [isChecked, setIsChecked] = useState(checked ?? false);
-
-    useEffect(() => {
-      setIsChecked(checked ?? false);
-    }, [checked]);
-
-    const theme = useTheme().theme;
-    if(!theme) return null;
-    const colorPalette = theme.colorPalette;
-
-    const _onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      setIsChecked((prev) => {
-        return !prev;
-      });
-      onChange && onChange(event);
-    };
-
-    return (
-      <StyledCheckbox
-        role="checkbox"
-        aria-checked={isChecked}
-        $size={size}
-        $colorGradient={colorPalette}
-        $color={color}
-        // className={`${classNames["ste-checkbox"]} ${className}`}
-        {...props}
-      >
-        <input
-          ref={_ref}
-          checked={isChecked}
-          type="checkbox"
-          name={name}
-          onChange={_onChange}
-        />
-        <span>{isChecked && <IconCheck />}</span>
-      </StyledCheckbox>
-    );
-  }
-);
-
-export default Checkbox;

@@ -1,0 +1,26 @@
+import { Canvas, Meta, Controls } from '@storybook/blocks';
+import * as CheckboxStories from './Checkbox.stories';
+
+<Meta of={CheckboxStories} name="Docs" />
+
+# Checkbox:
+Checkboxes are used to select one or more options from a set. They allow the user to select multiple options from a list of options.
+
+## Sizes:
+Checkboxes come in various sizes. Choose the one that fits your design system best.\
+Default is Medium.
+
+#### Large
+<Canvas of={CheckboxStories.Large} />
+
+#### Medium
+<Canvas of={CheckboxStories.Medium} />
+
+#### Small
+<Canvas of={CheckboxStories.Small} />
+
+## Playground
+Customize as per your needs using the controls below
+
+<Canvas of={CheckboxStories.Playground}/>
+<Controls of={CheckboxStories.Playground}/>

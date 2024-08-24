@@ -1,0 +1,13 @@
+{/* CodeDisplay */}
+import { Canvas, Meta, Controls } from '@storybook/blocks';
+import * as CodeDisplayStories from './CodeDisplay.stories';
+
+<Meta of={CodeDisplayStories} name="Docs"/>
+# CodeDisplay:
+CodeDisplay is a component that displays code in a beautiful way. It is used to display code snippets in documentation.
+
+#### With Title
+<Canvas of={CodeDisplayStories.WithTitle} />
+
+#### Without Title
+<Canvas of={CodeDisplayStories.WithoutTitle} />

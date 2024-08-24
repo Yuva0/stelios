@@ -2,13 +2,7 @@ export interface CheckboxProps {
   id?: string;
   value?: string;
   size?: "small" | "medium" | "large";
-  color?:
-    | "primary"
-    | "secondary"
-    | "danger"
-    | "warning"
-    | "success"
-    | "info"
+  color?: string;
   checked?: boolean;
   disabled?: boolean;
   label?: string;
@@ -25,5 +19,5 @@ export interface CheckboxStyleProps {
   $disabled?: boolean;
   $size: NonNullable<CheckboxProps["size"]>;
   $color: NonNullable<CheckboxProps["color"]>;
-  $colorGradient: any;
+  $colorPalette: any;
 }

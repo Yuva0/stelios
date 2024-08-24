@@ -1,9 +1,13 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-// import { generateRadixColors } from "../../helpers/colors/generateRadixColors";
 
 import CodeDisplay from "../../../components/CodeDisplay/CodeDisplay";
-import { ThemeProvider } from "../../../components/ThemeProvider/ThemeProvider";
+import Text from "../../../components/Text/Text";
+
+const TEXT_CONTENT = `<Button variant='contained'> Contained </Button>
+<Button variant="contained" disabled> Disabled </Button>
+<Button variant="contained" href="#contained-buttons"> Link </Button>`;
+const JSX = "JSX";
 
 const meta: Meta<typeof CodeDisplay> = {
   title: "Components/CodeDisplay",
@@ -15,29 +19,24 @@ const meta: Meta<typeof CodeDisplay> = {
 export default meta;
 type Story = StoryObj<typeof CodeDisplay>;
 
-export const Default: Story = {
-  render: () => {
-    const Text = `<Button variant='contained'> Contained </Button>
-<Button variant="contained" disabled>Disabled</Button>
-<Button variant="contained" href="#contained-buttons">Link</Button>`;
-
-    return (
-      <>
-        <ThemeProvider appearance="light">
-          <div
-            style={{ display: "flex", flexDirection: "column", gap: "2rem" }}
-          >
-            <CodeDisplay text={Text} language="JSX" />
-          </div>
-        </ThemeProvider>
-        <ThemeProvider appearance="dark">
-          <div
-            style={{ display: "flex", flexDirection: "column", gap: "2rem" }}
-          >
-            <CodeDisplay text={Text} language="JSX" />
-          </div>
-        </ThemeProvider>
-      </>
-    );
+const Template: Story = {
+  render: (args) => {
+    return <CodeDisplay {...args} />;
   },
 };
+
+export const WithTitle = {
+  ...Template,
+  args: {
+    title: "Button with 2 variations",
+    text: TEXT_CONTENT,
+    language: JSX,
+  },
+};
+export const WithoutTitle = {
+  ...Template,
+  args: {
+    text: TEXT_CONTENT,
+    language: JSX
+  }
+}

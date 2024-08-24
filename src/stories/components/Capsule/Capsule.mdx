@@ -1,0 +1,27 @@
+import { Canvas, Meta, Controls } from '@storybook/blocks';
+import * as CapsuleStories from './Capsule.stories';
+
+<Meta of={CapsuleStories} name="Docs"/>
+# Capsule:
+Capsules are used to display small pieces of information, such as labels or tags. They can be used to highlight content or to categorize it.
+
+## Variants:
+Capsules come in various styles. Choose the one that fits your design system best.\
+Default is Contained
+
+#### Contained
+<Canvas of={CapsuleStories.Contained} />
+
+#### Outlined
+<Canvas of={CapsuleStories.Outlined} />
+
+#### Soft
+<Canvas of={CapsuleStories.Soft} />
+
+## Sizes:
+Capsules can be small, medium, or large. Default is medium.
+
+## Playground
+Customize as per your needs using the controls below
+<Canvas of={CapsuleStories.Playground}/>
+<Controls of={CapsuleStories.Playground}/>

@@ -1,90 +1,155 @@
-import * as React from "react";
-import { CapsuleContainerStyleProps, CapsuleProps } from "./Capsule.types";
+import React, { useEffect, useRef, forwardRef } from "react";
 import styled from "styled-components";
+import { CapsuleProps, CapsuleStyleProps } from "./Capsule.types";
 import Text from "../Text/Text";
+import { useTheme } from "../ThemeProvider/ThemeProvider";
+import { getColorPalette, hasPropertyChain } from "../../helpers/helpers";
+import colors from "../../tokens/colors.json";
 
-const Capsule: React.FunctionComponent<CapsuleProps> = ({
-  image,
-  imageProps,
-  title,
-  description,
-  color,
-  imagePosition = "left",
-  width = "25rem",
-  height = "4rem",
-}: CapsuleProps) => {
-  const TextContent = () => {
-    if (!title && !description) return null;
+const Capsule = forwardRef<HTMLDivElement, CapsuleProps>(
+  (
+    {
+      image,
+      imageAlt,
+      title,
+      description,
+      color = colors.default.primary.main,
+      variant = "contained",
+      imagePosition = "left",
+      width = "25rem",
+      height = "4rem",
+      textProps,
+      ...rest
+    }: CapsuleProps,
+    ref
+  ) => {
+    const innerRef = useRef<HTMLDivElement>(null);
+    const theme = useTheme().theme;
+    const colorPalette = getColorPalette(theme, color);
 
-    const titleContent = title ? (
-      typeof title === "string" ? (
-        <Text noColor variant="paragraph">
-          {title}
-        </Text>
-      ) : (
-        title
-      )
-    ) : null;
-    const descriptionContent = description ? (
-      typeof description === "string" ? (
-        <Text noColor variant="paragraph" size="small">
-          {description}
-        </Text>
-      ) : (
-        description
-      )
-    ) : null;
+    const renderTextContent = () => {
+      if (!title && !description) return null;
+
+      return (
+        <StyledTextContainer $padding={textProps?.padding || "0.5rem 0.75rem"}>
+          {title && (
+            <Text noColor variant="paragraph">
+              {title}
+            </Text>
+          )}
+          {description && (
+            <Text noColor variant="paragraph" size="small">
+              {description}
+            </Text>
+          )}
+        </StyledTextContainer>
+      );
+    };
 
     return (
-      <StyledTextContainer>
-        {titleContent}
-        {descriptionContent}
-      </StyledTextContainer>
+      <StyledCapsuleContainer
+        ref={innerRef}
+        $variant={variant}
+        $color={color}
+        $colorPalette={colorPalette}
+        $imagePosition={imagePosition}
+        $width={width}
+        $height={height}
+        {...rest}
+      >
+        <StyledImgContainer $imagePosition={imagePosition}>
+          <img src={image} alt={imageAlt} />
+        </StyledImgContainer>
+        {renderTextContent()}
+      </StyledCapsuleContainer>
     );
-  };
+  }
+);
 
-  return (
-    <StyledCapsuleContainer $width={width} $height={height}>
-      <StyledImgContainer $imagePosition={imagePosition}>
-        <img src={image} alt="Checkbox" />
-      </StyledImgContainer>
-
-      <TextContent />
-    </StyledCapsuleContainer>
-  );
-};
-
-const StyledCapsuleContainer = styled.div<CapsuleContainerStyleProps>`
+const StyledCapsuleContainer = styled.div<CapsuleStyleProps>`
   display: flex;
-  flex-direction: row;
   ${props => {
+    const properties = getVariantProps(
+      props.$variant,
+      props.$color,
+      props.$colorPalette
+    );
     return `
-    width: ${props.$width};
-    height: ${props.$height};
-    `
+      background-color: ${properties.backgroundColor.default};
+      color: ${properties.color.default};
+      border-radius: 1rem;
+      flex-direction: ${props.$imagePosition === "left" ? "row" : "row-reverse"};
+      width: ${props.$width};
+      height: ${props.$height};
+      border: ${properties.border!.default};
+    `;
   }}
 `;
-const StyledTextContainer = styled.span`
+
+const StyledTextContainer = styled.div<{ $padding: string }>`
   display: flex;
   flex-direction: column;
-  padding: 0.4rem;
+  padding: ${({ $padding }) => $padding};
   gap: 0.2rem;
 `;
-const StyledImgContainer = styled.span<{ $imagePosition: string }>`
+
+const StyledImgContainer = styled.div<{ $imagePosition: string }>`
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  align-items: center;
+  justify-content: center;
   height: 100%;
-  width: auto;
   border-radius: ${({ $imagePosition }) =>
-    $imagePosition === "left" ? "1rem 0 0 1rem" : "0 1rem 1rem 0"};
-  & img {
-    width: auto;
+    $imagePosition === "left" ? "0.9rem 0 0 0.9rem" : "0 0.9rem 0.9rem 0"};
+  overflow: hidden;
+  img {
     height: 100%;
-    border-radius: ${({ $imagePosition }) =>
-      $imagePosition === "left" ? "1rem 0 0 1rem" : "0 1rem 1rem 0"};
+    border-radius: inherit;
   }
 `;
 
+const getVariantProps = (
+  variant: CapsuleStyleProps["$variant"],
+  color: CapsuleStyleProps["$color"],
+  colorPalette: CapsuleStyleProps["$colorPalette"]
+) => {
+  switch (variant) {
+    case "contained":
+      return {
+        backgroundColor: {
+          default: colorPalette[color].accentScale[8],
+        },
+        color: {
+          default: colorPalette[color].accentContrast,
+        },
+        border: {
+          default: `2px solid ${colorPalette[color].accentScale[8]}`,
+        },
+      };
+    case "outlined":
+      return {
+        backgroundColor: {
+          default: "transparent",
+        },
+        color: {
+          default: colorPalette[color].accentScale[8],
+        },
+        border: {
+          default: `2px solid ${colorPalette[color].accentScale[8]}`,
+        },
+      };
+    case "soft":
+      return {
+        backgroundColor: {
+          default: colorPalette[color].accentScale[2],
+        },
+        color: {
+          default: colorPalette[color].accentScale[8],
+        },
+        border: {
+          default: `2px solid ${colorPalette[color].accentScale[2]}`,
+        },
+      };
+  }
+};
 
 export default Capsule;

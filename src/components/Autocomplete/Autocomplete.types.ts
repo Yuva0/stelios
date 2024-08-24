@@ -14,6 +14,7 @@ export interface AutocompleteProps {
   options?: MenuItemProps[];
   multiSelect?: boolean;
   color?: string;
+  variant?: "contained" | "outlined" | "soft";
 
   // Events
   onChange?: (

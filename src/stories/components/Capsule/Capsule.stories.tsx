@@ -1,34 +1,102 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-// import { generateRadixColors } from "../../helpers/colors/generateRadixColors";
-
+import { IconAwardFilled } from "@tabler/icons-react";
 import Capsule from "../../../components/Capsule/Capsule";
+import colors_storybook from "../../storybook-tokens/colors.json";
 import { ThemeProvider } from "../../../components/ThemeProvider/ThemeProvider";
-import Text from "../../../components/Text/Text";
-import Button from "../../../components/Button/Button";
 
-const meta: Meta<typeof Capsule> = {
+const IMAGE_URL = `https://static.vecteezy.com/system/resources/previews/003/549/556/non_2x/space-galaxy-background-free-vector.jpg`;
+
+const CapsuleStoryMeta: Meta<typeof Capsule> = {
   title: "Components/Capsule",
   component: Capsule,
-  parameters: {},
-  argTypes: {},
+  parameters: {
+    layout: "centered",
+  },
+  argTypes: {
+  },
+};
+export default CapsuleStoryMeta;
+
+type CapsuleStory = StoryObj<typeof Capsule>;
+const CapsuleTemplate: CapsuleStory = {
+  render: (args) => <Capsule{...args}/>
 };
 
-export default meta;
-type Story = StoryObj<typeof Capsule>;
+// Variants
+export const Contained = {
+  ...CapsuleTemplate,
+  args: {
+    image: IMAGE_URL,
+    imageAlt: "Space",
+    variant: "contained",
+    title: "No Man's Sky",
+    description: "One of the best games ever"
+  },
+  parameters: {
+    controls: {
+      hideNoControlsWarning: true,
+      disabled: true,
+      disable: true,
+    },
+    actions: {
+      hideNoControlsWarning: true,
+      disabled: true,
+      disable: true,
+    },
+  }
+};
+export const Outlined = {
+  ...CapsuleTemplate,
+  args: {
+    image: IMAGE_URL,
+    imageAlt: "Space",
+    variant: "outlined",
+    title: "No Man's Sky",
+    description: "One of the best games ever"
+  },
+  parameters: {
+    controls: {
+      hideNoControlsWarning: true,
+      disabled: true,
+      disable: true,
+    },
+    actions: {
+      hideNoControlsWarning: true,
+      disabled: true,
+      disable: true,
+    },
+  }
+};
+export const Soft = {
+  ...CapsuleTemplate,
+  args: {
+    image: IMAGE_URL,
+    imageAlt: "Space",
+    variant: "soft",
+    title: "No Man's Sky",
+    description: "One of the best games ever"
+  },
+  parameters: {
+    controls: {
+      hideNoControlsWarning: true,
+      disabled: true,
+      disable: true,
+    },
+    actions: {
+      hideNoControlsWarning: true,
+      disabled: true,
+      disable: true,
+    },
+  }
+};
 
-export const Default: Story = {
-  render: () => {
-    return (
-      <ThemeProvider appearance="dark">
-        <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
-          <Capsule
-            image="https://htmlcolorcodes.com/assets/images/colors/red-color-solid-background-1920x1080.png"
-            title="Test1"
-            description="Description1"
-          />
-        </div>
-      </ThemeProvider>
-    );
+export const Playground = {
+  ...CapsuleTemplate,
+  args: {
+    image: IMAGE_URL,
+    imageAlt: "Space",
+    title: "No Man's Sky",
+    description: "One of the best games ever"
   },
 };

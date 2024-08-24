@@ -4,6 +4,56 @@ import { CodeDisplayProps, CodeDisplayStyleProps } from "./CodeDisplay.types";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
 import Text from "../Text/Text";
 import { vs, dark } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import { getColorPalette } from "../../helpers/helpers";
+import colorTokens from "../../tokens/colors.json";
+
+const CodeDisplay = ({
+  text,
+  width,
+  title,
+  style,
+  language,
+  color = colorTokens.default.primary.main,
+}: CodeDisplayProps) => {
+  const theme = useTheme().theme;
+  const colorPalette = getColorPalette(theme, color);
+  const appearance = colorPalette
+    ? colorPalette[color].appearance
+    : colorTokens.default.appearance;
+
+  return (
+    <StyledCodeDisplay
+      style={style}
+      $colorPalette={colorPalette}
+      $color={color}
+      $width={width}
+    >
+      {title && (
+        <StyledTitle $colorPalette={colorPalette} $color={color}>
+          <Text noColor variant="paragraph" size="small">
+            {title}
+          </Text>
+        </StyledTitle>
+      )}
+      <StyledCodeContainer
+        $colorPalette={colorPalette}
+        $color={color}
+        $hasTitle={!!title}
+      >
+        <StyledSyntaxHighlighter
+          language={language}
+          title={title}
+          style={appearance === colorTokens.theme.appearance.light ? vs : dark}
+          $colorPalette={colorPalette}
+          $color={color}
+        >
+          {text}
+        </StyledSyntaxHighlighter>
+      </StyledCodeContainer>
+    </StyledCodeDisplay>
+  );
+};
+export default CodeDisplay;
 
 const StyledCodeDisplay = styled.div<CodeDisplayStyleProps>`
   display: flex;
@@ -11,19 +61,20 @@ const StyledCodeDisplay = styled.div<CodeDisplayStyleProps>`
   border-radius: 0.5rem;
   width: ${(props) => props.$width ?? "auto"};
 `;
-const StyledCode = styled.div<CodeDisplayStyleProps>`
+const StyledTitle = styled.div<CodeDisplayStyleProps>`
   display: flex;
   align-items: center;
   padding: 0.5rem 2rem;
-  background-color: ${(props) => props.$colorPalette.primary.accentScale[6]};
+  background-color: ${(props) =>
+    props.$colorPalette[props.$color].accentScale[6]};
+  color: ${(props) => props.$colorPalette[props.$color].accentContrast};
   border-radius: 0.5rem 0.5rem 0 0;
 `;
-const StyledContainer = styled.div<CodeDisplayStyleProps>`
+const StyledCodeContainer = styled.div<CodeDisplayStyleProps>`
   display: block;
-  background-color: ${(props) => props.$colorPalette.primary.accentScale[4]};
-  border-radius: 0 0 0.5rem 0.5rem;
+  background-color: ${(props) =>
+    props.$colorPalette[props.$color].accentScale[4]};
   padding: 1rem 2rem;
-
   pre {
     margin: 0;
     padding: 0 !important;
@@ -34,45 +85,15 @@ const StyledContainer = styled.div<CodeDisplayStyleProps>`
       font-family: "Source Code Pro", monospace;
     }
   }
+  ${(props) => {
+    return `
+      border-radius: ${props.$hasTitle ? "0 0 0.5rem 0.5rem" : "0.5rem"};
+    `;
+  }}
 `;
-
 const StyledSyntaxHighlighter = styled(
   SyntaxHighlighter
 )<CodeDisplayStyleProps>`
   background-color: ${(props) =>
-    props.$colorPalette.primary.accentScale[4]} !important;
+    props.$colorPalette[props.$color].accentScale[4]} !important;
 `;
-
-const CodeDisplay = ({
-  text,
-  width,
-  language,
-  syntaxStyle,
-  style
-}: CodeDisplayProps) => {
-  const theme = useTheme().theme;
-  if(!theme) return;
-  const colorPalette = theme.colorPalette;
-  const appearance = colorPalette.primary.appearance;
-
-  return (
-    <StyledCodeDisplay style={style} $colorPalette={colorPalette} $width={width}>
-      <StyledCode $colorPalette={colorPalette}>
-        <Text variant="paragraph" size="small">
-          {language}
-        </Text>
-      </StyledCode>
-      <StyledContainer $colorPalette={colorPalette}>
-        <StyledSyntaxHighlighter
-          language={language}
-          style={appearance === "light" ? vs : dark}
-          $colorPalette={colorPalette}
-        >
-          {text}
-        </StyledSyntaxHighlighter>
-      </StyledContainer>
-    </StyledCodeDisplay>
-  );
-};
-
-export default CodeDisplay;

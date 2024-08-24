@@ -22,6 +22,7 @@ const Autocomplete = ({
   multiSelect,
   color = colorTokens.default.primary.main,
   width = "15rem",
+  variant = "contained",
   // Events
   onChange,
   onClick,
@@ -108,6 +109,7 @@ const Autocomplete = ({
   return (
     <div>
       <Input
+        variant={variant}
         color={color}
         width={width}
         placeholder={placeholder}
