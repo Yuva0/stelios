@@ -1,30 +1,50 @@
 import * as React from "react";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
-import { DefaultTheme } from "../ThemeProvider/ThemeProvider.types";
 import Text from "../Text/Text";
-interface ComponentHighlightProps {
-  width?: string;
-  height?: string;
-  gradientColors?: Array<string>;
-  borderRadius?: string;
-  children: React.ReactNode | React.ReactNode[];
-  style?: React.CSSProperties;
-  className?: string;
-}
-interface ComponentHighlightStyleProps {
-  $width: string;
-  $height: string;
-  $borderRadius: string;
-  $colorPalette: any;
-  $gradientColors?: Array<string>;
-}
+import { ComponentHighlightProps, ComponentHighlightStyleProps } from "./ComponentHighlight.types";
+import { getColorPalette } from "../../helpers/helpers";
+import colorTokens from "../../tokens/colors.json";
+
+const ComponentHighlight: React.FunctionComponent<ComponentHighlightProps> = ({
+  children,
+  width = "auto",
+  height = "auto",
+  gradientColors,
+  borderRadius = "1rem",
+  style,
+  className,
+  color = colorTokens.default.primary.main,
+}) => {
+  const theme = useTheme().theme;
+  const colorPalette = getColorPalette(theme,color);
+
+  const CHILDREN =
+    typeof children === "string" ? <Text disableColor>{children}</Text> : children;
+
+  return (
+    <StyledComponentCtr
+      style={style}
+      className={className}
+      $width={width}
+      $height={height}
+      $borderRadius={borderRadius}
+      $colorPalette={colorPalette}
+      $color={color}
+      $gradientColors={gradientColors}
+    >
+      {CHILDREN}
+    </StyledComponentCtr>
+  );
+};
+export default ComponentHighlight;
+
 
 const StyledComponentCtr = styled.div<ComponentHighlightStyleProps>`
   position: relative;
   width: ${(props) => props.$width};
   height: ${(props) => props.$height};
-  background-color: ${(props) => props.$colorPalette.primary.grayScale[0]};
+  background-color: ${(props) => props.$colorPalette[props.$color].grayScale[0]};
   background-clip: padding-box;
   border-radius: 0.75rem;
   padding: 0.5rem;
@@ -45,36 +65,3 @@ const StyledComponentCtr = styled.div<ComponentHighlightStyleProps>`
     border-radius: 1rem;
   }
 `;
-
-const ComponentHighlight: React.FunctionComponent<ComponentHighlightProps> = ({
-  children,
-  width = "auto",
-  height = "auto",
-  gradientColors,
-  borderRadius = "1rem",
-  style,
-  className,
-}) => {
-  const theme = useTheme().theme;
-  if(!theme) return null;
-  const colorPalette = theme.colorPalette;
-
-  const CHILDREN =
-    typeof children === "string" ? <Text>{children}</Text> : children;
-
-  return (
-    <StyledComponentCtr
-      style={style}
-      className={className}
-      $width={width}
-      $height={height}
-      $borderRadius={borderRadius}
-      $colorPalette={colorPalette}
-      $gradientColors={gradientColors}
-    >
-      {CHILDREN}
-    </StyledComponentCtr>
-  );
-};
-
-export default ComponentHighlight;

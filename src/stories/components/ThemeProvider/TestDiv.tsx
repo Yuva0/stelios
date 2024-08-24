@@ -33,13 +33,13 @@ const TestDiv = ({ children }: any) => {
       >
         <ToggleButton value="light">
           <IconSun />
-          <Text noColor variant="span">
+          <Text disableColor variant="span">
             Light
           </Text>
         </ToggleButton>
         <ToggleButton value="dark">
           <IconMoon />
-          <Text noColor variant="span">
+          <Text disableColor variant="span">
             Dark
           </Text>
         </ToggleButton>

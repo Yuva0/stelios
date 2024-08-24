@@ -64,7 +64,7 @@ const Link = ({
       onKeyDown={_handleKeyDown}
     >
       {typeof children === "string" ? (
-        <Text noColor size={size} variant="span">
+        <Text disableColor size={size} variant="span">
           {children}
         </Text>
       ) : (

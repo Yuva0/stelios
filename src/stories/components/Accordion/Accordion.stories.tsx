@@ -40,7 +40,7 @@ const AccordionTemplate: AccordionStory = {
   render: (args) => (
     <Accordion {...args}>
       <AccordionItem title="React">
-        <Text size="small" noColor>
+        <Text size="small" disableColor>
           React is one of the most influential technologies in modern web
           development. Created by Facebook in 2013, it revolutionized the way
           developers think about building user interfaces. React introduced a
@@ -52,7 +52,7 @@ const AccordionTemplate: AccordionStory = {
         </Text>
       </AccordionItem>
       <AccordionItem title="Vue">
-        <Text size="small" noColor>
+        <Text size="small" disableColor>
           Vue.js is a progressive JavaScript framework for building user
           interfaces. It is designed from the ground up to be incrementally
           adoptable, and can easily scale between a library and a framework
@@ -62,7 +62,7 @@ const AccordionTemplate: AccordionStory = {
         </Text>
       </AccordionItem>
       <AccordionItem title="Angular">
-        <Text size="small" noColor>
+        <Text size="small" disableColor>
           Angular is a platform and framework for building single-page client
           applications using HTML and TypeScript. Angular is written in
           TypeScript. It implements core and optional functionality as a set of

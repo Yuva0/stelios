@@ -22,7 +22,7 @@ export interface TextProps {
   style?: React.CSSProperties;
   fontSize?: string;
   lineHeight?: string;
-  noColor?: boolean;
+  disableColor?: boolean;
   fontFamily?: string;
 }
 
@@ -35,6 +35,6 @@ export interface TextStyleProps {
   $size?: TextProps["size"];
   $fontSize?: string;
   $lineHeight?: string;
-  $noColor?: boolean;
+  $disableColor?: boolean;
   $fontFamily?: string;
 }

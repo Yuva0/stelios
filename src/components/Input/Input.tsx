@@ -167,6 +167,7 @@ const StyledInput = styled.div<InputStyleProps>`
 const StyledInputIcon = styled.div<InputStyleIconProps>`
   color: ${(props) => props.$colorPalette[props.$color].grayScale[8]};
   cursor: pointer;
+  flex: 1 0 auto;
   width: ${(props) => sizeHandler(props.$size).iconSize};
   height: ${(props) => sizeHandler(props.$size).iconSize};
   &:hover {

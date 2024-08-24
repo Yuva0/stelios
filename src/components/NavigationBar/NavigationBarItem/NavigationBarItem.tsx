@@ -93,7 +93,7 @@ const NavigationBarItem = ({
     >
       {leadingIcon && <StyledNavBarIcon>{leadingIcon}</StyledNavBarIcon>}
       {typeof children === "string" ? (
-        <Text noColor variant="span" size={size}>
+        <Text disableColor variant="span" size={size}>
           {children}
         </Text>
       ) : (

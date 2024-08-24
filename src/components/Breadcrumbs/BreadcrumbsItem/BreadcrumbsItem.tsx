@@ -38,7 +38,7 @@ const BreadcrumbsItem: React.FunctionComponent<BreadcrumbsItemProps> = ({
       {title}
     </Link>
   ) : (
-    <Text noColor size={size} variant="span">
+    <Text disableColor size={size} variant="span">
       {title}
     </Text>
   );

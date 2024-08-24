@@ -59,10 +59,10 @@ const Slider: React.FunctionComponent<SliderProps> = ({
   return (
     <div style={{ width: width }}>
       <StyledSliderLabel $color={color} $colorPalette={colorPalette}>
-        <Text noColor size={size}>
+        <Text disableColor size={size}>
           {minDisplay}
         </Text>
-        <Text noColor size={size}>
+        <Text disableColor size={size}>
           {maxDisplay}
         </Text>
       </StyledSliderLabel>

@@ -30,17 +30,17 @@ const CardStoryMeta: Meta<typeof Card> = {
 export default CardStoryMeta;
 
 const HEADER_CONTENT = (
-  <Text noColor variant="h5" size="large">
+  <Text disableColor variant="h5" size="large">
     React-Tutor
   </Text>
 );
 const BODY_CONTENT = (
-  <Text noColor variant="span">
+  <Text disableColor variant="span">
     React-Tutor is a website designed to teach you about basics of React. It has
     concepts related to React, Hooks, States and many more.
   </Text>
 );
-const FOOTER_CONTENT = <Text noColor>Have a good day!</Text>
+const FOOTER_CONTENT = <Text disableColor>Have a good day!</Text>
 
 type CardStory = StoryObj<typeof Card>;
 const CardTemplate: CardStory = {

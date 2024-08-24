@@ -33,12 +33,12 @@ const Capsule = forwardRef<HTMLDivElement, CapsuleProps>(
       return (
         <StyledTextContainer $padding={textProps?.padding || "0.5rem 0.75rem"}>
           {title && (
-            <Text noColor variant="paragraph">
+            <Text disableColor variant="paragraph">
               {title}
             </Text>
           )}
           {description && (
-            <Text noColor variant="paragraph" size="small">
+            <Text disableColor variant="paragraph" size="small">
               {description}
             </Text>
           )}

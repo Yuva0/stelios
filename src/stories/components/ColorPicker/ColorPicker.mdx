@@ -1,0 +1,27 @@
+{/* ColorPicker.mdx */}
+import { Canvas, Meta, Controls } from '@storybook/blocks';
+import * as ColorPickerStories from './ColorPicker.stories';
+
+<Meta of={ColorPickerStories} name="Docs"/>
+# Color Picker:
+Color pickers are used to select a color.\
+They are used in forms to collect data from the user.
+
+## Variants
+Basically input variants, nothing fancy schmancy.\
+Choose the one that fits your design system the best.
+Default is Outlined
+
+##### Outlined
+<Canvas of={ColorPickerStories.Outlined}/>
+
+#### Contained
+<Canvas of={ColorPickerStories.Contained}/>
+
+#### Soft
+<Canvas of={ColorPickerStories.Soft}/>
+
+
+## Playground
+<Canvas of={ColorPickerStories.Playground}/>
+<Controls of={ColorPickerStories.Playground}/>

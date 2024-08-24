@@ -50,7 +50,7 @@ const Children: React.FunctionComponent<ChildrenProps> = ({ children }) => {
   if(!React.isValidElement(children)) return null;
 
   return typeof children === "string" ? (
-    <Text noColor variant="paragraph">
+    <Text disableColor variant="paragraph">
       {children}
     </Text>
   ) : (

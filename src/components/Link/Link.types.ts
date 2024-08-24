@@ -17,5 +17,5 @@ export interface LinkProps {
 export type LinkStyleProps = {
   $variant: NonNullable<LinkProps["variant"]>;
   $color?: string;
-  $noColor?: boolean;
+  $disableColor?: boolean;
 };

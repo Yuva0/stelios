@@ -16,6 +16,7 @@ const ColorPicker = ({
   open,
   size,
   width,
+  variant = "outlined",
   onChange,
 }: ColorPickerProps) => {
   const [isOpen, setIsOpen] = useState(open ?? false);
@@ -74,6 +75,7 @@ const ColorPicker = ({
   return (
     <ClickAwayListener onClickAway={handleClickAway}>
       <Input
+        variant={variant}
         width={width}
         size={size}
         label={label}
@@ -85,8 +87,8 @@ const ColorPicker = ({
           <div
             onClick={() => setIsOpen(!isOpen)}
             style={{
-              width: "20px",
-              height: "20px",
+              width: "100%",
+              height: "100%",
               backgroundColor: innerColor,
               borderRadius: "4px",
             }}

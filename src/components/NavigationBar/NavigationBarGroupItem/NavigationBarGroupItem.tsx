@@ -106,7 +106,7 @@ const NavigationBarGroupItem = ({
         <StyledNavBarGrpItemIcon>{leadingIcon}</StyledNavBarGrpItemIcon>
       )}
       {typeof children === "string" ? (
-        <Text noColor variant="span" size={size}>
+        <Text disableColor variant="span" size={size}>
           {children}
         </Text>
       ) : (

@@ -7,7 +7,7 @@ import { getColorPalette } from "../../helpers/helpers";
 import colors from "../../tokens/colors.json";
 
 interface StyledProps {
-  $noColor?: boolean;
+  $disableColor?: boolean;
   $color?: string;
 }
 
@@ -19,7 +19,7 @@ const Text = ({
   color,
   wrap = false,
   size = "medium",
-  noColor = false,
+  disableColor = false,
   fontSize,
   lineHeight,
   style,
@@ -29,14 +29,14 @@ const Text = ({
 }: TextProps) => {
   const theme = useTheme().theme;
   let _styledProps: StyledProps;
-  if (noColor) {
-    _styledProps = { $noColor: noColor };
+  if (disableColor) {
+    _styledProps = { $disableColor: disableColor };
   } else {
     const colorPalette = getColorPalette(theme, color);
     const _color = color && colorPalette
       ? colorPalette[color].accentScale[10]
       : colors.default.primary.main;
-    _styledProps = { $noColor: noColor, $color: _color };
+    _styledProps = { $disableColor: disableColor, $color: _color };
   }
 
   const _Text = () => {
@@ -278,7 +278,7 @@ const StyledH1 = styled.h1<TextStyleProps>`
         ? "3.5rem"
         : "3rem"};
   font-weight: ${(props) => (props.$strong ? "700" : "400")};
-  ${(props) => !props.$noColor && `color: ${props.$color};`}
+  ${(props) => !props.$disableColor && `color: ${props.$color};`}
   font-family: ${(props) => props.$fontFamily ?? `"Lato", sans-serif`};
   ${commonStyles}
 `;
@@ -297,7 +297,7 @@ const StyledH2 = styled.h2<TextStyleProps>`
         : "2.5rem"};
   font-weight: ${(props) => (props.$strong ? "700" : "400")};
   font-family: ${(props) => props.$fontFamily ?? `"Lato", sans-serif`};
-  ${(props) => !props.$noColor && `color: ${props.$color};`}
+  ${(props) => !props.$disableColor && `color: ${props.$color};`}
   ${commonStyles}
 `;
 const StyledH3 = styled.h3<TextStyleProps>`
@@ -315,7 +315,7 @@ const StyledH3 = styled.h3<TextStyleProps>`
         : "2rem"};
   font-weight: ${(props) => (props.$strong ? "700" : "400")};
   font-family: ${(props) => props.$fontFamily ?? `"Lato", sans-serif`};
-  ${(props) => !props.$noColor && `color: ${props.$color};`}
+  ${(props) => !props.$disableColor && `color: ${props.$color};`}
   ${commonStyles}
 `;
 const StyledH4 = styled.h4<TextStyleProps>`
@@ -333,7 +333,7 @@ const StyledH4 = styled.h4<TextStyleProps>`
         : "1.75rem"};
   font-weight: ${(props) => (props.$strong ? "700" : "400")};
   font-family: ${(props) => props.$fontFamily ?? `"Lato", sans-serif`};
-  ${(props) => !props.$noColor && `color: ${props.$color};`}
+  ${(props) => !props.$disableColor && `color: ${props.$color};`}
   ${commonStyles}
 `;
 const StyledH5 = styled.h5<TextStyleProps>`
@@ -351,7 +351,7 @@ const StyledH5 = styled.h5<TextStyleProps>`
         : "1.5rem"};
   font-weight: ${(props) => (props.$strong ? "700" : "400")};
   font-family: ${(props) => props.$fontFamily ?? `"Lato", sans-serif`};
-  ${(props) => !props.$noColor && `color: ${props.$color};`}
+  ${(props) => !props.$disableColor && `color: ${props.$color};`}
   ${commonStyles}
 `;
 const StyledH6 = styled.h6<TextStyleProps>`
@@ -369,7 +369,7 @@ const StyledH6 = styled.h6<TextStyleProps>`
         : "1.25rem"};
   font-weight: ${(props) => (props.$strong ? "700" : "400")};
   font-family: ${(props) => props.$fontFamily ?? `"Lato", sans-serif`};
-  ${(props) => !props.$noColor && `color: ${props.$color};`}
+  ${(props) => !props.$disableColor && `color: ${props.$color};`}
   ${commonStyles}
 `;
 const StyledDiv = styled.div<TextStyleProps>`
@@ -387,7 +387,7 @@ const StyledDiv = styled.div<TextStyleProps>`
         : "1.25rem"};
   font-weight: ${(props) => (props.$strong ? "700" : "400")};
   font-family: ${(props) => props.$fontFamily ?? `'Varela Round', sans-serif`};
-  ${(props) => !props.$noColor && `color: ${props.$color};`}
+  ${(props) => !props.$disableColor && `color: ${props.$color};`}
   ${commonStyles}
 `;
 const StyledLabel = styled.label<TextStyleProps>`
@@ -405,7 +405,7 @@ const StyledLabel = styled.label<TextStyleProps>`
         : "1.25rem"};
   font-weight: ${(props) => (props.$strong ? "700" : "400")};
   font-family: ${(props) => props.$fontFamily ?? `'Varela Round', sans-serif`};
-  ${(props) => !props.$noColor && `color: ${props.$color};`}
+  ${(props) => !props.$disableColor && `color: ${props.$color};`}
   ${commonStyles}
 `;
 const StyledSpan = styled.span<TextStyleProps>`
@@ -423,7 +423,7 @@ const StyledSpan = styled.span<TextStyleProps>`
         : "1.25rem"};
   font-weight: ${(props) => (props.$strong ? "700" : "400")};
   font-family: ${(props) => props.$fontFamily ?? `'Varela Round', sans-serif`};
-  ${(props) => !props.$noColor && `color: ${props.$color};`}
+  ${(props) => !props.$disableColor && `color: ${props.$color};`}
   ${commonStyles}
 `;
 const StyledP = styled.p<TextStyleProps>`
@@ -441,6 +441,6 @@ const StyledP = styled.p<TextStyleProps>`
         : "1.25rem"};
   font-weight: ${(props) => (props.$strong ? "700" : "400")};
   font-family: ${(props) => props.$fontFamily ?? `'Varela Round', sans-serif`};
-  ${(props) => !props.$noColor && `color: ${props.$color};`}
+  ${(props) => !props.$disableColor && `color: ${props.$color};`}
   ${commonStyles}
 `;

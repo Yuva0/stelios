@@ -30,7 +30,7 @@ const AccordionItem = ({
     if (!title) return null;
     const titleContent =
       typeof title === "string" ? (
-        <Text noColor variant="paragraph">{title}</Text>
+        <Text disableColor variant="paragraph">{title}</Text>
       ) : (
         title
       );
@@ -51,7 +51,7 @@ const AccordionItem = ({
   const Children = () => {
     if (!React.isValidElement(children)) return null;
     if (typeof children  === "string") {
-      return <Text noColor variant="paragraph">{children}</Text>;
+      return <Text disableColor variant="paragraph">{children}</Text>;
     }
     return children;
   }

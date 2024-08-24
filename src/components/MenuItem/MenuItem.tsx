@@ -61,7 +61,7 @@ const MenuItem = ({
       {children ? (
         typeof children === "string" ? (
           <StyledMenuItemContent $color={color} $colorPalette={colorPalette}>
-            <Text noColor variant="paragraph">{children}</Text>
+            <Text disableColor variant="paragraph">{children}</Text>
           </StyledMenuItemContent>
         ) : (
           <StyledMenuItemContent $color={color} $colorPalette={colorPalette}>
@@ -70,7 +70,7 @@ const MenuItem = ({
         )
       ) : (
         <StyledMenuItemContent $color={color} $colorPalette={colorPalette}>
-          <Text noColor variant="paragraph">{title}</Text>
+          <Text disableColor variant="paragraph">{title}</Text>
         </StyledMenuItemContent>
       )}
       {trailingIcon && (

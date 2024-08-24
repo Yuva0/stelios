@@ -30,7 +30,7 @@ const CodeDisplay = ({
     >
       {title && (
         <StyledTitle $colorPalette={colorPalette} $color={color}>
-          <Text noColor variant="paragraph" size="small">
+          <Text disableColor variant="paragraph" size="small">
             {title}
           </Text>
         </StyledTitle>

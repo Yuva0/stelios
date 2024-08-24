@@ -72,7 +72,7 @@ const NotificationDialog: React.FunctionComponent<NotificationDialogProps> = ({
 
   const ChildrenEle =
     typeof children === "string" ? (
-      <Text noColor variant="paragraph">{children}</Text>
+      <Text disableColor variant="paragraph">{children}</Text>
     ) : (
       children
     );

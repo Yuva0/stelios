@@ -1,6 +1,7 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import Input from "../../../components/Input/Input";
+import { IconArrowUp, IconFaceId } from "@tabler/icons-react" 
 
 const meta: Meta<typeof Input> = {
   title: "Components/Input",
@@ -56,6 +57,27 @@ export const Large: Story = {
   ...InputTemplate,
   args: {
     size: "large"
+  }
+};
+
+// Icons
+export const LeadingIcon: Story = {
+  ...InputTemplate,
+  args: {
+    leadingIcon: <IconArrowUp/>
+  }
+};
+export const TrailingIcon: Story = {
+  ...InputTemplate,
+  args: {
+    trailingIcon: <IconFaceId/>
+  }
+};
+export const BothIcons: Story = {
+  ...InputTemplate,
+  args: {
+    leadingIcon: <IconArrowUp/>,
+    trailingIcon: <IconFaceId/>
   }
 };
 

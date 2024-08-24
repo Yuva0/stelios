@@ -27,7 +27,7 @@ const Alert: React.FunctionComponent<AlertProps> = ({
       <StyledTitleContainer>
         {titleIcon && <StyledTitleIcon>{titleIcon}</StyledTitleIcon>}
         {typeof title === "string" ? (
-          <Text noColor variant="span" style={{ marginTop: "0.2rem" }}>
+          <Text disableColor variant="span" style={{ marginTop: "0.2rem" }}>
             {title}
           </Text>
         ) : (
@@ -38,7 +38,7 @@ const Alert: React.FunctionComponent<AlertProps> = ({
 
     const Description =
       description && typeof description === "string" ? (
-        <Text noColor variant="paragraph" size="small">
+        <Text disableColor variant="paragraph" size="small">
           {description}
         </Text>
       ) : (
