@@ -1,11 +1,11 @@
-export interface CodeEditorProps {
+export interface CodePreviewProps {
   text: string;
   code: React.ReactNode | [React.ReactNode];
   width?: string;
   color?: string;
 }
 
-export interface CodeEditorStyleProps {
+export interface CodePreviewStyleProps {
   $colorPalette: any;
   $width?: string;
   $color: string;
