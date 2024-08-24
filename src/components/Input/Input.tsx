@@ -1,138 +1,15 @@
-import React, { forwardRef } from "react";
-import { InputProps, InputStyleProps } from "./Input.types";
+import React, { act, forwardRef } from "react";
+import {
+  InputProps,
+  InputStyleIconProps,
+  InputStyleContentProps,
+  InputStyleProps,
+} from "./Input.types";
 import Text from "../Text/Text";
 import styled from "styled-components";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
 import colorTokens from "../../tokens/colors.json";
 import { getColorPalette } from "../../helpers/helpers";
-
-const getIconSize = (size?: "small" | "medium" | "large") => {
-  switch (size) {
-    case "small":
-      return "1rem";
-    case "medium":
-      return "1.25rem";
-    case "large":
-      return "1.5rem";
-  }
-  return "1.5rem";
-};
-
-const getFontSize = (props: InputStyleProps) => {
-  switch (props.$size) {
-    case "small":
-      return { fontSize: "0.875rem", lineHeight: "2rem" };
-    case "medium":
-      return { fontSize: "1rem", lineHeight: "2.5rem" };
-    case "large":
-      return { fontSize: "1rem", lineHeight: "3rem" };
-  }
-  return { fontSize: "1rem", lineHeight: "2.5rem" };
-};
-
-const getPadding = (
-  size?: InputProps["size"],
-  hasLeadingIcon?: boolean,
-  hasTrailingIcon?: boolean
-) => {
-  switch (size) {
-    case "small":
-      if (hasLeadingIcon && hasTrailingIcon) return "0 8px";
-      if (hasLeadingIcon) return "0 12px 0 8px";
-      if (hasTrailingIcon) return "0 8px 0 12px";
-      return "0 12px";
-    case "medium":
-      if (hasLeadingIcon && hasTrailingIcon) return "0 8px";
-      if (hasLeadingIcon) return "0 12px 0 8px";
-      if (hasTrailingIcon) return "0 8px 0 12px";
-      return "0 16px";
-
-    case "large":
-      if (hasLeadingIcon && hasTrailingIcon) return "0 12px";
-      if (hasLeadingIcon) return "0 16px 0 12px";
-      if (hasTrailingIcon) return "0 12px 0 16px";
-      return "0 20px";
-  }
-  return "0 16px";
-};
-
-const StyledLabel = styled.span`
-  margin-left: 4px;
-`;
-
-const StyledInput = styled.div<InputStyleProps>`
-  display: flex;
-  flex-direction: column;
-  width: ${(props) => props.$width};
-  gap: 4px;
-  user-select: none;
-`;
-
-const StyledInputIcon = styled.div<InputStyleProps>`
-  color: ${(props) => props.$colorGradient[props.$color].grayScale[8]};
-  cursor: pointer;
-  width: ${(props) => getIconSize(props.$size)};
-  height: ${(props) => getIconSize(props.$size)};
-  &:hover {
-    background-color: ${(props) =>
-      props.$colorGradient[props.$color].grayScale[2]};
-    border-radius: 50%;
-  }
-  & svg {
-    width: ${(props) => getIconSize(props.$size)};
-    height: ${(props) => getIconSize(props.$size)};
-  }
-`;
-
-const StyledInputContent = styled.div<InputStyleProps>`
-  border-radius: 8px;
-  border:${(props) => `1px solid ${props.$colorGradient[props.$color].grayScale[6]}`};
-  outline: ${(props) => (props.$isFocused ? `2px solid ${props.$colorGradient[props.$color].accentScale[6]}` : "none")};
-  outline-offset:-1px;
-  padding: ${(props) => getPadding(props.$size, props.$hasLeadingIcon, props.$hasTrailingIcon)};
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  cursor: ${(props) => props.$cursor ?? "text"};
-  user-select: none;
-  background-color: ${(props) => props.$inputBgColor ?? props.$colorGradient[props.$color].grayScale[1]};
-  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.1);
-  & input {
-      font-family: 'Varela Round', sans-serif;
-      padding: 0;
-      margin: 0;
-      border: 0;
-      width: 100%;
-      cursor: ${(props) => props.$cursor ?? "text"};
-      font-size: ${(props) => getFontSize(props).fontSize};
-      line-height: ${(props) => getFontSize(props).lineHeight};
-      outline-offset: -1px;
-      background-color: ${(props) => props.$inputBgColor ?? props.$colorGradient[props.$color].grayScale[1]};
-      color: ${(props) => props.$colorGradient[props.$color].grayScale[11]};
-      &::placeholder {
-        color: ${(props) => props.$colorGradient[props.$color].grayScale[8]};
-      },
-      &:focus-visible {
-          outline: none;
-      },
-  };
-  & span.ste-input-content {
-      font-family: 'Varela Round', sans-serif;
-      height: ${(props) => getFontSize(props).lineHeight};
-      width: 100%;
-      font-size: ${(props) => getFontSize(props).fontSize};
-      line-height: ${(props) => getFontSize(props).lineHeight};
-      outline-offset: -1px;
-  }
-  &:hover {
-      outline: ${(props) => (props.$isFocused ? `2px solid ${props.$colorGradient[props.$color].accentScale[6]}` : `1px solid ${props.$colorGradient[props.$color].accentScale[7]}`)};
-  }
-  &:focus {
-      outline: "1px solid ${(props) => props.$colorGradient[props.$color].accentScale[9]}";
-  }
-`;
 
 const Input = forwardRef<HTMLDivElement, InputProps>(
   (
@@ -150,10 +27,10 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
       labelPosition = "top",
       cursor = "text",
       disableSearch,
-      inputBgColor,
       style,
       className,
       disabled = false,
+      variant = "contained",
 
       // Events
       onChange,
@@ -174,7 +51,7 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
     }, [value]);
 
     const theme = useTheme().theme;
-    const colorPalette = getColorPalette(theme,color);
+    const colorPalette = getColorPalette(theme, color);
 
     const Label = label ? (
       typeof label === "string" ? (
@@ -214,22 +91,12 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
         ref={ref}
         onClick={_onClick}
         onKeyDown={_onKeyDown}
-        $colorGradient={colorPalette}
-        $color={color}
-        $size={size}
         $width={width}
-        $cursor={cursor}
-        $hasLeadingIcon={!!leadingIcon}
-        $hasTrailingIcon={!!trailingIcon}
-        $isFocused={isFocused}
-        $inputBgColor={inputBgColor}
-        style={style}
-        className={className}
         {...props}
       >
         {labelPosition && labelPosition === "top" ? Label : null}
         <StyledInputContent
-          $colorGradient={colorPalette}
+          $colorPalette={colorPalette}
           $color={color}
           $size={size}
           $isFocused={isFocused}
@@ -237,12 +104,13 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
           $hasLeadingIcon={!!leadingIcon}
           $hasTrailingIcon={!!trailingIcon}
           $cursor={cursor}
-          $inputBgColor={inputBgColor}
           $disabled={disabled}
+          $variant={variant}
         >
           {leadingIcon && (
             <StyledInputIcon
-              $colorGradient={colorPalette}
+              $variant={variant}
+              $colorPalette={colorPalette}
               $color={color}
               $size={size}
               $hasLeadingIcon={!!leadingIcon}
@@ -267,7 +135,8 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
           )}
           {trailingIcon && (
             <StyledInputIcon
-              $colorGradient={colorPalette}
+              $variant={variant}
+              $colorPalette={colorPalette}
               $color={color}
               $size={size}
               $hasLeadingIcon={!!leadingIcon}
@@ -283,5 +152,241 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
     );
   }
 );
-
 export default React.memo(Input);
+
+const StyledLabel = styled.span`
+  margin-left: 4px;
+`;
+const StyledInput = styled.div<InputStyleProps>`
+  display: flex;
+  flex-direction: column;
+  width: ${(props) => props.$width};
+  gap: 4px;
+  user-select: none;
+`;
+const StyledInputIcon = styled.div<InputStyleIconProps>`
+  color: ${(props) => props.$colorPalette[props.$color].grayScale[8]};
+  cursor: pointer;
+  width: ${(props) => sizeHandler(props.$size).iconSize};
+  height: ${(props) => sizeHandler(props.$size).iconSize};
+  &:hover {
+    background-color: ${(props) =>
+      props.$colorPalette[props.$color].grayScale[2]};
+    border-radius: 50%;
+  }
+  & svg {
+    width: 100%;
+    height: 100%;
+  }
+  ${(props) => {
+    const properties = styledIconHandler(props.$variant, props.$colorPalette, props.$color, props.$size);
+    return `
+      color: ${properties.color.default};
+    `;
+  }}
+`;
+const StyledInputContent = styled.div<InputStyleContentProps>`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 8px;
+
+  ${(props) => {
+    const properties = styledHandler(
+      props.$variant,
+      props.$colorPalette,
+      props.$color,
+      props.$size
+    );
+    return `
+      background-color: ${properties.backgroundColor.default};
+      border: ${properties.border.default};
+      padding: ${properties.padding};
+
+      &:hover {
+        background-color: ${properties.backgroundColor.hover};
+        color: ${properties.color.hover};
+        border: ${properties.border.hover};
+        & input{
+          color: ${properties.color.hover};
+          background-color: ${properties.backgroundColor.hover};
+        }
+      }
+      &:active {
+        background-color: ${properties.backgroundColor.active};
+        color: ${properties.color.active};
+        border: ${properties.border.active};
+        & input{
+          color: ${properties.color.active};
+          background-color: ${properties.backgroundColor.active};
+        }
+      }
+
+      & input{
+        padding: 0;
+        margin: 0;
+        border: 0;
+        width: 100%;
+        cursor: ${props.$cursor};
+        line-height: ${properties.lineHeight};
+        font-size: ${properties.fontSize};
+        font-family: 'Varela Round', sans-serif;
+        background-color: ${properties.backgroundColor.default};
+        color: ${properties.color.default};
+
+        &:focus-visible {
+          outline: none;
+        }
+        &::placeholder {
+          color: ${properties.placeholder.default};
+          font-style: italic;
+        }
+      }
+
+      & span.ste-input-content {
+        height: ${properties.lineHeight};
+        font-size: ${properties.fontSize};
+        line-height: ${properties.lineHeight};
+        width: 100%;
+      }
+    `;
+  }}
+`;
+
+const styledHandler = (
+  variant: InputStyleContentProps["$variant"],
+  colorPalette: InputStyleContentProps["$colorPalette"],
+  color: InputStyleContentProps["$color"],
+  size: InputStyleContentProps["$size"],
+  hasLeadingIcon?: boolean,
+  hasTrailingIcon?: boolean
+) => {
+  return { ...variantHandler(variant, colorPalette, color), ...sizeHandler(size), ...paddingHandler(size, hasLeadingIcon, hasTrailingIcon), };
+};
+const styledIconHandler = (
+  variant: InputStyleIconProps["$variant"],
+  colorPalette: InputStyleContentProps["$colorPalette"],
+  color: InputStyleContentProps["$color"],
+  size: InputStyleContentProps["$size"]
+) => {
+  return { ...variantHandler(variant, colorPalette, color), ...sizeHandler(size) };
+};
+const variantHandler = (
+  variant: InputStyleContentProps["$variant"],
+  colorPalette: InputStyleContentProps["$colorPalette"],
+  color: InputStyleContentProps["$color"]
+) => {
+  switch (variant) {
+    case "contained":
+      return {
+        backgroundColor: {
+          default: colorPalette[color].accentScale[8],
+          hover: colorPalette[color].accentScale[9],
+          active: colorPalette[color].accentScale[9],
+        },
+        color: {
+          default: colorPalette[color].accentContrast,
+          hover: colorPalette[color].accentContrast,
+          active: colorPalette[color].accentContrast,
+        },
+        border: {
+          default: `2px solid ${colorPalette[color].accentScale[8]}`,
+          hover: `2px solid ${colorPalette[color].accentScale[8]}`,
+          active: `2px solid ${colorPalette[color].accentScale[8]}`,
+        },
+        placeholder: {
+          default: colorPalette[color].grayScale[3],
+        },
+      };
+    case "outlined":
+      return {
+        backgroundColor: {
+          default: "transparent",
+          hover: "transparent",
+          active: "transparent",
+        },
+        color: {
+          default: colorPalette[color].accentScale[10],
+          hover: colorPalette[color].accentScale[11],
+          active: colorPalette[color].accentScale[11],
+        },
+        border: {
+          default: `2px solid ${colorPalette[color].accentScale[8]}`,
+          hover: `2px solid ${colorPalette[color].accentScale[9]}`,
+          active: `2px solid ${colorPalette[color].accentScale[9]}`,
+        },
+        placeholder: {
+          default: colorPalette[color].accentScale[6],
+        },
+      };
+    case "soft":
+      return {
+        backgroundColor: {
+          default: colorPalette[color].accentScale[3],
+          hover: colorPalette[color].accentScale[4],
+          active: colorPalette[color].accentScale[4],
+        },
+        color: {
+          default: colorPalette[color].accentScale[10],
+          hover: colorPalette[color].accentScale[11],
+          active: colorPalette[color].accentScale[11],
+        },
+        border: {
+          default: `2px solid ${colorPalette[color].accentScale[7]}`,
+          hover: `2px solid ${colorPalette[color].accentScale[8]}`,
+          active: `2px solid ${colorPalette[color].accentScale[8]}`,
+        },
+        placeholder: {
+          default: colorPalette[color].grayScale[10],
+        }
+      }
+  }
+};
+const sizeHandler = (size: InputStyleContentProps["$size"]) => {
+  switch (size) {
+    case "small":
+      return {
+        fontSize: "0.875rem",
+        lineHeight: "2rem",
+        iconSize: "1rem",
+      };
+    case "medium":
+      return {
+        fontSize: "1rem",
+        lineHeight: "2.5rem",
+        iconSize: "1.25rem",
+      };
+    case "large":
+      return {
+        fontSize: "1rem",
+        lineHeight: "3rem",
+        iconSize: "1.5rem",
+      };
+  }
+};
+const paddingHandler = (
+  size?: InputProps["size"],
+  hasLeadingIcon?: boolean,
+  hasTrailingIcon?: boolean
+) => {
+  switch (size) {
+    case "small":
+      if (hasLeadingIcon && hasTrailingIcon) return { padding: "0 8px" };
+      if (hasLeadingIcon) return { padding: "0 12px 0 8px" };
+      if (hasTrailingIcon) return { padding: "0 8px 0 12px" };
+      return { padding: "0 12px" };
+    case "medium":
+      if (hasLeadingIcon && hasTrailingIcon) return { padding: "0 8px" };
+      if (hasLeadingIcon) return { padding: "0 12px 0 8px" };
+      if (hasTrailingIcon) return { padding: "0 8px 0 12px" };
+      return { padding: "0 16px" };
+
+    case "large":
+      if (hasLeadingIcon && hasTrailingIcon) return { padding: "0 12px" };
+      if (hasLeadingIcon) return { padding: "0 16px 0 12px" };
+      if (hasTrailingIcon) return { padding: "0 12px 0 16px" };
+      return { padding: "0 16px" };
+  }
+};

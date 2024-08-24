@@ -1,0 +1,40 @@
+{/* Input.mdx */}
+import { Canvas, Meta, Controls } from '@storybook/blocks';
+import * as InputStories from './Input.stories';
+
+<Meta of={InputStories} name="Docs"/>
+# Input:
+Inputs are used to collect data from the user.\
+They are used in forms to collect data from the user.
+
+## Variants
+Variant this, variant that, variant everything.\
+Choose the one that fits your design system the best.
+
+##### Contained
+<Canvas of={InputStories.Contained}/>
+
+#### Outlined
+<Canvas of={InputStories.Outlined}/>
+
+#### Soft
+<Canvas of={InputStories.Soft}/>
+
+
+## Sizes
+Size matters.\
+Choose the one that fits your design system the best.
+
+##### Small
+<Canvas of={InputStories.Small}/>
+
+#### Medium
+<Canvas of={InputStories.Medium}/>
+
+#### Large
+<Canvas of={InputStories.Large}/>
+
+
+## Playground
+<Canvas of={InputStories.Playground}/>
+<Controls of={InputStories.Playground}/>

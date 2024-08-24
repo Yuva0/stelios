@@ -7,14 +7,15 @@ import Autocomplete from "../../../components/Autocomplete/Autocomplete";
 const meta: Meta<typeof Autocomplete> = {
   title: "Components/Autocomplete",
   component: Autocomplete,
-  parameters: {},
+  parameters: {
+    layout: "centered",
+  },
   argTypes: {},
 };
-
 export default meta;
-type Story = StoryObj<typeof Autocomplete>;
 
-export const Default: Story = {
+type Story = StoryObj<typeof Autocomplete>;
+const AutocompleteTemplate: Story = {
   render: () => {
     return (
       <Autocomplete
@@ -28,4 +29,7 @@ export const Default: Story = {
       />
     );
   },
+};
+export const Default: Story = {
+  ...AutocompleteTemplate,
 };

@@ -1,33 +1,65 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import colors from "../../../tokens/colors.json";
-// import { fn } from "@storybook/test";
-
 import Input from "../../../components/Input/Input";
-import { ThemeProvider } from "../../../components/ThemeProvider/ThemeProvider";
 
 const meta: Meta<typeof Input> = {
   title: "Components/Input",
   component: Input,
-  parameters: {},
-  argTypes: {
-    label: {
-      control: {
-        type: "text",
-      },
-    },
+  parameters: {
+    layout: "centered",
+  },
+  argTypes: {},
+};
+export default meta;
+
+type Story = StoryObj<typeof Input>;
+const InputTemplate: Story = {
+  render: (args) => {
+    return <Input label="Input" placeholder="Placeholder" {...args}/>;
   },
 };
 
-export default meta;
-type Story = StoryObj<typeof Input>;
+// Variants
+export const Contained: Story = {
+  ...InputTemplate,
+  args: {
+    variant: "contained",
+  }
+};
+export const Outlined: Story = {
+  ...InputTemplate,
+  args: {
+    variant: "outlined",
+  }
+};
+export const Soft: Story = {
+  ...InputTemplate,
+  args: {
+    variant: "soft"
+  }
+}
 
-export const Default: Story = {
-  render: (args) => {
-    return (
-      <ThemeProvider appearance="light">
-        <Input label="Input Label" {...args} />
-      </ThemeProvider>
-    );
-  },
+// Sizes
+export const Small: Story = {
+  ...InputTemplate,
+  args: {
+    size: "small"
+  }
+};
+export const Medium: Story = {
+  ...InputTemplate,
+  args: {
+    size: "medium"
+  }
+};
+export const Large: Story = {
+  ...InputTemplate,
+  args: {
+    size: "large"
+  }
+};
+
+// Playground
+export const Playground: Story = {
+  ...InputTemplate,
 };
