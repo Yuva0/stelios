@@ -1,5 +1,3 @@
-import { DefaultTheme } from "../ThemeProvider/ThemeProvider.types";
-
 export interface HeaderProps {
   id?: string;
   children?: React.ReactNode | [React.ReactNode];
@@ -7,6 +5,7 @@ export interface HeaderProps {
   style?: React.CSSProperties;
   className?: string;
   expandable?: boolean;
+  color?: string;
 
   // Icon Customization
   iconWidth?: string;
@@ -17,6 +16,7 @@ export interface HeaderProps {
 
 export interface HeaderStyleProps {
   $colorPalette: any;
+  $color: string;
   //Expand Props
   $expanded?: boolean;
   $height?: string;

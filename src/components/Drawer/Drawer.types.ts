@@ -10,9 +10,10 @@ export type DrawerProps = {
   onClose?: (e: React.MouseEvent | KeyboardEvent) => void;
   children: React.ReactNode | React.ReactNode[];
   zIndex?: number;
-  backdropStrength?: "light" | "medium" | "strong";
+  backdropStrength?: "weak" | "normal" | "strong";
   title?: React.ReactNode;
   hasCloseIcon?: boolean;
+  color?: string;
 };
 
 export type DrawerStyleProps = {
@@ -20,6 +21,7 @@ export type DrawerStyleProps = {
   $position?: "left" | "right";
   $size?: "small" | "medium" | "large";
   $zIndex?: number;
-  $backdropStrength?: "light" | "medium" | "strong";
+  $backdropStrength?: "weak" | "normal" | "strong";
   $colorPalette: any;
+  $color: string;
 };

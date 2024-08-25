@@ -5,6 +5,7 @@ export interface FormControlLabelProps {
   size?: "small" | "medium" | "large";
   gap?: number;
   disabled?: boolean;
+  color?: string;
 }
 
 export interface FormControlLabelStyleProps {

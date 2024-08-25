@@ -1,5 +1,6 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
+import { ThemeProvider } from "../../../components/ThemeProvider/ThemeProvider";
 
 import ColorPicker from "../../../components/ColorPicker/ColorPicker";
 
@@ -18,13 +19,20 @@ const meta: Meta<typeof ColorPicker> = {
       },
     },
   },
+  decorators: [
+    (Story) => (
+      <div style={{ minHeight: "15rem" }}>
+        <Story />
+      </div>
+    ),
+  ],
 };
 export default meta;
 type Story = StoryObj<typeof ColorPicker>;
 
 const Template: Story = {
   render: (args) => {
-    return <ColorPicker {...args}/>;
+    return <ColorPicker {...args} />;
   },
 };
 export const Outlined = {
@@ -46,6 +54,8 @@ export const Soft = {
   },
 };
 
-export const Playground = {
-  ...Template,
+export const Playground: Story = {
+  render: (args) => {
+    return <ColorPicker {...args} />;
+  },
 };

@@ -1,15 +1,31 @@
 import * as React from "react";
 import styled, { keyframes } from "styled-components";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
-import { DefaultTheme } from "../ThemeProvider/ThemeProvider.types";
+import { ImageHighlightProps, ImageStyleProps } from "./ImageHighlight.types";
 import { getColorPalette } from "../../helpers/helpers";
 import colorTokens from "../../tokens/colors.json";
 
-interface ImageHighlightProps {
-  imgSrc: string;
-  imgAlt: string;
-  gradientColors?: Array<string>;
-}
+
+const ImageHighlight: React.FunctionComponent<ImageHighlightProps> = ({
+  imgSrc,
+  imgAlt,
+  gradientColors,
+  color = colorTokens.default.primary.main,
+  ...props
+}) => {
+  const theme = useTheme().theme;
+  const colorPalette = getColorPalette(theme);
+
+  return (
+    <StyledImgHighlightCtr $gradientColors={gradientColors} {...props}>
+      <StyledImgCtr $colorPalette={colorPalette} $color={color}>
+        <StyledImg src={imgSrc} alt={imgAlt} />
+      </StyledImgCtr>
+    </StyledImgHighlightCtr>
+  );
+};
+
+export default ImageHighlight;
 
 // Define keyframes for gradient animation
 const gradientMove = keyframes`
@@ -38,10 +54,7 @@ const StyledImgHighlightCtr = styled.div<{ $gradientColors?: Array<string> }>`
   background-size: 200% 200%;
   animation: ${gradientMove} 1s infinite linear;
 `;
-
-const StyledImgCtr = styled.div<{
-  $colorPalette?: any;
-}>`
+const StyledImgCtr = styled.div<ImageStyleProps>`
   width: calc(100% - 1rem);
   height: calc(100% - 1rem);
   border-radius: 50%;
@@ -52,29 +65,9 @@ const StyledImgCtr = styled.div<{
   align-items: center;
   overflow: hidden;
 `;
-
 const StyledImg = styled.img`
   width: 100%;
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
 `;
-
-const ImageHighlight: React.FunctionComponent<ImageHighlightProps> = ({
-  imgSrc,
-  imgAlt,
-  gradientColors,
-}) => {
-  const theme = useTheme().theme;
-  const colorPalette = getColorPalette(theme);
-
-  return (
-    <StyledImgHighlightCtr $gradientColors={gradientColors}>
-      <StyledImgCtr $colorPalette={colorPalette}>
-        <StyledImg src={imgSrc} alt={imgAlt} />
-      </StyledImgCtr>
-    </StyledImgHighlightCtr>
-  );
-};
-
-export default ImageHighlight;

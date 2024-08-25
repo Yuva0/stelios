@@ -1,0 +1,49 @@
+{/* Drawer.mdx */}
+import { Canvas, Meta, Controls } from '@storybook/blocks';
+import * as DrawerStories from './Drawer.stories';
+
+<Meta of={DrawerStories} name="Docs"/>
+# Drawer:
+Drawers are used to display content that is not the primary focus of the page.\
+They are hidden by default and can be toggled by the user.
+
+## Positions:
+Drawers can be positioned on the left or right side of the screen. Default is left.
+
+#### Left
+<Canvas of={DrawerStories.Left} />
+
+#### Right
+<Canvas of={DrawerStories.Right} />
+
+## Sizes:
+Drawers can be small, medium or large. Default is medium.
+
+#### Small
+<Canvas of={DrawerStories.Small} />
+
+#### Medium
+<Canvas of={DrawerStories.Medium} />
+
+#### Large
+<Canvas of={DrawerStories.Large} />
+
+
+## Backdrop Strength:
+Drawers can have a backdrop. The backdrop can be strong or weak. Default is strong.
+
+#### Strong
+<Canvas of={DrawerStories.Strong} />
+
+#### Normal
+<Canvas of={DrawerStories.Normal} />
+
+#### Weak
+<Canvas of={DrawerStories.Weak} />
+
+
+## Playground
+Customize as per your needs using the controls below
+
+<Canvas of={DrawerStories.Playground}/>
+<Controls of={DrawerStories.Playground}/>

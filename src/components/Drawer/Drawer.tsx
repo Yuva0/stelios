@@ -6,6 +6,8 @@ import IconButton from "../IconButton/IconButton";
 import { IconX } from "@tabler/icons-react";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
 import { useDebounce } from "../../helpers/CustomHooks";
+import { getColorPalette } from "../../helpers/helpers";
+import colorTokens from "../../tokens/colors.json";
 // import ClickAwayListener from "../ClickAwayListener/ClickAwayListener";
 
 type DrawerBackdropProps = {
@@ -26,9 +28,9 @@ const getSize = (size: DrawerStyleProps["$size"]) => {
 };
 const getBackdropStrength = (strength: DrawerProps["backdropStrength"]) => {
   switch (strength) {
-    case "light":
+    case "weak":
       return "rgba(0, 0, 0, 0.1)";
-    case "medium":
+    case "normal":
       return "rgba(0, 0, 0, 0.3)";
     case "strong":
       return "rgba(0, 0, 0, 0.5)";
@@ -44,8 +46,8 @@ const StyledDrawer = styled.div<DrawerStyleProps>`
   ${(props) => props.$position}: ${(props) =>
     props.$open ? 0 : `${-1 * getSize(props.$size)}px`};
   height: 100%;
-  background-color: ${(props) => props.$colorPalette.primary.background};
-  color: ${(props) => props.$colorPalette.primary.grayScale[11]};
+  background-color: ${(props) => props.$colorPalette[props.$color].background};
+  color: ${(props) => props.$colorPalette[props.$color].grayScale[11]};
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   transition: ${(props) => `${props.$position} 0.3s ease-in-out;`}  
   z-index: ${(props) => props.$zIndex};
@@ -65,7 +67,7 @@ const StyledHeader = styled.div<DrawerStyleProps>`
   align-items: center;
   padding: 1rem;
   border-bottom: ${(props) =>
-    `1px solid ${props.$colorPalette.primary.grayScale[5]}`};
+    `1px solid ${props.$colorPalette[props.$color].grayScale[5]}`};
 `;
 
 const Drawer = ({
@@ -77,9 +79,10 @@ const Drawer = ({
   style,
   hideOnOutsideClick = true,
   zIndex = 1000,
-  backdropStrength = "medium",
+  backdropStrength = "normal",
   title,
   hasCloseIcon = true,
+  color = colorTokens.default.primary.main,
   // Events
   onClose,
 }: DrawerProps) => {
@@ -104,8 +107,7 @@ const Drawer = ({
   }, [open, onClose]);
 
   const theme = useTheme().theme;
-  if(!theme) return null;
-  const colorPalette = theme.colorPalette;
+  const colorPalette = getColorPalette(theme,color);
 
   const _onOutsideClick = (e: React.MouseEvent) => {
     if (hideOnOutsideClick) {
@@ -134,7 +136,7 @@ const Drawer = ({
   );
 
   const headerDrawer = (title || hasCloseIcon) && (
-    <StyledHeader $colorPalette={colorPalette}>
+    <StyledHeader $color={color} $colorPalette={colorPalette}>
       <div style={{ flexGrow: 1 }}>{Title}</div>
       {CloseIcon}
     </StyledHeader>
@@ -146,6 +148,7 @@ const Drawer = ({
       <StyledDrawer
         $open={isOpen}
         $colorPalette={colorPalette}
+        $color={color}
         $position={position}
         $size={size}
         className={className}

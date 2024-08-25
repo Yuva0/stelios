@@ -89,7 +89,7 @@ const StyledCheckbox = styled.span<CheckboxStyleProps>`
   border-radius: 50%;
   "&:hover": {
     background: ${(props) =>
-      props.$colorPalette[props.$color ?? "info"].accentScale[1]};
+      props.$colorPalette[props.$color].accentScale[1]};
   }
   & input[type="checkbox"] {
     position: absolute;
@@ -100,7 +100,7 @@ const StyledCheckbox = styled.span<CheckboxStyleProps>`
     width: ${(props) => getSize(props.$size)}rem;
     height: ${(props) => getSize(props.$size)}rem;
     border: 1.5px solid
-      ${(props) => props.$colorPalette[props.$color ?? "info"].accentScale[8]};
+      ${(props) => props.$colorPalette[props.$color].accentScale[10]};
     border-radius: 0.25rem;
     position: relative;
 

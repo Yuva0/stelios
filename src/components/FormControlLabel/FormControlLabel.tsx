@@ -43,6 +43,7 @@ const FormControlLabel: React.FC<FormControlLabelProps> = ({
   size = "medium",
   gap = 4,
   disabled = false,
+  color,
   ...props
 }) => {
   const _disabled = control.props.disabled || disabled;
@@ -56,11 +57,12 @@ const FormControlLabel: React.FC<FormControlLabelProps> = ({
     >
       {React.cloneElement(control, {
         ...(!control.props.size && size && { size }),
+        ...(!control.props.size && color && { color }),
         ...props,
       })}
       <span>
         {typeof label === "string" ? (
-          <Text variant="paragraph" size={size}>
+          <Text color={color} variant="paragraph" size={size}>
             {label}
           </Text>
         ) : (

@@ -5,6 +5,9 @@ import Input from "../Input/Input";
 import styled from "styled-components";
 import { usePopper } from "react-popper";
 import ClickAwayListener from "../ClickAwayListener/ClickAwayListener";
+import colorTokens from "../../tokens/colors.json";
+import { useTheme } from "../ThemeProvider/ThemeProvider";
+import { getColorPalette } from "../../helpers/helpers";
 
 const StyledChromePicker = styled.div<ColorPickerStyleProps>`
   display: ${(props) => (props.$open ? "block" : "none")};
@@ -12,7 +15,7 @@ const StyledChromePicker = styled.div<ColorPickerStyleProps>`
 
 const ColorPicker = ({
   label,
-  color = "#ee9b00",
+  color = colorTokens.default.primary.main,
   open,
   size,
   width,
@@ -20,13 +23,16 @@ const ColorPicker = ({
   onChange,
 }: ColorPickerProps) => {
   const [isOpen, setIsOpen] = useState(open ?? false);
-  const [innerColor, setInnerColor] = useState<string>(color);
   const anchorElement = useRef<HTMLDivElement | null>(null);
   const popperElement = useRef<HTMLDivElement | null>(null);
+  const theme = useTheme().theme;
+  const colorPalette = getColorPalette(theme,color);
+  const [innerColor, setInnerColor] = useState<string>(colorPalette ? colorPalette[color].main : color);
 
   React.useEffect(() => {
-    setInnerColor(color);
-  }, [color]);
+    const colorPalette = getColorPalette(theme,color);
+    setInnerColor(colorPalette ? colorPalette[color].main : color);
+  }, [color, theme]);
 
   useEffect(() => {
     setIsOpen(open ?? false);
@@ -83,6 +89,7 @@ const ColorPicker = ({
         value={innerColor}
         onChange={_onInputChange}
         onClick={_onInputClick}
+        color={color}
         leadingIcon={
           <div
             onClick={() => setIsOpen(!isOpen)}

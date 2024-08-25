@@ -23,6 +23,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
   ...rest
 }: ButtonProps,
 ref) => {
+
   const innerRef = useRef<HTMLButtonElement>(null);
   useImperativeHandle(ref, () => innerRef.current!, [innerRef]);
   const theme = useTheme().theme;

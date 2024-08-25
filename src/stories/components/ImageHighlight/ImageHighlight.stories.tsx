@@ -4,11 +4,14 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { ThemeProvider } from "../../../components/ThemeProvider/ThemeProvider";
 import ImageHighlight from "../../../components/ImageHighlight/ImageHighlight";
 
+const IMG_SRC = `https://img.freepik.com/free-psd/3d-illustration-human-avatar-profile_23-2150671116.jpg`;
+const IMG_ALT = "Profile Picture";
+
 const meta: Meta<typeof ImageHighlight> = {
   title: "Components/ImageHighlight",
   component: ImageHighlight,
   parameters: {
-    layout: "fullscreen",
+    layout: ["centered"],
   },
   argTypes: {},
 };
@@ -16,17 +19,19 @@ const meta: Meta<typeof ImageHighlight> = {
 export default meta;
 type Story = StoryObj<typeof ImageHighlight>;
 
-export const Default: Story = {
-  render: () => {
+const Template: Story = {
+  render: (args) => {
     return (
-      // <div style={{ height: "100vh", width: "100%", background: "black" }}>
-      <ThemeProvider appearance="light">
-        <ImageHighlight
-          imgAlt="dog"
-          imgSrc="https://cdn.pixabay.com/photo/2016/10/10/14/13/dog-1728494_1280.png"
+        <ImageHighlight {...args}
         />
-      </ThemeProvider>
-      // </div>
     );
   },
+  args: {
+    imgAlt: IMG_ALT,
+    imgSrc: IMG_SRC,
+  }
 };
+
+export const Default = {
+  ...Template,
+}

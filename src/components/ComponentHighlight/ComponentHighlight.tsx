@@ -41,12 +41,15 @@ export default ComponentHighlight;
 
 
 const StyledComponentCtr = styled.div<ComponentHighlightStyleProps>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
   width: ${(props) => props.$width};
   height: ${(props) => props.$height};
   background-color: ${(props) => props.$colorPalette[props.$color].grayScale[0]};
   background-clip: padding-box;
-  border-radius: 0.75rem;
+  border-radius: ${(props) => props.$borderRadius};
   padding: 0.5rem;
 
   &::after {
@@ -62,6 +65,6 @@ const StyledComponentCtr = styled.div<ComponentHighlightStyleProps>`
     }};
     content: "";
     z-index: -1;
-    border-radius: 1rem;
+    border-radius: ${(props) => props.$borderRadius};
   }
 `;
