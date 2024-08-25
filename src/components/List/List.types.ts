@@ -4,6 +4,7 @@ export interface ListProps {
   containerStyle?: React.CSSProperties;
   style?: React.CSSProperties;
   className?: string;
-  children: React.ReactNode | [React.ReactNode];
+  children: React.ReactNode | React.ReactNode[];
   variant?: "ordered" | "unordered" | "none";
+  color?: string;
 }

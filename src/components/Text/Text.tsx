@@ -4,7 +4,7 @@ import { TextProps, TextStyleProps } from "./Text.types";
 import { Helmet } from "react-helmet";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
 import { getColorPalette } from "../../helpers/helpers";
-import colors from "../../tokens/colors.json";
+import colorTokens from "../../tokens/colors.json";
 
 interface StyledProps {
   $disableColor?: boolean;
@@ -16,7 +16,8 @@ const Text = ({
   strong,
   children,
   align = "center",
-  color,
+  color = colorTokens.default.primary.main,
+  preciseColor,
   wrap = false,
   size = "medium",
   disableColor = false,
@@ -33,9 +34,9 @@ const Text = ({
     _styledProps = { $disableColor: disableColor };
   } else {
     const colorPalette = getColorPalette(theme, color);
-    const _color = color && colorPalette
+    const _color = preciseColor ?? (color && colorPalette
       ? colorPalette[color].accentScale[10]
-      : colors.default.primary.main;
+      : color);
     _styledProps = { $disableColor: disableColor, $color: _color };
   }
 

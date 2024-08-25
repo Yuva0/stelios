@@ -1,0 +1,29 @@
+{/* Loader.mdx */}
+import { Canvas, Meta, Controls } from '@storybook/blocks';
+import * as LoaderStories from './Loader.stories';
+
+<Meta of={LoaderStories} name="Docs"/>
+
+# Loader:
+Loaders are used to indicate that a page is loading.\
+They are used to show that the page is still loading and the user should wait.
+
+## Shapes:
+Every shape has it's own story. Neither is better than the other, they are just different.\
+Choose the one that fits your design system the best.
+
+#### Circle
+<Canvas of={LoaderStories.Circle} />
+
+#### Square
+<Canvas of={LoaderStories.Square} />
+
+#### Rectangle
+<Canvas of={LoaderStories.Rectangle} />
+
+
+## Playground:
+Customize as per your needs using the controls below
+
+<Canvas of={LoaderStories.Playground}/>
+<Controls of={LoaderStories.Playground}/>

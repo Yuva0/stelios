@@ -1,26 +1,47 @@
 import React from "react";
-import { ListItemProps } from "./ListItem.types";
-// import styled from "styled-components";
+import { ListItemProps, ListItemStyleProps } from "./ListItem.types";
+import styled from "styled-components";
 import Text from "../../Text/Text";
-// import { DefaultTheme } from "../../ThemeProvider/ThemeProvider.types";
-// import { useTheme } from "../../ThemeProvider/ThemeProvider";
+import { useTheme } from "../../ThemeProvider/ThemeProvider";
+import { getColorPalette } from "../../../helpers/helpers";
+import colorTokens from "../../../tokens/colors.json";
 
-
-const ListItem = ({ children, style, className }: ListItemProps) => {
-  // const colorPalette = useTheme().theme.colorPalette;
+const ListItem = ({
+  children,
+  style,
+  className,
+  size,
+  color = colorTokens.default.primary.main,
+}: ListItemProps) => {
+  const theme = useTheme().theme;
+  const colorPalette = getColorPalette(theme, color);
 
   const ChildrenElement =
     typeof children === "string" ? (
-      <Text variant="paragraph">{children}</Text>
+      <Text color={color} size={size} variant="paragraph">
+        {children}
+      </Text>
     ) : (
       children
     );
 
   return (
-    <li style={style} className={className}>
+    <StyledListItem
+      style={style}
+      className={className}
+      $colorPalette={colorPalette}
+      $color={color}
+    >
       {ChildrenElement}
-    </li>
+    </StyledListItem>
   );
 };
-
 export default ListItem;
+
+const StyledListItem = styled.li<ListItemStyleProps>`
+  ${(props) => {
+    return `
+      color: ${props.$color};
+    `;
+  }}
+`;

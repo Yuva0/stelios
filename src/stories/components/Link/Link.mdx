@@ -1,0 +1,42 @@
+{/* Link.mdx */}
+import { Canvas, Meta, Controls } from '@storybook/blocks';
+import * as LinkStories from './Link.stories';
+
+<Meta of={LinkStories} name="Docs"/>
+
+# Link:
+Links are used to navigate to another page or to trigger an action.\
+They are the most important element in a design system.
+
+## Variants:
+Every variant has it's own story. Neither is better than the other, they are just different.\
+Choose the one that fits your design system the best.
+
+#### Default
+<Canvas of={LinkStories.Default} />
+
+#### Underline
+<Canvas of={LinkStories.Underline} />
+
+#### Hover
+<Canvas of={LinkStories.Hover} />
+
+
+## Sizes:
+Links can be small, medium or large. Default is medium.
+
+#### Small
+<Canvas of={LinkStories.Small} />
+
+#### Medium
+<Canvas of={LinkStories.Medium} />
+
+#### Large
+<Canvas of={LinkStories.Large} />
+
+
+## Playground
+Customize as per your needs using the controls below
+
+<Canvas of={LinkStories.Playground}/>
+<Controls of={LinkStories.Playground}/>

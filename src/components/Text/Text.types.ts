@@ -17,6 +17,7 @@ export interface TextProps {
   children?: React.ReactNode | React.ReactNode[];
   align?: "left" | "center" | "right" | "justify";
   color?: string;
+  preciseColor?: string;
   wrap?: boolean;
   className?: string;
   style?: React.CSSProperties;

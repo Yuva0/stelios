@@ -11,7 +11,7 @@ const meta: Meta<typeof ImageHighlight> = {
   title: "Components/ImageHighlight",
   component: ImageHighlight,
   parameters: {
-    layout: ["centered"],
+    layout: "centered",
   },
   argTypes: {},
 };

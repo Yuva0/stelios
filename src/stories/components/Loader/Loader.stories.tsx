@@ -9,10 +9,9 @@ const meta: Meta<typeof Loader> = {
   title: "Components/Loader",
   component: Loader,
   parameters: {
-    layout: "fullscreen"
+    layout: "centered",
   },
-  argTypes: {
-  },
+  argTypes: {},
 };
 
 export default meta;
@@ -20,16 +19,47 @@ type Story = StoryObj<typeof Loader>;
 
 export const Default: Story = {
   render: (args) => {
-    return (
-      <ThemeProvider appearance="dark">
-        <div style={{backgroundColor:"black", height:"100vh", paddingLeft:"10rem", display:"flex", gap:"1rem", flexDirection:'column'}} >
-        <Loader width="10rem" height="2rem" startTime={0}/>
-        <Loader width="10rem" height="2rem" startTime={0.123}/>
-        <Loader width="10rem" height="2rem" startTime={0.6}/>
-        <Loader width="10rem" height="2rem" startTime={0.7}/>
-        <Loader width="10rem" height="2rem" startTime={0.343}/>
-        </div>
-      </ThemeProvider>
-    );
+    return <Loader startTime={0} {...args}/>;
   },
+};
+export const Circle: Story = {
+  render: (args) => {
+    return <Loader startTime={0} {...args}/>;
+  },
+  args: {
+    shape: "circle",
+    width: "5rem",
+    height: "5rem",
+  }
+};
+export const Square: Story = {
+  render: (args) => {
+    return <Loader startTime={0} {...args}/>;
+  },
+  args: {
+    shape: "square",
+    width: "5rem",
+    height: "5rem",
+  }
+};
+export const Rectangle: Story = {
+  render: (args) => {
+    return <Loader startTime={0} {...args}/>;
+  },
+  args: {
+    shape: "rectangle",
+    width: "20rem",
+    height: "5rem",
+  }
+};
+
+export const Playground: Story = {
+  render: (args) => {
+    return <Loader startTime={0} {...args}/>;
+  },
+  args: {
+    shape: "circle",
+    width: "5rem",
+    height: "5rem",
+  }
 };

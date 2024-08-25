@@ -2,10 +2,50 @@ import React from "react";
 import { ListProps } from "./List.types";
 import styled from "styled-components";
 import Text from "../Text/Text";
+import { ListItemProps } from "./ListItem/ListItem.types";
 
 interface ListStyleProps {
   $variant: ListProps["variant"];
 }
+
+const List = ({
+  title,
+  children,
+  variant = "ordered",
+  size,
+  containerStyle,
+  color,
+  style,
+  className,
+}: ListProps) => {
+
+
+  const Title = () => {
+    if (!title) return null;
+    return typeof title === "string" ? (
+      <Text color={color} variant="paragraph" size={size}>
+        {title}
+      </Text>
+    ) : (
+      title
+    );
+  };
+  return (
+    <div style={containerStyle}>
+      {<Title/>}
+      <StyledList $variant={variant} style={style} className={className}>
+        {React.Children.map(children, (child) => {
+          if(!child || !React.isValidElement(child)) return child;
+          return React.cloneElement(child, {
+            ...(!child.props.size && {size: size}),
+            ...(!child.props.color && {color: color}),
+          } as ListItemProps);
+        })}
+      </StyledList>
+    </div>
+  );
+};
+export default List;
 
 const StyledList = styled.ul<ListStyleProps>`
   display: flex;
@@ -21,35 +61,3 @@ const StyledList = styled.ul<ListStyleProps>`
         ? "disc"
         : "none"};
 `;
-
-const Title = (title?: React.ReactNode, size?: ListProps["size"]) => {
-  if (!title) return null;
-  return typeof title === "string" ? (
-    <Text variant="paragraph" size={size}>
-      {title}
-    </Text>
-  ) : (
-    title
-  );
-};
-
-const List = ({
-  title,
-  children,
-  variant = "ordered",
-  size,
-  containerStyle,
-  style,
-  className,
-}: ListProps) => {
-  return (
-    <div style={containerStyle}>
-      {Title(title, size)}
-      <StyledList $variant={variant} style={style} className={className}>
-        {children}
-      </StyledList>
-    </div>
-  );
-};
-
-export default List;

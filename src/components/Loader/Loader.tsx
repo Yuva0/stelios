@@ -1,25 +1,38 @@
 import * as React from "react";
 import styled, { keyframes } from "styled-components";
+import { LoaderProps, LoaderStyleProps } from "./Loader.types";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
-import { DefaultTheme } from "../ThemeProvider/ThemeProvider.types";
-interface LoaderProps {
-  shape?: "circle" | "square" | "rectangle";
-  height?: string;
-  width?: string;
-  borderRadius?: string;
-  style?: React.CSSProperties;
-  className?: string;
-  startTime?: number;
-}
+import { getColorPalette } from "../../helpers/helpers";
+import colorTokens from "../../tokens/colors.json";
 
-interface LoaderStyleProps {
-  $shape: LoaderProps["shape"];
-  $height: LoaderProps["height"];
-  $width: LoaderProps["width"];
-  $colorPalette: any;
-  $borderRadius?: LoaderProps["borderRadius"];
-  $startTime?: LoaderProps["startTime"];
-}
+const Loader: React.FunctionComponent<LoaderProps> = ({
+  shape = "square",
+  height = "2rem",
+  width = "2rem",
+  borderRadius = shape === "circle" ? "50%" : "0.5rem",
+  color = colorTokens.default.primary.main,
+  style,
+  className,
+  startTime = 0
+}) => {
+  const theme = useTheme().theme;
+  const colorPalette = getColorPalette(theme, color);
+
+  return (
+    <StyledLoaderProps
+      $width={width}
+      $height={height}
+      $shape={shape}
+      $colorPalette={colorPalette}
+      $color={color}
+      $borderRadius={borderRadius}
+      $startTime={startTime}
+      style={style}
+      className={className}
+    />
+  );
+};
+export default Loader;
 
 const loadingAnimation = keyframes`
   0% {
@@ -32,12 +45,11 @@ const loadingAnimation = keyframes`
     left: 100%;
   }
 `;
-
 const StyledLoaderProps = styled.div<LoaderStyleProps>`
   width: ${(props) => props.$width};
   height: ${(props) => props.$height};
   border-radius: ${(props) => props.$borderRadius};
-  background-color: ${(props) => props.$colorPalette.primary.grayScale[1]};
+  background-color: ${(props) => props.$colorPalette[props.$color].grayScale[1]};
   position: relative;
   overflow: hidden;
   &:after {
@@ -48,35 +60,6 @@ const StyledLoaderProps = styled.div<LoaderStyleProps>`
     width: 3rem;
     left:-3rem;
     height: 100%;
-    background: ${(props) => `linear-gradient(90deg, transparent, ${props.$colorPalette.primary.grayScale[0]}, transparent)`};
+    background: ${(props) => `linear-gradient(90deg, transparent, ${props.$colorPalette[props.$color].grayScale[0]}, transparent)`};
   }
 `;
-
-const Loader: React.FunctionComponent<LoaderProps> = ({
-  shape = "square",
-  height = "2rem",
-  width = "2rem",
-  borderRadius = shape === "circle" ? "50%" : "0.5rem",
-  style,
-  className,
-  startTime = 0
-}) => {
-  const theme = useTheme().theme;
-  if(!theme) return null;
-  const colorPalette = theme.colorPalette;
-
-  return (
-    <StyledLoaderProps
-      $width={width}
-      $height={height}
-      $shape={shape}
-      $colorPalette={colorPalette}
-      $borderRadius={borderRadius}
-      $startTime={startTime}
-      style={style}
-      className={className}
-    />
-  );
-};
-
-export default Loader;

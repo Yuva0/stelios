@@ -1,0 +1,41 @@
+{/* List.mdx */}
+import { Canvas, Meta, Controls } from '@storybook/blocks';
+import * as ListStories from './List.stories';
+
+<Meta of={ListStories} name="Docs"/>
+# List:
+Lists are used to display a collection of items.\
+They are used to group similar items together.
+
+## Variants:
+Every variant has it's own story. Neither is better than the other, they are just different.\
+Choose the one that fits your design system the best.
+
+#### Ordered
+<Canvas of={ListStories.Ordered} />
+
+#### Unordered
+<Canvas of={ListStories.Unordered} />
+
+#### None
+<Canvas of={ListStories.None} />
+
+
+## Sizes:
+Lists can be small, medium or large. Default is medium.
+
+#### Small
+<Canvas of={ListStories.Small} />
+
+#### Medium
+<Canvas of={ListStories.Medium} />
+
+#### Large
+<Canvas of={ListStories.Large} />
+
+
+## Playground
+Customize as per your needs using the controls below
+
+<Canvas of={ListStories.Playground}/>
+<Controls of={ListStories.Playground}/>
