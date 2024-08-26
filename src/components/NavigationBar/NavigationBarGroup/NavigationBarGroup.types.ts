@@ -6,6 +6,7 @@ export interface NavigationBarGroupProps {
   title?: React.ReactNode;
   leadingIcon?: React.ReactNode;
   trailingIcon?: React.ReactNode;
+  color?: string;
   expanded?: boolean;
   className?: string;
   _getSelectedIndex?: (index?: number) => void;
@@ -16,4 +17,5 @@ export interface NavigationBarGroupStyleProps {
   $selected?: boolean;
   $expand?: boolean;
   $colorPalette: any;
+  $color: string;
 }

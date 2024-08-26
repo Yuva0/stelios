@@ -1,5 +1,4 @@
 import { MenuItemKeyProps } from "../MenuItem/MenuItem.types";
-import { DefaultTheme } from "../ThemeProvider/ThemeProvider.types";
 
 export interface MenuProps {
   children: React.ReactNode | React.ReactNode[];
@@ -8,6 +7,8 @@ export interface MenuProps {
   open?: boolean;
   anchorElement: HTMLElement | null;
   hideOnOutsideClick?: boolean;
+  color?: string;
+  variant?: "contained" | "outlined" | "soft";
   // Popper Styles
   popperStyles?: {
     placement?:
@@ -41,5 +42,7 @@ export interface MenuProps {
 export interface MenuStyleProps {
   $open: NonNullable<MenuProps["open"]>;
   $minWidth: NonNullable<MenuProps["minWidth"]>;
-  $colorPalette?: any;
+  $colorPalette: any;
+  $color: string;
+  $variant: NonNullable<MenuProps["variant"]>;
 }

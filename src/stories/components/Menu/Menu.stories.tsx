@@ -4,30 +4,56 @@ import Menu from "../../../components/Menu/Menu";
 import MenuItem from "../../../components/MenuItem/MenuItem";
 import IconButton from "../../../components/IconButton/IconButton";
 import { Icon123 } from "@tabler/icons-react";
+import colorTokens from "../../../tokens/colors.json";
 
 const meta: Meta<typeof Menu> = {
   title: "Components/Menu",
   component: Menu,
   parameters: {
-    layout: "fullscreen",
+    layout: "centered",
   },
-  argTypes: {},
+  argTypes: {
+    variant: {
+      control: {
+        type: "select",
+        options: ["contained", "outlined", "soft"],
+      },
+      color: {
+        control: {
+          type: "color",
+        },
+      }
+    },
+  },
+  decorators: [
+    (Story) => (
+      <div style={{ minHeight: "15rem" }}>
+        <Story />
+      </div>
+    ),
+  ],
 };
-
 export default meta;
 
 type Story = StoryObj<typeof Menu>;
 
-export const Default: Story = {
-  render: () => {
+export const Template: Story = {
+  render: (args) => {
     const [iconRef, setIconRef] = React.useState<HTMLButtonElement | null>(
       null
     );
+    const [open, setOpen] = React.useState(true);
+
+    const _openMenuClick = () => {
+      setOpen(!open);
+    }
 
     return (
       <div>
-        <IconButton icon={<Icon123 />} ref={setIconRef} />
-        <Menu anchorElement={iconRef} open={true}>
+        <IconButton color={args.color} icon={<Icon123 />} variant={args.variant} ref={setIconRef} onClick={_openMenuClick}/>
+        <Menu open={open}  popperStyles={{
+          placement: "bottom"
+        }} {...args} anchorElement={iconRef}>
           <MenuItem value="1" title="Item 1">
             Item 1
           </MenuItem>
@@ -42,3 +68,29 @@ export const Default: Story = {
     );
   },
 };
+
+export const Contained = {
+  ...Template,
+  args: {
+    variant: "contained"
+  }
+}
+export const Outlined = {
+  ...Template,
+  args: {
+    variant: "outlined"
+  }
+}
+export const Soft = {
+  ...Template,
+  args: {
+    variant: "soft"
+  }
+}
+
+export const Playground = {
+  ...Template,
+  args: {
+    color: colorTokens.default.primary.main
+  }
+}

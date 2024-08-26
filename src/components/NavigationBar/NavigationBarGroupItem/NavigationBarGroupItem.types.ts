@@ -8,6 +8,7 @@ export interface NavigationBarGroupItemProps {
   className?: string;
   style?: React.CSSProperties;
   size?: "small" | "medium" | "large";
+  color?: string;
   selected?: boolean;
   tabIndex?: number;
   // Events
@@ -18,4 +19,5 @@ export interface NavigationBarGroupItemProps {
 export interface NavigationBarGroupItemStyleProps {
   $colorPalette: any;
   $selected?: boolean;
+  $color: string;
 }

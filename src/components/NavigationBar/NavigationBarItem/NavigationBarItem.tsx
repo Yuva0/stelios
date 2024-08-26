@@ -6,44 +6,8 @@ import {
 import styled from "styled-components";
 import Text from "../../Text/Text";
 import { useTheme } from "../../ThemeProvider/ThemeProvider";
-
-const StyledNavBarItem = styled.li<NavigationBarItemStyleProps>`
-  display: flex;
-  flex-direction: row;
-  gap: 0.5rem;
-  align-items: center;
-  cursor: pointer;
-  border-radius: 0.5rem;
-  padding: 0.3rem 0.75rem;
-  margin: 0 0.5rem;
-  color: ${(props) =>
-    props.$selected
-      ? props.$colorPalette.primary.accentScale[10]
-      : props.$colorPalette.primary.grayScale[11]};
-  background-color: ${(props) =>
-    props.$selected
-      ? props.$colorPalette.primary.accentScale[2]
-      : "transparent"};
-  &:hover {
-    background-color: ${(props) =>
-      props.$selected
-        ? props.$colorPalette.primary.accentScale[3]
-        : props.$colorPalette.primary.grayScale[1]};
-  }
-  &:active {
-    background-color: ${(props) =>
-      props.$selected
-        ? props.$colorPalette.primary.accentScale[4]
-        : props.$colorPalette.primary.grayScale[2]};
-  }
-  &:focus-visible {
-    outline: 1px solid ${(props) => props.$colorPalette.primary.accentScale[6]};
-  }
-`;
-
-const StyledNavBarIcon = styled.span`
-  margin-left: auto;
-`;
+import colorTokens from "../../../tokens/colors.json";
+import { getColorPalette } from "../../../helpers/helpers";
 
 const NavigationBarItem = ({
   _index,
@@ -55,6 +19,7 @@ const NavigationBarItem = ({
   style,
   size,
   selected = false,
+  color = colorTokens.default.primary.main,
   // Events
   _getSelectedIndex,
   onClick,
@@ -65,8 +30,7 @@ const NavigationBarItem = ({
     setSelected(selected);
   }, [selected]);
   const theme = useTheme().theme;
-  if(!theme) return null;
-  const colorPalette = theme.colorPalette;
+  const colorPalette = getColorPalette(theme, color);
 
   const _onClick = (e: React.MouseEvent) => {
     setSelected(true);
@@ -86,6 +50,7 @@ const NavigationBarItem = ({
       tabIndex={0}
       $selected={_selected}
       $colorPalette={colorPalette}
+      $color={color}
       className={className}
       style={style}
       onClick={_onClick}
@@ -93,7 +58,7 @@ const NavigationBarItem = ({
     >
       {leadingIcon && <StyledNavBarIcon>{leadingIcon}</StyledNavBarIcon>}
       {typeof children === "string" ? (
-        <Text disableColor variant="span" size={size}>
+        <Text color={color} variant="span" size={size}>
           {children}
         </Text>
       ) : (
@@ -104,5 +69,41 @@ const NavigationBarItem = ({
   );
 };
 NavigationBarItem.displayName = "NavigationBarItem";
-
 export default NavigationBarItem;
+
+const StyledNavBarItem = styled.li<NavigationBarItemStyleProps>`
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  padding: 0.3rem 0.75rem;
+  margin: 0 0.5rem;
+  color: ${(props) =>
+    props.$selected
+      ? props.$colorPalette[props.$color].accentScale[10]
+      : props.$colorPalette[props.$color].grayScale[11]};
+  background-color: ${(props) =>
+    props.$selected
+      ? props.$colorPalette[props.$color].accentScale[2]
+      : "transparent"};
+  &:hover {
+    background-color: ${(props) =>
+      props.$selected
+        ? props.$colorPalette[props.$color].accentScale[3]
+        : props.$colorPalette[props.$color].grayScale[1]};
+  }
+  &:active {
+    background-color: ${(props) =>
+      props.$selected
+        ? props.$colorPalette[props.$color].accentScale[4]
+        : props.$colorPalette[props.$color].grayScale[2]};
+  }
+  &:focus-visible {
+    outline: 1px solid ${(props) => props.$colorPalette[props.$color].accentScale[6]};
+  }
+`;
+const StyledNavBarIcon = styled.span`
+  margin-left: auto;
+`;

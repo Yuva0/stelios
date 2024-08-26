@@ -1,36 +1,13 @@
 import React, { forwardRef, useEffect, useState } from "react";
 import { MenuProps, MenuStyleProps } from "./Menu.types";
 import { MenuItemKeyProps } from "../MenuItem/MenuItem.types";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { usePopper } from "react-popper";
 import { MenuItemProps } from "../MenuItem/MenuItem.types";
 import ClickAwayListener from "../ClickAwayListener/ClickAwayListener";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
 import { getColorPalette } from "../../helpers/helpers";
-
-const StyledMenuContainer = styled.div<MenuStyleProps>`
-  display: ${(props) => (props.$open ? "block" : "none")};
-  min-width: ${(props) => props.$minWidth};
-  border: 1px solid #c4c4c4;
-  border-radius: 0.5rem;
-  padding: 0.5rem 0;
-  background-color: ${(props) => props.$colorPalette?.primary.grayScale[1]}
-  color: ${(props) => props.$colorPalette?.primary.grayScale[11]};
-  border:${(props) => `1px solid ${props.$colorPalette?.primary.grayScale[6]}`};
-`;
-
-const StyledMenu = styled.ul`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  box-sizing: border-box;
-  width: 100%;
-  list-style-type: none;
-  cursor: pointer;
-  padding: 0;
-  margin: 0;
-  user-select: none;
-`;
+import colorTokens from "../../tokens/colors.json";
 
 const Menu = forwardRef<HTMLDivElement, MenuProps>(
   (
@@ -38,10 +15,12 @@ const Menu = forwardRef<HTMLDivElement, MenuProps>(
       children,
       style,
       popperStyles,
+      variant = "contained",
       open = false,
       minWidth = "none",
       anchorElement,
       hideOnOutsideClick = true,
+      color = colorTokens.default.primary.main,
       // Events
       onClick,
       onClose,
@@ -68,8 +47,7 @@ const Menu = forwardRef<HTMLDivElement, MenuProps>(
       ],
     });
     const theme = useTheme().theme;
-    const colorPalette = getColorPalette(theme,null);
-
+    const colorPalette = getColorPalette(theme, color);
 
     const _onClick = (
       e: React.MouseEvent<HTMLLIElement>,
@@ -91,6 +69,8 @@ const Menu = forwardRef<HTMLDivElement, MenuProps>(
         $open={isOpen}
         $minWidth={minWidth}
         $colorPalette={colorPalette}
+        $color={color}
+        $variant={variant}
         style={{ ...styles.popper, ...style }}
         {...attributes.popper}
       >
@@ -101,6 +81,8 @@ const Menu = forwardRef<HTMLDivElement, MenuProps>(
 
             return React.cloneElement(child, {
               key: child.props.index ?? index,
+              ...(!child.props.color && { color: color }),
+              ...(!child.props.variant && { variant: variant }),
               onClick: _onClick,
             } as MenuItemProps);
           })}
@@ -119,5 +101,55 @@ const Menu = forwardRef<HTMLDivElement, MenuProps>(
     return MenuElement;
   }
 );
-
 export default Menu;
+
+const variantStyleHandler = (
+  variant: MenuStyleProps["$variant"],
+  colorPalette: MenuStyleProps["$colorPalette"],
+  color: MenuStyleProps["$color"]
+) => {
+  switch (variant) {
+    case "contained":
+      return css`
+        background-color: ${colorPalette[color].accentScale[8]};
+        color: ${colorPalette[color].accentContrast};
+        border: 2px solid ${colorPalette[color].accentScale[8]};
+      `;
+    case "outlined":
+      return css`
+        background-color: "transparent";
+        color: ${colorPalette[color].accentScale[10]};
+        border: 2px solid ${colorPalette[color].accentScale[5]};
+      `;
+    case "soft":
+      return css`
+        background-color: ${colorPalette[color].accentScale[2]};
+        color: ${colorPalette[color].accentScale[10]};
+        border: 2px solid ${colorPalette[color].accentScale[2]};
+      `;
+      
+  }
+};
+
+const StyledMenuContainer = styled.div<MenuStyleProps>`
+  display: ${(props) => (props.$open ? "block" : "none")};
+  min-width: ${(props) => props.$minWidth};
+  border-radius: 0.5rem;
+  padding: 0.5rem 0;
+  ${props => variantStyleHandler(props.$variant, props.$colorPalette, props.$color)}
+  
+`;
+const StyledMenu = styled.ul`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 100%;
+  list-style-type: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  user-select: none;
+`;
+
+

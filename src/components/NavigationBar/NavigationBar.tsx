@@ -7,6 +7,8 @@ import styled from "styled-components";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
 import { NavigationBarGroupProps } from "./NavigationBarGroup/NavigationBarGroup.types";
 import { NavigationBarGroupItemProps } from "./NavigationBarGroupItem/NavigationBarGroupItem.types";
+import { getColorPalette } from "../../helpers/helpers";
+import colorTokens from "../../tokens/colors.json";
 
 const StyledNavigationBarCtr = styled.div<NavigationBarStyleProps>`
   display: flex;
@@ -18,14 +20,15 @@ const StyledNavigationBarCtr = styled.div<NavigationBarStyleProps>`
   width: 15rem;
   overflow: scroll;
   border-right: ${(props) =>
-    `1px solid ${props.$colorPalette.primary.grayScale[5]}`};
-  background-color: ${(props) => props.$colorPalette.primary.grayScale[0]};
+    `1px solid ${props.$colorPalette[props.$color].grayScale[5]}`};
+  background-color: ${(props) => props.$colorPalette[props.$color].grayScale[0]};
 `;
 
 const NavigationBar: React.FC<NavigationBarProps> = ({
   children,
   className,
   style,
+  color = colorTokens.default.primary.main,
   // Events
   onChange,
 }) => {
@@ -33,8 +36,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
     number | undefined
   >();
   const theme = useTheme().theme;
-  if(!theme) return null;
-  const colorPalette = theme.colorPalette;
+  const colorPalette = getColorPalette(theme, color);
 
   const childrenList = Array.isArray(children) ? children : [children];
 
@@ -87,6 +89,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
 
   return (
     <StyledNavigationBarCtr
+      $color={color}
       $colorPalette={colorPalette}
       className={className}
       style={style}

@@ -8,7 +8,9 @@ import { ThemeProvider } from "../../../components/ThemeProvider/ThemeProvider";
 const meta: Meta<typeof NotFound> = {
   title: "Components/NotFound",
   component: NotFound,
-  parameters: {},
+  parameters: {
+    layout: "centered"
+  },
   argTypes: {
   },
 };
@@ -16,12 +18,23 @@ const meta: Meta<typeof NotFound> = {
 export default meta;
 type Story = StoryObj<typeof NotFound>;
 
-export const Default: Story = {
+const Template: Story = {
   render: (args) => {
     return (
-      <ThemeProvider>
-        <NotFound name="cone" width="200px" height="200px"/>
-      </ThemeProvider>
+        <NotFound  width="200px" height="200px" {...args}/>
     );
   },
 };
+export const Cone = {
+  ...Template,
+  args: {
+    name: "cone",
+    
+  }
+}
+export const File_404 = {
+  ...Template,
+  args: {
+    name: "File_Error_404",
+  }
+}

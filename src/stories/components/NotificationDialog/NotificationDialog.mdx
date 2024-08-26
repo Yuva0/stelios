@@ -1,0 +1,45 @@
+{/* NotificationDialog.mdx */}
+import { Canvas,Meta, Controls } from '@storybook/blocks';
+import * as NotificationDialogStories from './NotificationDialog.stories';
+
+<Meta of={NotificationDialogStories} name="Docs" />
+# NotificationDialog:
+Notification Dialogs are used to display important information to the user. They
+are used to inform the user about the status of an action or to ask for
+confirmation before proceeding.\
+They are used to display information in a
+structured way.
+
+## Variants:
+There aren't that many variants for you to be indecisive.\
+Choose the one that fits your design system the best.\
+Default is Contained
+
+#### Contained
+<Canvas of={NotificationDialogStories.Contained} />
+
+#### Outlined
+
+<Canvas of={NotificationDialogStories.Outlined} />
+
+#### Soft
+
+<Canvas of={NotificationDialogStories.Soft} />
+
+
+## Icons
+You can add icons to the Notification Dialogs to make them more visually appealing.\
+We support two: leading and trailing icons.
+
+#### Leading Icon
+<Canvas of={NotificationDialogStories.LeadingIcon}/>
+
+#### Trailing Icon
+<Canvas of={NotificationDialogStories.TrailingIcon}/>
+
+## Playground
+
+Customize as per your needs using the controls below
+
+<Canvas of={NotificationDialogStories.Playground} />
+<Controls of={NotificationDialogStories.Playground} />

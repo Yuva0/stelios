@@ -20,41 +20,43 @@ const meta: Meta<typeof NavigationBar> = {
 export default meta;
 
 type Story = StoryObj<typeof NavigationBar>;
-export const Default: Story = {
+const Template: Story = {
   render: () => {
     return (
-      <ThemeProvider appearance="light">
-        <NavigationBar onChange={(value) => console.log(value)}>
-          <NavigationBarGroup title="Components 1">
-            <NavigationBarHeader>Header</NavigationBarHeader>
-            <NavigationBarGroupItem value="1">Content</NavigationBarGroupItem>
-            <NavigationBarGroupItem value="2">Content</NavigationBarGroupItem>
-            <NavigationBarGroupItem value="3">Content</NavigationBarGroupItem>
-            <NavigationBarGroupItem value="4">Content</NavigationBarGroupItem>
-            <NavigationBarGroupItem value="5">Content</NavigationBarGroupItem>
-            <NavigationBarHeader>Header</NavigationBarHeader>
-            <NavigationBarGroupItem value="6">Content</NavigationBarGroupItem>
-            <NavigationBarGroupItem value="7">Content</NavigationBarGroupItem>
-            <NavigationBarGroupItem value="8">Content</NavigationBarGroupItem>
-            <NavigationBarGroupItem value="9">Content</NavigationBarGroupItem>
-          </NavigationBarGroup>
-          <NavigationBarItem value="10" selected>Content</NavigationBarItem>
-          <NavigationBarItem value="11">Content</NavigationBarItem>
-          <NavigationBarItem value="12">Content</NavigationBarItem>
-          <NavigationBarGroup title="Components 2">
-            <NavigationBarHeader>Header</NavigationBarHeader>
-            <NavigationBarGroupItem value="13">Content</NavigationBarGroupItem>
-            <NavigationBarGroupItem value="14">Content</NavigationBarGroupItem>
-            <NavigationBarGroupItem value="15">Content</NavigationBarGroupItem>
-            <NavigationBarGroupItem value="16">Content</NavigationBarGroupItem>
-            <NavigationBarGroupItem value="17">Content</NavigationBarGroupItem>
-            <NavigationBarGroupItem value="18">Content</NavigationBarGroupItem>
-            <NavigationBarGroupItem value="19">Content</NavigationBarGroupItem>
-            <NavigationBarGroupItem value="20">Content</NavigationBarGroupItem>
-            <NavigationBarGroupItem value="21">Content</NavigationBarGroupItem>
-          </NavigationBarGroup>
-        </NavigationBar>
-      </ThemeProvider>
+      <NavigationBar onChange={(value) => console.log(value)}>
+        <NavigationBarGroup title="Group 1">
+          <NavigationBarHeader>Header 1</NavigationBarHeader>
+          <NavigationBarGroupItem value="1">Group Items</NavigationBarGroupItem>
+          <NavigationBarGroupItem value="2">Group Items</NavigationBarGroupItem>
+          <NavigationBarGroupItem value="3">Group Items</NavigationBarGroupItem>
+          <NavigationBarGroupItem value="4">Group Items</NavigationBarGroupItem>
+          <NavigationBarGroupItem value="5">Group Items</NavigationBarGroupItem>
+          <NavigationBarHeader>Header 2</NavigationBarHeader>
+          <NavigationBarGroupItem value="6">Group Items</NavigationBarGroupItem>
+          <NavigationBarGroupItem value="7">Group Items</NavigationBarGroupItem>
+          <NavigationBarGroupItem value="8">Group Items</NavigationBarGroupItem>
+          <NavigationBarGroupItem value="9">Group Items</NavigationBarGroupItem>
+        </NavigationBarGroup>
+        <NavigationBarGroup title="Group 2">
+          <NavigationBarHeader>Header 3</NavigationBarHeader>
+          <NavigationBarGroupItem value="13">Group Items</NavigationBarGroupItem>
+          <NavigationBarGroupItem value="14">Group Items</NavigationBarGroupItem>
+          <NavigationBarGroupItem value="15">Group Items</NavigationBarGroupItem>
+          <NavigationBarGroupItem value="16">Group Items</NavigationBarGroupItem>
+          <NavigationBarGroupItem value="17">Group Items</NavigationBarGroupItem>
+          <NavigationBarGroupItem value="18">Group Items</NavigationBarGroupItem>
+          <NavigationBarGroupItem value="19">Group Items</NavigationBarGroupItem>
+          <NavigationBarGroupItem value="20">Group Items</NavigationBarGroupItem>
+          <NavigationBarGroupItem value="21">Group Items</NavigationBarGroupItem>
+        </NavigationBarGroup>
+        <NavigationBarItem selected>Title Item</NavigationBarItem>
+        <NavigationBarItem>Title Item</NavigationBarItem>
+        <NavigationBarItem>Title Item</NavigationBarItem>
+      </NavigationBar>
     );
   },
+};
+
+export const Default = {
+  ...Template,
 };

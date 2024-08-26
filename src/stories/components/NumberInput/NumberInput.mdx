@@ -1,0 +1,44 @@
+{/* NumberInput.mdx */}
+import { Canvas, Meta, Controls } from '@storybook/blocks';
+import * as NumberInputStories from './NumberInput.stories';
+
+<Meta of={NumberInputStories} name="Docs"/>
+
+# NumberInput:
+Input field for numbers.
+
+## Variants:
+There aren't that many variants for you to be indecisive.\
+Choose the one that fits your design system the best.\
+Default is Contained
+
+#### Contained
+<Canvas of={NumberInputStories.Contained} />
+
+#### Outlined
+<Canvas of={NumberInputStories.Outlined} />
+
+#### Soft
+<Canvas of={NumberInputStories.Soft} />
+
+
+## Sizes:
+There are 3 sizes available for NumberInput.\
+Choose the one that fits your design system the best.\
+Default is Medium
+
+#### Small
+<Canvas of={NumberInputStories.Small} />
+
+#### Medium
+<Canvas of={NumberInputStories.Medium} />
+
+#### Large
+<Canvas of={NumberInputStories.Large} />
+
+
+## Playground
+Customize as per your needs using the controls below
+
+<Canvas of={NumberInputStories.Playground}/>
+<Controls of={NumberInputStories.Playground} />

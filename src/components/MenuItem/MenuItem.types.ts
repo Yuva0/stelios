@@ -9,6 +9,7 @@ export interface MenuItemProps extends MenuItemKeyProps {
   trailingIcon?: React.ReactNode;
   children?: React.ReactNode | React.ReactNode[];
   color?: string;
+  variant?: "contained" | "outlined" | "soft";
   onClick?: (
     e: React.MouseEvent<HTMLLIElement>,
     { value, title }: MenuItemKeyProps
@@ -18,4 +19,5 @@ export interface MenuItemProps extends MenuItemKeyProps {
 export interface MenuItemStyleProps {
   $colorPalette: any;
   $color: string;
+  $variant: NonNullable<MenuItemProps["variant"]>;
 }

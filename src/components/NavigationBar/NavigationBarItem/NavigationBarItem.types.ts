@@ -1,12 +1,13 @@
 
 export interface NavigationBarItemProps {
   _index?: number;
-  value: string;
+  value?: string;
   children: string | React.ReactNode;
   leadingIcon?: React.ReactNode;
   trailingIcon?: React.ReactNode;
   className?: string;
   style?: React.CSSProperties;
+  color?: string;
   size?: "small" | "medium" | "large";
   selected?: boolean;
   // Events
@@ -17,4 +18,5 @@ export interface NavigationBarItemProps {
 export interface NavigationBarItemStyleProps {
   $selected?: boolean;
   $colorPalette: any;
+  $color: string;
 }

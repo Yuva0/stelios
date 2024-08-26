@@ -5,57 +5,9 @@ import {
 } from "./NavigationBarGroupItem.types";
 import styled from "styled-components";
 import Text from "../../Text/Text";
+import colorTokens from "../../../tokens/colors.json";
 import { useTheme } from "../../ThemeProvider/ThemeProvider";
-
-const StyledNavBarGroupItem = styled.li<NavigationBarGroupItemStyleProps>`
-  display: flex;
-  position: relative;
-  flex-direction: row;
-  gap: 1rem;
-  align-items: center;
-  cursor: pointer;
-  border-radius: 0.5rem;
-  padding: 0.4rem 0 0.4rem 1.75rem;
-  margin: 0 0.5rem;
-  color: ${(props) =>
-    props.$selected
-      ? props.$colorPalette.primary.accentScale[10]
-      : props.$colorPalette.primary.grayScale[11]};
-  background-color: ${(props) =>
-    props.$selected
-      ? props.$colorPalette.primary.accentScale[2]
-      : "transparent"};
-  &:hover {
-    background-color: ${(props) =>
-      props.$selected
-        ? props.$colorPalette.primary.accentScale[3]
-        : props.$colorPalette.primary.grayScale[1]};
-  }
-  &:active {
-    background-color: ${(props) =>
-      props.$selected
-        ? props.$colorPalette.primary.accentScale[4]
-        : props.$colorPalette.primary.grayScale[2]};
-  }
-  &:focus-visible {
-    outline: 1px solid ${(props) => props.$colorPalette.primary.accentScale[5]};
-  }
-  &:after {
-    content: "";
-    position: absolute;
-    height: 100%;
-    margin-left: 0.43rem;
-    border-left: 1px solid
-      ${(props) => props.$selected
-        ? props.$colorPalette.primary.accentScale[5] : props.$colorPalette.primary.grayScale[5]};
-    top: 0;
-    left: 0;
-  }
-`;
-
-const StyledNavBarGrpItemIcon = styled.span`
-  margin-left: auto;
-`;
+import { getColorPalette } from "../../../helpers/helpers";
 
 const NavigationBarGroupItem = ({
   _index,
@@ -68,6 +20,7 @@ const NavigationBarGroupItem = ({
   size,
   selected,
   tabIndex = 0,
+  color = colorTokens.default.primary.main,
   // Events
   _getSelectedIndex,
   onClick,
@@ -78,8 +31,7 @@ const NavigationBarGroupItem = ({
     setSelected(selected);
   }, [selected]);
   const theme = useTheme().theme;
-  if(!theme) return null;
-  const colorPalette = theme.colorPalette;
+  const colorPalette = getColorPalette(theme, color);
 
   const _onClick = (e: React.MouseEvent | React.KeyboardEvent) => {
     setSelected(true);
@@ -97,6 +49,7 @@ const NavigationBarGroupItem = ({
       tabIndex={tabIndex}
       $selected={_selected}
       $colorPalette={colorPalette}
+      $color={color}
       className={className}
       style={style}
       onClick={_onClick}
@@ -106,7 +59,7 @@ const NavigationBarGroupItem = ({
         <StyledNavBarGrpItemIcon>{leadingIcon}</StyledNavBarGrpItemIcon>
       )}
       {typeof children === "string" ? (
-        <Text disableColor variant="span" size={size}>
+        <Text color={color} variant="span" size={size}>
           {children}
         </Text>
       ) : (
@@ -118,5 +71,53 @@ const NavigationBarGroupItem = ({
     </StyledNavBarGroupItem>
   );
 };
-
 export default NavigationBarGroupItem;
+
+const StyledNavBarGroupItem = styled.li<NavigationBarGroupItemStyleProps>`
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  padding: 0.4rem 0 0.4rem 1.75rem;
+  margin: 0 0.5rem;
+  color: ${(props) =>
+    props.$selected
+      ? props.$colorPalette[props.$color].accentScale[10]
+      : props.$colorPalette[props.$color].grayScale[11]};
+  background-color: ${(props) =>
+    props.$selected
+      ? props.$colorPalette[props.$color].accentScale[2]
+      : "transparent"};
+  &:hover {
+    background-color: ${(props) =>
+      props.$selected
+        ? props.$colorPalette[props.$color].accentScale[3]
+        : props.$colorPalette[props.$color].grayScale[1]};
+  }
+  &:active {
+    background-color: ${(props) =>
+      props.$selected
+        ? props.$colorPalette[props.$color].accentScale[4]
+        : props.$colorPalette[props.$color].grayScale[2]};
+  }
+  &:focus-visible {
+    outline: 1px solid ${(props) => props.$colorPalette[props.$color].accentScale[5]};
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    height: 100%;
+    margin-left: 0.43rem;
+    border-left: 1px solid
+      ${(props) => props.$selected
+        ? props.$colorPalette[props.$color].accentScale[5] : props.$colorPalette[props.$color].grayScale[5]};
+    top: 0;
+    left: 0;
+  }
+`;
+const StyledNavBarGrpItemIcon = styled.span`
+  margin-left: auto;
+`;

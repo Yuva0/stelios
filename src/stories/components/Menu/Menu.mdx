@@ -1,0 +1,29 @@
+{/* Menu.mdx */}
+import { Canvas, Meta, Controls } from '@storybook/blocks';
+import * as MenuStories from './Menu.stories';
+
+<Meta of={MenuStories} name="Docs"/>
+
+# Menu:
+Menus are used to display a list of options.\
+They are used to group similar options together.
+
+## Variants:
+Every variant has it's own story. Neither is better than the other, they are just different.\
+Choose the one that fits your design system the best.
+
+#### Contained
+<Canvas of={MenuStories.Contained} />
+
+#### Outlined
+<Canvas of={MenuStories.Outlined} />
+
+#### Soft
+<Canvas of={MenuStories.Soft} />
+
+
+## Playground:
+Customize as per your needs using the controls below
+
+<Canvas of={MenuStories.Playground}/>
+<Controls of={MenuStories.Playground}/>

@@ -1,50 +1,11 @@
 import * as React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Text from "../Text/Text";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
 import { useDebounce } from "../../helpers/CustomHooks";
-interface NotificationDialogProps {
-  open?: boolean;
-  children?: React.ReactNode;
-  leadingIcon?: React.ReactNode;
-  trailingIcon?: React.ReactNode;
-  width?: string;
-  color?: "primary" | "secondary" | "danger" | "warning" | "success" | "info";
-}
-
-interface NotificationDialogStyleProps {
-  $open: boolean;
-  $height?: string;
-  $width: string;
-  $colorPalette?: any;
-  $color?: string;
-}
-
-const StyledNotificationDialog = styled.div<NotificationDialogStyleProps>`
-  display: flex;
-  position: fixed;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: row;
-  gap: 0.5rem;
-  left: 2rem;
-  border-radius: 0.5rem;
-  padding: 1rem;
-  width: ${(props) => props.$width};
-  bottom: ${(props) => (props.$open ? "2rem" : `-${props.$height}`)};
-  transition: bottom 0.2s ease-in-out;
-  background: ${(props) => props.$colorPalette[props.$color ?? "primary"].accentScale[9]};
-  color: ${(props) => props.$colorPalette[props.$color ?? "primary"].grayScale[0]};
-`;
-
-const StyledIcon = styled.span`
-  width: 1.25rem;
-  height: 1.25rem;
-  & svg {
-    width: 100%;
-    height: 100%;
-  }
-`;
+import { NotificationDialogProps, NotificationDialogStyleProps } from "./NotificationDialog.types";
+import { getColorPalette } from "../../helpers/helpers";
+import colorTokens from "../../tokens/colors.json";
 
 const NotificationDialog: React.FunctionComponent<NotificationDialogProps> = ({
   open = false,
@@ -52,23 +13,19 @@ const NotificationDialog: React.FunctionComponent<NotificationDialogProps> = ({
   children,
   leadingIcon,
   trailingIcon,
-  color = "primary",
+  variant = "contained",
+  color = colorTokens.default.primary.main,
 }) => {
   const [isOpen, setIsOpen] = React.useState(open);
   const debouncedOpen = useDebounce(open, 200);
   const [notifDialogRef, setNotifDialogRef] = React.useState<HTMLDivElement | null>(null);
 
   React.useEffect(() => {
-    console.log(notifDialogRef);
-  },[notifDialogRef]);
-
-  React.useEffect(() => {
     setIsOpen(open);
   }, [open]);
 
   const theme = useTheme().theme;
-  if(!theme) return null;
-  const colorPalette = theme.colorPalette;
+  const colorPalette = getColorPalette(theme, color);
 
   const ChildrenEle =
     typeof children === "string" ? (
@@ -83,6 +40,7 @@ const NotificationDialog: React.FunctionComponent<NotificationDialogProps> = ({
     <StyledNotificationDialog
       ref={setNotifDialogRef}
       $open={isOpen}
+      $variant={variant}
       $height={`${notifDialogRef?.offsetHeight}px`}
       $width={width}
       $colorPalette={colorPalette}
@@ -94,5 +52,53 @@ const NotificationDialog: React.FunctionComponent<NotificationDialogProps> = ({
     </StyledNotificationDialog>
   );
 };
-
 export default NotificationDialog;
+
+const StyledNotificationDialog = styled.div<NotificationDialogStyleProps>`
+  display: flex;
+  position: fixed;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  gap: 0.5rem;
+  left: 2rem;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  width: ${(props) => props.$width};
+  bottom: ${(props) => (props.$open ? "2rem" : `-${props.$height}`)};
+  transition: bottom 0.2s ease-in-out;
+  ${props => variantHandler(props.$variant, props.$colorPalette, props.$color)};
+
+`;
+const StyledIcon = styled.span`
+  width: 1.5rem;
+  height: 1.5rem;
+  flex: 1 0 auto;
+  & svg {
+    width: 100%;
+    height: 100%;
+  }
+`;
+
+const variantHandler = (variant: NotificationDialogProps["variant"], colorPalette: any, color: string) => {
+  switch (variant) {
+    case "contained":
+      return css`
+        background-color: ${colorPalette[color].accentScale[9]};
+        border: 2px solid ${colorPalette[color].accentScale[9]};
+        color: ${colorPalette[color].accentContrast};
+      `;
+    case "outlined":
+      return css`
+        background-color: transparent;
+        border: 2px solid ${colorPalette[color].accentScale[9]};
+        color: ${colorPalette[color].accentScale[10]};
+      `;
+    case "soft":
+      return css`
+        background-color: ${colorPalette[color].accentScale[1]};
+        border: 2px solid ${colorPalette[color].accentScale[1]};
+        color: ${colorPalette[color].accentScale[10]};
+      `;
+  }
+}
