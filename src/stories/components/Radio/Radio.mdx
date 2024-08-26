@@ -1,0 +1,28 @@
+{/* Radio.mdx */}
+import { Canvas, Meta, Controls } from '@storybook/blocks';
+import * as RadioStories from './Radio.stories';
+
+<Meta of={RadioStories} name="Docs"/>
+
+# Radio:
+Radio buttons are for selecting one option from a list.
+
+## Sizes:
+There are 3 sizes available for Radio.\
+Choose the one that fits your design system the best.\
+Default is Medium
+
+#### Small
+<Canvas of={RadioStories.Small} />
+
+#### Medium
+<Canvas of={RadioStories.Medium} />
+
+#### Large
+<Canvas of={RadioStories.Large} />
+
+## Playground
+Customize as per your needs using the controls below
+
+<Canvas of={RadioStories.Playground}/>
+<Controls of={RadioStories.Playground}/>

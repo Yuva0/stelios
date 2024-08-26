@@ -397,7 +397,7 @@ const StyledLabel = styled.label<TextStyleProps>`
       ? "1.25rem"
       : props.$size === "medium"
         ? "1rem"
-        : "0.75rem"};
+        : "0.875rem"};
   line-height: ${(props) =>
     props.$lineHeight ?? props.$size === "large"
       ? "1.75rem"

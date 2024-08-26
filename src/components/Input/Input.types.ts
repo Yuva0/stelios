@@ -12,8 +12,7 @@ export interface InputProps {
   label?: React.ReactNode;
   labelPosition?: "top" | "bottom";
   placeholder?: string;
-  ref?: React.Ref<HTMLInputElement>;
-  forwardedRef?: React.ForwardedRef<HTMLInputElement>;
+  containerRef?: React.RefObject<HTMLDivElement | null>;
   leadingIcon?: React.ReactNode;
   trailingIcon?: React.ReactNode;
   style?: React.CSSProperties;

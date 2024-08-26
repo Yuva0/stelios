@@ -15,17 +15,37 @@ const meta: Meta<typeof Radio> = {
 };
 
 export default meta;
-
 type Story = StoryObj<typeof Radio>;
 
-export const Default: Story = {
-  render: () => {
+export const Template: Story = {
+  render: (args) => {
     return (
-      <div>
-        <RadioGroup>
-          <FormControlLabel control={<Radio />} label="Radio Label" />
+        <RadioGroup label="Gender" {...args}>
+          <FormControlLabel control={<Radio />} label="Male" />
+          <FormControlLabel control={<Radio />} label="Female" />
+          <FormControlLabel control={<Radio />} label="Do not specify" />
         </RadioGroup>
-      </div>
     );
   },
 };
+
+export const Large = {
+  ...Template,
+  args: {
+    size: "large",
+  },
+}
+export const Medium = {
+  ...Template,
+  args: {
+    size: "medium",
+  },
+}
+export const Small = {
+  ...Template,
+  args: {
+    size: "small",
+  },
+}
+
+export const Playground = Template

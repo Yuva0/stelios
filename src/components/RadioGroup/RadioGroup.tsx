@@ -3,6 +3,7 @@ import { RadioGroupProps, RadioGroupStyleProps } from "./RadioGroup.types";
 import Text from "../Text/Text";
 import { getIncrementalGeneratedId } from "../../helpers/helpers";
 import styled from "styled-components";
+import colorTokens from "../../tokens/colors.json";
 
 const StyledRadioGroup = styled.div<RadioGroupStyleProps>`
   display: flex;
@@ -15,7 +16,7 @@ const RadioGroup = ({
   name,
   value,
   size = "medium",
-  color,
+  color = colorTokens.default.primary.main,
   disabled,
   children,
   label,
@@ -44,7 +45,7 @@ const RadioGroup = ({
 
   const Label = label ? (
     typeof label === "string" ? (
-      <Text variant="label" size="large">
+      <Text variant="label" size={size} color={color}>
         {label}
       </Text>
     ) : (

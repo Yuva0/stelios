@@ -2,7 +2,7 @@ export interface RadioGroupProps {
   name?: string;
   value?: string;
   size?: "small" | "medium" | "large";
-  color?: "primary" | "secondary" | "tertiary" | "danger" | "warning" | "success" | "info";
+  color?: string;
   disabled?: boolean;
   children?: React.ReactNode | React.ReactNode[];
   labelPlacement?: "top" | "bottom" | "start" | "end";

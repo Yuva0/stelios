@@ -1,4 +1,4 @@
-import React, { act, forwardRef } from "react";
+import React, { act, forwardRef, useImperativeHandle } from "react";
 import {
   InputProps,
   InputStyleIconProps,
@@ -31,6 +31,7 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
       className,
       disabled = false,
       variant = "contained",
+      containerRef,
 
       // Events
       onChange,
@@ -42,6 +43,11 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
     ref
   ) => {
     const inputRef = React.useRef<HTMLInputElement>(null);
+    useImperativeHandle(ref, () => inputRef.current!, [inputRef]);
+    const _containerRef = React.useRef<HTMLDivElement>(null);
+    useImperativeHandle(containerRef, () => _containerRef.current!, [
+      _containerRef,
+    ]);
     const [isFocused, setIsFocused] = React.useState(false);
     const [inputValue, setInputValue] = React.useState<string | string[]>(
       value ?? ""
@@ -88,10 +94,11 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
 
     return (
       <StyledInput
-        ref={ref}
+        ref={_containerRef}
         onClick={_onClick}
         onKeyDown={_onKeyDown}
         $width={width}
+        className={className}
         {...props}
       >
         {labelPosition && labelPosition === "top" ? Label : null}

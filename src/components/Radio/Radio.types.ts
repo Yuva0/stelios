@@ -2,14 +2,7 @@ export interface RadioProps {
   index?: number;
   value?: string;
   size?: "small" | "medium" | "large";
-  color?:
-    | "primary"
-    | "secondary"
-    | "tertiary"
-    | "danger"
-    | "warning"
-    | "success"
-    | "info";
+  color?: string;
   selected?: boolean;
   focused?: boolean;
   disabled?: boolean;
@@ -29,5 +22,5 @@ export interface RadioStyleProps {
   $disabled?: NonNullable<RadioProps["disabled"]>;
   $size: NonNullable<RadioProps["size"]>;
   $color: NonNullable<RadioProps["color"]>;
-  $colorGradient: any
+  $colorPalette: any
 }

@@ -28,9 +28,10 @@ const Autocomplete = ({
   onClick,
   onInputChange,
 }: AutocompleteProps) => {
-  const [inputAnchor, setInputAnchor] = React.useState<HTMLDivElement | null>(
-    null
-  );
+  // const [inputAnchor, setInputAnchor] = React.useState<HTMLDivElement | null>(
+  //   null
+  // );
+  const inputRef = React.useRef<HTMLInputElement>(null);
   const [isOpen, setIsOpen] = React.useState(open ?? false);
   const [inputValue, setInputValue] = React.useState<string | string[]>(
     value
@@ -114,7 +115,7 @@ const Autocomplete = ({
         width={width}
         placeholder={placeholder}
         value={inputValue}
-        ref={setInputAnchor}
+        containerRef={inputRef}
         label={label}
         trailingIcon={<IconArrowDown />}
         className={className}
@@ -123,9 +124,10 @@ const Autocomplete = ({
         onChange={_onInputChange}
       />
       <Menu
+        variant={variant}
         open={isOpen}
-        anchorElement={inputAnchor}
-        minWidth={`${inputAnchor?.offsetWidth}px`}
+        anchorElement={inputRef.current}
+        minWidth={`${inputRef.current?.offsetWidth}px`}
         onClick={_onMenuClick}
         style={{ backgroundColor: colorPalette ? colorPalette[color].grayScale[1] : colorTokens.default.primary.grayScale[1] }}
       >
