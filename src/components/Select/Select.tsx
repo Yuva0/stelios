@@ -7,18 +7,21 @@ import { MenuItemKeyProps } from "../MenuItem/MenuItem.types";
 
 const Select = ({
   label,
-  open,
+  open = false,
   children,
   multiSelect,
   placeholder,
+  variant = "contained",
+  size = "medium",
 
   //Events
   onClick,
 }: SelectProps) => {
-  const [anchorElement, setAnchorElement] =
-    React.useState<HTMLDivElement | null>(null);
-  const [isOpen, setIsOpen] = React.useState(open ?? false);
+  const inputRef = React.useRef<HTMLInputElement>(null);
+  const [isOpen, setIsOpen] = React.useState(open);
   const [inputValue, setInputValue] = React.useState<string | string[]>("");
+
+  // FIX: To be worked on
   const _handleMultiSelectOnClick = (
     e: React.MouseEvent,
     { title, value }: MenuItemKeyProps
@@ -37,7 +40,6 @@ const Select = ({
   ) => {
     setIsOpen(false);
     setInputValue(title);
-
     onClick && onClick(e, { title, value });
   };
   const _onClick = (
@@ -51,11 +53,13 @@ const Select = ({
   return (
     <div>
       <Input
+        variant={variant}
         placeholder={placeholder}
         value={inputValue}
         disableSearch
-        ref={setAnchorElement}
+        containerRef={inputRef}
         label={label}
+        size={size}
         trailingIcon={<IconArrowDown />}
         cursor="pointer"
         onClick={() => {
@@ -63,9 +67,10 @@ const Select = ({
         }}
       />
       <Menu
+        variant={variant}
         open={isOpen}
-        anchorElement={anchorElement}
-        minWidth={`${anchorElement?.offsetWidth}px`}
+        anchorElement={inputRef.current}
+        minWidth={`${inputRef.current?.offsetWidth}px`}
         onClick={_onClick}
       >
         {React.Children.map(children, (child) => {

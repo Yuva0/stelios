@@ -28,9 +28,6 @@ const Autocomplete = ({
   onClick,
   onInputChange,
 }: AutocompleteProps) => {
-  // const [inputAnchor, setInputAnchor] = React.useState<HTMLDivElement | null>(
-  //   null
-  // );
   const inputRef = React.useRef<HTMLInputElement>(null);
   const [isOpen, setIsOpen] = React.useState(open ?? false);
   const [inputValue, setInputValue] = React.useState<string | string[]>(
@@ -64,9 +61,6 @@ const Autocomplete = ({
       );
     });
   }, [options, inputValue]);
-
-
-
 
   const _handleMultiSelectOnClick = (
     e: React.MouseEvent,

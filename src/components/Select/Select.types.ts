@@ -7,7 +7,8 @@ export interface SelectProps {
   placeholder?: string;
   style?: React.CSSProperties;
   className?: string;
-
+  variant?: "contained" | "outlined" | "soft";
+  size?: "small" | "medium" | "large";
   children? : React.ReactNode | React.ReactNode[];
 
   // Events

@@ -1,4 +1,4 @@
-import React, { act, forwardRef, useImperativeHandle } from "react";
+import React, { forwardRef, useImperativeHandle } from "react";
 import {
   InputProps,
   InputStyleIconProps,
@@ -209,6 +209,7 @@ const StyledInputContent = styled.div<InputStyleContentProps>`
       props.$size
     );
     return `
+      cursor: ${props.$cursor};
       background-color: ${properties.backgroundColor.default};
       border: ${properties.border.default};
       padding: ${properties.padding};
@@ -221,12 +222,22 @@ const StyledInputContent = styled.div<InputStyleContentProps>`
           color: ${properties.color.hover};
           background-color: ${properties.backgroundColor.hover};
         }
+
+        & span.ste-input-content {
+          color: ${properties.color.hover};
+          background-color: ${properties.backgroundColor.hover};
+        }
       }
       &:active {
         background-color: ${properties.backgroundColor.active};
         color: ${properties.color.active};
         border: ${properties.border.active};
         & input{
+          color: ${properties.color.active};
+          background-color: ${properties.backgroundColor.active};
+        }
+
+        & span.ste-input-content {
           color: ${properties.color.active};
           background-color: ${properties.backgroundColor.active};
         }
@@ -258,6 +269,10 @@ const StyledInputContent = styled.div<InputStyleContentProps>`
         font-size: ${properties.fontSize};
         line-height: ${properties.lineHeight};
         width: 100%;
+        font-size: ${properties.fontSize};
+        font-family: 'Varela Round', sans-serif;
+        background-color: ${properties.backgroundColor.default};
+        color: ${properties.color.default};
       }
     `;
   }}

@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import Input from "../Input/Input";
 import { IconEye, IconEyeClosed } from "@tabler/icons-react";
-import { hasPropertyChain } from "../../helpers/helpers";
 import { PasswordProps } from "./Password.types";
 import Text from "../Text/Text";
 

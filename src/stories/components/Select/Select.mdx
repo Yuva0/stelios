@@ -1,0 +1,43 @@
+{/* Select.mdx */}
+import { Meta, Controls, Canvas } from '@storybook/addon-docs/blocks';
+import * as SelectStories from './Select.stories';
+
+<Meta of={SelectStories} name="Docs"/>
+# Select
+Selects are used to provide a list of options for the user to choose from.\
+They are used when the user needs to select one or more options from a list of options.\
+They are used in forms, dialogs, and menus.
+
+## Variants:
+Every variant has it's own story. Neither is better than the other, they are just different.\
+Choose the one that fits your design system the best.\
+Default is Contained
+
+#### Contained
+<Canvas of={SelectStories.Contained}/>
+
+#### Outlined
+<Canvas of={SelectStories.Outlined}/>
+
+#### Soft
+<Canvas of={SelectStories.Soft}/>
+
+
+## Sizes:
+Selects can be small, medium or large. Default is medium.
+
+#### Small
+<Canvas of={SelectStories.Small}/>
+
+#### Medium
+<Canvas of={SelectStories.Medium}/>
+
+#### Large
+<Canvas of={SelectStories.Large}/>
+
+
+## Playground:
+Customize as per your needs using the controls below
+
+<Canvas of={SelectStories.Playground}/>
+<Controls of={SelectStories.Playground}/>
