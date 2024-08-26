@@ -39,21 +39,37 @@ const Slider: React.FunctionComponent<SliderProps> = ({
     setSliderValue(value ?? defaultValue ?? 0);
   }, [value, defaultValue]);
 
-  /* -------------------------------
-    OnClick, calculate new value
+  /* ------------------------------
+    Calculate new value on MouseMove
   ------------------------------- */
-  const calculateNewValue = (e: React.MouseEvent) => {
-    e.preventDefault();
+  const calculateNewValue = (pageX: number) => {
     if (!sliderRef || !sliderRef.current) return;
 
     const containerX =
       sliderRef.current.getBoundingClientRect().x + window.scrollX;
-    const mouseX = e.pageX;
     const containerWidth = sliderRef.current.offsetWidth;
 
-    const offset = calculateHandleOffset(containerX, mouseX, containerWidth);
+    const offset = calculateHandleOffset(containerX, pageX, containerWidth);
     const scaleValue = getScaleValue(offset, min, max, 2);
     setSliderValue(scaleValue);
+    onChange && onChange(scaleValue);
+  };
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    e.preventDefault();
+    calculateNewValue(e.pageX);
+
+    const handleMouseMove = (e: MouseEvent) => {
+      calculateNewValue(e.pageX);
+    };
+
+    const handleMouseUp = () => {
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseup", handleMouseUp);
+    };
+
+    document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("mouseup", handleMouseUp);
   };
 
   return (
@@ -74,6 +90,7 @@ const Slider: React.FunctionComponent<SliderProps> = ({
         $color={color}
         $variant={variant}
         $size={size}
+        onMouseDown={handleMouseDown} // Attach the handler here
       >
         <StyledSliderTrackFinal
           style={{ width: `${sliderValue}%` }}
@@ -95,7 +112,7 @@ const Slider: React.FunctionComponent<SliderProps> = ({
           max={max}
           step={step}
           value={sliderValue}
-          onClick={calculateNewValue}
+          readOnly
         />
       </StyledSliderTrack>
     </div>

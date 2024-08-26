@@ -10,8 +10,8 @@ const SliderStoryMeta: Meta<typeof Slider> = {
   }
 };
 export default SliderStoryMeta;
-
 type SliderStory = StoryObj<typeof Slider>;
-export const SliderTemplate: SliderStory = {
+
+export const Default: SliderStory = {
   render: (args) => <Slider {...args}/>
 };

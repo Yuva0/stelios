@@ -13,7 +13,7 @@ export interface SliderProps {
   variant?: "contained" | "outlined";
   size?: "small" | "medium" | "large";
   // Events
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (value: number) => void;
 }
 export interface SliderTrackStyleProps {
   $colorPalette: any
