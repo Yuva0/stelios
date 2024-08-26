@@ -26,7 +26,6 @@ const AccordionItem = ({
 
   React.useEffect(() => {
     if (isExpanded) {
-      console.log(accordionItemRef.current?.clientHeight);
       setIsExpanded(false);
       setIsExpanded(true);
     }

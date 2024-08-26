@@ -123,7 +123,6 @@ const Autocomplete = ({
         anchorElement={inputRef.current}
         minWidth={`${inputRef.current?.offsetWidth}px`}
         onClick={_onMenuClick}
-        style={{ backgroundColor: colorPalette ? colorPalette[color].grayScale[1] : colorTokens.default.primary.grayScale[1] }}
       >
         {filteredOptions?.map((option, index) => (
           <MenuItem title={option.title} value={option.value} key={index} />

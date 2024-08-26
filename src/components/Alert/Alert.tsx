@@ -128,10 +128,10 @@ const getVariantProps = (
           default: "transparent",
         },
         border: {
-          default: `2px solid ${colorPalette[color].accentScale[6]}`,
+          default: `2px solid ${colorPalette[color].accentScale[8]}`,
         },
         borderLeft: {
-          default: `0.5rem solid ${colorPalette[color].accentScale[6]}`,
+          default: `0.5rem solid ${colorPalette[color].accentScale[8]}`,
         },
         color: {
           default: colorPalette[color].accentScale[11],
@@ -143,10 +143,25 @@ const getVariantProps = (
           default: colorPalette[color].accentScale[2],
         },
         border: {
-          default: `2px solid ${colorPalette[color].accentScale[6]}`,
+          default: `2px solid ${colorPalette[color].accentScale[2]}`,
         },
         borderLeft: {
           default: `0.5rem solid ${colorPalette[color].accentScale[6]}`,
+        },
+        color: {
+          default: colorPalette[color].accentScale[11],
+        }
+      };
+    case "outlined-soft":
+      return {
+        background: {
+          default: colorPalette[color].accentScale[2],
+        },
+        border: {
+          default: `2px solid ${colorPalette[color].accentScale[8]}`,
+        },
+        borderLeft: {
+          default: `0.5rem solid ${colorPalette[color].accentScale[8]}`,
         },
         color: {
           default: colorPalette[color].accentScale[11],

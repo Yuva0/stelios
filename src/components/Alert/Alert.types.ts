@@ -3,7 +3,7 @@ export interface AlertProps {
   titleIcon?: React.ReactNode;
   description: React.ReactNode;
   leadingIcon?: React.ReactNode;
-  variant?: "contained" | "outlined" | "soft";
+  variant?: "contained" | "outlined" | "soft" | "outlined-soft";
   color?: string;
   width?: string;
   style?: React.CSSProperties;
@@ -14,5 +14,5 @@ export interface AlertStyleProps {
   $width: string;
   $color: string;
   $colorPalette: any;
-  $variant: "contained" | "outlined" | "soft";
+  $variant: "contained" | "outlined" | "soft" | "outlined-soft";
 }

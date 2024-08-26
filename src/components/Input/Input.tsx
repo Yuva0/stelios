@@ -172,11 +172,11 @@ const StyledInput = styled.div<InputStyleProps>`
   user-select: none;
 `;
 const StyledInputIcon = styled.div<InputStyleIconProps>`
-  color: ${(props) => props.$colorPalette[props.$color].grayScale[8]};
   cursor: pointer;
   flex: 1 0 auto;
   width: ${(props) => sizeHandler(props.$size).iconSize};
   height: ${(props) => sizeHandler(props.$size).iconSize};
+  padding: 0.25rem;
   &:hover {
     background-color: ${(props) =>
       props.$colorPalette[props.$color].grayScale[2]};
@@ -190,6 +190,9 @@ const StyledInputIcon = styled.div<InputStyleIconProps>`
     const properties = styledIconHandler(props.$variant, props.$colorPalette, props.$color, props.$size);
     return `
       color: ${properties.color.default};
+      &:hover {
+        background-color: ${properties.iconHover};
+      }
     `;
   }}
 `;
@@ -322,6 +325,7 @@ const variantHandler = (
         placeholder: {
           default: colorPalette[color].grayScale[3],
         },
+        iconHover: colorPalette[color].accentScale[8]
       };
     case "outlined":
       return {
@@ -343,6 +347,7 @@ const variantHandler = (
         placeholder: {
           default: colorPalette[color].accentScale[6],
         },
+        iconHover: colorPalette[color].grayScale[2]
       };
     case "soft":
       return {
@@ -363,7 +368,8 @@ const variantHandler = (
         },
         placeholder: {
           default: colorPalette[color].grayScale[10],
-        }
+        },
+        iconHover: colorPalette[color].accentScale[5]
       }
   }
 };

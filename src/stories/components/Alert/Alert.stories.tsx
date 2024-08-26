@@ -80,6 +80,15 @@ export const Soft = {
     variant: "soft",
   },
 };
+export const OutlinedSoft = {
+  ...AlertTemplate,
+  args: {
+    title: "L",
+    description:
+      "A weirdo if you have never met him. Once you do, there is no going back. He is a genius detective who is known for his eccentricity and his ability to solve any case, no matter how difficult it may be.",
+    variant: "outlined-soft",
+  },
+};
 
 // Icons
 export const LeadingIcon = {
