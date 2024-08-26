@@ -1,5 +1,6 @@
 export interface SideBarItemProps {
   children: React.ReactNode | React.ReactNode[];
+  color?: string;
   className?: string;
   style?: React.CSSProperties;
   size?: "small" | "medium" | "large";
@@ -9,5 +10,6 @@ export interface SideBarItemProps {
 
 export interface SideBarItemStyleProps {
   $colorPalette: any;
+  $color: string;
   $selected?: boolean;
 }

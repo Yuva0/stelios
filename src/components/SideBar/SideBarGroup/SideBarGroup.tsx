@@ -7,21 +7,8 @@ import styled from "styled-components";
 import Text from "../../Text/Text";
 import Link from "../../Link/Link";
 import { useTheme } from "../../ThemeProvider/ThemeProvider";
-
-const StyledSideBarGroup = styled.ul`
-  display: flex;
-  flex-direction: column;
-  padding: 0;
-  margin: 0;
-  list-style-type: none;
-`;
-
-const StyledSideBarGroupHeader = styled.li<SideBarGroupStyleProps>`
-  display: flex;
-  flex-direction: row;
-  padding: 0.5rem 0.5rem 0.25rem 1rem;
-  color: ${(props) => props.$colorPalette.primary.grayScale[11]};
-`;
+import { getColorPalette } from "../../../helpers/helpers";
+import colorTokens from "../../../tokens/colors.json";
 
 const SideBarGroup = ({
   children,
@@ -32,24 +19,24 @@ const SideBarGroup = ({
   trailingIcon,
   size,
   selected,
+  color = colorTokens.default.primary.main,
   // Events
   onClick,
 }: SideBarGroupProps) => {
   const theme = useTheme().theme;
-  if(!theme) return;
-  const colorPalette = theme.colorPalette;
+  const colorPalette = getColorPalette(theme, color);
 
   return (
     <StyledSideBarGroup className={className} style={style}>
       {(title || leadingIcon || trailingIcon) && (
-        <StyledSideBarGroupHeader $colorPalette={colorPalette}>
+        <StyledSideBarGroupHeader $colorPalette={colorPalette} $color={color}>
           {leadingIcon && <span>{leadingIcon}</span>}
           {title && typeof title === "string" ? (
             onClick ? (
               <Link
                 size={size}
                 variant="hover"
-                color={selected ? "primary" : undefined}
+                color={color}
                 onClick={onClick}
               >
                 {title}
@@ -69,5 +56,18 @@ const SideBarGroup = ({
     </StyledSideBarGroup>
   );
 };
-
 export default SideBarGroup;
+
+const StyledSideBarGroup = styled.ul`
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+`;
+const StyledSideBarGroupHeader = styled.li<SideBarGroupStyleProps>`
+  display: flex;
+  flex-direction: row;
+  padding: 0.5rem 0.5rem 0.25rem 1rem;
+  color: ${(props) => props.$colorPalette[props.$color].grayScale[11]};
+`;

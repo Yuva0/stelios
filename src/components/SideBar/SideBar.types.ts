@@ -5,10 +5,12 @@ export interface SideBarProps {
   style?: React.CSSProperties;
   top?: string;
   right?: string;
+  color?: string;
 }
 
 export interface SideBarStyleProps {
   $colorPalette: any;
-  top?: string;
-  right?: string;
+  $color: string;
+  $top?: string;
+  $right?: string;
 }

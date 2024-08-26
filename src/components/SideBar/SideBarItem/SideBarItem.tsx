@@ -3,18 +3,8 @@ import styled from "styled-components";
 import { SideBarItemProps, SideBarItemStyleProps } from "./SideBarItem.types";
 import Link from "../../Link/Link";
 import { useTheme } from "../../ThemeProvider/ThemeProvider";
-
-const StyledSideBarItem = styled.div<SideBarItemStyleProps>`
-  display: flex;
-  flex-direction: column;
-  padding: 0.5rem 0.5rem 0.25rem 1rem;
-  width: fit-content;
-  positon: relative;
-  color: ${(props) =>
-    props.$selected
-      ? props.$colorPalette.primary.accentScale[11]
-      : props.$colorPalette.primary.grayScale[11]};
-`;
+import { getColorPalette } from "../../../helpers/helpers";
+import colorTokens from "../../../tokens/colors.json";
 
 const SideBarItem = ({
   children,
@@ -22,15 +12,19 @@ const SideBarItem = ({
   style,
   size,
   selected,
+  color = colorTokens.default.primary.main,
   //Events
   onClick,
 }: SideBarItemProps) => {
   const theme = useTheme().theme;
-  if(!theme) return;
-  const colorPalette = theme.colorPalette;
+  const colorPalette = getColorPalette(theme, color);
 
   return (
-    <StyledSideBarItem $colorPalette={colorPalette} onClick={onClick}>
+    <StyledSideBarItem
+      $colorPalette={colorPalette}
+      $color={color}
+      onClick={onClick}
+    >
       {typeof children === "string" ? (
         <Link
           tabIndex={onClick ? 0 : undefined}
@@ -49,5 +43,16 @@ const SideBarItem = ({
     </StyledSideBarItem>
   );
 };
-
 export default SideBarItem;
+
+const StyledSideBarItem = styled.div<SideBarItemStyleProps>`
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 0.5rem 0.25rem 1rem;
+  width: fit-content;
+  positon: relative;
+  color: ${(props) =>
+    props.$selected
+      ? props.$colorPalette[props.$color].accentScale[11]
+      : props.$colorPalette[props.$color].grayScale[11]};
+`;

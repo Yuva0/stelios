@@ -8,6 +8,7 @@ export interface SideBarGroupProps {
   leadingIcon?: React.ReactNode;
   trailingIcon?: React.ReactNode;
   size?: "small" | "medium" | "large";
+  color?: string;
   selected?: boolean;
   // Events
   onClick?: (e: React.MouseEvent | React.KeyboardEvent) => void;
@@ -15,4 +16,5 @@ export interface SideBarGroupProps {
 
 export interface SideBarGroupStyleProps {
   $colorPalette: any;
+  $color: string;
 }

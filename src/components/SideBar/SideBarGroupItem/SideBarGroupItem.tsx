@@ -6,8 +6,10 @@ import {
 import styled from "styled-components";
 import Link from "../../Link/Link";
 import { useTheme } from "../../ThemeProvider/ThemeProvider";
+import { getColorPalette } from "../../../helpers/helpers";
+import colorTokens from "../../../tokens/colors.json";
 
-const StyledSideBarGroupItem = styled(Link)<SideBarGroupItemStyleProps>`
+const StyledSideBarGroupItem = styled.div<SideBarGroupItemStyleProps>`
   display: flex;
   padding: 0.25rem 0.5rem 0.25rem 1.75rem;
 `;
@@ -18,17 +20,17 @@ const SideBarGroupItem = ({
   style,
   size,
   selected,
+  color = colorTokens.default.primary.main,
   // Events
   onClick,
 }: SideBarGroupItemProps) => {
   const theme = useTheme().theme;
-  if(!theme) return;
-  const colorPalette = theme.colorPalette;
+  const colorPalette = getColorPalette(theme, color);
 
   return (
     <StyledSideBarGroupItem
-      variant="hover"
       $colorPalette={colorPalette}
+      $color={color}
       className={className}
       style={style}
       onClick={onClick}
@@ -38,7 +40,7 @@ const SideBarGroupItem = ({
           tabIndex={onClick ? 0 : undefined}
           size={size}
           variant="hover"
-          color={selected ? "primary" : undefined}
+          color={color}
           className={className}
           style={style}
           onClick={onClick}

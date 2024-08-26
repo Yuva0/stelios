@@ -2,6 +2,34 @@ import React from "react";
 import styled from "styled-components";
 import { SideBarProps, SideBarStyleProps } from "./SideBar.types";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
+import { getColorPalette } from "../../helpers/helpers";
+import colorTokens from "../../tokens/colors.json";
+
+const SideBar = ({
+  children,
+  className,
+  style,
+  top = "0",
+  right = "0",
+  color = colorTokens.default.primary.main,
+}: SideBarProps) => {
+  const theme = useTheme().theme;
+  const colorPalette = getColorPalette(theme, color);
+  return (
+    <StyledSideBar
+      $colorPalette={colorPalette}
+      $color={color}
+      className={className}
+      style={style}
+      $top={top}
+      $right={right}
+    >
+      {children}
+    </StyledSideBar>
+  );
+};
+
+export default SideBar;
 
 const StyledSideBar = styled.div<SideBarStyleProps>`
   display: flex;
@@ -10,26 +38,7 @@ const StyledSideBar = styled.div<SideBarStyleProps>`
   width: 10rem;
   height: 100vh;
   overflow: scroll;
-  right: ${(props) => props.right ?? 0};
-  top: ${(props) => props.top ?? 0};
-  color: ${(props) => props.$colorPalette.primary.grayScale[11]};
+  right: ${(props) => props.$right};
+  top: ${(props) => props.$top};
+  color: ${(props) => props.$colorPalette[props.$color].grayScale[11]};
 `;
-
-const SideBar = ({ children, className, style, top, right }: SideBarProps) => {
-  const theme = useTheme().theme;
-  if(!theme) return null;
-  const colorPalette = theme.colorPalette;
-  return (
-    <StyledSideBar
-      $colorPalette={colorPalette}
-      className={className}
-      style={style}
-      top={top}
-      right={right}
-    >
-      {children}
-    </StyledSideBar>
-  );
-};
-
-export default SideBar;
