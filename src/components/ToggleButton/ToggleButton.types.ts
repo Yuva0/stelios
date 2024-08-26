@@ -14,7 +14,7 @@ export interface ToggleButtonProps {
 
 export interface ToggleButtonStyleProps {
   $selected: NonNullable<ToggleButtonProps["selected"]>;
-  $colorGradient: any;
+  $colorPalette: any;
   $color: NonNullable<ToggleButtonProps["color"]>;
   $size: NonNullable<ToggleButtonProps["size"]>;
 }

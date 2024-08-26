@@ -10,12 +10,12 @@ import { getColorPalette } from "../../../helpers/helpers";
 
 const getBorder = (
   color: ToggleButtonStyleGroupProps["$color"],
-  colorGradient: ToggleButtonStyleGroupProps["$colorGradient"]
+  colorPalette: ToggleButtonStyleGroupProps["$colorPalette"]
 ) => {
   return {
-    default: `1px solid ${colorGradient[color].accentScale[8]}`,
-    hover: `1px solid ${colorGradient[color].accentScale[9]}`,
-    active: `1px solid ${colorGradient[color].accentScale[9]}`,
+    default: `1px solid ${colorPalette[color].accentScale[8]}`,
+    hover: `1px solid ${colorPalette[color].accentScale[9]}`,
+    active: `1px solid ${colorPalette[color].accentScale[9]}`,
   };
 };
 
@@ -34,42 +34,42 @@ const StyledToggleBtnGroup = styled.div<ToggleButtonStyleGroupProps>`
   }
   & > :not(:last-child) {
     border-left: ${(props) =>
-      getBorder(props.$color, props.$colorGradient).default};
+      getBorder(props.$color, props.$colorPalette).default};
     border-top: ${(props) =>
-      getBorder(props.$color, props.$colorGradient).default};
+      getBorder(props.$color, props.$colorPalette).default};
     border-bottom: ${(props) =>
-      getBorder(props.$color, props.$colorGradient).default};
+      getBorder(props.$color, props.$colorPalette).default};
     border-right: 0;
 
     &:hover {
       border-left: ${(props) =>
-        getBorder(props.$color, props.$colorGradient).hover};
+        getBorder(props.$color, props.$colorPalette).hover};
       border-top: ${(props) =>
-        getBorder(props.$color, props.$colorGradient).hover};
+        getBorder(props.$color, props.$colorPalette).hover};
       border-bottom: ${(props) =>
-        getBorder(props.$color, props.$colorGradient).hover};
+        getBorder(props.$color, props.$colorPalette).hover};
     }
 
     &:active {
       border-left: ${(props) =>
-        getBorder(props.$color, props.$colorGradient).active};
+        getBorder(props.$color, props.$colorPalette).active};
       border-top: ${(props) =>
-        getBorder(props.$color, props.$colorGradient).active};
+        getBorder(props.$color, props.$colorPalette).active};
       border-bottom: ${(props) =>
-        getBorder(props.$color, props.$colorGradient).active};
+        getBorder(props.$color, props.$colorPalette).active};
     }
   }
   & > :last-child {
     border-top-right-radius: 4px;
     border-bottom-right-radius: 4px;
-    border: ${(props) => getBorder(props.$color, props.$colorGradient).default};
+    border: ${(props) => getBorder(props.$color, props.$colorPalette).default};
 
     &:hover {
-      border: ${(props) => getBorder(props.$color, props.$colorGradient).hover};
+      border: ${(props) => getBorder(props.$color, props.$colorPalette).hover};
     }
     &:active {
       border: ${(props) =>
-        getBorder(props.$color, props.$colorGradient).active};
+        getBorder(props.$color, props.$colorPalette).active};
     }
   }
 `;
@@ -110,7 +110,7 @@ const ToggleButtonGroup = ({
     <StyledToggleBtnGroup
       $width={width}
       $color={color}
-      $colorGradient={colorPalette}
+      $colorPalette={colorPalette}
       className={className}
       style={style}
     >
@@ -125,6 +125,7 @@ const ToggleButtonGroup = ({
           return React.cloneElement(childElement, {
             index: index,
             selected: selectedIndex === index,
+            ...(!childElement.props.color && color && { color }),
             ...(!childElement.props.size && size && { size }),
             onClick: _onClick,
           });

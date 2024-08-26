@@ -18,9 +18,19 @@ const AccordionItem = ({
   variant = "contained",
   color = colorTokens.default.primary.main,
 }: AccordionItemProps) => {
+  const accordionItemRef = React.useRef<HTMLDivElement>(null);
   const [isExpanded, setIsExpanded] = React.useState(expanded);
   const theme = useTheme().theme;
   const colorPalette = getColorPalette(theme, color);
+  const [height, setHeight] = React.useState(accordionItemRef.current ? accordionItemRef.current.clientHeight : 0);
+
+  React.useEffect(() => {
+    if (isExpanded) {
+      console.log(accordionItemRef.current?.clientHeight);
+      setIsExpanded(false);
+      setIsExpanded(true);
+    }
+  },[isExpanded]);
 
   const _onTitleClick = () => {
     setIsExpanded(!isExpanded);
@@ -60,6 +70,8 @@ const AccordionItem = ({
     <StyledAccordionItem>
       <AccordionItemTitle />
       {isExpanded && <StyledAccordionItemContent
+        ref={accordionItemRef}
+        $height={height}
         $variant={variant}
         $color={color}
         $colorPalette={colorPalette}
@@ -243,6 +255,8 @@ const StyledAccordionItemContent = styled.div<AccordionItemContentStyleProps>`
   height: ${(props) => (props.$expanded ? "100%" : "0")};
   padding: ${(props) => (props.$expanded ? "0.5rem 1rem 1rem 1rem;" : "0")};
   overflow: hidden;
+  transition: height 0.3s ease-in-out;
+
   ${props => {
     const properties = propsContentHandler(props.$variant, props.$color, props.$colorPalette);
     return `

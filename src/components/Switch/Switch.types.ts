@@ -2,14 +2,7 @@ export interface SwitchProps {
   id?: string;
   value?: string;
   size?: "small" | "medium" | "large";
-  color?:
-    | "primary"
-    | "secondary"
-    | "tertiary"
-    | "danger"
-    | "warning"
-    | "success"
-    | "info";
+  color?: string;
   checked?: boolean;
   disabled?: boolean;
   label?: string;

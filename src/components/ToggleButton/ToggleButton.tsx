@@ -8,34 +8,72 @@ import { useTheme } from "../ThemeProvider/ThemeProvider";
 import { getColorPalette } from "../../helpers/helpers";
 import colorTokens from "../../tokens/colors.json"
 
+const ToggleButton = ({
+  index,
+  children,
+  value,
+  defaultSelected,
+  selected,
+  color = colorTokens.default.primary.main,
+  size = "medium",
+  className,
+  style,
+  // Events
+  onClick,
+}: ToggleButtonProps) => {
+  const theme = useTheme().theme;
+  const colorPalette = getColorPalette(theme,color);
+  const isSelected = selected ?? defaultSelected ?? false;
+
+  const _onClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    onClick && onClick(e, value, index);
+  };
+
+  return (
+    <StyledToggleBtn
+      $size={size}
+      $selected={isSelected}
+      $color={color}
+      $colorPalette={colorPalette}
+      className={className}
+      style={style}
+      onClick={_onClick}
+    >
+      {children}
+    </StyledToggleBtn>
+  );
+};
+ToggleButton.displayName = "ToggleButton";
+export default ToggleButton;
+
 const getBgColor = (
   color: ToggleButtonStyleProps["$color"],
-  colorGradient: ToggleButtonStyleProps["$colorGradient"],
+  colorPalette: ToggleButtonStyleProps["$colorPalette"],
   selected: ToggleButtonStyleProps["$selected"]
 ) => {
   if (selected) {
     return {
-      default: `${colorGradient[color].accentScale[8]}`,
+      default: `${colorPalette[color].accentScale[8]}`,
     };
   }
   return {
-    default: `${colorGradient[color].accentScale[0]}`,
-    hover: `${colorGradient[color].accentScale[1]}`,
-    active: `${colorGradient[color].accentScale[2]}`,
+    default: `${colorPalette[color].accentScale[0]}`,
+    hover: `${colorPalette[color].accentScale[1]}`,
+    active: `${colorPalette[color].accentScale[2]}`,
   };
 };
 const getColor = (
   color: ToggleButtonStyleProps["$color"],
-  colorGradient: ToggleButtonStyleProps["$colorGradient"],
+  colorPalette: ToggleButtonStyleProps["$colorPalette"],
   selected: ToggleButtonStyleProps["$selected"]
 ) => {
   if (selected) {
     return {
-      default: `${colorGradient[color].accentContrast}`,
+      default: `${colorPalette[color].accentContrast}`,
     };
   }
   return {
-    default: `${colorGradient[color].accentScale[10]}`,
+    default: `${colorPalette[color].accentScale[10]}`,
   };
 };
 const getPadding = (size: ToggleButtonStyleProps["$size"]) => {
@@ -76,12 +114,10 @@ const getGap = (size: ToggleButtonStyleProps["$size"]) => {
 };
 const getOutlineFocus = (
   color: ToggleButtonStyleProps["$color"],
-  colorGradient: ToggleButtonStyleProps["$colorGradient"],
-  selected: ToggleButtonStyleProps["$selected"]
+  colorPalette: ToggleButtonStyleProps["$colorPalette"],
 ) => {
-  return `2px solid ${colorGradient[color].accentScale[7]}`;
+  return `2px solid ${colorPalette[color].accentScale[7]}`;
 };
-
 const StyledToggleBtn = styled.button<ToggleButtonStyleProps>`
   display: flex;
   justify-content: center;
@@ -92,26 +128,26 @@ const StyledToggleBtn = styled.button<ToggleButtonStyleProps>`
   gap: ${(props) => getGap(props.$size)};
   cursor: pointer;
   color: ${(props) =>
-    getColor(props.$color, props.$colorGradient, props.$selected).default};
+    getColor(props.$color, props.$colorPalette, props.$selected).default};
   background-color: ${(props) =>
-    getBgColor(props.$color, props.$colorGradient, props.$selected).default};
+    getBgColor(props.$color, props.$colorPalette, props.$selected).default};
   color: ${(props) =>
-    getColor(props.$color, props.$colorGradient, props.$selected).default};
+    getColor(props.$color, props.$colorPalette, props.$selected).default};
 
   &:focus-visible {
     outline-offset: -2px;
     outline: ${(props) =>
-      getOutlineFocus(props.$color, props.$colorGradient, props.$selected)};
+      getOutlineFocus(props.$color, props.$colorPalette)};
   }
 
   &:hover {
     background-color: ${(props) =>
-      getBgColor(props.$color, props.$colorGradient, props.$selected).hover};
+      getBgColor(props.$color, props.$colorPalette, props.$selected).hover};
   }
 
   &:active {
     background-color: ${(props) =>
-      getBgColor(props.$color, props.$colorGradient, props.$selected).active};
+      getBgColor(props.$color, props.$colorPalette, props.$selected).active};
   }
 
   & svg {
@@ -119,42 +155,3 @@ const StyledToggleBtn = styled.button<ToggleButtonStyleProps>`
     height: ${(props) => getIconSize(props.$size)};
   }
 `;
-
-const ToggleButton = ({
-  index,
-  children,
-  value,
-  defaultSelected,
-  selected,
-  color = colorTokens.default.primary.main,
-  size = "medium",
-  className,
-  style,
-  // Events
-  onClick,
-}: ToggleButtonProps) => {
-  const theme = useTheme().theme;
-  const colorPalette = getColorPalette(theme,color);
-  const isSelected = selected ?? defaultSelected ?? false;
-
-  const _onClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    onClick && onClick(e, value, index);
-  };
-
-  return (
-    <StyledToggleBtn
-      $size={size}
-      $selected={isSelected}
-      $color={color}
-      $colorGradient={colorPalette}
-      className={className}
-      style={style}
-      onClick={_onClick}
-    >
-      {children}
-    </StyledToggleBtn>
-  );
-};
-ToggleButton.displayName = "ToggleButton";
-
-export default ToggleButton;

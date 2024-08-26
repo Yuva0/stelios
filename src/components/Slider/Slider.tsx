@@ -90,7 +90,7 @@ const Slider: React.FunctionComponent<SliderProps> = ({
         $color={color}
         $variant={variant}
         $size={size}
-        onMouseDown={handleMouseDown} // Attach the handler here
+        onMouseDown={handleMouseDown}
       >
         <StyledSliderTrackFinal
           style={{ width: `${sliderValue}%` }}

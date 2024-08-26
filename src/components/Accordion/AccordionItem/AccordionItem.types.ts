@@ -18,4 +18,5 @@ export interface AccordionItemContentStyleProps {
   $colorPalette: any;
   $color: string;
   $variant: "contained" | "outlined" | "soft" | "outlined-soft";
+  $height: number;
 }

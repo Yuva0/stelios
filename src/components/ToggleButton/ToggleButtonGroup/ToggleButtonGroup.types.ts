@@ -13,5 +13,5 @@ export interface ToggleButtonGroupProps {
 export interface ToggleButtonStyleGroupProps {
   $width: string;
   $color: NonNullable<ToggleButtonGroupProps["color"]>;
-  $colorGradient: any;
+  $colorPalette: any;
 }

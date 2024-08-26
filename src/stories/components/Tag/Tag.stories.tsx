@@ -6,7 +6,7 @@ const meta: Meta<typeof Tag> = {
   title: "Components/Tag",
   component: Tag,
   parameters: {
-    layout: "fullscreen",
+    layout: "centered",
   },
   argTypes: {},
 };
@@ -15,12 +15,43 @@ export default meta;
 
 type Story = StoryObj<typeof Tag>;
 
-export const Default: Story = {
-  render: () => {
+const Template: Story = {
+  render: (args) => {
     return (
-      <div>
-        <Tag>Tag Label</Tag>
-      </div>
+        <Tag {...args}>Tag Label</Tag>
     );
   },
 };
+export const Small = {
+  ...Template,
+  args: {
+    size: "small",
+  },
+};
+export const Medium = {
+  ...Template,
+  args: {
+    size: "medium",
+  },
+};
+export const Large = {
+  ...Template,
+  args: {
+    size: "large",
+  },
+};
+
+export const Contained = {
+  ...Template,
+  args: {
+    variant: "contained",
+  },
+};
+export const Outlined = {
+  ...Template,
+  args: {
+    variant: "outlined",
+  },
+};
+
+export const Playground = Template;

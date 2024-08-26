@@ -10,88 +10,46 @@ import { IconMoon, IconSun } from "@tabler/icons-react";
 const meta: Meta<typeof ToggleButton> = {
   title: "Components/ToggleButton",
   component: ToggleButton,
-  parameters: {},
+  parameters: {
+    layout: "centered",
+  },
   argTypes: {},
 };
 
 export default meta;
 type Story = StoryObj<typeof ToggleButton>;
 
-export const Default: Story = {
+const Template: Story = {
   render: (args) => {
     const _onClick = (e: React.MouseEvent, value?: string) => {
       console.log(e, value);
     };
 
     return (
-      <ThemeProvider>
-        <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-          <div
-            style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}
-          >
-            <Text variant="paragraph">Appearance</Text>
-            <ToggleButtonGroup
-              size="small"
-              value="1"
-              onClick={_onClick}
-              width="100%"
-              {...args}
-            >
-              <ToggleButton value="1">
-                <IconSun />
-                <Text disableColor variant="paragraph">Light</Text>
-              </ToggleButton>
-              <ToggleButton>
-                <IconMoon width={20} height={20} />
-                <Text disableColor variant="paragraph">Dark</Text>
-              </ToggleButton>
-            </ToggleButtonGroup>
-          </div>
-          <div
-            style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}
-          >
-            <Text variant="paragraph">Appearance</Text>
-            <ToggleButtonGroup
-              size="medium"
-              value="1"
-              onClick={_onClick}
-              {...args}
-            >
-              <ToggleButton value="1">
-                <IconSun width={20} height={20} />
-                <Text disableColor variant="paragraph">Light</Text>
-              </ToggleButton>
-              <ToggleButton>
-                <IconMoon width={20} height={20} />
-                <Text disableColor variant="paragraph">Dark</Text>
-              </ToggleButton>
-            </ToggleButtonGroup>
-          </div>
-          <div
-            style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}
-          >
-            <Text variant="paragraph">Appearance</Text>
-            <ToggleButtonGroup
-              size="large"
-              value="1"
-              onClick={_onClick}
-              {...args}
-            >
-              <ToggleButton value="1">
-                <IconSun width={20} height={20} />
-                <Text disableColor variant="paragraph">Light</Text>
-              </ToggleButton>
-              <ToggleButton>
-                <IconMoon width={20} height={20} />
-                <Text disableColor variant="paragraph">Dark</Text>
-              </ToggleButton>
-            </ToggleButtonGroup>
-          </div>
-        </div>
-      </ThemeProvider>
+      <ToggleButtonGroup
+        size="small"
+        value="sun"
+        onClick={_onClick}
+        width="15rem"
+        {...args}
+      >
+        <ToggleButton value="sun">
+          <IconSun />
+          <Text disableColor variant="paragraph">
+            Light
+          </Text>
+        </ToggleButton>
+        <ToggleButton value="moon">
+          <IconMoon width={20} height={20} />
+          <Text disableColor variant="paragraph">
+            Dark
+          </Text>
+        </ToggleButton>
+      </ToggleButtonGroup>
     );
   },
-  args: {
-    children: "ToggleButton",
-  },
 };
+export const Default = {
+  ...Template,
+};
+export const Playground = Template;

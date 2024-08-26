@@ -8,19 +8,36 @@ const meta: Meta<typeof Switch> = {
   title: "Components/Switch",
   component: Switch,
   parameters: {
-    layout: "fullscreen",
+    layout: "centered",
   },
   argTypes: {},
 };
 
 export default meta;
 type Story = StoryObj<typeof Switch>;
-export const Default: Story = {
-  render: () => {
-    return (
-      <div>
-        <FormControlLabel control={<Switch />} label="Switch Label" />
-      </div>
-    );
+const Template: Story = {
+  render: (args) => {
+    return <FormControlLabel control={<Switch />} label="Switch Label" {...args}/>;
   },
 };
+
+export const Small = {
+  ...Template,
+  args: {
+    size: "small",
+  }
+}
+export const Medium = {
+  ...Template,
+  args: {
+    size: "medium",
+  }
+}
+export const Large = {
+  ...Template,
+  args: {
+    size: "large",
+  }
+}
+
+export const Playground = Template;

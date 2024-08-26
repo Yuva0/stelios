@@ -43,31 +43,3 @@ const StyledAccordion = styled.div<AccordionStyleProps>`
   width: ${({ $width, $isFullWidth }) =>
     $width ?? ($isFullWidth ? "100%" : "auto")};
 `;
-
-// const propsHandler = (
-//   variant: AccordionStyleProps["$variant"],
-//   color: AccordionStyleProps["$color"],
-//   colorPalette: AccordionStyleProps["$colorPalette"]
-// ) => {
-//   return { ...getVariantProps(variant, color, colorPalette) };
-// };
-// const getVariantProps = (
-//   variant: AccordionStyleProps["$variant"],
-//   color: AccordionStyleProps["$color"],
-//   colorPalette: AccordionStyleProps["$colorPalette"]
-// ) => {
-//   switch (variant) {
-//     case "contained":
-//       return {
-//         background: {
-//           default: colorPalette[color].accentScale[8],
-//         }
-//       };
-//     case "outlined":
-//       return {
-//         background: {
-//           default: "transparent",
-//         }
-//       };
-//   }
-// };

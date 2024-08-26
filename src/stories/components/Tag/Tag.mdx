@@ -1,0 +1,37 @@
+{/* Tag.mdx */}
+import { Meta, Controls, Canvas } from '@storybook/addon-docs/blocks';
+import * as TagStories from "./Tag.stories";
+
+<Meta of={TagStories} name="Docs" />
+
+# Tag
+Tag is used to represent a category or a label.
+
+## Sizes:
+There are three sizes available for the Tag component.
+
+#### Small:
+<Canvas of={TagStories.Small} />
+
+#### Medium:
+<Canvas of={TagStories.Medium} />
+
+#### Large:
+<Canvas of={TagStories.Large} />
+
+
+## Variants:
+There are two variants available for the Tag component.
+
+#### Contained:
+<Canvas of={TagStories.Contained} />
+
+#### Outlined:
+<Canvas of={TagStories.Outlined} />
+
+
+## Playground
+Customize as per your needs using the controls below
+
+<Canvas of={TagStories.Playground}/>
+<Controls of={TagStories.Playground}/>
