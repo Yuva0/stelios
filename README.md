@@ -15,19 +15,49 @@ Welcome to Stelios, a comprehensive design system built with TypeScript, React a
   <img alt="Components" src="https://badgen.net/static/components/30/green"/>
 </p>
 
-### Features
+<br/>
+
+## Table of Contents:
+- 📋 [Documentation](#documentation)
+- 🚀 [Features](#features)
+- 📦 [Installation](#installation)
+- 📚 [Storybook](#storybook)
+- 📝 [License](#license)
+- 📱 [Components](#components)
+<!-- - 📞 [Contact](#contact)
+- 🙏 [Acknowledgements](#acknowledgements)
+- 📜 [Changelog](#changelog)
+- 📖 [Contributing](#contributing)
+- 📜 [Code of Conduct](#code-of-conduct)
+- 📜 [Contributors](#contributors)
+- 📜 [Sponsors](#sponsors) -->
+
+### Documentation:
+Stelios is yet to be documented and will be updated soon.
+Kindly refer to [storybook](https://yuva0.github.io/stelios) for the documentation of the components for now.
+
+### Features:
+- **Theming**: Dynamic color and theme computation on the fly. You can even create your own website using just one color.
 - **TypeScript**: Enjoy strong typing and enhanced developer experience.
 - **Styled-Components**: Seamlessly integrate with your styles using styled-components.
 - **Responsive Design**: Ensure your components look great on all devices.
 - **Accessibility**: Built with accessibility in mind and ARIA guidelines to provide an inclusive experience.
-- **Theming**: Dynamic color and theme computation on the fly.
 
+#### Installation
+To install Stelios, all you need to do is install the package from npm or yarn.
+```sh
+# with npm
+$ npm install stelios@latest
+
+# with yarn
+$ yarn add stelios@latest
+```
 
 #### Storybook: 
 Link for storybook - [here](https://yuva0.github.io/stelios/)
 
 <details open>
-  <summary><b>Components Supported</b></summary>
+  <summary><h4 style="display: inline">Components Supported</h3></summary>
   <ul>
     <li>Accordion</li>
     <li>Alert</li>
