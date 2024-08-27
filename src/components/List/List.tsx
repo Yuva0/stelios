@@ -1,4 +1,4 @@
-import React from "react";
+import React, { isValidElement } from "react";
 import { ListProps } from "./List.types";
 import styled from "styled-components";
 import Text from "../Text/Text";
@@ -21,7 +21,7 @@ const List = ({
 
 
   const Title = () => {
-    if (!title) return null;
+    if (!title || !isValidElement(title)) return null;
     return typeof title === "string" ? (
       <Text color={color} variant="paragraph" size={size}>
         {title}

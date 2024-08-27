@@ -24,7 +24,8 @@ const Slider: React.FunctionComponent<SliderProps> = ({
   style,
   variant = "contained",
   size = "medium",
-
+  disabled,
+  disableLabels = false,
   // Events
   onChange,
 }) => {
@@ -57,6 +58,7 @@ const Slider: React.FunctionComponent<SliderProps> = ({
 
   const handleMouseDown = (e: React.MouseEvent) => {
     e.preventDefault();
+    if (disabled) return;
     calculateNewValue(e.pageX);
 
     const handleMouseMove = (e: MouseEvent) => {
@@ -73,14 +75,18 @@ const Slider: React.FunctionComponent<SliderProps> = ({
   };
 
   return (
-    <div style={{ width: width }}>
+    <div style={{ width: width }} aria-disabled={disabled}>
       <StyledSliderLabel $color={color} $colorPalette={colorPalette}>
-        <Text disableColor size={size}>
-          {minDisplay}
-        </Text>
-        <Text disableColor size={size}>
-          {maxDisplay}
-        </Text>
+        {!disableLabels && (
+          <Text disableColor size={size}>
+            {minDisplay}
+          </Text>
+        )}
+        {!disableLabels && (
+          <Text disableColor size={size}>
+            {maxDisplay}
+          </Text>
+        )}
       </StyledSliderLabel>
       <StyledSliderTrack
         ref={sliderRef}
@@ -90,6 +96,7 @@ const Slider: React.FunctionComponent<SliderProps> = ({
         $color={color}
         $variant={variant}
         $size={size}
+        $disabled={disabled}
         onMouseDown={handleMouseDown}
       >
         <StyledSliderTrackFinal
@@ -99,12 +106,14 @@ const Slider: React.FunctionComponent<SliderProps> = ({
           $variant={variant}
           $size={size}
         >
-          <StyledSliderHandle
-            $colorPalette={colorPalette}
-            $color={color}
-            $variant={variant}
-            $size={size}
-          />
+          {!disabled && (
+            <StyledSliderHandle
+              $colorPalette={colorPalette}
+              $color={color}
+              $variant={variant}
+              $size={size}
+            />
+          )}
         </StyledSliderTrackFinal>
         <StyledSliderInput
           type="slider"
@@ -143,13 +152,18 @@ const StyledSliderTrack = styled.div<SliderTrackStyleProps>`
       height: ${properties.track.height};
       border-radius: ${properties.track.borderRadius};
       outline: ${properties.track.outline.default};
-      &:hover {
+      
+      ${
+        !props.$disabled
+          ? `&:hover {
         background-color: ${properties.track.backgroundColor.hover};
         outline: ${properties.track.outline.hover};
       }
       &:active {
         background-color: ${properties.track.backgroundColor.active};
         outline: ${properties.track.outline.active};
+      }`
+          : ""
       }
     `;
   }}
@@ -168,11 +182,15 @@ const StyledSliderTrackFinal = styled.div<SliderTrackStyleProps>`
       height: ${properties.trackFinal.height};
       border-radius: ${properties.trackFinal.borderRadius};
       background-color: ${properties.trackFinal.backgroundColor.default};
-      &:hover {
+      ${
+        !props.$disabled
+          ? `&:hover {
         background-color: ${properties.trackFinal.backgroundColor.hover};
       }
       &:active {
         background-color: ${properties.trackFinal.backgroundColor.active};
+      }`
+          : ""
       }
     `;
   }}
@@ -193,11 +211,15 @@ const StyledSliderHandle = styled.div<SliderTrackStyleProps>`
       height: ${properties.handle.height};
       top: ${properties.handle.top};
       right: ${properties.handle.right};
-      &:hover {
+      ${
+        !props.$disabled
+          ? `&:hover {
         background-color: ${properties.trackFinal.backgroundColor.hover};
       }
       &:active {
         background-color: ${properties.trackFinal.backgroundColor.active};
+      }`
+          : ""
       }
     `;
   }}

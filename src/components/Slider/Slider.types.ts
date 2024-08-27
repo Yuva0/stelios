@@ -5,6 +5,7 @@ export interface SliderProps {
   minDisplay?: string;
   max?: number;
   maxDisplay?: string;
+  disableLabels?: boolean;
   step?: number;
   width?: string;
   className?: string;
@@ -12,10 +13,12 @@ export interface SliderProps {
   color?: string;
   variant?: "contained" | "outlined";
   size?: "small" | "medium" | "large";
+  disabled?: boolean;
   // Events
   onChange?: (value: number) => void;
 }
 export interface SliderTrackStyleProps {
+  $disabled?: boolean;
   $colorPalette: any
   $color: string;
   $variant: "contained" | "outlined";

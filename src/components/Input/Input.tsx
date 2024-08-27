@@ -29,6 +29,7 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
       disableSearch,
       style,
       className,
+      inputStyle,
       disabled = false,
       variant = "contained",
       containerRef,
@@ -98,6 +99,7 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
         onClick={_onClick}
         onKeyDown={_onKeyDown}
         $width={width}
+        style={style}
         className={className}
         {...props}
       >
@@ -113,6 +115,7 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
           $cursor={cursor}
           $disabled={disabled}
           $variant={variant}
+          style={inputStyle}
         >
           {leadingIcon && (
             <StyledInputIcon
@@ -136,9 +139,10 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
               ref={inputRef}
               placeholder={placeholder}
               onChange={_onChange}
+              style={inputStyle}
             />
           ) : (
-            <span className="ste-input-content">{value}</span>
+            <span className="ste-input-content" style={inputStyle}>{value}</span>
           )}
           {trailingIcon && (
             <StyledInputIcon

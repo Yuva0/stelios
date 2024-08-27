@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { TagProps, TagStyleProps } from "./Tag.types";
 import Text from "../Text/Text";
 import styled from "styled-components";

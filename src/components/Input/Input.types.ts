@@ -16,6 +16,7 @@ export interface InputProps {
   leadingIcon?: React.ReactNode;
   trailingIcon?: React.ReactNode;
   style?: React.CSSProperties;
+  inputStyle?: React.CSSProperties;
   className?: string;
 
   //Events

@@ -34,7 +34,7 @@ const NumberInput = ({
   }, [value]);
 
   const NumberInputLabel = () => {
-    if (!label) return null;
+    if (!label || !React.isValidElement(label)) return null;
     return typeof label === "string" ? (
       <Text variant="label" disableColor>
         {label}

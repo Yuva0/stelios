@@ -9,7 +9,7 @@ const meta: Meta<typeof Radio> = {
   title: "Components/Radio",
   component: Radio,
   parameters: {
-    layout: "fullscreen",
+    layout: "centered",
   },
   argTypes: {},
 };

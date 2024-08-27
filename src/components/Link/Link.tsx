@@ -1,4 +1,4 @@
-import React from "react";
+import React, { isValidElement } from "react";
 import { LinkProps, LinkStyleProps } from "./Link.types";
 import Text from "../Text/Text";
 import styled from "styled-components";
@@ -31,7 +31,6 @@ const Link = ({
   };
 
   const LinkText = () => {
-    if (!children) return null;
     return typeof children === "string" ? (
       <Text disableColor size={size} variant="span">
         {children}
@@ -52,7 +51,7 @@ const Link = ({
       onClick={onClick}
       onKeyDown={_handleKeyDown}
     >
-      <LinkText />
+      {LinkText()}
     </StyledLink>
   );
 };

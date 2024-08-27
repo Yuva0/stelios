@@ -26,10 +26,8 @@ const MUSIC_IMG_URL_2 =
   "https://w7.pngwing.com/pngs/709/653/png-transparent-deadpool-logo-illustration-marvel-heroes-2016-deadpool-captain-america-logo-marvel-comics-icon-deadpool-angle-face-superhero.png";
 
 interface MusicPlayerProps {
-  width?: string;
   primaryColor: string;
   secondaryColor: string;
-  appearance: "light" | "dark";
 }
 const MusicPlayerStoryMeta: Meta<typeof MusicPlayerComp> = {
   title: "Samples/MusicPlayer",
@@ -50,12 +48,6 @@ const MusicPlayerStoryMeta: Meta<typeof MusicPlayerComp> = {
     },
   },
   argTypes: {
-    width: {
-      description: "The width of the music player.",
-      control: {
-        type: "text",
-      },
-    },
     primaryColor: {
       description: "The primary color of the music player.",
       control: {
@@ -68,21 +60,12 @@ const MusicPlayerStoryMeta: Meta<typeof MusicPlayerComp> = {
         type: "color",
       },
     },
-    appearance: {
-      description: "The appearance of the music player.",
-      control: {
-        type: "select",
-        options: ["light", "dark"],
-      },
-    },
   },
 };
 export default MusicPlayerStoryMeta;
 const MusicPlayerComp: React.FC<MusicPlayerProps> = ({
-  width,
   primaryColor,
   secondaryColor,
-  appearance,
 }) => {
   const updateTheme = useUpdateTheme();
   React.useEffect(() => {
@@ -96,7 +79,7 @@ const MusicPlayerComp: React.FC<MusicPlayerProps> = ({
 
   return (
     <Card
-      width={width}
+      width="350px"
       variant="neumorph"
       header={<MusicPlayerHeader />}
       footer={<MusicPlayerFooter />}
@@ -154,9 +137,7 @@ const MusicPlayerHeader = () => {
         icon={<IconArrowLeft />}
         variant="neumorph"
       />
-      <Text color="secondary" size="large">
-        PLAYING NOW
-      </Text>
+      <Text color="secondary">PLAYING NOW</Text>
       <IconButton color="secondary" icon={<IconMenu />} variant="neumorph" />
     </div>
   );
@@ -198,7 +179,7 @@ export const MusicPlayer: typeof MusicPlayerStoryMeta = {
       <ThemeProvider
         accents={{ primary: args.primaryColor, secondary: args.secondaryColor }}
         background={colorTokens.theme.background.light}
-        appearance={args.appearance}
+        appearance={"light"}
       >
         <div
           style={{
@@ -207,10 +188,7 @@ export const MusicPlayer: typeof MusicPlayerStoryMeta = {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            backgroundColor:
-              args.appearance === "light"
-                ? "#e0e5ec"
-                : colorTokens.theme.background.dark,
+            backgroundColor: "#e0e5ec",
           }}
         >
           <MusicPlayerComp {...args} />
@@ -219,9 +197,7 @@ export const MusicPlayer: typeof MusicPlayerStoryMeta = {
     );
   },
   args: {
-    width: "400px",
     primaryColor: "#ef476f",
     secondaryColor: "#343a40",
-    appearance: "light",
   },
 };
