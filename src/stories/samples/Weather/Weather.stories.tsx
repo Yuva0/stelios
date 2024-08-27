@@ -8,7 +8,7 @@ import {
 import styled from "styled-components";
 import Text from "../../../components/Text/Text";
 import Input from "../../../components/Input/Input";
-import WeatherSVG from "../../../svg/weather.tsx";
+import WeatherSVG from "../../../svg/WeatherCloudy.tsx";
 
 interface WeatherProps {
   color?: string;

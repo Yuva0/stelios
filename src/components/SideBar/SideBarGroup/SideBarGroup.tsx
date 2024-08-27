@@ -42,7 +42,7 @@ const SideBarGroup = ({
                 {title}
               </Link>
             ) : (
-              <Text size={size} variant="span">
+              <Text color={color} size={size} variant="span">
                 {title}
               </Text>
             )

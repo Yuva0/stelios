@@ -78,6 +78,7 @@ export default Alert;
 const StyledAlertContainer = styled.div<AlertStyleProps>`
   display: flex;
   flex-direction: row;
+  box-sizing: border-box;
   gap: 1rem;
   justify-content: flex-start;
   align-items: center;

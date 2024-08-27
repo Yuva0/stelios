@@ -1,6 +1,6 @@
 import { SVGProps } from "./svg.types";
 
-const Weather = ({
+const WeatherCloudy = ({
   fill = "#000000",
   width = "800px",
   height = "800px",
@@ -111,4 +111,4 @@ const Weather = ({
 </svg>
   )
 }
-export default Weather;
+export default WeatherCloudy;

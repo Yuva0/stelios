@@ -31,7 +31,7 @@ const NavigationBarHeader = ({
     >
       {leadingIcon && <span>{leadingIcon}</span>}
       {typeof children === "string" ? (
-        <Text variant="span" size={size ?? "small"}>
+        <Text color={color} variant="span" size={size ?? "small"}>
           {children}
         </Text>
       ) : (

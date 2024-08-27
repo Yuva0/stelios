@@ -22,8 +22,6 @@ const MUSIC_NAME = "BYE BYE BYE";
 const MUSIC_AUTHOR = "NSYNC";
 const MUSIC_IMG_URL =
   "https://img.freepik.com/free-psd/3d-illustration-human-avatar-profile_23-2150671116.jpg";
-const MUSIC_IMG_URL_2 =
-  "https://w7.pngwing.com/pngs/709/653/png-transparent-deadpool-logo-illustration-marvel-heroes-2016-deadpool-captain-america-logo-marvel-comics-icon-deadpool-angle-face-superhero.png";
 
 interface MusicPlayerProps {
   primaryColor: string;

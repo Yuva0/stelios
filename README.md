@@ -12,7 +12,7 @@ Welcome to Stelios, a comprehensive design system built with TypeScript, React a
 <p align="center">
   <img alt="Latest Version" src="https://badgen.net/static/latest/1.0.11/blue/"/>
   <!-- <img alt="Downloads" src="https://badgen.net/static/downloads/40/orange"/> -->
-  <img alt="Components" src="https://badgen.net/static/components/30/green"/>
+  <img alt="Components" src="https://badgen.net/static/components/41/green"/>
 </p>
 
 <br/>

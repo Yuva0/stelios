@@ -118,6 +118,7 @@ const Autocomplete = ({
         onChange={_onInputChange}
       />
       <Menu
+        color={color}
         variant={variant}
         open={isOpen}
         anchorElement={inputRef.current}

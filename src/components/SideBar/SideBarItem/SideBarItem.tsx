@@ -28,7 +28,7 @@ const SideBarItem = ({
       {typeof children === "string" ? (
         <Link
           tabIndex={onClick ? 0 : undefined}
-          color={selected ? "primary" : undefined}
+          color={color}
           size={size}
           variant="hover"
           className={className}
