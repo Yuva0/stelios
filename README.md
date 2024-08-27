@@ -43,7 +43,7 @@ Kindly refer to [storybook](https://yuva0.github.io/stelios) for the documentati
 - **Responsive Design**: Ensure your components look great on all devices.
 - **Accessibility**: Built with accessibility in mind and ARIA guidelines to provide an inclusive experience.
 
-#### Installation
+### Installation
 To install Stelios, all you need to do is install the package from npm or yarn.
 ```sh
 # with npm
@@ -53,11 +53,11 @@ $ npm install stelios@latest
 $ yarn add stelios@latest
 ```
 
-#### Storybook: 
+### Storybook: 
 Link for storybook - [here](https://yuva0.github.io/stelios/)
 
 <details open>
-  <summary><h4 style="display: inline">Components Supported</h3></summary>
+  <summary><h4 style="display: inline" id="components">Components Supported</h3></summary>
   <ul>
     <li>Accordion</li>
     <li>Alert</li>
