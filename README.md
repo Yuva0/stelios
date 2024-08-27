@@ -56,6 +56,9 @@ $ yarn add stelios@latest
 ### Storybook: 
 Link for storybook - [here](https://yuva0.github.io/stelios/)
 
+Storybook is used for the documentation of the components. You can view the components and their props in the storybook.
+It also contains numerous samples utilizing the components to help you get started.
+
 <details open>
   <summary><h4 style="display: inline" id="components">Components Supported</h3></summary>
   <ul>
