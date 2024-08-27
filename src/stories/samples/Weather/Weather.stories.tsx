@@ -1,14 +1,14 @@
 import type { Meta } from "@storybook/react";
 import * as React from "react";
-import Card from "../../../../components/Card/Card";
+import Card from "../../../components/Card/Card";
 import {
   ThemeProvider,
   useTheme,
-} from "../../../../components/ThemeProvider/ThemeProvider";
+} from "../../../components/ThemeProvider/ThemeProvider";
 import styled from "styled-components";
-import Text from "../../../../components/Text/Text";
-import Input from "../../../../components/Input/Input";
-import WeatherSVG from "../../../../svg/weather.tsx";
+import Text from "../../../components/Text/Text";
+import Input from "../../../components/Input/Input";
+import WeatherSVG from "../../../svg/weather.tsx";
 
 interface WeatherProps {
   color?: string;

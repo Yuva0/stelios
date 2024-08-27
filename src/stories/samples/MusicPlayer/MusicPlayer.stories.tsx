@@ -1,11 +1,11 @@
 import React from "react";
 import type { Meta } from "@storybook/react";
-import Card from "../../../../components/Card/Card";
-import IconButton from "../../../../components/IconButton/IconButton";
+import Card from "../../../components/Card/Card";
+import IconButton from "../../../components/IconButton/IconButton";
 import {
   ThemeProvider,
   useUpdateTheme,
-} from "../../../../components/ThemeProvider/ThemeProvider";
+} from "../../../components/ThemeProvider/ThemeProvider";
 import {
   IconArrowLeft,
   IconMenu,
@@ -13,10 +13,10 @@ import {
   IconPlayerTrackNextFilled,
   IconPlayerTrackPrevFilled,
 } from "@tabler/icons-react";
-import Text from "../../../../components/Text/Text";
-import Avatar from "../../../../components/Avatar/Avatar";
-import Slider from "../../../../components/Slider/Slider";
-import colorTokens from "../../../../tokens/colors.json";
+import Text from "../../../components/Text/Text";
+import Avatar from "../../../components/Avatar/Avatar";
+import Slider from "../../../components/Slider/Slider";
+import colorTokens from "../../../tokens/colors.json";
 
 const MUSIC_NAME = "BYE BYE BYE";
 const MUSIC_AUTHOR = "NSYNC";

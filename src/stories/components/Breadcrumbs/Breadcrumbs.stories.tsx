@@ -8,7 +8,7 @@ const meta: Meta<typeof Breadcrumbs> = {
   title: "Components/Breadcrumbs",
   component: Breadcrumbs,
   parameters: {
-    layout: ["centered"],
+    layout: "centered",
   },
   argTypes: {},
 };
