@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import NotificationDialog from "../../../components/NotificationDialog/NotificationDialog";
 import Text from "../../../components/Text/Text";
 import Button from "../../../components/Button/Button";
-import { Icon24Hours, IconBadge } from "@tabler/icons-react";
+import { Icon24Hours } from "@tabler/icons-react";
 
 const meta: Meta<typeof NotificationDialog> = {
   title: "Components/NotificationDialog",

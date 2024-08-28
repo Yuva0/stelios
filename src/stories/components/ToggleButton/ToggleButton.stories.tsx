@@ -4,7 +4,6 @@ import type { Meta, StoryObj } from "@storybook/react";
 import Text from "../../../components/Text/Text";
 import ToggleButton from "../../../components/ToggleButton/ToggleButton";
 import ToggleButtonGroup from "../../../components/ToggleButton/ToggleButtonGroup/ToggleButtonGroup";
-import { ThemeProvider } from "../../../components/ThemeProvider/ThemeProvider";
 import { IconMoon, IconSun } from "@tabler/icons-react";
 
 const meta: Meta<typeof ToggleButton> = {

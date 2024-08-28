@@ -4,7 +4,6 @@ import SideBar from "../../../components/SideBar/SideBar";
 import SideBarItem from "../../../components/SideBar/SideBarItem/SideBarItem";
 import SideBarGroup from "../../../components/SideBar/SideBarGroup/SideBarGroup";
 import SideBarGroupItem from "../../../components/SideBar/SideBarGroupItem/SideBarGroupItem";
-import Button from "../../../components/Button/Button";
 
 const meta: Meta<typeof SideBar> = {
   title: "Components/SideBar",

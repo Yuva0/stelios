@@ -20,7 +20,6 @@ import Slider from "../../../components/Slider/Slider";
 import Avatar from "../../../components/Avatar/Avatar";
 import Breadcrumbs from "../../../components/Breadcrumbs/Breadcrumbs";
 import BreadcrumbsItem from "../../../components/Breadcrumbs/BreadcrumbsItem/BreadcrumbsItem";
-import CodePreview from "../../../components/CodePreview/CodePreview";
 import CodeDisplay from "../../../components/CodeDisplay/CodeDisplay";
 
 import {
@@ -28,10 +27,8 @@ import {
   Icon24Hours,
   Icon3dCubeSphereOff,
   IconAward,
-  IconBadge,
   IconBrandGithub,
   IconBrandLinkedin,
-  IconGlobe,
   IconSettings,
 } from "@tabler/icons-react";
 import {

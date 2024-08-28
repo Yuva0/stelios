@@ -32,9 +32,13 @@
     "test": "jest --coverage",
     "eject": "react-scripts eject",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
+    "build-storybook": "storybook build -- --output-dir=storybook-static",
     "deploy-storybook": "storybook build && gh-pages -d storybook-static",
-    "publish-npm": "npm version patch && npm run build && npm publish --access public"
+    "publish-npm": "npm version patch && npm run build && npm publish --access public",
+    "deploy-coverage": "jest --coverage",
+    "prepare-deploy": "mkdir -p gh-build/storybook && mv storybook-static/* gh-build/storybook/ && mkdir -p gh-build/coverage && mv coverage-result/lcov-report/* gh-build/coverage/",
+    "deploy-all": "npm run build-storybook && npm run deploy-coverage && npm run prepare-deploy && gh-pages -d gh-build",
+    "deploy-gh": "gh-pages -d gh-build"
   },
   "eslintConfig": {
     "extends": [
