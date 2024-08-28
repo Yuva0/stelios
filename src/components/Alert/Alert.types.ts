@@ -8,6 +8,8 @@ export interface AlertProps {
   width?: string;
   style?: React.CSSProperties;
   className?: string;
+  "data-testid"?: string;
+  "data-leading-icon"?: string;
 }
 
 export interface AlertStyleProps {

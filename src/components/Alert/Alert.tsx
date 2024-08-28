@@ -16,6 +16,9 @@ const Alert: React.FunctionComponent<AlertProps> = ({
   width = "400px",
   style,
   className,
+  "data-testid": dataTestId,
+  "data-leading-icon": dataLeadingIcon,
+  ...props
 }: AlertProps) => {
   const theme = useTheme().theme;
   const colorPalette = getColorPalette(theme,color);
@@ -56,8 +59,8 @@ const Alert: React.FunctionComponent<AlertProps> = ({
   const LeadingIcon = React.useCallback(() => {
     if (!leadingIcon) return null;
 
-    return <StyledIcon>{leadingIcon}</StyledIcon>;
-  }, [leadingIcon]);
+    return <StyledIcon data-testid={dataLeadingIcon}>{leadingIcon}</StyledIcon>;
+  }, [leadingIcon, dataLeadingIcon]);
 
   return (
     <StyledAlertContainer
@@ -67,6 +70,8 @@ const Alert: React.FunctionComponent<AlertProps> = ({
       $color={color}
       $variant={variant}
       $colorPalette={colorPalette}
+      data-testid={dataTestId}
+      {...props}
     >
       <LeadingIcon />
       <Content />
@@ -170,8 +175,6 @@ const getVariantProps = (
       };
   }
 }
-
-
 
 const StyledContentContainer = styled.div`
   display: flex;

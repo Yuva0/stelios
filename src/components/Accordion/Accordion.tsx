@@ -42,4 +42,5 @@ const StyledAccordion = styled.div<AccordionStyleProps>`
   border-radius: 0.25rem;
   width: ${({ $width, $isFullWidth }) =>
     $width ?? ($isFullWidth ? "100%" : "auto")};
+  max-width: 100%;
 `;

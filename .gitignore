@@ -26,3 +26,5 @@ yarn-error.log*
 
 /storybook-static/*
 /storybook-static/
+
+/coverage-result/*

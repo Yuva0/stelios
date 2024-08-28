@@ -12,6 +12,10 @@ export interface ButtonProps
   isFullWidth?: boolean;
   className?: string;
   style?: React.CSSProperties;
+
+  "data-testid"?: string;
+  "data-leading-icon"?: string;
+  "data-trailing-icon"?: string;
 }
 
 export interface ButtonStyleProps {

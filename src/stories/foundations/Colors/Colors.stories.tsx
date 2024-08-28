@@ -46,7 +46,7 @@ const TEXT_CONTENT = `<Button variant="contained"> Contained </Button>
 <Button variant="contained" href="#contained-buttons"> Link </Button>`;
 
 const ColorMeta: Meta = {
-  title: "Foundation/Colors",
+  title: "Foundations/Colors",
   parameters: {
     layout: "fullscreen",
     controls: {
@@ -120,16 +120,19 @@ const ColorComponent = () => {
         </HeaderItem>
         <HeaderItem style={{ display: "flex", gap: "1rem" }}>
           <IconButton
+            size="small"
             icon={<IconBrandGithub />}
             variant="soft"
             color="primary"
           />
           <IconButton
+            size="small"
             icon={<IconBrandLinkedin />}
             variant="soft"
             color="primary"
           />
           <IconButton
+            size="small"
             icon={<IconSettings />}
             variant="contained"
             color="primary"
@@ -146,9 +149,9 @@ const ColorComponent = () => {
         }}
         color="primary"
       >
-        <NavigationBarGroup title="Group 1" color="primary">
+        <NavigationBarGroup expanded title="Group 1" color="primary">
           <NavigationBarHeader color="primary">Header 1</NavigationBarHeader>
-          <NavigationBarGroupItem value="1" color="primary">
+          <NavigationBarGroupItem selected value="1" color="primary">
             Group Items
           </NavigationBarGroupItem>
           <NavigationBarGroupItem value="2" color="primary">
@@ -165,7 +168,7 @@ const ColorComponent = () => {
             Group Items
           </NavigationBarGroupItem>
         </NavigationBarGroup>
-        <NavigationBarGroup title="Group 2" color="primary">
+        <NavigationBarGroup expanded title="Group 2" color="primary">
           <NavigationBarHeader color="primary">Header 3</NavigationBarHeader>
           <NavigationBarGroupItem value="13" color="primary">
             Group Items
@@ -207,7 +210,7 @@ const ColorComponent = () => {
             Group Items
           </NavigationBarGroupItem>
         </NavigationBarGroup>
-        <NavigationBarItem selected value="22" color="primary">
+        <NavigationBarItem value="22" color="primary">
           Title Item
         </NavigationBarItem>
       </NavigationBar>
