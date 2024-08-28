@@ -107,4 +107,6 @@ It also contains numerous samples utilizing the components to help you get start
 </details>
 
 ### Coverage
-At Stelios, every line of code is written with a purpose in mind. This commitment to thorough testing reflects the dedication to delivering a set of high-quality components. You can explore the latest code coverage report [here](https://yuva0.github.io/stelios/coverage) to see the results of our rigorous testing efforts.
+At Stelios, every line of code is written with a purpose in mind. 
+This commitment to thorough testing reflects the dedication to delivering a set of high-quality components. 
+You can explore the latest code coverage report [here](https://yuva0.github.io/stelios/coverage).
