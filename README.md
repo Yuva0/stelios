@@ -24,6 +24,7 @@ Welcome to Stelios, a comprehensive design system built with TypeScript, React a
 - 📚 [Storybook](#storybook)
 - 📝 [License](#license)
 - 📱 [Components](#components)
+- 💯 [Coverage](#coverage)
 <!-- - 📞 [Contact](#contact)
 - 🙏 [Acknowledgements](#acknowledgements)
 - 📜 [Changelog](#changelog)
