@@ -4,6 +4,9 @@ export interface BreadcrumbsItemProps {
   color?: string;
   size?: "small" | "medium" | "large";
   variant?: "contained" | "outlined" | "soft" | "text";
+
+  // Test Props
+  "data-testid"?: string;
 }
 
 export interface BreadcrumbsItemStyledProps {

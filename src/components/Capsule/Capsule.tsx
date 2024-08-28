@@ -19,6 +19,7 @@ const Capsule = forwardRef<HTMLDivElement, CapsuleProps>(
       width = "25rem",
       height = "4rem",
       textProps,
+      "data-testid": dataTestId,
       ...rest
     }: CapsuleProps,
     ref
@@ -55,6 +56,7 @@ const Capsule = forwardRef<HTMLDivElement, CapsuleProps>(
         $imagePosition={imagePosition}
         $width={width}
         $height={height}
+        data-testid={dataTestId}
         {...rest}
       >
         <StyledImgContainer $imagePosition={imagePosition}>

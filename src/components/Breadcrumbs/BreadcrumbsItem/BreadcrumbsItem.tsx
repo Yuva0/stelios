@@ -16,6 +16,7 @@ const BreadcrumbsItem: React.FunctionComponent<BreadcrumbsItemProps> = ({
   color = colorTokens.default.primary.main,
   size = "medium",
   variant = "contained",
+  "data-testid": dataTestId,
   ...props
 }: BreadcrumbsItemProps) => {
   const theme = useTheme().theme;
@@ -50,6 +51,7 @@ const BreadcrumbsItem: React.FunctionComponent<BreadcrumbsItemProps> = ({
       $colorPalette={colorPalette}
       $size={size}
       $isSelectable={!!link}
+      data-testid={dataTestId}
       {...props}
     >
       {BreadcrumbsItemContent}

@@ -15,6 +15,10 @@ const Avatar: React.FunctionComponent<AvatarProps> = ({
   shape = "rounded",
   type = "image",
   color = colorTokens.default.primary.main,
+
+  // Test props
+  "data-testid": dataTestId,
+  ...props
 }) => {
   const theme = useTheme().theme;
   const colorPalette = getColorPalette(theme, color);
@@ -35,6 +39,8 @@ const Avatar: React.FunctionComponent<AvatarProps> = ({
       $variant={variant}
       $colorPalette={colorPalette}
       $color={color}
+      data-testid={dataTestId}
+      {...props}
     >
       <AvatarContent />
     </StyledImgContainer>

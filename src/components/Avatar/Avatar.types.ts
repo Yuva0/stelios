@@ -19,6 +19,11 @@ interface AvatarCommonProps {
   initials?: string;
   src?: string;
   alt?: string;
+  className?: string;
+  style?: React.CSSProperties;
+  
+  // Test Props
+  "data-testid"?: string;
 }
 export type AvatarProps = AvatarCommonProps &
   (AvatarImageProps  | AvatarInitialsProps);

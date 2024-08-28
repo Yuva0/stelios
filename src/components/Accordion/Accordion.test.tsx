@@ -3,7 +3,6 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import Accordion from "./Accordion";
 import AccordionItem from "./AccordionItem/AccordionItem";
 import { AccordionProps } from "./Accordion.types";
-import { AccordionItemProps } from "./AccordionItem/AccordionItem.types";
 import Text from "../Text/Text";
 
 describe("Accordion component", () => {

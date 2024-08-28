@@ -16,9 +16,12 @@ const Breadcrumbs: React.FunctionComponent<BreadcrumbsProps> = ({
   color = colorTokens.default.primary.main,
   size = "medium",
   variant = "contained",
+  //Test Props
+  "data-testid": dataTestId,
+  ...props
 }) => {
   return (
-    <div style={{ display: "inline-flex" }}>
+    <div style={{ display: "inline-flex" }} data-testid={dataTestId} {...props}>
       {React.Children.map(children, (child, index) => {
         if (!React.isValidElement(child)) return child;
         return (

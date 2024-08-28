@@ -14,6 +14,9 @@ export interface CapsuleProps {
   title?: React.ReactNode;
   description?: React.ReactNode;
   onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
+
+  // Test Props
+  "data-testid"?: string;
 }
 
 export interface CapsuleStyleProps {
