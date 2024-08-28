@@ -6,8 +6,7 @@
   <span style="color: #fb4570">Components</span>
 </h2>
 
-Welcome to Stelios, a comprehensive design system built with TypeScript, React and Styled-Components. Stelios provides a robust set of components and utilities to help you create responsive and accessible user interfaces efficiently.
-
+Welcome to Stelios, a comprehensive design system built with TypeScript, React, and Styled-Components. Stelios provides a robust set of components and utilities to help you efficiently create responsive and accessible user interfaces.
 
 <p align="center">
   <img alt="Latest Version" src="https://badgen.net/static/latest/1.0.11/blue/"/>
@@ -34,18 +33,18 @@ Welcome to Stelios, a comprehensive design system built with TypeScript, React a
 - 📜 [Sponsors](#sponsors) -->
 
 ### Documentation:
-Stelios is yet to be documented and will be updated soon.
-Kindly refer to [storybook](https://yuva0.github.io/stelios/storybook) for the documentation of the components for now.
+Stelios is yet to be documented and will be updated soon. For now, you can refer to [storybook](https://yuva0.github.io/stelios/storybook) for the documentation of the components.
 
 ### Features:
-- **Theming**: Dynamic color and theme computation on the fly. You can even create your own website using just one color.
+- **Theming**: Dynamic color and theme computation on the fly. Create your own website using just one color.
 - **TypeScript**: Enjoy strong typing and enhanced developer experience.
 - **Styled-Components**: Seamlessly integrate with your styles using styled-components.
 - **Responsive Design**: Ensure your components look great on all devices.
 - **Accessibility**: Built with accessibility in mind and ARIA guidelines to provide an inclusive experience.
 
 ### Installation
-To install Stelios, all you need to do is install the package from npm or yarn.
+To install Stelios, simply run the following command:
+
 ```sh
 # with npm
 $ npm install stelios@latest
@@ -55,10 +54,7 @@ $ yarn add stelios@latest
 ```
 
 ### Storybook: 
-Link for storybook - [here](https://yuva0.github.io/stelios/)
-
-Storybook is used for the documentation of the components. You can view the components and their props in the storybook.
-It also contains numerous samples utilizing the components to help you get started.
+You can access the storybook [here](https://yuva0.github.io/stelios/). <br/> It provides documentation for the components, including their props and numerous samples to help you get started.
 
 <details open>
   <summary><h4 style="display: inline" id="components">Components Supported</h3></summary>
@@ -104,9 +100,8 @@ It also contains numerous samples utilizing the components to help you get start
     <li>Text</li>
     <li>ThemeProvider</li>
     <li>ToggleButton</li>
+  </ul>
 </details>
 
 ### Coverage
-At Stelios, every line of code is written with a purpose in mind. 
-This commitment to thorough testing reflects the dedication to delivering a set of high-quality components. 
-You can explore the latest code coverage report [here](https://yuva0.github.io/stelios/coverage).
+Every line of code in Stelios is meticulously crafted with a clear purpose to create beautiful components. You can explore the latest code coverage report [here](https://yuva0.github.io/stelios/coverage).
