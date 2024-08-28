@@ -34,7 +34,7 @@ Welcome to Stelios, a comprehensive design system built with TypeScript, React a
 
 ### Documentation:
 Stelios is yet to be documented and will be updated soon.
-Kindly refer to [storybook](https://yuva0.github.io/stelios) for the documentation of the components for now.
+Kindly refer to [storybook](https://yuva0.github.io/stelios/storybook) for the documentation of the components for now.
 
 ### Features:
 - **Theming**: Dynamic color and theme computation on the fly. You can even create your own website using just one color.
