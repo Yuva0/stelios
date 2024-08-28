@@ -23,6 +23,10 @@ export interface InputProps {
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
   onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
+
+  // Test Props
+  "data-testid"?: string;
+  "data-testid-input"?: string;
 }
 
 

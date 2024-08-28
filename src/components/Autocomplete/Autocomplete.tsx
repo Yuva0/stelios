@@ -6,11 +6,11 @@ import Input from "../Input/Input";
 import { AutocompleteProps } from "./Autocomplete.types";
 import { MenuItemKeyProps } from "../MenuItem/MenuItem.types";
 import MenuItem from "../MenuItem/MenuItem";
-import { useTheme } from "../ThemeProvider/ThemeProvider";
+// import { useTheme } from "../ThemeProvider/ThemeProvider";
 import colorTokens from "../../tokens/colors.json";
-import { getColorPalette } from "../../helpers/helpers";
+// import { getColorPalette } from "../../helpers/helpers";
 
-const Autocomplete = ({
+const Autocomplete: React.FC<AutocompleteProps> = ({
   id,
   options,
   placeholder,
@@ -23,11 +23,19 @@ const Autocomplete = ({
   color = colorTokens.default.primary.main,
   width = "15rem",
   variant = "contained",
+
   // Events
   onChange,
   onClick,
   onInputChange,
-}: AutocompleteProps) => {
+
+  // Test Props
+  "data-testid": dataTestId,
+  "data-testid-input": dataTestIdInput,
+  "data-testid-menu": dataTestIdMenu,
+
+  ...props
+}) => {
   const inputRef = React.useRef<HTMLInputElement>(null);
   const [isOpen, setIsOpen] = React.useState(open ?? false);
   const [inputValue, setInputValue] = React.useState<string | string[]>(
@@ -39,8 +47,8 @@ const Autocomplete = ({
         : value
       : ""
   );
-  const theme = useTheme().theme;
-  const colorPalette = getColorPalette(theme,color);
+  // const theme = useTheme().theme;
+  // const colorPalette = getColorPalette(theme,color);
   const [filteredOptions, setFilteredOptions] = React.useState(options);
   useEffect(() => {
     setInputValue(value ?? "");
@@ -82,7 +90,6 @@ const Autocomplete = ({
     setInputValue(title);
 
     onClick && onClick(e, { title, value });
-    onInputChange && onInputChange(e, title);
     onChange && onChange(e, { title, value });
   };
   const _onMenuClick = (
@@ -102,7 +109,7 @@ const Autocomplete = ({
   };
 
   return (
-    <div>
+    <div data-testid={dataTestId}>
       <Input
         variant={variant}
         color={color}
@@ -116,6 +123,9 @@ const Autocomplete = ({
         style={style}
         onClick={_onInputClick}
         onChange={_onInputChange}
+        // data-testid={dataTestIdInput}
+        data-testid-input={dataTestIdInput}
+        {...props}
       />
       <Menu
         color={color}
@@ -124,9 +134,10 @@ const Autocomplete = ({
         anchorElement={inputRef.current}
         minWidth={`${inputRef.current?.offsetWidth}px`}
         onClick={_onMenuClick}
+        data-testid={dataTestIdMenu}
       >
         {filteredOptions?.map((option, index) => (
-          <MenuItem title={option.title} value={option.value} key={index} />
+          <MenuItem {...option} title={option.title} value={option.value} key={index} />
         ))}
       </Menu>
     </div>

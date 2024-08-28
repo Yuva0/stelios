@@ -14,6 +14,9 @@ export interface MenuItemProps extends MenuItemKeyProps {
     e: React.MouseEvent<HTMLLIElement>,
     { value, title }: MenuItemKeyProps
   ) => void;
+
+  // Test Props
+  "data-testid"?: string;
 }
 
 export interface MenuItemStyleProps {

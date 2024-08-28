@@ -6,7 +6,7 @@ import {
 } from "./AccordionItem.types";
 import styled from "styled-components";
 import Text from "../../Text/Text";
-import { IconChevronDown } from "@tabler/icons-react";
+import { IconChevronDown, IconChevronUp } from "@tabler/icons-react";
 import { useTheme } from "../../ThemeProvider/ThemeProvider";
 import { getColorPalette } from "../../../helpers/helpers";
 import colorTokens from "../../../tokens/colors.json";
@@ -17,19 +17,14 @@ const AccordionItem = ({
   expanded,
   variant = "contained",
   color = colorTokens.default.primary.main,
+  "data-testid": dataTestId,
+  "data-testid-title": dataTestIdTitle,
+  ...props
 }: AccordionItemProps) => {
   const accordionItemRef = React.useRef<HTMLDivElement>(null);
   const [isExpanded, setIsExpanded] = React.useState(expanded);
   const theme = useTheme().theme;
   const colorPalette = getColorPalette(theme, color);
-  const [height, setHeight] = React.useState(accordionItemRef.current ? accordionItemRef.current.clientHeight : 0);
-
-  React.useEffect(() => {
-    if (isExpanded) {
-      setIsExpanded(false);
-      setIsExpanded(true);
-    }
-  },[isExpanded]);
 
   const _onTitleClick = () => {
     setIsExpanded(!isExpanded);
@@ -50,33 +45,27 @@ const AccordionItem = ({
         $colorPalette={colorPalette}
         $expanded={isExpanded}
         onClick={_onTitleClick}
+        data-testid={dataTestIdTitle}
       >
         {titleContent}
-        <IconChevronDown />
+        {isExpanded ?  <IconChevronUp/> : <IconChevronDown />}
       </StyledAccordionItemTitle>
     );
   };
 
-  const Children = () => {
-    if (!React.isValidElement(children)) return null;
-    if (typeof children  === "string") {
-      return <Text disableColor variant="paragraph">{children}</Text>;
-    }
-    return children;
-  }
-
   return (
-    <StyledAccordionItem>
-      <AccordionItemTitle />
+    <StyledAccordionItem data-testid={dataTestId} aria-expanded={isExpanded} {...props}>
+      <AccordionItemTitle/>
       {isExpanded && <StyledAccordionItemContent
         ref={accordionItemRef}
-        $height={height}
         $variant={variant}
         $color={color}
         $colorPalette={colorPalette}
         $expanded={isExpanded}
       >
-        <Children />
+        {
+          typeof children === "string" ? (<Text disableColor variant="paragraph">{children}</Text>) : children
+        }
       </StyledAccordionItemContent>}
     </StyledAccordionItem>
   );
@@ -119,7 +108,6 @@ const StyledAccordionItemTitle = styled.div<AccordionItemStyleProps>`
       & svg{
         width: 20px;
         height: 20px;
-        transform: ${props.$expanded ? "rotate(180deg)" : "rotate(0deg)"};
         color: ${properties.svg.color.default};
       }
     `;
@@ -251,8 +239,8 @@ const getVariantTitleProps = (
 const StyledAccordionItemContent = styled.div<AccordionItemContentStyleProps>`
   display: flex;
   flex-direction: column;
-  height: ${(props) => (props.$expanded ? "100%" : "0")};
-  padding: ${(props) => (props.$expanded ? "0.5rem 1rem 1rem 1rem;" : "0")};
+  height: 100%;
+  padding: 0.5rem 1rem 1rem 1rem;
   overflow: hidden;
   transition: height 0.3s ease-in-out;
 

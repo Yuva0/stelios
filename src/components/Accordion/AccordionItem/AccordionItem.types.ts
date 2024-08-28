@@ -4,6 +4,8 @@ export interface AccordionItemProps {
   title?: React.ReactNode;
   variant?: "contained" | "outlined" | "soft" | "outlined-soft";
   color?: string;
+  "data-testid"?: string;
+  "data-testid-title"?: string;
 }
 
 export interface AccordionItemStyleProps {
@@ -18,5 +20,4 @@ export interface AccordionItemContentStyleProps {
   $colorPalette: any;
   $color: string;
   $variant: "contained" | "outlined" | "soft" | "outlined-soft";
-  $height: number;
 }

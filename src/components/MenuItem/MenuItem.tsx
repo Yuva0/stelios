@@ -15,6 +15,9 @@ const MenuItem = ({
   variant = "contained",
   color = colorTokens.default.primary.main,
   onClick,
+
+  // Test Props
+  "data-testid": dataTestId,
 }: MenuItemProps) => {
   const theme = useTheme().theme;
   const colorPalette = getColorPalette(theme, color);
@@ -29,6 +32,7 @@ const MenuItem = ({
       $colorPalette={colorPalette}
       $color={color}
       onClick={_onClick}
+      data-testid={dataTestId}
     >
       {leadingIcon && <StyledMenuItemIcon>{leadingIcon}</StyledMenuItemIcon>}
       {children ? (

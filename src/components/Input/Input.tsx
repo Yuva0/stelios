@@ -39,6 +39,10 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
       onClick,
       onKeyDown,
 
+      // Test Props
+      "data-testid": dataTestId,
+      "data-testid-input": dataTestIdInput,
+
       ...props
     }: InputProps,
     ref
@@ -101,6 +105,7 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
         $width={width}
         style={style}
         className={className}
+        data-testid={dataTestId}
         {...props}
       >
         {labelPosition && labelPosition === "top" ? Label : null}
@@ -140,6 +145,7 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
               placeholder={placeholder}
               onChange={_onChange}
               style={inputStyle}
+              data-testid={dataTestIdInput}
             />
           ) : (
             <span className="ste-input-content" style={inputStyle}>{value}</span>

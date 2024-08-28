@@ -15,7 +15,7 @@ export interface AutocompleteProps {
   multiSelect?: boolean;
   color?: string;
   variant?: "contained" | "outlined" | "soft";
-
+  
   // Events
   onChange?: (
     e: React.ChangeEvent<HTMLInputElement> | React.MouseEvent,
@@ -26,4 +26,9 @@ export interface AutocompleteProps {
     value?: string
   ) => void;
   onClick?: (e: React.MouseEvent, { title, value }: MenuItemKeyProps) => void;
+
+  // Test Props
+  "data-testid"?: string;
+  "data-testid-input"?: string;
+  "data-testid-menu"?: string;
 }

@@ -238,7 +238,7 @@ const ColorComponent = () => {
             Choose your color palette
           </Text>
           <Text color="primary" style={{ paddingBottom: "1rem" }}>
-            This website is created using only one color.
+            This story is created using only one color.
           </Text>
 
           <ColorPicker color={color} width="100%" onChange={_onColorChange} />

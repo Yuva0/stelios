@@ -118,11 +118,12 @@ const StyledButton = styled.button<ButtonStyleProps>`
       width: ${props.$isFullWidth ? "100%" : "auto"};
       cursor: ${props.$disabled ? "not-allowed" : "pointer"};
       border-radius: ${props.$borderRadius};
-      border: ${properties.border!.default}
+      border: ${properties.border!.default};
       ${hasPropertyChain(properties, ["boxShadow", "default"]) ? `box-shadow: ${properties.boxShadow!.default};` : ""}
       ${
         !props.$disabled
-          ? `&:hover {
+          ? `
+          &:hover {
           background-color: ${properties.backgroundColor.hover};
           color: ${properties.color.hover};
           border: ${properties.border!.hover};
