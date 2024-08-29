@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Text from "../Text/Text";
-import { MenuItemProps, MenuItemStyleProps } from "./MenuItem.types";
+import {
+  MenuItemPrivateProps,
+  MenuItemProps,
+  MenuItemStyleProps,
+} from "./MenuItem.types";
 import styled, { css } from "styled-components";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
 import { getColorPalette } from "../../helpers/helpers";
 import colorTokens from "../../tokens/colors.json";
 
-const MenuItem = ({
+const MenuItem: React.FC<MenuItemProps> = ({
   leadingIcon,
   trailingIcon,
   children,
@@ -15,19 +19,31 @@ const MenuItem = ({
   variant = "contained",
   color = colorTokens.default.primary.main,
   onClick,
-
   // Test Props
   "data-testid": dataTestId,
-}: MenuItemProps) => {
+
+  pvtHasFocus,
+  pvtOnClick,
+}: MenuItemProps & MenuItemPrivateProps) => {
+  const menuItemRef = useRef<HTMLLIElement>(null);
   const theme = useTheme().theme;
+  useEffect(() => {
+    if (pvtHasFocus && menuItemRef.current) {
+      menuItemRef.current.focus();
+    }
+  }, [menuItemRef, pvtHasFocus]);
+
   const colorPalette = getColorPalette(theme, color);
 
   const _onClick = (event: React.MouseEvent<HTMLLIElement>) => {
+    pvtOnClick && pvtOnClick(event, { title, value });
     onClick && onClick(event, { title, value });
   };
 
   return (
     <StyledMenuItem
+      ref={menuItemRef}
+      tabIndex={pvtHasFocus ? 0 : -1}
       $variant={variant}
       $colorPalette={colorPalette}
       $color={color}
@@ -35,37 +51,25 @@ const MenuItem = ({
       data-testid={dataTestId}
     >
       {leadingIcon && <StyledMenuItemIcon>{leadingIcon}</StyledMenuItemIcon>}
-      {children ? (
-        typeof children === "string" ? (
-          <StyledMenuItemContent
-            $variant={variant}
-            $color={color}
-            $colorPalette={colorPalette}
-          >
+      <StyledMenuItemContent
+        $variant={variant}
+        $color={color}
+        $colorPalette={colorPalette}
+      >
+        {children ? (
+          typeof children === "string" ? (
             <Text disableColor variant="paragraph">
               {children}
             </Text>
-          </StyledMenuItemContent>
+          ) : (
+            children
+          )
         ) : (
-          <StyledMenuItemContent
-            $variant={variant}
-            $color={color}
-            $colorPalette={colorPalette}
-          >
-            {children}
-          </StyledMenuItemContent>
-        )
-      ) : (
-        <StyledMenuItemContent
-          $variant={variant}
-          $color={color}
-          $colorPalette={colorPalette}
-        >
           <Text disableColor variant="paragraph">
             {title}
           </Text>
-        </StyledMenuItemContent>
-      )}
+        )}
+      </StyledMenuItemContent>
       {trailingIcon && (
         <StyledMenuItemContent
           $variant={variant}
@@ -125,6 +129,12 @@ const variantStyleHandler = (
           background-color: ${colorPalette[color].accentScale[9]};
           color: ${colorPalette[color].accentContrast};
         }
+
+        &:focus-visible {
+          outline: 2px solid ${colorPalette[color].accentScale[10]};
+          border-radius: 0.25rem;
+          outline-offset: -0.125rem;
+        }
       `;
     case "outlined":
       return css`
@@ -137,8 +147,15 @@ const variantStyleHandler = (
         }
 
         &:active {
-          background-color: "transparent";
+          background-color: transparent;
           color: ${colorPalette[color].accentScale[10]};
+        }
+
+        &:focus-visible {
+          outline: 2px solid ${colorPalette[color].accentScale[10]};
+          border-radius: 0.25rem;
+          outline-offset: -0.125rem;
+        }
       `;
     case "soft":
       return css`
@@ -153,6 +170,12 @@ const variantStyleHandler = (
         &:active {
           background-color: ${colorPalette[color].accentScale[3]};
           color: ${colorPalette[color].accentScale[10]};
+        }
+
+        &:focus-visible {
+          outline: 2px solid ${colorPalette[color].accentScale[10]};
+          border-radius: 0.25rem;
+          outline-offset: -0.125rem;
         }
       `;
   }

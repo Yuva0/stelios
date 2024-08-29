@@ -1,6 +1,6 @@
-import React, { forwardRef, useEffect, useState } from "react";
+import React, { forwardRef, useCallback, useEffect, useState } from "react";
 import { MenuProps, MenuStyleProps } from "./Menu.types";
-import { MenuItemKeyProps } from "../MenuItem/MenuItem.types";
+import { MenuItemKeyProps, MenuItemPrivateProps } from "../MenuItem/MenuItem.types";
 import styled, { css } from "styled-components";
 import { usePopper } from "react-popper";
 import { MenuItemProps } from "../MenuItem/MenuItem.types";
@@ -31,10 +31,9 @@ const Menu = forwardRef<HTMLDivElement, MenuProps>(
     const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(
       null
     );
-    useEffect(() => {
-      setIsOpen(open ?? false);
-    }, [open]);
-
+    const [focusVisible, setFocusVisible] = useState<number>(0);
+    const theme = useTheme().theme;
+    const colorPalette = getColorPalette(theme, color);
     const { styles, attributes } = usePopper(anchorElement, popperElement, {
       placement: (popperStyles && popperStyles.placement) ?? "bottom-start",
       modifiers: (popperStyles && popperStyles.modifiers) ?? [
@@ -46,19 +45,37 @@ const Menu = forwardRef<HTMLDivElement, MenuProps>(
         },
       ],
     });
-    const theme = useTheme().theme;
-    const colorPalette = getColorPalette(theme, color);
 
-    const _onClick = (
+    useEffect(() => {
+      setIsOpen(open ?? false);
+    }, [open]);
+    useEffect(() => {
+      setFocusVisible(0);
+    },[isOpen]);
+
+    const _onClick = useCallback((
       e: React.MouseEvent<HTMLLIElement>,
       { title, value }: MenuItemKeyProps
     ) => {
+      console.log(title, value);
       onClick && onClick(e, { title, value });
-    };
-    const _onClose = (e: MouseEvent) => {
+    },[onClick]);
+
+    const _onClose = useCallback((e: MouseEvent) => {
       setIsOpen(false);
       onClose && onClose(e);
-    };
+    },[onClose]);
+
+    const _onKeyDown = useCallback((e: React.KeyboardEvent<HTMLDivElement>) => {
+      if(e.key === "ArrowDown") {
+        e.preventDefault();
+        setFocusVisible((prev) => (prev + 1) % React.Children.count(children));
+      }
+      else if(e.key === "ArrowUp"){
+        e.preventDefault();
+        setFocusVisible((prev) => (prev - 1 + React.Children.count(children)) % React.Children.count(children));
+      }
+    },[children]);
 
     if (!children) return null;
     if (Array.isArray(children) && children.length === 0) return null;
@@ -72,19 +89,20 @@ const Menu = forwardRef<HTMLDivElement, MenuProps>(
         $color={color}
         $variant={variant}
         style={{ ...styles.popper, ...style }}
+        onKeyDown={_onKeyDown}
         {...attributes.popper}
       >
         <StyledMenu>
           {React.Children.map(children, (child, index) => {
             if (!child) return child;
             if (!React.isValidElement(child)) return child;
-
             return React.cloneElement(child, {
               key: child.props.index ?? index,
               ...(!child.props.color && { color: color }),
               ...(!child.props.variant && { variant: variant }),
-              onClick: _onClick,
-            } as MenuItemProps);
+              pvtHasFocus: focusVisible === index,
+              pvtOnClick: _onClick,
+            } as MenuItemProps & MenuItemPrivateProps);
           })}
         </StyledMenu>
       </StyledMenuContainer>

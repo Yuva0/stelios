@@ -19,6 +19,14 @@ export interface MenuItemProps extends MenuItemKeyProps {
   "data-testid"?: string;
 }
 
+export interface MenuItemPrivateProps {
+  pvtOnClick?: (
+    e: React.MouseEvent<HTMLLIElement>,
+    { value, title }: MenuItemKeyProps
+  ) => void;
+  pvtHasFocus?: boolean;
+}
+
 export interface MenuItemStyleProps {
   $colorPalette: any;
   $color: string;
