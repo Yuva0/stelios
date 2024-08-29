@@ -12,6 +12,9 @@ export interface HeaderProps {
   iconHeight?: string;
   iconRight?: string;
   iconBottom?: string;
+
+  "data-testid"?: string;
+  "data-testid-icon"?: string;
 }
 
 export interface HeaderStyleProps {

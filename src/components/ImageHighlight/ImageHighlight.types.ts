@@ -3,6 +3,7 @@ export interface ImageHighlightProps {
   imgAlt: string;
   gradientColors?: Array<string>;
   color?: string;
+  "data-testid"?: string;
 }
 
 export interface ImageStyleProps {

@@ -8,6 +8,7 @@ export interface ComponentHighlightProps {
   style?: React.CSSProperties;
   className?: string;
   color?: string;
+  "data-testid"?: string;
 }
 export interface ComponentHighlightStyleProps {
   $width: string;

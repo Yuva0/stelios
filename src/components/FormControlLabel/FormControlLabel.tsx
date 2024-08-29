@@ -19,8 +19,6 @@ const getFlexDirection = (
       return "column-reverse";
     case "bottom":
       return "column";
-    default:
-      return "row";
   }
 };
 

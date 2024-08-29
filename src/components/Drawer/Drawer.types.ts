@@ -1,4 +1,3 @@
-import { DefaultTheme } from "../ThemeProvider/ThemeProvider.types";
 
 export type DrawerProps = {
   open?: boolean;
@@ -14,14 +13,15 @@ export type DrawerProps = {
   title?: React.ReactNode;
   hasCloseIcon?: boolean;
   color?: string;
+  "data-testid"?: string;
 };
 
 export type DrawerStyleProps = {
   $open?: boolean;
   $position?: "left" | "right";
-  $size?: "small" | "medium" | "large";
+  $size: "small" | "medium" | "large";
   $zIndex?: number;
-  $backdropStrength?: "weak" | "normal" | "strong";
+  $backdropStrength: "weak" | "normal" | "strong";
   $colorPalette: any;
   $color: string;
 };

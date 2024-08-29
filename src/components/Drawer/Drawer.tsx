@@ -14,6 +14,115 @@ type DrawerBackdropProps = {
   $backdropStrength: DrawerProps["backdropStrength"];
 };
 
+const Drawer = ({
+  children,
+  open = false,
+  position = "left",
+  size = "medium",
+  className,
+  style,
+  hideOnOutsideClick = true,
+  zIndex = 1000,
+  backdropStrength = "normal",
+  title,
+  hasCloseIcon = true,
+  color = colorTokens.default.primary.main,
+  // Events
+  onClose,
+  "data-testid": dataTestId,
+  ...props
+}: DrawerProps) => {
+  const [isOpen, setIsOpen] = React.useState(open);
+  const debouncedOpen = useDebounce(open, 300);
+
+  React.useEffect(() => {
+    setIsOpen(open);
+
+    const handleEscapeKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsOpen(false);
+        onClose && onClose(e);
+      }
+    };
+
+    if (open) document.addEventListener("keydown", handleEscapeKey);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscapeKey);
+    };
+  }, [open, onClose]);
+
+  const theme = useTheme().theme;
+  const colorPalette = getColorPalette(theme, color);
+
+  const _onOutsideClick = (e: React.MouseEvent) => {
+    if (hideOnOutsideClick) {
+      setIsOpen(false);
+      onClose && onClose(e);
+    }
+  };
+
+  const Title =
+    title && typeof title === "string" ? (
+      <Text style={{ flexGrow: 1 }} variant="h5">
+        {title}
+      </Text>
+    ) : (
+      title
+    );
+  const CloseIcon = (
+    <span style={{ float: "right" }}>
+      <IconButton
+        size="small"
+        variant="outlined"
+        icon={<IconX />}
+        onClick={_onOutsideClick}
+      />
+    </span>
+  );
+
+  const headerDrawer = (title || hasCloseIcon) && (
+    <StyledHeader
+      $color={color}
+      $size={size}
+      $colorPalette={colorPalette}
+      $backdropStrength={backdropStrength}
+    >
+      <div style={{ flexGrow: 1 }}>{Title}</div>
+      {CloseIcon}
+    </StyledHeader>
+  );
+
+  if (!open && !debouncedOpen) return null;
+  return (
+    <>
+      <StyledDrawer
+        $open={isOpen}
+        $colorPalette={colorPalette}
+        $color={color}
+        $position={position}
+        $size={size}
+        $backdropStrength={backdropStrength}
+        className={className}
+        style={style}
+        $zIndex={zIndex}
+        data-testid={dataTestId}
+        {...props}
+      >
+        {headerDrawer}
+        <div style={{ padding: "1rem" }}>{children}</div>
+      </StyledDrawer>
+      {isOpen && (
+        <StyledBackdrop
+          $backdropStrength={backdropStrength}
+          onClick={_onOutsideClick}
+        />
+      )}
+    </>
+  );
+};
+export default Drawer;
+
 const getSize = (size: DrawerStyleProps["$size"]) => {
   switch (size) {
     case "small":
@@ -22,8 +131,6 @@ const getSize = (size: DrawerStyleProps["$size"]) => {
       return 480;
     case "large":
       return 640;
-    default:
-      return 480;
   }
 };
 const getBackdropStrength = (strength: DrawerProps["backdropStrength"]) => {
@@ -34,8 +141,6 @@ const getBackdropStrength = (strength: DrawerProps["backdropStrength"]) => {
       return "rgba(0, 0, 0, 0.3)";
     case "strong":
       return "rgba(0, 0, 0, 0.5)";
-    default:
-      return "rgba(0, 0, 0, 0.3)";
   }
 };
 
@@ -69,103 +174,3 @@ const StyledHeader = styled.div<DrawerStyleProps>`
   border-bottom: ${(props) =>
     `1px solid ${props.$colorPalette[props.$color].grayScale[5]}`};
 `;
-
-const Drawer = ({
-  children,
-  open = false,
-  position = "left",
-  size = "medium",
-  className,
-  style,
-  hideOnOutsideClick = true,
-  zIndex = 1000,
-  backdropStrength = "normal",
-  title,
-  hasCloseIcon = true,
-  color = colorTokens.default.primary.main,
-  // Events
-  onClose,
-}: DrawerProps) => {
-  const [isOpen, setIsOpen] = React.useState(open);
-  const debouncedOpen = useDebounce(open, 300);
-
-  React.useEffect(() => {
-    setIsOpen(open);
-
-    const handleEscapeKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setIsOpen(false);
-        onClose && onClose(e);
-      }
-    };
-
-    if (open) document.addEventListener("keydown", handleEscapeKey);
-
-    return () => {
-      document.removeEventListener("keydown", handleEscapeKey);
-    };
-  }, [open, onClose]);
-
-  const theme = useTheme().theme;
-  const colorPalette = getColorPalette(theme,color);
-
-  const _onOutsideClick = (e: React.MouseEvent) => {
-    if (hideOnOutsideClick) {
-      setIsOpen(false);
-      onClose && onClose(e);
-    }
-  };
-
-  const Title =
-    title && typeof title === "string" ? (
-      <Text style={{ flexGrow: 1 }} variant="h5">
-        {title}
-      </Text>
-    ) : (
-      title
-    );
-  const CloseIcon = (
-    <span style={{ float: "right" }}>
-      <IconButton
-        size="small"
-        variant="outlined"
-        icon={<IconX />}
-        onClick={_onOutsideClick}
-      />
-    </span>
-  );
-
-  const headerDrawer = (title || hasCloseIcon) && (
-    <StyledHeader $color={color} $colorPalette={colorPalette}>
-      <div style={{ flexGrow: 1 }}>{Title}</div>
-      {CloseIcon}
-    </StyledHeader>
-  );
-
-  if(!open && !debouncedOpen) return null; 
-  return (
-    <>
-      <StyledDrawer
-        $open={isOpen}
-        $colorPalette={colorPalette}
-        $color={color}
-        $position={position}
-        $size={size}
-        className={className}
-        style={style}
-        $zIndex={zIndex}
-      >
-        {headerDrawer}
-        <div style={{ padding: "1rem" }}>{children}</div>
-      </StyledDrawer>
-      {isOpen && (
-        <StyledBackdrop
-          $backdropStrength={backdropStrength}
-          onClick={_onOutsideClick}
-        />
-      )}
-    </>
-  );
-};
-
-export default Drawer;

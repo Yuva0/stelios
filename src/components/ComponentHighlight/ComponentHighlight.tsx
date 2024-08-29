@@ -15,6 +15,8 @@ const ComponentHighlight: React.FunctionComponent<ComponentHighlightProps> = ({
   style,
   className,
   color = colorTokens.default.primary.main,
+  "data-testid": dataTestId,
+  ...props
 }) => {
   const theme = useTheme().theme;
   const colorPalette = getColorPalette(theme,color);
@@ -32,6 +34,8 @@ const ComponentHighlight: React.FunctionComponent<ComponentHighlightProps> = ({
       $colorPalette={colorPalette}
       $color={color}
       $gradientColors={gradientColors}
+      data-testid={dataTestId}
+      {...props}
     >
       {CHILDREN}
     </StyledComponentCtr>

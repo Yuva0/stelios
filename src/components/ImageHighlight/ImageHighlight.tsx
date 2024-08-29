@@ -5,19 +5,23 @@ import { ImageHighlightProps, ImageStyleProps } from "./ImageHighlight.types";
 import { getColorPalette } from "../../helpers/helpers";
 import colorTokens from "../../tokens/colors.json";
 
-
 const ImageHighlight: React.FunctionComponent<ImageHighlightProps> = ({
   imgSrc,
   imgAlt,
   gradientColors,
   color = colorTokens.default.primary.main,
+  "data-testid": dataTestId,
   ...props
 }) => {
   const theme = useTheme().theme;
   const colorPalette = getColorPalette(theme);
 
   return (
-    <StyledImgHighlightCtr $gradientColors={gradientColors} {...props}>
+    <StyledImgHighlightCtr
+      $gradientColors={gradientColors}
+      data-testId={dataTestId}
+      {...props}
+    >
       <StyledImgCtr $colorPalette={colorPalette} $color={color}>
         <StyledImg src={imgSrc} alt={imgAlt} />
       </StyledImgCtr>

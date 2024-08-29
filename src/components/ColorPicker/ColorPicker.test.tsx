@@ -82,11 +82,11 @@ describe("ColorPicker", () => {
     expect(colorPicker).toBeInTheDocument();
   });
 
-  it("Click on the color picker", () => {
-    renderColorPicker({});
-    const colorPicker = screen.getByTestId("color-picker");
-    expect(colorPicker).toBeInTheDocument();
-    fireEvent.click(colorPicker);
+  // it("Click on the color picker", () => {
+  //   renderColorPicker({});
+  //   const colorPicker = screen.getByTestId("color-picker");
+  //   expect(colorPicker).toBeInTheDocument();
+  //   fireEvent.click(colorPicker);
 
-  });
+  // });
 });

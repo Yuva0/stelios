@@ -16,11 +16,14 @@ const Header = ({
   className,
   style,
   expandable = true,
-  iconWidth,
-  iconHeight,
-  iconRight,
-  iconBottom,
+  iconWidth = "3rem",
+  iconHeight = "1.75rem",
+  iconRight = "5rem",
+  iconBottom = "-1.5rem",
   color = colorTokens.default.primary.main,
+  "data-testid": dataTestId,
+  "data-testid-icon": dataTestIdIcon,
+  ...props
 }: HeaderProps) => {
   const [expanded, setExpanded] = React.useState<boolean>(true);
   const theme = useTheme().theme;
@@ -40,6 +43,7 @@ const Header = ({
         $iconRight={iconRight}
         $iconBottom={iconBottom}
         onClick={_onExpandHandler}
+        data-testid={dataTestIdIcon}
       >
         {expanded ? <IconChevronCompactUp /> : <IconChevronCompactDown />}
       </StyledExpandIcon>
@@ -55,6 +59,8 @@ const Header = ({
       $color={color}
       className={className}
       style={style}
+      data-testid={dataTestId}
+      {...props}
     >
       {expanded && children}
       {expandable && <ExpandIcon />}
@@ -78,7 +84,7 @@ const StyledHeader = styled.header<HeaderStyleProps>`
   ${(props) => {
     return `
       background-color: ${props.$colorPalette[props.$color].background};
-      height: ${props.$expanded ? props.$height ?? "5rem" : "0rem"};
+      height: ${props.$expanded ? props.$height : "0rem"};
       box-shadow: ${props.$expanded ? "none" : "0 0 10px 0 rgba(0, 0, 0, 0.35)"};
       outline: ${props.$expanded ? `1px solid ${props.$colorPalette[props.$color].grayScale[5]}` : "none"};
     `;
@@ -101,10 +107,10 @@ const StyledExpandIcon = styled.div<HeaderStyleProps>`
   }
   ${(props) => {
     return `
-      right: ${props.$iconRight ?? `5rem`};
-      bottom: ${props.$iconBottom ?? `-1.5rem`};
-      width: ${props.$iconWidth ?? `3rem`};
-      height: ${props.$iconHeight ?? `1.75rem`};
+      right: ${props.$iconRight};
+      bottom: ${props.$iconBottom};
+      width: ${props.$iconWidth};
+      height: ${props.$iconHeight};
       background-color: ${props.$colorPalette[props.$color].background};
       color: ${props.$colorPalette[props.$color].grayScale[11]};
     `;
