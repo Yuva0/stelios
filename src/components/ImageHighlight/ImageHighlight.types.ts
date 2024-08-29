@@ -8,5 +8,5 @@ export interface ImageHighlightProps {
 
 export interface ImageStyleProps {
   $colorPalette?: any;
-  $color?: string;
+  $color: string;
 }

@@ -77,7 +77,7 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
     ) : null;
 
     const _onClick = (e: React.MouseEvent<HTMLDivElement>) => {
-      inputRef.current?.focus();
+      inputRef && inputRef.current && inputRef.current.focus();
       onClick && onClick(e);
     };
 
@@ -148,7 +148,7 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
               data-testid={dataTestIdInput}
             />
           ) : (
-            <span className="ste-input-content" style={inputStyle}>{value}</span>
+            <span className="ste-input-content" style={inputStyle} data-testid={dataTestIdInput}>{value}</span>
           )}
           {trailingIcon && (
             <StyledInputIcon
@@ -219,7 +219,9 @@ const StyledInputContent = styled.div<InputStyleContentProps>`
       props.$variant,
       props.$colorPalette,
       props.$color,
-      props.$size
+      props.$size,
+      props.$hasLeadingIcon,
+      props.$hasTrailingIcon
     );
     return `
       cursor: ${props.$cursor};

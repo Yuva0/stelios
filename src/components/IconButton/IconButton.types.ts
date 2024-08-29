@@ -8,6 +8,7 @@ export interface IconButtonProps
   disabled?: boolean;
   className?: string;
   style?:React.CSSProperties;
+  "data-testid"?: string;
 }
 
 export interface IconButtonStyleProps {

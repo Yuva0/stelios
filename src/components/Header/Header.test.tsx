@@ -35,10 +35,5 @@ describe("Header component", () => {
     renderHeader({expandable: false, });
     const header = screen.getByTestId("header");
     expect(header).toBeInTheDocument();
-
-    const headerExpandIcon = screen.getByTestId("header-expand-icon");
-    expect(headerExpandIcon).toBeInTheDocument()
-
-    fireEvent.click(headerExpandIcon);
   });
 });

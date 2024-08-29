@@ -17,12 +17,13 @@ const IconButton = forwardRef(
       className,
       style,
       onClick,
+      "data-testid": dataTestId,
       ...rest
     }: IconButtonProps,
     ref: React.ForwardedRef<HTMLButtonElement>
   ) => {
     const theme = useTheme().theme;
-    const colorPalette = getColorPalette(theme,color);
+    const colorPalette = getColorPalette(theme, color);
 
     return (
       <StyledIconBtn
@@ -36,6 +37,7 @@ const IconButton = forwardRef(
         style={style}
         className={className}
         onClick={onClick}
+        data-testid={dataTestId}
         {...rest}
       >
         {typeof icon === "string" ? (
@@ -94,17 +96,15 @@ const StyledIconBtn = styled.button<IconButtonStyleProps>`
         border: ${properties.border.active};
         ${hasPropertyChain(properties, ["boxShadow", "active"]) ? `box-shadow: ${properties.boxShadow!.active};` : ""}
         ${
-          hasPropertyChain(properties, ["filter", "active"]) ?
-          `filter: ${properties.filter!.active};` : ""
+          hasPropertyChain(properties, ["filter", "active"])
+            ? `filter: ${properties.filter!.active};`
+            : ""
         }
       };
-      ${!props.disabled ?
-        `&:focus-visible {
+      ${`&:focus-visible {
           outline-offset: 2px;
           outline: 2px solid ${props.$colorPalette[props.$color].accentScale[8]};
-        }`:
-        ""
-      }
+        }`}
     `;
   }}
 `;
@@ -139,17 +139,18 @@ const getVariantProps = (
 ) => {
   switch (variant) {
     case "contained":
-      if(disabled) return {
-        backgroundColor: {
-          default: colorPalette[color].grayScale[8]
-        },
-        color: {
-          default: colorPalette[color].accentContrast
-        },
-        border: {
-          default: `2px solid ${colorPalette[color].grayScale[8]}`,
-        }
-      }
+      if (disabled)
+        return {
+          backgroundColor: {
+            default: colorPalette[color].grayScale[8],
+          },
+          color: {
+            default: colorPalette[color].accentContrast,
+          },
+          border: {
+            default: `2px solid ${colorPalette[color].grayScale[8]}`,
+          },
+        };
       return {
         backgroundColor: {
           default: colorPalette[color].accentScale[8],
@@ -168,17 +169,18 @@ const getVariantProps = (
         },
       };
     case "outlined":
-      if(disabled) return {
-        backgroundColor: {
-          default: "transparent"
-        },
-        color: {
-          default: colorPalette[color].grayScale[10]
-        },
-        border: {
-          default: `2px solid ${colorPalette[color].grayScale[5]}`,
-        }
-      }
+      if (disabled)
+        return {
+          backgroundColor: {
+            default: "transparent",
+          },
+          color: {
+            default: colorPalette[color].grayScale[10],
+          },
+          border: {
+            default: `2px solid ${colorPalette[color].grayScale[5]}`,
+          },
+        };
       return {
         backgroundColor: {
           default: "transparent",
@@ -197,17 +199,18 @@ const getVariantProps = (
         },
       };
     case "soft":
-      if(disabled) return {
-        backgroundColor: {
-          default: colorPalette[color].grayScale[2]
-        },
-        color: {
-          default: colorPalette[color].grayScale[10]
-        },
-        border: {
-          default: `2px solid ${colorPalette[color].grayScale[2]}`
-        }
-      }
+      if (disabled)
+        return {
+          backgroundColor: {
+            default: colorPalette[color].grayScale[2],
+          },
+          color: {
+            default: colorPalette[color].grayScale[10],
+          },
+          border: {
+            default: `2px solid ${colorPalette[color].grayScale[2]}`,
+          },
+        };
       return {
         backgroundColor: {
           default: colorPalette[color].accentScale[2],
@@ -229,18 +232,18 @@ const getVariantProps = (
         },
       };
     case "outlined-soft":
-      if(disabled)
+      if (disabled)
         return {
           backgroundColor: {
-            default: colorPalette[color].grayScale[2]
+            default: colorPalette[color].grayScale[2],
           },
           color: {
-            default: colorPalette[color].grayScale[10]
+            default: colorPalette[color].grayScale[10],
           },
           border: {
-            default: `2px solid ${colorPalette[color].grayScale[5]}`
-          }
-        }
+            default: `2px solid ${colorPalette[color].grayScale[5]}`,
+          },
+        };
       return {
         backgroundColor: {
           default: colorPalette[color].accentScale[2],
@@ -259,24 +262,24 @@ const getVariantProps = (
         },
       };
     case "neumorph":
-      if(disabled)
+      if (disabled)
         return {
           backgroundColor: {
-            default: "transparent"
+            default: "transparent",
           },
           color: {
-            default: colorPalette[color].grayScale[5]
+            default: colorPalette[color].grayScale[5],
           },
           border: {
-            default: `2px solid transparent`
+            default: `2px solid transparent`,
           },
           boxShadow: {
             default: `-6px -6px 14px rgba(255, 255, 255, .7),
               -6px -6px 10px rgba(255, 255, 255, .5),
               6px 6px 8px rgba(255, 255, 255, .075),
               6px 6px 10px rgba(0, 0, 0, .15)`,
-          }
-        }
+          },
+        };
       return {
         backgroundColor: {
           default: "transparent",
@@ -309,24 +312,24 @@ const getVariantProps = (
         },
       };
     case "neumorph-contained":
-      if(disabled)
+      if (disabled)
         return {
           backgroundColor: {
-            default: colorPalette[color].grayScale[8]
+            default: colorPalette[color].grayScale[8],
           },
           color: {
-            default: colorPalette[color].accentContrast
+            default: colorPalette[color].accentContrast,
           },
           border: {
-            default: `2px solid ${colorPalette[color].background}`
+            default: `2px solid ${colorPalette[color].background}`,
           },
           boxShadow: {
             default: `-6px -6px 14px rgba(255, 255, 255, .7),
               -6px -6px 10px rgba(255, 255, 255, .5),
               6px 6px 8px rgba(255, 255, 255, .075),
               6px 6px 10px rgba(0, 0, 0, .15)`,
-          }
-        }
+          },
+        };
       return {
         backgroundColor: {
           default: colorPalette[color].accentScale[8],

@@ -63,7 +63,7 @@ const StyledImgCtr = styled.div<ImageStyleProps>`
   height: calc(100% - 1rem);
   border-radius: 50%;
   border: 0.25rem solid white;
-  background-color: ${(props) => props.$colorPalette?.primary.grayScale[0]};
+  background-color: ${(props) => props.$colorPalette[props.$color].grayScale[0]};
   display: flex;
   justify-content: center;
   align-items: center;
