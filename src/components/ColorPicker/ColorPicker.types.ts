@@ -9,6 +9,7 @@ export interface ColorPickerProps {
   variant?: "contained" | "outlined" | "soft";
   width?: string;
   onChange?: (color?: string) => void;
+  "data-testid"?: string;
 }
 
 export interface ColorPickerStyleProps {

@@ -6,6 +6,7 @@ export interface FormControlLabelProps {
   gap?: number;
   disabled?: boolean;
   color?: string;
+  "data-testid"?: string;
 }
 
 export interface FormControlLabelStyleProps {

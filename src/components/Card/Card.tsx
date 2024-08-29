@@ -22,8 +22,6 @@ const Card: React.FunctionComponent<CardProps> = ({
   className,
   style,
   "data-testid": dataTestId,
-  "data-testid-header": dataTestIdHeader,
-  "data-testid-footer": dataTestIdFooter,
   ...props
 }) => {
   const theme = useTheme().theme;
@@ -40,28 +38,25 @@ const Card: React.FunctionComponent<CardProps> = ({
       data-testid={dataTestId}
       {...props}
     >
-      <CardHeader data-testid={dataTestIdHeader}>{header}</CardHeader>
-      <Children >{children}</Children>
-      <CardFooter data-testid={dataTestIdFooter}>{footer}</CardFooter>
+      <CardHeader>{header}</CardHeader>
+      <Children>{children}</Children>
+      <CardFooter>{footer}</CardFooter>
+
+
+
     </StyledCard>
   );
 };
-const CardHeader: React.FunctionComponent<CardHeaderProps> = ({ children, "data-testid":dataTestId }) => {
-  return <Children children={children} data-testid={dataTestId}/>;
+const CardHeader: React.FunctionComponent<CardHeaderProps> = ({ children }) => {
+  return <Children children={children}/>;
 };
-const CardFooter: React.FunctionComponent<CardFooterProps> = ({ children, "data-testid":dataTestId }) => {
-  return <Children children={children} data-testid={dataTestId}/>;
+const CardFooter: React.FunctionComponent<CardFooterProps> = ({ children }) => {
+  return <Children children={children}/>;
 };
 const Children: React.FunctionComponent<ChildrenProps> = ({ children }) => {
   if(!React.isValidElement(children)) return null;
 
-  return typeof children === "string" ? (
-    <Text disableColor variant="paragraph">
-      {children}
-    </Text>
-  ) : (
-    children
-  );
+  return children;
 };
 export default Card;
 

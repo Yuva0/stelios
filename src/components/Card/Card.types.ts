@@ -8,24 +8,19 @@ export interface CardProps {
   className?: string;
   style?: React.CSSProperties;
   "data-testid"?: string;
-  "data-testid-header"?: string;
-  "data-testid-footer"?: string;
 }
 export interface CardHeaderProps {
   children: React.ReactNode;
   className?: string;
   style?: React.CSSProperties;
-  "data-testid"?: string;
 }
 export interface CardFooterProps {
   children: React.ReactNode
   className?: string;
   style?: React.CSSProperties;
-  "data-testid"?: string;
 }
 export interface ChildrenProps {
   children: React.ReactNode;
-  "data-testid"?: string;
 }
 
 export interface CardStyledProps {

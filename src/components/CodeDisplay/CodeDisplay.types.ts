@@ -5,6 +5,7 @@ export interface CodeDisplayProps {
   language: string;
   style?: React.CSSProperties;
   color?: string;
+  "data-testid"?: string;
 }
 
 export interface CodeDisplayStyleProps {

@@ -40,6 +40,8 @@ const BODY_CONTENT = (
     concepts related to React, Hooks, States and many more.
   </Text>
 );
+const BODY_STRING = "React-Tutor is a website designed to teach you about basics of React. It has concepts related to React, Hooks, States and many more.";
+
 const FOOTER_CONTENT = <Text disableColor>Have a good day!</Text>
 
 type CardStory = StoryObj<typeof Card>;
@@ -87,7 +89,7 @@ export const OutlinedSoft = {
 export const Neumorph = {
   ...CardTemplate,
   args: {
-    children: BODY_CONTENT,
+    children: BODY_STRING,
     variant: "neumorph",
     header: HEADER_CONTENT,
     footer: FOOTER_CONTENT,

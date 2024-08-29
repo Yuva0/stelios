@@ -21,6 +21,7 @@ const ColorPicker = ({
   width,
   variant = "outlined",
   onChange,
+  "data-testid": dataTestId,
 }: ColorPickerProps) => {
   const [isOpen, setIsOpen] = useState(open ?? false);
   const anchorElement = useRef<HTMLDivElement | null>(null);
@@ -101,6 +102,7 @@ const ColorPicker = ({
             }}
           />
         }
+        data-testid={dataTestId}
       />
       <StyledChromePicker
         ref={popperElement}

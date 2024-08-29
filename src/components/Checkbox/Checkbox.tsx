@@ -19,9 +19,8 @@ const Checkbox = forwardRef(
       name,
       className,
       style,
-
-      //Events
       onChange,
+      "data-testid": dataTestid,
       ...props
     }: CheckboxProps,
     ref
@@ -51,6 +50,7 @@ const Checkbox = forwardRef(
         $size={size}
         $colorPalette={colorPalette}
         $color={color}
+        data-testid={dataTestid}
         {...props}
       >
         <input
@@ -76,7 +76,6 @@ const getSize = (size?: "small" | "medium" | "large") => {
     case "large":
       return 1.25;
   }
-  return 1;
 };
 
 const StyledCheckbox = styled.span<CheckboxStyleProps>`
@@ -108,15 +107,15 @@ const StyledCheckbox = styled.span<CheckboxStyleProps>`
       width: 100%;
       height: 100%;
       background-color: ${(props) =>
-        props.$colorPalette[props.$color ?? "info"].accentScale[8]};
+        props.$colorPalette[props.$color].accentScale[8]};
       color: ${(props) =>
-        props.$colorPalette[props.$color ?? "info"].accentContrast};
+        props.$colorPalette[props.$color].accentContrast};
       border-radius: 0.15rem;
     }
   }
   & input[type="checkbox"]:focus + span {
     outline: 1px solid
-      ${(props) => props.$colorPalette[props.$color ?? "info"].accentScale[8]};
+      ${(props) => props.$colorPalette[props.$color].accentScale[8]};
     outline-offset: 1px;
   }
 `;

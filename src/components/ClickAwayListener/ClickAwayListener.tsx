@@ -5,6 +5,7 @@ import { ClickAwayListenerProps } from "./ClickAwayListener.types";
 const ClickAwayListener: React.FC<ClickAwayListenerProps> = ({
   children,
   onClickAway,
+  "data-testid": dataTestId,
 }) => {
   const clickAwayListenerRef = useRef<HTMLDivElement | null>(null);
 
@@ -23,9 +24,13 @@ const ClickAwayListener: React.FC<ClickAwayListenerProps> = ({
 
   useEffect(() => {
     window.addEventListener("click", handleClickAway, true);
+
+    return () => {
+      window.removeEventListener("click", handleClickAway, true);
+    }
   });
 
-  return <div ref={clickAwayListenerRef}>{children}</div>;
+  return <div data-testid={dataTestId} ref={clickAwayListenerRef}>{children}</div>;
 };
 
 export default ClickAwayListener;

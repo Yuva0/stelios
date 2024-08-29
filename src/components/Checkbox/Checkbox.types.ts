@@ -9,6 +9,7 @@ export interface CheckboxProps {
   name?: string;
   className?: string;
   style?: React.CSSProperties;
+  "data-testid"?: string;
 
   //Events
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;

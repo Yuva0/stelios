@@ -3,23 +3,23 @@ import SyntaxHighlighter from "react-syntax-highlighter";
 import { CodeDisplayProps, CodeDisplayStyleProps } from "./CodeDisplay.types";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
 import Text from "../Text/Text";
-import { vs, dark } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import { vs, dark } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 import { getColorPalette } from "../../helpers/helpers";
 import colorTokens from "../../tokens/colors.json";
 
 const CodeDisplay = ({
   text,
-  width,
+  width = "auto",
   title,
   style,
   language,
   color = colorTokens.default.primary.main,
+  "data-testid": dataTestId,
+  ...props
 }: CodeDisplayProps) => {
   const theme = useTheme().theme;
   const colorPalette = getColorPalette(theme, color);
-  const appearance = colorPalette
-    ? colorPalette[color].appearance
-    : colorTokens.default.appearance;
+  const appearance = colorPalette![color].appearance
 
   return (
     <StyledCodeDisplay
@@ -27,6 +27,8 @@ const CodeDisplay = ({
       $colorPalette={colorPalette}
       $color={color}
       $width={width}
+      data-testid={dataTestId}
+      {...props}
     >
       {title && (
         <StyledTitle $colorPalette={colorPalette} $color={color}>
@@ -59,7 +61,7 @@ const StyledCodeDisplay = styled.div<CodeDisplayStyleProps>`
   display: flex;
   flex-direction: column;
   border-radius: 0.5rem;
-  width: ${(props) => props.$width ?? "auto"};
+  width: ${(props) => props.$width};
 `;
 const StyledTitle = styled.div<CodeDisplayStyleProps>`
   display: flex;

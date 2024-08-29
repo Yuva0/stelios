@@ -44,6 +44,7 @@ const FormControlLabel: React.FC<FormControlLabelProps> = ({
   gap = 4,
   disabled = false,
   color,
+  "data-testid": dataTestId,
   ...props
 }) => {
   const _disabled = control.props.disabled || disabled;
@@ -54,6 +55,7 @@ const FormControlLabel: React.FC<FormControlLabelProps> = ({
       $labelPlacement={labelPlacement}
       $disabled={_disabled}
       $size={size}
+      data-testid={dataTestId}
     >
       {React.cloneElement(control, {
         ...(!control.props.size && size && { size }),

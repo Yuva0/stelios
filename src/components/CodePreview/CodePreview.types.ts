@@ -3,6 +3,7 @@ export interface CodePreviewProps {
   code: React.ReactNode | [React.ReactNode];
   width?: string;
   color?: string;
+  "data-testid"?: string;
 }
 
 export interface CodePreviewStyleProps {
