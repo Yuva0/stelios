@@ -1,4 +1,4 @@
-import React, { isValidElement } from "react";
+import React from "react";
 import { LinkProps, LinkStyleProps } from "./Link.types";
 import Text from "../Text/Text";
 import styled from "styled-components";
@@ -17,18 +17,13 @@ const Link = ({
   color = colorTokens.default.primary.main,
   preciseColor,
   tabIndex,
-  // Events
   onClick,
+  "data-testid": dataTestId,
 }: LinkProps) => {
   const theme = useTheme().theme;
   const colorPalette = getColorPalette(theme, color);
-  const _color =  preciseColor ?? (colorPalette ? colorPalette[color].accentScale[10] : color);
-
-  const _handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter" || e.key === " ") {
-      onClick && onClick(e);
-    }
-  };
+  const _color =
+    preciseColor ?? colorPalette![color].accentScale[10];
 
   const LinkText = () => {
     return typeof children === "string" ? (
@@ -49,7 +44,7 @@ const Link = ({
       className={className}
       style={style}
       onClick={onClick}
-      onKeyDown={_handleKeyDown}
+      data-testid={dataTestId}
     >
       {LinkText()}
     </StyledLink>

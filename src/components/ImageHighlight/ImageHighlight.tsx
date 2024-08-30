@@ -14,7 +14,7 @@ const ImageHighlight: React.FunctionComponent<ImageHighlightProps> = ({
   ...props
 }) => {
   const theme = useTheme().theme;
-  const colorPalette = getColorPalette(theme);
+  const colorPalette = getColorPalette(theme, color);
 
   return (
     <StyledImgHighlightCtr

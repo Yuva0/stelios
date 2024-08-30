@@ -23,7 +23,7 @@ const Autocomplete: React.FC<AutocompleteProps> = ({
   color = colorTokens.default.primary.main,
   width = "15rem",
   variant = "contained",
-
+  size = "medium",
   // Events
   onChange,
   onClick,
@@ -111,6 +111,7 @@ const Autocomplete: React.FC<AutocompleteProps> = ({
   return (
     <div data-testid={dataTestId}>
       <Input
+        size={size}
         variant={variant}
         color={color}
         width={width}
@@ -137,7 +138,12 @@ const Autocomplete: React.FC<AutocompleteProps> = ({
         data-testid={dataTestIdMenu}
       >
         {filteredOptions?.map((option, index) => (
-          <MenuItem {...option} title={option.title} value={option.value} key={index} />
+          <MenuItem
+            {...option}
+            title={option.title}
+            value={option.value}
+            key={index}
+          />
         ))}
       </Menu>
     </div>

@@ -93,7 +93,7 @@ const ColorComponent = () => {
     <>
       <Header
         expandable={false}
-        style={{ backgroundColor: colorPalette!["primary"].accentScale[1] }}
+        style={{ backgroundColor: colorPalette!["primary"].accentScale[1], height:"4rem" }}
       >
         <HeaderItem>
           <Text color="primary" size="large">
@@ -105,6 +105,7 @@ const ColorComponent = () => {
             color={color}
             width="100%"
             variant="soft"
+            // size="small"
             placeholder="Type here..."
             options={[
               { title: "Option 1", value: "option_1" },
@@ -237,11 +238,10 @@ const ColorComponent = () => {
           <Text color="primary" style={{ paddingBottom: "1rem" }}>
             This story is created using only one color.
           </Text>
-
-          <ColorPicker color={color} width="100%" onChange={_onColorChange} />
-          <Text color="primary" size="small">
-            (Change color here)
-          </Text>
+            <ColorPicker color={color} width="100%" onChange={_onColorChange} />
+            <Text color="primary" size="small">
+              (Change color here)
+            </Text>
         </div>
 
         <Breadcrumbs color="primary" variant="soft" size="small">

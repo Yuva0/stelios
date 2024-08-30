@@ -7,6 +7,7 @@ export interface LoaderProps {
   className?: string;
   startTime?: number;
   color?: string;
+  "data-testid"?: string;
 }
 
 export interface LoaderStyleProps {

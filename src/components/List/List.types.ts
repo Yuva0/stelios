@@ -7,4 +7,5 @@ export interface ListProps {
   children: React.ReactNode | React.ReactNode[];
   variant?: "ordered" | "unordered" | "none";
   color?: string;
+  "data-testid"?: string;
 }

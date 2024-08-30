@@ -2,7 +2,6 @@ import { MenuItemKeyProps } from "../MenuItem/MenuItem.types";
 
 export interface MenuProps {
   children: React.ReactNode | React.ReactNode[];
-  style?: React.CSSProperties;
   minWidth?: string;
   open?: boolean;
   anchorElement: HTMLElement | null;
@@ -31,6 +30,9 @@ export interface MenuProps {
       };
     }[];
   };
+  className?: string;
+  style?: React.CSSProperties;
+  "data-testid"?: string;
   // Events
   onClick?: (
     e: React.MouseEvent<HTMLLIElement>,

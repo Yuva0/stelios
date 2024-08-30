@@ -17,22 +17,20 @@ const List = ({
   color,
   style,
   className,
+  "data-testid": dataTestId,
+  ...props
 }: ListProps) => {
 
-
-  const Title = () => {
-    if (!title || !isValidElement(title)) return null;
-    return typeof title === "string" ? (
-      <Text color={color} variant="paragraph" size={size}>
-        {title}
-      </Text>
-    ) : (
-      title
-    );
-  };
   return (
-    <div style={containerStyle}>
-      {<Title/>}
+    <div style={containerStyle} data-testid={dataTestId} {...props}>
+      {
+        typeof title === "string" ?
+        <Text color={color} variant="paragraph" size={size}>
+          {title}
+        </Text> :
+        title
+      }
+
       <StyledList $variant={variant} style={style} className={className}>
         {React.Children.map(children, (child) => {
           if(!child || !React.isValidElement(child)) return child;

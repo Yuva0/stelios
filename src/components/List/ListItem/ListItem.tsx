@@ -16,15 +16,6 @@ const ListItem = ({
   const theme = useTheme().theme;
   const colorPalette = getColorPalette(theme, color);
 
-  const ChildrenElement =
-    typeof children === "string" ? (
-      <Text color={color} size={size} variant="paragraph">
-        {children}
-      </Text>
-    ) : (
-      children
-    );
-
   return (
     <StyledListItem
       style={style}
@@ -32,7 +23,13 @@ const ListItem = ({
       $colorPalette={colorPalette}
       $color={color}
     >
-      {ChildrenElement}
+      {typeof children === "string" ? (
+        <Text color={color} size={size} variant="paragraph">
+          {children}
+        </Text>
+      ) : (
+        children
+      )}
     </StyledListItem>
   );
 };

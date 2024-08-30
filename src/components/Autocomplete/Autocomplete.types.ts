@@ -15,7 +15,8 @@ export interface AutocompleteProps {
   multiSelect?: boolean;
   color?: string;
   variant?: "contained" | "outlined" | "soft";
-  
+  size?: "small" | "medium" | "large";
+
   // Events
   onChange?: (
     e: React.ChangeEvent<HTMLInputElement> | React.MouseEvent,

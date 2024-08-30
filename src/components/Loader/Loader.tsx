@@ -13,7 +13,9 @@ const Loader: React.FunctionComponent<LoaderProps> = ({
   color = colorTokens.default.primary.main,
   style,
   className,
-  startTime = 0
+  startTime = 0,
+  "data-testid": dataTestId,
+  ...props
 }) => {
   const theme = useTheme().theme;
   const colorPalette = getColorPalette(theme, color);
@@ -29,6 +31,8 @@ const Loader: React.FunctionComponent<LoaderProps> = ({
       $startTime={startTime}
       style={style}
       className={className}
+      data-testid={dataTestId}
+      {...props}
     />
   );
 };

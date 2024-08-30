@@ -36,7 +36,7 @@
     "deploy-storybook": "storybook build && gh-pages -d storybook-static",
     "publish-npm": "npm version patch && npm run build && npm publish --access public",
     "deploy-coverage": "jest --coverage",
-    "prepare-deploy": "mkdir -p gh-build/storybook && mv storybook-static/* gh-build/storybook/ && mkdir -p gh-build/coverage && mv coverage-result/lcov-report/* gh-build/coverage/",
+    "prepare-deploy": "rm -rf gh-build && mkdir -p gh-build/storybook && mv storybook-static/* gh-build/storybook/ && mkdir -p gh-build/coverage && mv coverage-result/lcov-report/* gh-build/coverage/",
     "deploy-all": "npm run build-storybook && npm run deploy-coverage && npm run prepare-deploy && gh-pages -d gh-build",
     "deploy-gh": "gh-pages -d gh-build"
   },

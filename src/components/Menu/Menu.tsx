@@ -13,7 +13,6 @@ const Menu = forwardRef<HTMLDivElement, MenuProps>(
   (
     {
       children,
-      style,
       popperStyles,
       variant = "contained",
       open = false,
@@ -21,13 +20,17 @@ const Menu = forwardRef<HTMLDivElement, MenuProps>(
       anchorElement,
       hideOnOutsideClick = true,
       color = colorTokens.default.primary.main,
+      className,
+      style,
       // Events
       onClick,
       onClose,
+      "data-testid": dataTestId,
+      ...props
     },
     ref
   ) => {
-    const [isOpen, setIsOpen] = useState(open ?? false);
+    const [isOpen, setIsOpen] = useState(open);
     const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(
       null
     );
@@ -47,7 +50,7 @@ const Menu = forwardRef<HTMLDivElement, MenuProps>(
     });
 
     useEffect(() => {
-      setIsOpen(open ?? false);
+      setIsOpen(open);
     }, [open]);
     useEffect(() => {
       setFocusVisible(0);
@@ -57,7 +60,6 @@ const Menu = forwardRef<HTMLDivElement, MenuProps>(
       e: React.MouseEvent<HTMLLIElement>,
       { title, value }: MenuItemKeyProps
     ) => {
-      console.log(title, value);
       onClick && onClick(e, { title, value });
     },[onClick]);
 
@@ -77,7 +79,6 @@ const Menu = forwardRef<HTMLDivElement, MenuProps>(
       }
     },[children]);
 
-    if (!children) return null;
     if (Array.isArray(children) && children.length === 0) return null;
 
     const MenuElement = (
@@ -90,7 +91,10 @@ const Menu = forwardRef<HTMLDivElement, MenuProps>(
         $variant={variant}
         style={{ ...styles.popper, ...style }}
         onKeyDown={_onKeyDown}
+        data-testid={dataTestId}
+        className={className}
         {...attributes.popper}
+        {...props}
       >
         <StyledMenu>
           {React.Children.map(children, (child, index) => {
