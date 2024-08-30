@@ -26,11 +26,16 @@ const Template: Story = {
   render: (args) => {
     return (
       <div>
-        <Select label="Select" {...args}>
-          <MenuItem value="1" title="Test 1"></MenuItem>
-          <MenuItem value="2" title="Test 2"></MenuItem>
-          <MenuItem value="3" title="Test 3"></MenuItem>
-        </Select>
+        <Select
+          label="Select"
+          {...args}
+          options={[
+            { title: "Option 1", value: "option 1" },
+            { title: "Option 2", value: "option 2" },
+            { title: "Option 3", value: "option 3" },
+            { title: "Option 4", value: "option 4" },
+          ]}
+        />
       </div>
     );
   },
@@ -39,39 +44,39 @@ const Template: Story = {
 export const Contained = {
   ...Template,
   args: {
-    variant: "contained"
-  }
+    variant: "contained",
+  },
 };
 export const Outlined = {
   ...Template,
   args: {
-    variant: "outlined"
-  }
+    variant: "outlined",
+  },
 };
 export const Soft = {
   ...Template,
   args: {
-    variant: "soft"
-  }
+    variant: "soft",
+  },
 };
 
 export const Small = {
   ...Template,
   args: {
-    size: "small"
-  }
+    size: "small",
+  },
 };
 export const Medium = {
   ...Template,
   args: {
-    size: "medium"
-  }
+    size: "medium",
+  },
 };
 export const Large = {
   ...Template,
   args: {
-    size: "large"
-  }
+    size: "large",
+  },
 };
 
 export const Playground = Template;

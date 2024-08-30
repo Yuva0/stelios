@@ -11,7 +11,7 @@ export interface MenuItemProps extends MenuItemKeyProps {
   color?: string;
   variant?: "contained" | "outlined" | "soft";
   onClick?: (
-    e: React.MouseEvent<HTMLLIElement>,
+    e: React.MouseEvent<HTMLLIElement> | React.KeyboardEvent<HTMLLIElement>,
     { value, title }: MenuItemKeyProps
   ) => void;
 
@@ -21,7 +21,7 @@ export interface MenuItemProps extends MenuItemKeyProps {
 
 export interface MenuItemPrivateProps {
   pvtOnClick?: (
-    e: React.MouseEvent<HTMLLIElement>,
+    e: React.MouseEvent<HTMLLIElement> | React.KeyboardEvent<HTMLLIElement>,
     { value, title }: MenuItemKeyProps
   ) => void;
   pvtHasFocus?: boolean;

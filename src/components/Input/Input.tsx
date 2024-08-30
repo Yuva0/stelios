@@ -54,7 +54,6 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
     useImperativeHandle(containerRef, () => _containerRef.current!, [
       _containerRef,
     ]);
-    const [isFocused, setIsFocused] = React.useState(false);
     const [inputValue, setInputValue] = React.useState<string | string[]>(
       value ?? ""
     );
@@ -81,28 +80,20 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
       inputRef && inputRef.current && inputRef.current.focus();
       onClick && onClick(e);
     };
-
-    const _onFocus = () => {
-      setIsFocused(true);
-    };
-    const _onBlur = () => {
-      setIsFocused(false);
-    };
-
     const _onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       setInputValue(e.target.value);
       onChange && onChange(e);
     };
-
     const _onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
       onKeyDown && onKeyDown(e);
+    };
+    const _onFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+      inputRef && inputRef.current && inputRef.current.focus();
     };
 
     return (
       <StyledInput
         ref={_containerRef}
-        onClick={_onClick}
-        onKeyDown={_onKeyDown}
         $width={width}
         style={style}
         className={className}
@@ -111,10 +102,12 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
       >
         {labelPosition && labelPosition === "top" ? Label : null}
         <StyledInputContent
+          tabIndex={0}
+          onClick={_onClick}
+          onFocus={_onFocus}
           $colorPalette={colorPalette}
           $color={color}
           $size={size}
-          $isFocused={isFocused}
           $width={width}
           $hasLeadingIcon={!!leadingIcon}
           $hasTrailingIcon={!!trailingIcon}
@@ -141,16 +134,21 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
             <input
               type={type}
               value={inputValue}
-              onFocus={_onFocus}
-              onBlur={_onBlur}
               ref={inputRef}
               placeholder={placeholder}
               onChange={_onChange}
+              onKeyDown={_onKeyDown}
               style={inputStyle}
               data-testid={dataTestIdInput}
             />
           ) : (
-            <span className="ste-input-content" style={inputStyle} data-testid={dataTestIdInput}>{value}</span>
+            <span
+              className="ste-input-content"
+              style={inputStyle}
+              data-testid={dataTestIdInput}
+            >
+              {value}
+            </span>
           )}
           {trailingIcon && (
             <StyledInputIcon
@@ -200,7 +198,12 @@ const StyledInputIcon = styled.div<InputStyleIconProps>`
     height: 100%;
   }
   ${(props) => {
-    const properties = styledIconHandler(props.$variant, props.$colorPalette, props.$color, props.$size);
+    const properties = styledIconHandler(
+      props.$variant,
+      props.$colorPalette,
+      props.$color,
+      props.$size
+    );
     return `
       color: ${properties.color.default};
       &:hover {
@@ -304,7 +307,11 @@ const styledHandler = (
   hasLeadingIcon?: boolean,
   hasTrailingIcon?: boolean
 ) => {
-  return { ...variantHandler(variant, colorPalette, color), ...sizeHandler(size), ...paddingHandler(size, hasLeadingIcon, hasTrailingIcon), };
+  return {
+    ...variantHandler(variant, colorPalette, color),
+    ...sizeHandler(size),
+    ...paddingHandler(size, hasLeadingIcon, hasTrailingIcon),
+  };
 };
 const styledIconHandler = (
   variant: InputStyleIconProps["$variant"],
@@ -312,7 +319,10 @@ const styledIconHandler = (
   color: InputStyleContentProps["$color"],
   size: InputStyleContentProps["$size"]
 ) => {
-  return { ...variantHandler(variant, colorPalette, color), ...sizeHandler(size) };
+  return {
+    ...variantHandler(variant, colorPalette, color),
+    ...sizeHandler(size),
+  };
 };
 const variantHandler = (
   variant: InputStyleContentProps["$variant"],
@@ -340,7 +350,7 @@ const variantHandler = (
         placeholder: {
           default: colorPalette[color].grayScale[3],
         },
-        iconHover: colorPalette[color].accentScale[8]
+        iconHover: colorPalette[color].accentScale[8],
       };
     case "outlined":
       return {
@@ -362,7 +372,7 @@ const variantHandler = (
         placeholder: {
           default: colorPalette[color].accentScale[6],
         },
-        iconHover: colorPalette[color].grayScale[2]
+        iconHover: colorPalette[color].grayScale[2],
       };
     case "soft":
       return {
@@ -384,8 +394,8 @@ const variantHandler = (
         placeholder: {
           default: colorPalette[color].grayScale[10],
         },
-        iconHover: colorPalette[color].accentScale[5]
-      }
+        iconHover: colorPalette[color].accentScale[5],
+      };
   }
 };
 const sizeHandler = (size: InputStyleContentProps["$size"]) => {

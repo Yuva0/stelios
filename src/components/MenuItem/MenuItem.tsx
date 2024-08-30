@@ -39,6 +39,12 @@ const MenuItem: React.FC<MenuItemProps> = ({
     pvtOnClick && pvtOnClick(event, { title, value });
     onClick && onClick(event, { title, value });
   };
+  const _onKeyDown = (event: React.KeyboardEvent<HTMLLIElement>) => {
+    if (event.key === "Enter" || event.key === " ") {
+      pvtOnClick && pvtOnClick(event, { title, value });
+      onClick && onClick(event, { title, value });
+    }
+  };
 
   return (
     <StyledMenuItem
@@ -48,6 +54,7 @@ const MenuItem: React.FC<MenuItemProps> = ({
       $colorPalette={colorPalette}
       $color={color}
       onClick={_onClick}
+      onKeyDown={_onKeyDown}
       data-testid={dataTestId}
     >
       {leadingIcon && <StyledMenuItemIcon>{leadingIcon}</StyledMenuItemIcon>}

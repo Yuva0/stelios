@@ -9,7 +9,6 @@ import colorTokens from "../../tokens/colors.json";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
 import { getColorPalette, isValidColor } from "../../helpers/helpers";
 import Text from "../Text/Text";
-import { error } from "console";
 
 const StyledChromePickerCtr = styled.div<ColorPickerStyleProps>`
   display: ${(props) => (props.$open ? "block" : "none")};
