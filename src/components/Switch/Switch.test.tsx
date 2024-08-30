@@ -78,4 +78,12 @@ describe("Switch component", () => {
     const switchElement = screen.getByTestId("switch");
     expect(switchElement).toBeInTheDocument();
   });
+
+  it("render a checked switch", () => {
+    renderSwitch({
+      checked: true,
+    });
+    const switchElement = screen.getByTestId("switch");
+    expect(switchElement).toBeInTheDocument();
+  });
 });

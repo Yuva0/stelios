@@ -128,7 +128,6 @@ const getIconSize = (size: TagStyleProps["$size"]) => {
     case "large":
       return "1.5rem";
   }
-  return "1rem";
 };
 const StyledTag = styled.div<TagStyleProps>`
   display: inline-flex;

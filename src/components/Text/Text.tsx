@@ -26,6 +26,7 @@ const Text = ({
   style,
   className,
   fontFamily,
+  "data-testid": dataTestId,
   ...props
 }: TextProps) => {
   const theme = useTheme().theme;
@@ -34,9 +35,7 @@ const Text = ({
     _styledProps = { $disableColor: disableColor };
   } else {
     const colorPalette = getColorPalette(theme, color);
-    const _color = preciseColor ?? (color && colorPalette
-      ? colorPalette[color].accentScale[10]
-      : color);
+    const _color = preciseColor ?? colorPalette![color].accentScale[10];
     _styledProps = { $disableColor: disableColor, $color: _color };
   }
 
@@ -53,6 +52,7 @@ const Text = ({
             $lineHeight={lineHeight}
             style={style}
             className={className}
+            data-testid={dataTestId}
             {...props}
             {..._styledProps}
           >
@@ -70,6 +70,7 @@ const Text = ({
             $lineHeight={lineHeight}
             style={style}
             className={className}
+            data-testid={dataTestId}
             {...props}
             {..._styledProps}
           >
@@ -88,6 +89,7 @@ const Text = ({
             $lineHeight={lineHeight}
             style={style}
             className={className}
+            data-testid={dataTestId}
             {...props}
             {..._styledProps}
           >
@@ -106,6 +108,7 @@ const Text = ({
             $lineHeight={lineHeight}
             style={style}
             className={className}
+            data-testid={dataTestId}
             {...props}
             {..._styledProps}
           >
@@ -124,6 +127,7 @@ const Text = ({
             $lineHeight={lineHeight}
             style={style}
             className={className}
+            data-testid={dataTestId}
             {...props}
             {..._styledProps}
           >
@@ -142,6 +146,7 @@ const Text = ({
             $lineHeight={lineHeight}
             style={style}
             className={className}
+            data-testid={dataTestId}
             {...props}
             {..._styledProps}
           >
@@ -160,6 +165,7 @@ const Text = ({
             $lineHeight={lineHeight}
             style={style}
             className={className}
+            data-testid={dataTestId}
             {...props}
             {..._styledProps}
           >
@@ -178,6 +184,7 @@ const Text = ({
             $lineHeight={lineHeight}
             style={style}
             className={className}
+            data-testid={dataTestId}
             {...props}
             {..._styledProps}
           >
@@ -196,6 +203,7 @@ const Text = ({
             $lineHeight={lineHeight}
             style={style}
             className={className}
+            data-testid={dataTestId}
             {...props}
             {..._styledProps}
           >
@@ -214,29 +222,12 @@ const Text = ({
             $lineHeight={lineHeight}
             style={style}
             className={className}
+            data-testid={dataTestId}
             {...props}
             {..._styledProps}
           >
             {children}
           </StyledSpan>
-        );
-      default:
-        return (
-          <StyledDiv
-            $variant={variant}
-            $strong={strong}
-            $align={align}
-            $wrap={wrap}
-            $size={size}
-            $fontSize={fontSize}
-            $lineHeight={lineHeight}
-            style={style}
-            className={className}
-            {...props}
-            {..._styledProps}
-          >
-            {children}
-          </StyledDiv>
         );
     }
   };
@@ -267,13 +258,13 @@ const commonStyles = `
 `;
 const StyledH1 = styled.h1<TextStyleProps>`
   font-size: ${(props) =>
-    props.$fontSize ?? props.$size === "large"
+    (props.$fontSize ?? props.$size === "large")
       ? "2.5rem"
       : props.$size === "medium"
         ? "2.25rem"
         : "2rem"};
   line-height: ${(props) =>
-    props.$lineHeight ?? props.$lineHeight === "large"
+    (props.$lineHeight ?? props.$size === "large")
       ? "4rem"
       : props.$size === "medium"
         ? "3.5rem"
@@ -285,13 +276,13 @@ const StyledH1 = styled.h1<TextStyleProps>`
 `;
 const StyledH2 = styled.h2<TextStyleProps>`
   font-size: ${(props) =>
-    props.$fontSize ?? props.$size === "large"
+    (props.$fontSize ?? props.$size === "large")
       ? "2.25rem"
       : props.$size === "medium"
         ? "2rem"
         : "1.75rem"};
   line-height: ${(props) =>
-    props.$lineHeight ?? props.$size === "large"
+    (props.$lineHeight ?? props.$size === "large")
       ? "3.5rem"
       : props.$size === "medium"
         ? "3rem"
@@ -303,13 +294,13 @@ const StyledH2 = styled.h2<TextStyleProps>`
 `;
 const StyledH3 = styled.h3<TextStyleProps>`
   font-size: ${(props) =>
-    props.$fontSize ?? props.$size === "large"
+    (props.$fontSize ?? props.$size === "large")
       ? "2rem"
       : props.$size === "medium"
         ? "1.75rem"
         : "1.5rem"};
   line-height: ${(props) =>
-    props.$lineHeight ?? props.$size === "large"
+    (props.$lineHeight ?? props.$size === "large")
       ? "3rem"
       : props.$size === "medium"
         ? "2.5rem"
@@ -321,13 +312,13 @@ const StyledH3 = styled.h3<TextStyleProps>`
 `;
 const StyledH4 = styled.h4<TextStyleProps>`
   font-size: ${(props) =>
-    props.$fontSize ?? props.$size === "large"
+    (props.$fontSize ?? props.$size === "large")
       ? "1.75rem"
       : props.$size === "medium"
         ? "1.5rem"
         : "1.25rem"};
   line-height: ${(props) =>
-    props.$lineHeight ?? props.$size === "large"
+    (props.$lineHeight ?? props.$size === "large")
       ? "2.5rem"
       : props.$size === "medium"
         ? "2rem"
@@ -339,13 +330,13 @@ const StyledH4 = styled.h4<TextStyleProps>`
 `;
 const StyledH5 = styled.h5<TextStyleProps>`
   font-size: ${(props) =>
-    props.$fontSize ?? props.$size === "large"
+    (props.$fontSize ?? props.$size === "large")
       ? "1.5rem"
       : props.$size === "medium"
         ? "1.25rem"
         : "1rem"};
   line-height: ${(props) =>
-    props.$lineHeight ?? props.$size === "large"
+    (props.$lineHeight ?? props.$size === "large")
       ? "2rem"
       : props.$size === "medium"
         ? "1.75rem"
@@ -357,13 +348,13 @@ const StyledH5 = styled.h5<TextStyleProps>`
 `;
 const StyledH6 = styled.h6<TextStyleProps>`
   font-size: ${(props) =>
-    props.$fontSize ?? props.$size === "large"
+    (props.$fontSize ?? props.$size === "large")
       ? "1.25rem"
       : props.$size === "medium"
         ? "1rem"
         : "0.875rem"};
   line-height: ${(props) =>
-    props.$lineHeight ?? props.$size === "large"
+    (props.$lineHeight ?? props.$size === "large")
       ? "1.75rem"
       : props.$size === "medium"
         ? "1.5rem"
@@ -375,13 +366,13 @@ const StyledH6 = styled.h6<TextStyleProps>`
 `;
 const StyledDiv = styled.div<TextStyleProps>`
   font-size: ${(props) =>
-    props.$fontSize ?? props.$size === "large"
+    (props.$fontSize ?? props.$size === "large")
       ? "1.25rem"
       : props.$size === "medium"
         ? "1rem"
         : "0.875rem"};
   line-height: ${(props) =>
-    props.$lineHeight ?? props.$size === "large"
+    (props.$lineHeight ?? props.$size === "large")
       ? "1.75rem"
       : props.$size === "medium"
         ? "1.5rem"
@@ -393,13 +384,13 @@ const StyledDiv = styled.div<TextStyleProps>`
 `;
 const StyledLabel = styled.label<TextStyleProps>`
   font-size: ${(props) =>
-    props.$fontSize ?? props.$size === "large"
+    (props.$fontSize ?? props.$size === "large")
       ? "1.25rem"
       : props.$size === "medium"
         ? "1rem"
         : "0.875rem"};
   line-height: ${(props) =>
-    props.$lineHeight ?? props.$size === "large"
+    (props.$lineHeight ?? props.$size === "large")
       ? "1.75rem"
       : props.$size === "medium"
         ? "1.5rem"
@@ -411,13 +402,13 @@ const StyledLabel = styled.label<TextStyleProps>`
 `;
 const StyledSpan = styled.span<TextStyleProps>`
   font-size: ${(props) =>
-    props.$fontSize ?? props.$size === "large"
+    (props.$fontSize ?? props.$size === "large")
       ? "1.25rem"
       : props.$size === "medium"
         ? "1rem"
         : "0.875rem"};
   line-height: ${(props) =>
-    props.$lineHeight ?? props.$size === "large"
+    (props.$lineHeight ?? props.$size === "large")
       ? "1.75rem"
       : props.$size === "medium"
         ? "1.5rem"
@@ -429,13 +420,13 @@ const StyledSpan = styled.span<TextStyleProps>`
 `;
 const StyledP = styled.p<TextStyleProps>`
   font-size: ${(props) =>
-    props.$fontSize ?? props.$size === "large"
+    (props.$fontSize ?? props.$size === "large")
       ? "1.25rem"
       : props.$size === "medium"
         ? "1rem"
         : "0.875rem"};
   line-height: ${(props) =>
-    props.$lineHeight ?? props.$size === "large"
+    (props.$lineHeight ?? props.$size === "large")
       ? "1.75rem"
       : props.$size === "medium"
         ? "1.5rem"
