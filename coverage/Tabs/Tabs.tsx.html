@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/18</span>
+                <span class='fraction'>0/20</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/14</span>
+                <span class='fraction'>0/16</span>
             </div>
         
             
@@ -96,7 +96,12 @@
 <a name='L31'></a><a href='#L31'>31</a>
 <a name='L32'></a><a href='#L32'>32</a>
 <a name='L33'></a><a href='#L33'>33</a>
-<a name='L34'></a><a href='#L34'>34</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -109,18 +114,10 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -129,36 +126,54 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import * as React from 'react';</span>
-<span class="cstat-no" title="statement not covered" >import colorTokens from '../../tokens/colors.json';</span>
-import { TabsProps } from './Tabs.types';
-import { TabProps } from '@material-ui/core';
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import * as React from "react";</span>
+<span class="cstat-no" title="statement not covered" >import colorTokens from "../../tokens/colors.json";</span>
+import { TabsProps } from "./Tabs.types";
+import { TabProps } from "@material-ui/core";
 &nbsp;
 const Tabs = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >({</span></span>
   children<span class="cstat-no" title="statement not covered" >,</span>
   className<span class="cstat-no" title="statement not covered" >,</span>
   style<span class="cstat-no" title="statement not covered" >,</span>
-<span class="cstat-no" title="statement not covered" >  size<span class="cstat-no" title="statement not covered" > </span>= 'medium',</span>
+<span class="cstat-no" title="statement not covered" >  size<span class="cstat-no" title="statement not covered" > </span>= "medium",</span>
 <span class="cstat-no" title="statement not covered" >  color<span class="cstat-no" title="statement not covered" > </span>= colorTokens.default.primary.main,</span>
-<span class="cstat-no" title="statement not covered" >  variant<span class="cstat-no" title="statement not covered" > </span>= 'contained',</span>
+<span class="cstat-no" title="statement not covered" >  variant<span class="cstat-no" title="statement not covered" > </span>= "contained",</span>
   onClick<span class="cstat-no" title="statement not covered" >,</span>
+  "data-testid": dataTestId<span class="cstat-no" title="statement not covered" >,</span>
+  ...props<span class="cstat-no" title="statement not covered" ></span>
 }: TabsProps) =&gt; {
 <span class="cstat-no" title="statement not covered" >  return (</span>
-    &lt;div role="tablist" className={className}&gt;
-      {
-        React.Children.map(children, <span class="fstat-no" title="function not covered" >(c</span>hild,index) =&gt; {
-<span class="cstat-no" title="statement not covered" >          <span class="missing-if-branch" title="if path not taken" >I</span>if(!React.isValidElement(child)) <span class="cstat-no" title="statement not covered" >return child;</span></span>
-<span class="cstat-no" title="statement not covered" >          return React.cloneElement(child, {</span>
-            key: index,
-            size,
-            color,
-            variant,
-            onClick,
-          } as TabProps);
-        })
-      }
+    &lt;div
+      role="tablist"
+      className={className}
+      style={style}
+      data-testid={dataTestId}
+    &gt;
+      {React.Children.map(children, <span class="fstat-no" title="function not covered" >(c</span>hild, index) =&gt; {
+<span class="cstat-no" title="statement not covered" >        <span class="missing-if-branch" title="if path not taken" >I</span>if (!React.isValidElement(child)) <span class="cstat-no" title="statement not covered" >return child;</span></span>
+<span class="cstat-no" title="statement not covered" >        return React.cloneElement(child, {</span>
+          key: index,
+          size,
+          color,
+          variant,
+          onClick,
+        } as TabProps);
+      })}
     &lt;/div&gt;
-  )
+  );
 };
 &nbsp;
 <span class="cstat-no" title="statement not covered" >export default Tabs;</span>
@@ -169,7 +184,7 @@ const Tabs = <span class="cstat-no" title="statement not covered" ><span class="
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-08-30T04:57:35.821Z
+                at 2024-08-30T07:08:01.335Z
             </div>
         <script src="../prettify.js"></script>
         <script>
