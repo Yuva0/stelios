@@ -50,6 +50,12 @@ describe("Alert component", () => {
     expect(alert).toBeInTheDocument();
   });
 
+  it("Should render a red alert", () => {
+    renderAlert({ color: "red" });
+    const alert = screen.getByTestId("alert");
+    expect(alert).toBeInTheDocument();
+  });
+
   it("Should render a custom description", () => {
     renderAlert({ description: <Text>Description</Text> });
     const alert = screen.getByTestId("alert");

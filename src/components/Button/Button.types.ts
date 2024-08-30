@@ -25,7 +25,6 @@ export interface ButtonStyleProps {
   $rounded: NonNullable<ButtonProps["rounded"]>;
   $disabled?: NonNullable<ButtonProps["disabled"]>;
   $isFullWidth?: NonNullable<ButtonProps["isFullWidth"]>;
-  $borderRadius: string;
   // Theme: To be fixed
   $colorPalette: any;
 }

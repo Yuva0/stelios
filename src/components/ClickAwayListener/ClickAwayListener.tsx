@@ -9,26 +9,26 @@ const ClickAwayListener: React.FC<ClickAwayListenerProps> = ({
 }) => {
   const clickAwayListenerRef = useRef<HTMLDivElement | null>(null);
 
-  const handleClickAway = (e: MouseEvent) => {
-    if (!children) return;
-
-    if (
-      clickAwayListenerRef.current &&
-      !clickAwayListenerRef.current.contains(e.target as Node)
-    ) {
-      if (onClickAway) {
-        onClickAway(e);
-      }
-    }
-  };
-
   useEffect(() => {
+    const handleClickAway = (e: MouseEvent) => {
+      if (
+        clickAwayListenerRef.current &&
+        !clickAwayListenerRef.current.contains(e.target as Node)
+      ) {
+        if (onClickAway) {
+          onClickAway(e);
+        }
+      }
+    };
+
     window.addEventListener("click", handleClickAway, true);
 
     return () => {
       window.removeEventListener("click", handleClickAway, true);
     }
-  });
+  },[children, onClickAway]);
+
+
 
   return <div data-testid={dataTestId} ref={clickAwayListenerRef}>{children}</div>;
 };

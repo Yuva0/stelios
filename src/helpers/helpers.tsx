@@ -67,3 +67,16 @@ export const getColorPalette = (theme?:DefaultTheme["theme"], color?: string | n
     }
   }
 };
+
+export const isValidColor = (color: string): boolean => {
+  const namedColors = [
+    "red", "blue", "green", "yellow", "black", "white", "gray", "grey", 
+    "orange", "purple", "pink", "brown", "cyan", "magenta", "lime", "maroon",
+  ];
+
+  // Regex to match hex codes (#FFF, #FFFFFF)
+  const hexColorRegex = /^#([0-9A-F]{3}|[0-9A-F]{6})$/i;
+
+  return namedColors.includes(color.toLowerCase()) || hexColorRegex.test(color);
+};
+

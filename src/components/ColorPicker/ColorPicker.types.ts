@@ -10,6 +10,7 @@ export interface ColorPickerProps {
   width?: string;
   onChange?: (color?: string) => void;
   "data-testid"?: string;
+  errorMessage?: React.ReactNode;
 }
 
 export interface ColorPickerStyleProps {

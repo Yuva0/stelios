@@ -351,7 +351,7 @@ const variantHandler = (
         },
         color: {
           default: colorPalette[color].accentScale[10],
-          hover: colorPalette[color].accentScale[11],
+          hover: colorPalette[color].accentScale[10],
           active: colorPalette[color].accentScale[11],
         },
         border: {

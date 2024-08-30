@@ -27,9 +27,9 @@ const Breadcrumbs: React.FunctionComponent<BreadcrumbsProps> = ({
         return (
           <>
             {React.cloneElement(child as React.ReactElement, {
-              ...(!child.props.variant && { variant: variant }),
-              ...(!child.props.size && { size: size }),
-              ...(!child.props.color && { color: color }),
+              ...(!child.props.variant && variant && { variant: variant }),
+              ...(!child.props.size && size && { size: size }),
+              ...(!child.props.color && color && { color: color }),
             })}
 
             {index < React.Children.count(children) - 1 && (

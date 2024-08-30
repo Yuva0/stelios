@@ -42,22 +42,6 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const theme = useTheme().theme;
     const colorPalette = getColorPalette(theme, color);
 
-    const [borderRadius, setBorderRadius] = React.useState<string>(
-      rounded
-        ? innerRef.current
-          ? `${innerRef.current.offsetHeight / 2}px`
-          : ""
-        : `${layout.rounded.default.rem}rem`
-    );
-    useEffect(() => {
-      if (!innerRef || !innerRef.current) return;
-      setBorderRadius(
-        rounded
-          ? `${innerRef.current.offsetHeight / 2}px`
-          : `${layout.rounded.default.rem}rem`
-      );
-    }, [rounded, innerRef.current?.offsetHeight]);
-
     return (
       <StyledButton
         ref={innerRef}
@@ -68,7 +52,6 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         $disabled={disabled}
         $rounded={rounded}
         $isFullWidth={isFullWidth}
-        $borderRadius={borderRadius}
         aria-disabled={disabled}
         style={style}
         onClick={onClick}
@@ -117,7 +100,7 @@ const StyledButton = styled.button<ButtonStyleProps>`
       gap: ${properties.gap};
       width: ${props.$isFullWidth ? "100%" : "auto"};
       cursor: ${props.$disabled ? "not-allowed" : "pointer"};
-      border-radius: ${props.$borderRadius};
+      border-radius: ${props.$rounded ? "20rem" : `${layout["border-radius"].default.rem}rem`};
       border: ${properties.border!.default};
       ${hasPropertyChain(properties, ["boxShadow", "default"]) ? `box-shadow: ${properties.boxShadow!.default};` : ""}
       ${
@@ -132,7 +115,7 @@ const StyledButton = styled.button<ButtonStyleProps>`
         &:active {
           background-color: ${properties.backgroundColor.active};
           color: ${properties.color.active};
-          ${properties.border ? `border: ${properties.border.active};` : ""}
+          border: ${properties.border.active};
           ${hasPropertyChain(properties, ["filter", "active"]) ? `filter: ${properties.filter!.active};` : ""};
           ${hasPropertyChain(properties, ["boxShadow", "active"]) ? `box-shadow: ${properties.boxShadow!.active};` : ""}
         }  

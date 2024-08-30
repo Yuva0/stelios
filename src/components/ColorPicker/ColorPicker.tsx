@@ -7,9 +7,11 @@ import { usePopper } from "react-popper";
 import ClickAwayListener from "../ClickAwayListener/ClickAwayListener";
 import colorTokens from "../../tokens/colors.json";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
-import { getColorPalette } from "../../helpers/helpers";
+import { getColorPalette, isValidColor } from "../../helpers/helpers";
+import Text from "../Text/Text";
+import { error } from "console";
 
-const StyledChromePicker = styled.div<ColorPickerStyleProps>`
+const StyledChromePickerCtr = styled.div<ColorPickerStyleProps>`
   display: ${(props) => (props.$open ? "block" : "none")};
 `;
 
@@ -21,17 +23,21 @@ const ColorPicker = ({
   width,
   variant = "outlined",
   onChange,
+  errorMessage,
   "data-testid": dataTestId,
 }: ColorPickerProps) => {
   const [isOpen, setIsOpen] = useState(open ?? false);
   const anchorElement = useRef<HTMLDivElement | null>(null);
   const popperElement = useRef<HTMLDivElement | null>(null);
   const theme = useTheme().theme;
-  const colorPalette = getColorPalette(theme,color);
-  const [innerColor, setInnerColor] = useState<string>(colorPalette ? colorPalette[color].main : color);
+  const colorPalette = getColorPalette(theme, color);
+  const [innerColor, setInnerColor] = useState<string>(
+    colorPalette ? colorPalette[color].main : color
+  );
+  const [_errorMessage, setErrorMessage] = useState<React.ReactNode | undefined>(errorMessage);
 
   React.useEffect(() => {
-    const colorPalette = getColorPalette(theme,color);
+    const colorPalette = getColorPalette(theme, color);
     setInnerColor(colorPalette ? colorPalette[color].main : color);
   }, [color, theme]);
 
@@ -56,11 +62,21 @@ const ColorPicker = ({
   );
 
   const _onChange = (color: ColorResult) => {
+    if (!isValidColor(color.hex)) {
+      setErrorMessage("Invalid color");
+      return;
+    }
+    setErrorMessage(undefined);
     setInnerColor(color.hex);
     onChange && onChange(color.hex);
   };
 
   const _onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!isValidColor(e.target.value)) {
+      setErrorMessage("Invalid color");
+      return;
+    }
+    setErrorMessage(undefined);
     setInnerColor(e.target.value);
     onChange && onChange(e.target.value);
   };
@@ -104,14 +120,19 @@ const ColorPicker = ({
         }
         data-testid={dataTestId}
       />
-      <StyledChromePicker
+      <StyledChromePickerCtr
         ref={popperElement}
         $open={isOpen}
         style={{ ...styles.popper }}
         {...attributes.popper}
       >
         <ChromePicker disableAlpha color={innerColor} onChange={_onChange} />
-      </StyledChromePicker>
+      </StyledChromePickerCtr>
+      <div style={{height: "20px"}}>
+        <Text color={color} size="small">
+          {_errorMessage}
+        </Text>
+      </div>
     </ClickAwayListener>
   );
 };

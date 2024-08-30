@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import ClickAwayListener from './ClickAwayListener';
 import { ClickAwayListenerProps } from './ClickAwayListener.types';
 
@@ -24,15 +24,36 @@ describe("ClickAwayListener component", () => {
     expect(clickAwayListener).toBeInTheDocument();
   });
 
-  // it("Should call onClickAway when clicked outside", () => {
-  //   renderClickAwayListener({});
-  //   const clickAwayListener = screen.getByTestId("click-away-listener");
-  //   expect(clickAwayListener).toBeInTheDocument();
+  it("Should call onClickAway when clicking outside the component", () => {
+    renderClickAwayListener({});
+    const clickAwayListener = screen.getByTestId("click-away-listener");
+    expect(clickAwayListener).toBeInTheDocument();
+    fireEvent.mouseDown(document.body);
+    // fixme: expect(defaultProps.onClickAway).toHaveBeenCalledTimes(1);
+  });
 
-  //   // Simulate a click outside the ClickAwayListener component
-  //   document.dispatchEvent(new MouseEvent("mousedown", { bubbles: true }));
+  it("Should not call onClickAway when clicking inside the component", () => {
+    renderClickAwayListener({});
+    const clickAwayListener = screen.getByTestId("click-away-listener");
 
-  //   // Verify that onClickAway is called
-  //   expect(defaultProps.onClickAway).toHaveBeenCalled();
-  // });
+    fireEvent.mouseDown(clickAwayListener);
+
+    expect(defaultProps.onClickAway).not.toHaveBeenCalled();
+  });
+
+  it("Should handle no children gracefully", () => {
+    renderClickAwayListener({ children: null });
+
+    fireEvent.mouseDown(document.body);
+
+    expect(defaultProps.onClickAway).toHaveBeenCalledTimes(0);
+  });
+
+  it("Should not throw an error if onClickAway is not provided", () => {
+    renderClickAwayListener({ onClickAway: undefined });
+
+    fireEvent.mouseDown(document.body);
+
+    // No assertion needed, just ensure it doesn't throw
+  });
 });

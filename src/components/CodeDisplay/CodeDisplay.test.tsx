@@ -2,6 +2,7 @@ import * as React from "react";
 import { render, screen } from "@testing-library/react";
 import CodeDisplay from "./CodeDisplay";
 import { CodeDisplayProps } from "./CodeDisplay.types";
+import { ThemeProvider } from "../ThemeProvider/ThemeProvider";
 
 describe("CodeDisplay", () => {
   let defaultProps: any;
@@ -34,6 +35,15 @@ describe("CodeDisplay", () => {
   });
   it("Create a simple code display with color: red", () => {
     renderCodeDisplay({color: "red"});
+    const codeDisplay = screen.getByTestId("code-display");
+    expect(codeDisplay).toBeInTheDocument();
+  });
+  it("Create a simple code display with appearance dark", () => {
+    render(
+      <ThemeProvider appearance="dark" accents={{primary: "red"}}>
+        <CodeDisplay color="primary" {...defaultProps} />
+      </ThemeProvider>
+    )
     const codeDisplay = screen.getByTestId("code-display");
     expect(codeDisplay).toBeInTheDocument();
   });

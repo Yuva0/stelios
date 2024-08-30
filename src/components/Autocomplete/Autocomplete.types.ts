@@ -12,6 +12,7 @@ export interface AutocompleteProps {
   label?: React.ReactNode;
   open?: boolean;
   options?: MenuItemProps[];
+  //multiSelect yet to be added
   multiSelect?: boolean;
   color?: string;
   variant?: "contained" | "outlined" | "soft";
