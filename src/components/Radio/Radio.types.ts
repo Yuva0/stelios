@@ -15,6 +15,7 @@ export interface RadioProps {
   //Events
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   getSelectedIndex?: (index?: number) => void;
+  "data-testid"?: string;
 }
 
 export interface RadioStyleProps {

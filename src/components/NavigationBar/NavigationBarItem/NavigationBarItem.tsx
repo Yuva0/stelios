@@ -23,6 +23,8 @@ const NavigationBarItem = ({
   // Events
   _getSelectedIndex,
   onClick,
+  "data-testid": dataTestId,
+  ...props
 }: NavigationBarItemProps) => {
   const [_selected, setSelected] = React.useState(selected);
 
@@ -55,6 +57,8 @@ const NavigationBarItem = ({
       style={style}
       onClick={_onClick}
       onKeyDown={_onKeyDown}
+      data-testid={dataTestId}
+      {...props}
     >
       {leadingIcon && <StyledNavBarIcon>{leadingIcon}</StyledNavBarIcon>}
       {typeof children === "string" ? (

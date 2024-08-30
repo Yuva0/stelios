@@ -27,6 +27,8 @@ export interface InputProps {
   // Test Props
   "data-testid"?: string;
   "data-testid-input"?: string;
+  "data-testid-leading-icon"?: string;
+  "data-testid-trailing-icon"?: string;
 }
 
 

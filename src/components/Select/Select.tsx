@@ -4,16 +4,18 @@ import Input from "../Input/Input";
 import { IconArrowDown } from "@tabler/icons-react";
 import Menu from "../Menu/Menu";
 import { MenuItemKeyProps } from "../MenuItem/MenuItem.types";
+import MenuItem from "../MenuItem/MenuItem";
 
 const Select = ({
   label,
   open = false,
-  children,
+  options,
   multiSelect,
   placeholder,
   variant = "contained",
   size = "medium",
-
+  "data-testid": dataTestId,
+  color,
   //Events
   onClick,
 }: SelectProps) => {
@@ -51,7 +53,7 @@ const Select = ({
   };
 
   return (
-    <div>
+    <div data-testid={dataTestId}>
       <Input
         variant={variant}
         placeholder={placeholder}
@@ -62,6 +64,7 @@ const Select = ({
         size={size}
         trailingIcon={<IconArrowDown />}
         cursor="pointer"
+        color={color}
         onClick={() => {
           setIsOpen(!isOpen);
         }}
@@ -73,9 +76,9 @@ const Select = ({
         minWidth={`${inputRef.current?.offsetWidth}px`}
         onClick={_onClick}
       >
-        {React.Children.map(children, (child) => {
-          return child;
-        })}
+        {options && options.map(({ title, value }, index) => (
+          <MenuItem key={index} title={title} value={value} />
+        ))}
       </Menu>
     </div>
   );

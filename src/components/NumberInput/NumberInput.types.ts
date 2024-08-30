@@ -15,6 +15,10 @@ export interface NumberInputProps {
   onChange?: (e: React.ChangeEvent<HTMLInputElement> | React.MouseEvent, value?: number) => void;
   onIncrement?: (e: React.MouseEvent, value?: number) => void;
   onDecrement?: (e: React.MouseEvent, value?: number) => void;
+  "data-testid"?: string;
+  "data-testid-plus"?: string;
+  "data-testid-minus"?: string;
+  "data-testid-input"?: string;
 }
 export interface NumberInputStyleProps {
   $colorPalette: any;

@@ -7,7 +7,6 @@ import NavigationBarItem from "../../../components/NavigationBar/NavigationBarIt
 import NavigationBarHeader from "../../../components/NavigationBar/NavigationBarHeader/NavigationBarHeader";
 import NavigationBarGroup from "../../../components/NavigationBar/NavigationBarGroup/NavigationBarGroup";
 import NavigationBarGroupItem from "../../../components/NavigationBar/NavigationBarGroupItem/NavigationBarGroupItem";
-import { ThemeProvider } from "../../../components/ThemeProvider/ThemeProvider";
 
 const meta: Meta<typeof NavigationBar> = {
   title: "Components/NavigationBar",
@@ -49,9 +48,9 @@ const Template: Story = {
           <NavigationBarGroupItem value="20">Group Items</NavigationBarGroupItem>
           <NavigationBarGroupItem value="21">Group Items</NavigationBarGroupItem>
         </NavigationBarGroup>
-        <NavigationBarItem selected>Title Item</NavigationBarItem>
-        <NavigationBarItem>Title Item</NavigationBarItem>
-        <NavigationBarItem>Title Item</NavigationBarItem>
+        <NavigationBarItem selected value="22">Title Item</NavigationBarItem>
+        <NavigationBarItem value="23">Title Item</NavigationBarItem>
+        <NavigationBarItem value="22">Title Item</NavigationBarItem>
       </NavigationBar>
     );
   },

@@ -13,6 +13,12 @@ const Password: React.FC<PasswordProps> = ({
   variant,
   hasError,
   errorMessage,
+  className,
+  style,
+  color,
+  "data-testid": dataTestId,
+  "data-testid-eye-icon": dataTestIdEyeIcon,
+  ...props
 }) => {
   const [showPassword, setShowPassword] = React.useState(false);
   const inputRef = React.useRef<HTMLInputElement>(null);
@@ -20,13 +26,12 @@ const Password: React.FC<PasswordProps> = ({
   useEffect(() => {
     if (!inputRef.current) return;
 
-  const inputElement = inputRef.current;
-  const selectionEnd = inputElement.value.length;
+    const inputElement = inputRef.current;
+    const selectionEnd = inputElement.value.length;
 
-  const scrollTop = inputElement.scrollTop;
-  inputElement.setSelectionRange(selectionEnd, selectionEnd);
-  inputElement.scrollTop = scrollTop;
-
+    const scrollTop = inputElement.scrollTop;
+    inputElement.setSelectionRange(selectionEnd, selectionEnd);
+    inputElement.scrollTop = scrollTop;
   }, [showPassword, inputRef]);
 
   const _onIconEyeClick = () => {
@@ -38,8 +43,14 @@ const Password: React.FC<PasswordProps> = ({
   };
 
   return (
-    <div>
+    <div
+      data-testid={dataTestId}
+      className={className}
+      style={style}
+      {...props}
+    >
       <Input
+        color={color}
         ref={inputRef}
         type={showPassword ? "text" : "password"}
         label={label}
@@ -48,12 +59,17 @@ const Password: React.FC<PasswordProps> = ({
         size={size}
         trailingIcon={
           showPassword ? (
-            <IconEye onClick={_onIconEyeClick} />
+            <IconEye
+              onClick={_onIconEyeClick}
+            />
           ) : (
-            <IconEyeClosed onClick={_onIconEyeClosedClick} />
+            <IconEyeClosed
+              onClick={_onIconEyeClosedClick}
+            />
           )
         }
         onChange={onChange}
+        data-testid-trailing-icon={dataTestIdEyeIcon}
       />
       {hasError && <Text>{errorMessage}</Text>}
     </div>

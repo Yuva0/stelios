@@ -12,6 +12,7 @@ export interface SideBarGroupProps {
   selected?: boolean;
   // Events
   onClick?: (e: React.MouseEvent | React.KeyboardEvent) => void;
+  "data-testid"?: string;
 }
 
 export interface SideBarGroupStyleProps {

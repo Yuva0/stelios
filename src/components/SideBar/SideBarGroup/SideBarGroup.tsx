@@ -22,23 +22,25 @@ const SideBarGroup = ({
   color = colorTokens.default.primary.main,
   // Events
   onClick,
+  "data-testid": dataTestId,
+  ...props
 }: SideBarGroupProps) => {
   const theme = useTheme().theme;
   const colorPalette = getColorPalette(theme, color);
 
   return (
-    <StyledSideBarGroup className={className} style={style}>
+    <StyledSideBarGroup
+      className={className}
+      style={style}
+      data-testid={dataTestId}
+      {...props}
+    >
       {(title || leadingIcon || trailingIcon) && (
         <StyledSideBarGroupHeader $colorPalette={colorPalette} $color={color}>
           {leadingIcon && <span>{leadingIcon}</span>}
           {title && typeof title === "string" ? (
             onClick ? (
-              <Link
-                size={size}
-                variant="hover"
-                color={color}
-                onClick={onClick}
-              >
+              <Link size={size} variant="hover" color={color} onClick={onClick}>
                 {title}
               </Link>
             ) : (

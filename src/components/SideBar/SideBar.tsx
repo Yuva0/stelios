@@ -12,6 +12,8 @@ const SideBar = ({
   top = "0",
   right = "0",
   color = colorTokens.default.primary.main,
+  "data-testid": dataTestId,
+  ...props
 }: SideBarProps) => {
   const theme = useTheme().theme;
   const colorPalette = getColorPalette(theme, color);
@@ -23,6 +25,8 @@ const SideBar = ({
       style={style}
       $top={top}
       $right={right}
+      data-testid={dataTestId}
+      {...props}
     >
       {children}
     </StyledSideBar>

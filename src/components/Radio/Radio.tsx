@@ -23,6 +23,7 @@ const Radio = forwardRef(
       //Events
       onChange,
       getSelectedIndex,
+      "data-testid": dataTestId,
       ...props
     }: RadioProps,
     ref
@@ -55,6 +56,8 @@ const Radio = forwardRef(
         $colorPalette={colorPalette}
         aria-checked={isSelected}
         className={`${className}`}
+        style={style}
+        data-testid={dataTestId}
         {...props}
       >
         <input

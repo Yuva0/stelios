@@ -31,6 +31,8 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
   color = colorTokens.default.primary.main,
   // Events
   onChange,
+  "data-testid": dataTestId,
+  ...props
 }) => {
   const [selectedIndex, setSelectedIndex] = React.useState<
     number | undefined
@@ -93,6 +95,8 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
       $colorPalette={colorPalette}
       className={className}
       style={style}
+      data-testid={dataTestId}
+      {...props}
     >
       <nav>{ChildrenEle}</nav>
     </StyledNavigationBarCtr>

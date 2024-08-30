@@ -4,9 +4,11 @@ export interface NotFoundProps {
   iconWidth?: string;
   height?: string;
   iconHeight?: string;
-  style?: React.CSSProperties;
-  notFoundText?: string;
+  notFoundText?: React.ReactNode;
   color?: string;
+  className?: string;
+  style?: React.CSSProperties;
+  "data-testid"?: string;
 }
 
 export interface NotFoundStyleProps {

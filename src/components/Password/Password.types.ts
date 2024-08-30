@@ -7,4 +7,9 @@ export interface PasswordProps {
   variant?: "contained" | "outlined" | "soft";
   hasError?: boolean;
   errorMessage?: string;
+  className?: string;
+  style?: React.CSSProperties;
+  color?: string;
+  "data-testid"?: string;
+  "data-testid-eye-icon"?: string;
 }

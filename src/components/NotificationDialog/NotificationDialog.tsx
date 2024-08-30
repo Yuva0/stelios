@@ -9,12 +9,17 @@ import colorTokens from "../../tokens/colors.json";
 
 const NotificationDialog: React.FunctionComponent<NotificationDialogProps> = ({
   open = false,
+  title,
   width = "auto",
   children,
   leadingIcon,
   trailingIcon,
   variant = "contained",
   color = colorTokens.default.primary.main,
+  "data-testid": dataTestId,
+  className,
+  style,
+  ...props
 }) => {
   const [isOpen, setIsOpen] = React.useState(open);
   const debouncedOpen = useDebounce(open, 200);
@@ -27,14 +32,16 @@ const NotificationDialog: React.FunctionComponent<NotificationDialogProps> = ({
   const theme = useTheme().theme;
   const colorPalette = getColorPalette(theme, color);
 
-  const ChildrenEle =
+  if(!open && !debouncedOpen) return null;
+
+  const _title = title && typeof title === "string" ? (<Text disableColor variant="span">{title}</Text>) : title;
+  const _children =
     typeof children === "string" ? (
       <Text disableColor variant="paragraph">{children}</Text>
     ) : (
       children
     );
 
-  if(!open && !debouncedOpen) return null;
 
   return (
     <StyledNotificationDialog
@@ -45,9 +52,17 @@ const NotificationDialog: React.FunctionComponent<NotificationDialogProps> = ({
       $width={width}
       $colorPalette={colorPalette}
       $color={color}
+      data-testid={dataTestId}
+      className={className}
+      style={style}
+      {...props}
     >
       {leadingIcon && <StyledIcon>{leadingIcon}</StyledIcon>}
-      {ChildrenEle}
+      <StyledNotificationContent>
+        {_title}
+        {_children}
+      </StyledNotificationContent>
+
       {trailingIcon && <StyledIcon>{trailingIcon}</StyledIcon>}
     </StyledNotificationDialog>
   );
@@ -69,6 +84,11 @@ const StyledNotificationDialog = styled.div<NotificationDialogStyleProps>`
   transition: bottom 0.2s ease-in-out;
   ${props => variantHandler(props.$variant, props.$colorPalette, props.$color)};
 
+`;
+const StyledNotificationContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 `;
 const StyledIcon = styled.span`
   width: 1.5rem;

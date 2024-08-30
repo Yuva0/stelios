@@ -6,6 +6,7 @@ export interface SideBarProps {
   top?: string;
   right?: string;
   color?: string;
+  "data-testid"?: string;
 }
 
 export interface SideBarStyleProps {

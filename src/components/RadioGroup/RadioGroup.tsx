@@ -23,6 +23,10 @@ const RadioGroup = ({
   orientation = "vertical",
   // Events
   onChange,
+  className,
+  style,
+  "data-testid": dataTestId,
+  ...props
 }: RadioGroupProps) => {
   const [finalName, setFinalName] = React.useState(name);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
@@ -98,6 +102,10 @@ const RadioGroup = ({
     <StyledRadioGroup
       $orientation={orientation}
       role="radiogroup"
+      className={className}
+      style={style}
+      data-testid={dataTestId}
+      {...props}
     >
       {Label}
       {filteredChildren}

@@ -17,6 +17,9 @@ const NotFound: React.FunctionComponent<NotFoundProps> = ({
   style,
   notFoundText = "Page Not Found",
   color = colorTokens.default.primary.main,
+  className,
+  "data-testid": dataTestId,
+  ...props
 }) => {
   const theme = useTheme().theme;
   const colorPalette = getColorPalette(theme,color);
@@ -47,6 +50,9 @@ const NotFound: React.FunctionComponent<NotFoundProps> = ({
       $colorPalette={colorPalette}
       $color={color}
       style={style}
+      data-testid={dataTestId}
+      className={className}
+      {...props}
     >
       <NotFoundComponent width={iconWidth} height={iconHeight} />
       {NotFoundElement}

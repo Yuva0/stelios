@@ -15,6 +15,8 @@ const SideBarItem = ({
   color = colorTokens.default.primary.main,
   //Events
   onClick,
+  "data-testid": dataTestId,
+  ...props
 }: SideBarItemProps) => {
   const theme = useTheme().theme;
   const colorPalette = getColorPalette(theme, color);
@@ -24,6 +26,11 @@ const SideBarItem = ({
       $colorPalette={colorPalette}
       $color={color}
       onClick={onClick}
+      $selected={selected}
+      className={className}
+      style={style}
+      data-testid={dataTestId}
+      {...props}
     >
       {typeof children === "string" ? (
         <Link

@@ -49,7 +49,7 @@ describe("ComponentHighlight component", () => {
   });
 
   it("Should render a component highlight with custom border radius", () => {
-    renderComponentHighlight({ borderRadius: "2rem" });
+    renderComponentHighlight({ outerBorderRadius: "2rem", innerBorderRadius: "1rem" });
     const componentHighlight = screen.getByTestId("component-highlight");
     expect(componentHighlight).toBeInTheDocument();
   });

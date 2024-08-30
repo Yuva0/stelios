@@ -11,7 +11,8 @@ const ComponentHighlight: React.FunctionComponent<ComponentHighlightProps> = ({
   width = "auto",
   height = "auto",
   gradientColors,
-  borderRadius = "1rem",
+  outerBorderRadius = "1rem",
+  innerBorderRadius = "0.8rem",
   style,
   className,
   color = colorTokens.default.primary.main,
@@ -30,7 +31,8 @@ const ComponentHighlight: React.FunctionComponent<ComponentHighlightProps> = ({
       className={className}
       $width={width}
       $height={height}
-      $borderRadius={borderRadius}
+      $outerBorderRadius={outerBorderRadius}
+      $innerBorderRadius={innerBorderRadius}
       $colorPalette={colorPalette}
       $color={color}
       $gradientColors={gradientColors}
@@ -53,7 +55,7 @@ const StyledComponentCtr = styled.div<ComponentHighlightStyleProps>`
   height: ${(props) => props.$height};
   background-color: ${(props) => props.$colorPalette[props.$color].grayScale[0]};
   background-clip: padding-box;
-  border-radius: ${(props) => props.$borderRadius};
+  border-radius: ${(props) => props.$innerBorderRadius};
   padding: 0.5rem;
 
   &::after {
@@ -69,6 +71,6 @@ const StyledComponentCtr = styled.div<ComponentHighlightStyleProps>`
     }};
     content: "";
     z-index: -1;
-    border-radius: ${(props) => props.$borderRadius};
+    border-radius: ${(props) => props.$outerBorderRadius};
   }
 `;

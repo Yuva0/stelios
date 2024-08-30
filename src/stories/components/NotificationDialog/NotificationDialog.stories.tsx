@@ -13,7 +13,14 @@ const meta: Meta<typeof NotificationDialog> = {
   argTypes: {},
   decorators: [
     (Story) => (
-      <div style={{ display: "flex", justifyContent: "center", gap: "1rem", minHeight:"20rem" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          gap: "1rem",
+          minHeight: "20rem",
+        }}
+      >
         <Story />
       </div>
     ),
@@ -29,19 +36,26 @@ const Template: Story = {
     const _onClick = () => setOpen(!open);
     return (
       <>
-        <Button variant={args.variant} style={{height:"fit-content"}} onClick={_onClick} color={args.color}><Text disableColor>{open?"Close":"Open"} Notification Dialog</Text></Button>
-        <NotificationDialog width="20rem" open={open} {...args}>
-          <div
-            style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}
-          >
-            <Text disableColor size="large">
-              Title of the notification
-            </Text>
-            <Text disableColor variant="paragraph" size="small">
-              Details of the notification containing every single nuance needed to
-              make you understand.
-            </Text>
-          </div>
+        <Button
+          variant={args.variant}
+          style={{ height: "fit-content" }}
+          onClick={_onClick}
+          color={args.color}
+        >
+          <Text disableColor>
+            {open ? "Close" : "Open"} Notification Dialog
+          </Text>
+        </Button>
+        <NotificationDialog
+          width="20rem"
+          open={open}
+          {...args}
+          title={<Text disableColor size="large">Another title</Text>}
+        >
+          <Text disableColor variant="paragraph" size="small">
+            Details of the notification containing every single nuance needed to
+            make you understand.
+          </Text>
         </NotificationDialog>
       </>
     );
@@ -74,13 +88,13 @@ export const LeadingIcon = {
   ...Template,
   args: {
     leadingIcon: <Icon24Hours />,
-  }
-}
+  },
+};
 export const TrailingIcon = {
   ...Template,
   args: {
     trailingIcon: <Icon24Hours />,
-  }
-}
+  },
+};
 
 export const Playground = Template;

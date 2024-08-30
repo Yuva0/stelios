@@ -137,7 +137,7 @@ const Autocomplete: React.FC<AutocompleteProps> = ({
         onClick={_onMenuClick}
         data-testid={dataTestIdMenu}
       >
-        {filteredOptions?.map((option, index) => (
+        {filteredOptions && filteredOptions.map((option, index) => (
           <MenuItem
             {...option}
             title={option.title}

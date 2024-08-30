@@ -4,8 +4,12 @@ export interface NotificationDialogProps {
   variant?: "contained" | "outlined" | "soft";
   leadingIcon?: React.ReactNode;
   trailingIcon?: React.ReactNode;
+  title?: React.ReactNode;
   width?: string;
   color?: string;
+  style?: React.CSSProperties;
+  className?: string;
+  "data-testid"?: string;
 }
 
 export interface NotificationDialogStyleProps {

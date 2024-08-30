@@ -23,6 +23,8 @@ const SideBarGroupItem = ({
   color = colorTokens.default.primary.main,
   // Events
   onClick,
+  "data-testid": dataTestId,
+  ...props
 }: SideBarGroupItemProps) => {
   const theme = useTheme().theme;
   const colorPalette = getColorPalette(theme, color);
@@ -34,6 +36,8 @@ const SideBarGroupItem = ({
       className={className}
       style={style}
       onClick={onClick}
+      data-testid={dataTestId}
+      {...props}
     >
       {typeof children === "string" ? (
         <Link

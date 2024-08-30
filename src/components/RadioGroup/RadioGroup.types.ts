@@ -9,6 +9,9 @@ export interface RadioGroupProps {
   label?: React.ReactNode;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   orientation?: "horizontal" | "vertical";
+  className?: string;
+  style?: React.CSSProperties;
+  "data-testid"?: string;
 }
 
 export interface RadioGroupStyleProps {

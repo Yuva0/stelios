@@ -3,7 +3,6 @@ import type { Meta, StoryObj } from "@storybook/react";
 // import { generateRadixColors } from "../../helpers/colors/generateRadixColors";
 
 import NotFound from "../../../components/NotFound/NotFound";
-import { ThemeProvider } from "../../../components/ThemeProvider/ThemeProvider";
 
 const meta: Meta<typeof NotFound> = {
   title: "Components/NotFound",

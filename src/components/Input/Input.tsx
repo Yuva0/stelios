@@ -42,7 +42,8 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
       // Test Props
       "data-testid": dataTestId,
       "data-testid-input": dataTestIdInput,
-
+      "data-testid-leading-icon": dataTestIdLeadingIcon,
+      "data-testid-trailing-icon": dataTestIdTrailingIcon,
       ...props
     }: InputProps,
     ref
@@ -131,6 +132,7 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
               $hasLeadingIcon={!!leadingIcon}
               $hasTrailingIcon={!!trailingIcon}
               $width={width}
+              data-testid={dataTestIdLeadingIcon}
             >
               {leadingIcon}
             </StyledInputIcon>
@@ -159,6 +161,7 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
               $hasLeadingIcon={!!leadingIcon}
               $hasTrailingIcon={!!trailingIcon}
               $width={width}
+              data-testid={dataTestIdTrailingIcon}
             >
               {trailingIcon}
             </StyledInputIcon>

@@ -24,6 +24,10 @@ const NumberInput = ({
   onChange,
   onIncrement,
   onDecrement,
+  "data-testid": dataTestId,
+  "data-testid-plus": dataTestIdPlus,
+  "data-testid-minus": dataTestIdMinus,
+  "data-testid-input": dataTestIdInput,
 }: NumberInputProps) => {
   const [finalValue, setFinalValue] = React.useState<number | undefined>(value);
   const theme = useTheme().theme;
@@ -33,16 +37,8 @@ const NumberInput = ({
     setFinalValue(value);
   }, [value]);
 
-  const NumberInputLabel = () => {
-    if (!label || !React.isValidElement(label)) return null;
-    return typeof label === "string" ? (
-      <Text variant="label" disableColor>
-        {label}
-      </Text>
-    ) : (
-      label
-    );
-  };
+  const _numberInputLabel = label && typeof label === "string" ? (<Text variant="label" disableColor>{label}</Text>) : label;
+    
   const _onMinusClick = (e: React.MouseEvent) => {
     if (!finalValue) {
       setFinalValue(-1);
@@ -73,8 +69,8 @@ const NumberInput = ({
   };
 
   return (
-    <NumberInputContainer id={id} className={className} style={style}>
-      <NumberInputLabel />
+    <NumberInputContainer id={id} className={className} style={style} data-testid={dataTestId}>
+      {_numberInputLabel}
       <NumberInputContent
         $variant={variant}
         $size={size}
@@ -88,6 +84,7 @@ const NumberInput = ({
           $color={color}
           $size={size}
           onClick={_onMinusClick}
+          data-testid={dataTestIdMinus}
         >
           <IconMinus />
         </NumberInputIcon>
@@ -104,6 +101,7 @@ const NumberInput = ({
           value={finalValue}
           step={step}
           onChange={_onChange}
+          data-testid={dataTestIdInput}
         />
 
         <NumberInputIcon
@@ -113,6 +111,7 @@ const NumberInput = ({
           $colorPalette={colorPalette}
           $color={color}
           onClick={_onPlusClick}
+          data-testid={dataTestIdPlus}
         >
           <IconPlus />
         </NumberInputIcon>
@@ -205,7 +204,7 @@ const NumberInputInput = styled.input<NumberInputStyleProps>`
   }}
 `;
 
-const getSize = (size?: "small" | "medium" | "large") => {
+const getSize = (size: "small" | "medium" | "large") => {
   switch (size) {
     case "large":
       return {
@@ -229,12 +228,6 @@ const getSize = (size?: "small" | "medium" | "large") => {
         fontSize: "0.875rem",
       };
   }
-  return {
-    size: "2.5rem",
-    iconSize: "1.25rem",
-    width: "5rem",
-    fontSize: "1rem",
-  };
 };
 const variantStyleHandler = (
   variant: NumberInputStyleProps["$variant"],
