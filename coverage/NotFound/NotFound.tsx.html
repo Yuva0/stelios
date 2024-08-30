@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">27.02% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/37</span>
+                <span class='fraction'>10/37</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">13.33% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/15</span>
+                <span class='fraction'>2/15</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">30.3% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/33</span>
+                <span class='fraction'>10/33</span>
             </div>
         
             
@@ -131,25 +131,22 @@
 <a name='L66'></a><a href='#L66'>66</a>
 <a name='L67'></a><a href='#L67'>67</a>
 <a name='L68'></a><a href='#L68'>68</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -163,6 +160,9 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -185,9 +185,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -198,16 +198,16 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import * as React from "react";
-<span class="cstat-no" title="statement not covered" >import Text from "../Text/Text";</span>
-<span class="cstat-no" title="statement not covered" >import Cone from "../../svg/Cone";</span>
-<span class="cstat-no" title="statement not covered" >import styled from "styled-components";</span>
-<span class="cstat-no" title="statement not covered" >import { useTheme } from "../ThemeProvider/ThemeProvider";</span>
-<span class="cstat-no" title="statement not covered" >import { getColorPalette } from "../../helpers/helpers";</span>
-<span class="cstat-no" title="statement not covered" >import colorTokens from "../../tokens/colors.json";</span>
+import Text from "../Text/Text";
+import Cone from "../../svg/Cone";
+import styled from "styled-components";
+import { useTheme } from "../ThemeProvider/ThemeProvider";
+import { getColorPalette } from "../../helpers/helpers";
+import colorTokens from "../../tokens/colors.json";
 import { NotFoundProps, NotFoundStyleProps } from "./NotFound.types";
-<span class="cstat-no" title="statement not covered" >import File_Ettot_404 from "../../svg/FileError404";</span>
+import File_Ettot_404 from "../../svg/FileError404";
 &nbsp;
-const NotFound: React.FunctionComponent&lt;NotFoundProps&gt; = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >({</span></span>
+const NotFound: React.FunctionComponent&lt;NotFoundProps&gt; = <span class="fstat-no" title="function not covered" >({</span>
   name<span class="cstat-no" title="statement not covered" >,</span>
 <span class="cstat-no" title="statement not covered" >  width<span class="cstat-no" title="statement not covered" > </span>= "800px",</span>
   iconWidth<span class="cstat-no" title="statement not covered" >,</span>
@@ -252,9 +252,9 @@ const NotFound: React.FunctionComponent&lt;NotFoundProps&gt; = <span class="csta
     &lt;/StyledNotFoundCtr&gt;
   );
 };
-<span class="cstat-no" title="statement not covered" >export default NotFound;</span>
+export default NotFound;
 &nbsp;
-const StyledNotFoundCtr = <span class="cstat-no" title="statement not covered" >styled.div&lt;NotFoundStyleProps&gt;`</span>
+const StyledNotFoundCtr = styled.div&lt;NotFoundStyleProps&gt;`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -271,7 +271,7 @@ const StyledNotFoundCtr = <span class="cstat-no" title="statement not covered" >
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-08-28T14:54:14.495Z
+                at 2024-08-30T01:40:27.541Z
             </div>
         <script src="../prettify.js"></script>
         <script>
