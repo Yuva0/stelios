@@ -16,6 +16,7 @@ export interface SliderProps {
   disabled?: boolean;
   // Events
   onChange?: (value: number) => void;
+  "data-testid"?: string;
 }
 export interface SliderTrackStyleProps {
   $disabled?: boolean;

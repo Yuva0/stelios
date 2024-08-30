@@ -12,6 +12,7 @@ export interface SwitchProps {
 
   //Events
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  "data-testid"?: string;
 }
 
 export interface SwitchStyleProps {

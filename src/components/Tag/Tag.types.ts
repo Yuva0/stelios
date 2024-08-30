@@ -9,6 +9,7 @@ export interface TagProps {
   style?: React.CSSProperties;
   disableClick?: boolean;
   onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  "data-testid"?: string;
 }
 
 export interface TagStyleProps {

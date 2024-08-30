@@ -1,4 +1,4 @@
-import React, { forwardRef, useState, useEffect } from "react";
+import React, { forwardRef, useState, useEffect, useImperativeHandle } from "react";
 import { SwitchProps, SwitchStyleProps } from "./Switch.types";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
 import styled from "styled-components";
@@ -20,12 +20,13 @@ const Switch = forwardRef(
       style,
       // Events
       onChange,
+      "data-testid": dataTestId,
       ...props
     }: SwitchProps,
     ref
   ) => {
     const innerRef = React.useRef<HTMLInputElement>(null);
-    const _ref = (ref ?? innerRef) as React.RefObject<HTMLInputElement>;
+    useImperativeHandle(ref, () => innerRef.current as HTMLInputElement);
     const [isChecked, setIsChecked] = useState(checked ?? false);
 
     useEffect(() => {
@@ -52,10 +53,12 @@ const Switch = forwardRef(
         $size={size}
         $color={color}
         $colorGradient={colorPalette}
+        style={style}
+        data-testid={dataTestId}
         {...props}
       >
         <input
-          ref={_ref}
+          ref={innerRef}
           type="checkbox"
           checked={isChecked}
           name={name}

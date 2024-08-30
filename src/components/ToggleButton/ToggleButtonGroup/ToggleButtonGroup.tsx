@@ -89,6 +89,8 @@ const ToggleButtonGroup = ({
   width = "fit-content",
   //Events
   onClick,
+  "data-testid": dataTestId,
+  ...props
 }: ToggleButtonGroupProps) => {
   const [selectedIndex, setSelectedIndex] = React.useState<number | null>(
     value ? getIndexFromValue(value, children) : null
@@ -113,6 +115,8 @@ const ToggleButtonGroup = ({
       $colorPalette={colorPalette}
       className={className}
       style={style}
+      data-testid={dataTestId}
+      {...props}
     >
       {React.Children.map(children, (child, index) => {
         if (React.isValidElement(child) && child.type) {

@@ -18,6 +18,8 @@ const Tag = ({
   style,
   // Events
   onClick,
+  "data-testid": dataTestId,
+  ...props
 }: TagProps) => {
   const theme = useTheme().theme;
   const colorPalette = getColorPalette(theme,color);
@@ -31,6 +33,9 @@ const Tag = ({
       $colorPalette={colorPalette}
       className={className}
       onClick={onClick}
+      style={style}
+      data-testid={dataTestId}
+      {...props}
     >
       {leadingIcon && (
         <StyledTagIcon

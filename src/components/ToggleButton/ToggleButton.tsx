@@ -20,6 +20,7 @@ const ToggleButton = ({
   style,
   // Events
   onClick,
+  "data-testid": dataTestId,
 }: ToggleButtonProps) => {
   const theme = useTheme().theme;
   const colorPalette = getColorPalette(theme,color);
@@ -38,6 +39,7 @@ const ToggleButton = ({
       className={className}
       style={style}
       onClick={_onClick}
+      data-testid={dataTestId}
     >
       {children}
     </StyledToggleBtn>

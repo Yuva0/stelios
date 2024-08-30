@@ -8,6 +8,7 @@ export interface ToggleButtonGroupProps {
   style?: React.CSSProperties;
   // Events
   onClick?: (e: React.MouseEvent, value?: string) => void;
+  "data-testid"?: string;
 }
 
 export interface ToggleButtonStyleGroupProps {

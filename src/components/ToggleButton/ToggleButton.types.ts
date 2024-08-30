@@ -10,6 +10,7 @@ export interface ToggleButtonProps {
   size?: "small" | "medium" | "large";
   // Events:
   onClick?: (e: React.MouseEvent, value?: string, index?: number) => void;
+  "data-testid"?: string;
 }
 
 export interface ToggleButtonStyleProps {

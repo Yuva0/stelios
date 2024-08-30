@@ -28,6 +28,7 @@ const Slider: React.FunctionComponent<SliderProps> = ({
   disableLabels = false,
   // Events
   onChange,
+  "data-testid": dataTestId,
 }) => {
   const sliderRef = React.useRef<HTMLDivElement | null>(null);
   const [sliderValue, setSliderValue] = React.useState<number>(
@@ -75,7 +76,7 @@ const Slider: React.FunctionComponent<SliderProps> = ({
   };
 
   return (
-    <div style={{ width: width }} aria-disabled={disabled}>
+    <div style={{ width: width }} aria-disabled={disabled} data-testid={dataTestId}>
       <StyledSliderLabel $color={color} $colorPalette={colorPalette}>
         {!disableLabels && (
           <Text disableColor size={size}>
@@ -89,6 +90,7 @@ const Slider: React.FunctionComponent<SliderProps> = ({
         )}
       </StyledSliderLabel>
       <StyledSliderTrack
+        role="slider"
         ref={sliderRef}
         className={className}
         style={style}

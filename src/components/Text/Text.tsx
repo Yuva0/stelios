@@ -26,7 +26,7 @@ const Text = ({
   style,
   className,
   fontFamily,
-  ...rest
+  ...props
 }: TextProps) => {
   const theme = useTheme().theme;
   let _styledProps: StyledProps;
@@ -53,7 +53,7 @@ const Text = ({
             $lineHeight={lineHeight}
             style={style}
             className={className}
-            {...rest}
+            {...props}
             {..._styledProps}
           >
             {children}
@@ -70,7 +70,7 @@ const Text = ({
             $lineHeight={lineHeight}
             style={style}
             className={className}
-            {...rest}
+            {...props}
             {..._styledProps}
           >
             {children}
@@ -88,7 +88,7 @@ const Text = ({
             $lineHeight={lineHeight}
             style={style}
             className={className}
-            {...rest}
+            {...props}
             {..._styledProps}
           >
             {children}
@@ -106,7 +106,7 @@ const Text = ({
             $lineHeight={lineHeight}
             style={style}
             className={className}
-            {...rest}
+            {...props}
             {..._styledProps}
           >
             {children}
@@ -124,7 +124,7 @@ const Text = ({
             $lineHeight={lineHeight}
             style={style}
             className={className}
-            {...rest}
+            {...props}
             {..._styledProps}
           >
             {children}
@@ -142,7 +142,7 @@ const Text = ({
             $lineHeight={lineHeight}
             style={style}
             className={className}
-            {...rest}
+            {...props}
             {..._styledProps}
           >
             {children}
@@ -160,7 +160,7 @@ const Text = ({
             $lineHeight={lineHeight}
             style={style}
             className={className}
-            {...rest}
+            {...props}
             {..._styledProps}
           >
             {children}
@@ -178,7 +178,7 @@ const Text = ({
             $lineHeight={lineHeight}
             style={style}
             className={className}
-            {...rest}
+            {...props}
             {..._styledProps}
           >
             {children}
@@ -196,7 +196,7 @@ const Text = ({
             $lineHeight={lineHeight}
             style={style}
             className={className}
-            {...rest}
+            {...props}
             {..._styledProps}
           >
             {children}
@@ -214,7 +214,7 @@ const Text = ({
             $lineHeight={lineHeight}
             style={style}
             className={className}
-            {...rest}
+            {...props}
             {..._styledProps}
           >
             {children}
@@ -232,7 +232,7 @@ const Text = ({
             $lineHeight={lineHeight}
             style={style}
             className={className}
-            {...rest}
+            {...props}
             {..._styledProps}
           >
             {children}

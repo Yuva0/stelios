@@ -25,6 +25,7 @@ export interface TextProps {
   lineHeight?: string;
   disableColor?: boolean;
   fontFamily?: string;
+  "data-testid"?: string;
 }
 
 export interface TextStyleProps {

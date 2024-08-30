@@ -6,4 +6,5 @@ export interface TabsProps {
   onClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
   style?: React.CSSProperties;
   className?: string;
+  "data-testid"?: string;
 }
