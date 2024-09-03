@@ -24,6 +24,8 @@ const ColorPicker = ({
   onChange,
   errorMessage,
   "data-testid": dataTestId,
+  "data-testid-input": dataTestIdInput,
+  ...props
 }: ColorPickerProps) => {
   const [isOpen, setIsOpen] = useState(open ?? false);
   const anchorElement = useRef<HTMLDivElement | null>(null);
@@ -31,13 +33,15 @@ const ColorPicker = ({
   const theme = useTheme().theme;
   const colorPalette = getColorPalette(theme, color);
   const [innerColor, setInnerColor] = useState<string>(
-    colorPalette ? colorPalette[color].main : color
+    colorPalette![color].main
   );
-  const [_errorMessage, setErrorMessage] = useState<React.ReactNode | undefined>(errorMessage);
+  const [_errorMessage, setErrorMessage] = useState<
+    React.ReactNode | undefined
+  >(errorMessage);
 
   React.useEffect(() => {
     const colorPalette = getColorPalette(theme, color);
-    setInnerColor(colorPalette ? colorPalette[color].main : color);
+    setInnerColor(colorPalette![color].main);
   }, [color, theme]);
 
   useEffect(() => {
@@ -118,6 +122,8 @@ const ColorPicker = ({
           />
         }
         data-testid={dataTestId}
+        data-testid-input={dataTestIdInput}
+        {...props}
       />
       <StyledChromePickerCtr
         ref={popperElement}
@@ -127,7 +133,7 @@ const ColorPicker = ({
       >
         <ChromePicker disableAlpha color={innerColor} onChange={_onChange} />
       </StyledChromePickerCtr>
-      <div style={{height: "20px"}}>
+      <div style={{ height: "20px" }}>
         <Text color={color} size="small">
           {_errorMessage}
         </Text>

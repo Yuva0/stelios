@@ -9,8 +9,9 @@ export interface ColorPickerProps {
   variant?: "contained" | "outlined" | "soft";
   width?: string;
   onChange?: (color?: string) => void;
-  "data-testid"?: string;
   errorMessage?: React.ReactNode;
+  "data-testid"?: string;
+  "data-testid-input"?: string;
 }
 
 export interface ColorPickerStyleProps {
