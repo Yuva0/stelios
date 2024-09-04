@@ -23,7 +23,7 @@ const Autocomplete: React.FC<AutocompleteProps> = ({
   color = colorTokens.default.primary.main,
   width = "15rem",
   variant = "contained",
-  size = "medium",
+  size = "medium", 
   // Events
   onChange,
   onClick,
