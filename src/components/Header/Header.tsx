@@ -16,13 +16,14 @@ const Header = ({
   className,
   style,
   expandable = true,
-  iconWidth = "3rem",
-  iconHeight = "1.75rem",
-  iconRight = "5rem",
-  iconBottom = "-1.5rem",
+  expandIconProps = {
+    iconWidth: "3rem",
+    iconHeight: "1.75rem",
+    iconRight: "5rem",
+    iconBottom: "-1.5rem",
+  },
   color = colorTokens.default.primary.main,
   "data-testid": dataTestId,
-  "data-testid-icon": dataTestIdIcon,
   ...props
 }: HeaderProps) => {
   const [expanded, setExpanded] = React.useState<boolean>(true);
@@ -38,12 +39,12 @@ const Header = ({
         $colorPalette={colorPalette}
         $color={color}
         $expanded={expanded}
-        $iconWidth={iconWidth}
-        $iconHeight={iconHeight}
-        $iconRight={iconRight}
-        $iconBottom={iconBottom}
+        $iconWidth={expandIconProps.iconWidth}
+        $iconHeight={expandIconProps.iconHeight}
+        $iconRight={expandIconProps.iconRight}
+        $iconBottom={expandIconProps.iconBottom}
+        data-testid={expandIconProps["data-testid"]}
         onClick={_onExpandHandler}
-        data-testid={dataTestIdIcon}
       >
         {expanded ? <IconChevronCompactUp /> : <IconChevronCompactDown />}
       </StyledExpandIcon>

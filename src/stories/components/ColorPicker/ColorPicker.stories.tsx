@@ -58,4 +58,7 @@ export const Playground: Story = {
   render: (args) => {
     return <ColorPicker {...args} />;
   },
+  args: {
+    "data-testid-popup":"color-picker-popup",
+  }
 };

@@ -1,3 +1,5 @@
+
+
 export interface HeaderProps {
   id?: string;
   children?: React.ReactNode | [React.ReactNode];
@@ -6,15 +8,16 @@ export interface HeaderProps {
   className?: string;
   expandable?: boolean;
   color?: string;
+  expandIconProps?: ExpandIconProps;
+  "data-testid"?: string;
+}
 
-  // Icon Customization
+interface ExpandIconProps {
   iconWidth?: string;
   iconHeight?: string;
   iconRight?: string;
   iconBottom?: string;
-
   "data-testid"?: string;
-  "data-testid-icon"?: string;
 }
 
 export interface HeaderStyleProps {

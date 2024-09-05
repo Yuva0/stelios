@@ -17,7 +17,7 @@ const StyledChromePickerCtr = styled.div<ColorPickerStyleProps>`
 const ColorPicker = ({
   label,
   color = colorTokens.default.primary.main,
-  open,
+  open = false,
   size,
   width,
   variant = "outlined",
@@ -25,11 +25,14 @@ const ColorPicker = ({
   errorMessage,
   "data-testid": dataTestId,
   "data-testid-input": dataTestIdInput,
+  "data-testid-popup": dataTestIdPopup,
+  "data-testid-leading-icon": dataTestIdLeadingIcon,
   ...props
 }: ColorPickerProps) => {
-  const [isOpen, setIsOpen] = useState(open ?? false);
+  const [isOpen, setIsOpen] = useState(open);
   const anchorElement = useRef<HTMLDivElement | null>(null);
   const popperElement = useRef<HTMLDivElement | null>(null);
+
   const theme = useTheme().theme;
   const colorPalette = getColorPalette(theme, color);
   const [innerColor, setInnerColor] = useState<string>(
@@ -45,10 +48,10 @@ const ColorPicker = ({
   }, [color, theme]);
 
   useEffect(() => {
-    setIsOpen(open ?? false);
+    setIsOpen(open);
   }, [open]);
 
-  const { styles, attributes, update } = usePopper(
+  const { styles, attributes } = usePopper(
     anchorElement.current,
     popperElement.current,
     {
@@ -65,10 +68,6 @@ const ColorPicker = ({
   );
 
   const _onChange = (color: ColorResult) => {
-    if (!isValidColor(color.hex)) {
-      setErrorMessage("Invalid color");
-      return;
-    }
     setErrorMessage(undefined);
     setInnerColor(color.hex);
     onChange && onChange(color.hex);
@@ -92,12 +91,6 @@ const ColorPicker = ({
     setIsOpen(false);
   }, []);
 
-  useEffect(() => {
-    if (isOpen && update) {
-      update();
-    }
-  }, [isOpen, update]);
-
   return (
     <ClickAwayListener onClickAway={handleClickAway}>
       <Input
@@ -112,6 +105,7 @@ const ColorPicker = ({
         color={color}
         leadingIcon={
           <div
+            data-testid={dataTestIdLeadingIcon}
             onClick={() => setIsOpen(!isOpen)}
             style={{
               width: "100%",
@@ -129,6 +123,7 @@ const ColorPicker = ({
         ref={popperElement}
         $open={isOpen}
         style={{ ...styles.popper }}
+        data-testid={dataTestIdPopup}
         {...attributes.popper}
       >
         <ChromePicker disableAlpha color={innerColor} onChange={_onChange} />

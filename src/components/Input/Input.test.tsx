@@ -70,6 +70,8 @@ describe("Input component", () => {
     fireEvent.change(input, { target: { value: "input" } });
     fireEvent.keyDown(input, { key: "Enter", code: "Enter" });
     fireEvent.blur(input);
+    expect(input).toBeInTheDocument();
+    expect(input).toHaveValue("input");
   });
 
   it("input with leading icon", () => {

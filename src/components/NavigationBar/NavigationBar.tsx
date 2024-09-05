@@ -43,7 +43,6 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
   const childrenList = Array.isArray(children) ? children : [children];
 
   const _handleSelectedIndex = (index?: number, value?: string) => {
-    if (!index || !value) return;
     if (index === selectedIndex) return;
     setSelectedIndex(index);
     onChange && onChange(value);
@@ -53,7 +52,6 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
 
   const ChildrenEle = React.Children.map(childrenList, (child) => {
     if (!React.isValidElement(child) || !child.type) return child;
-    if (typeof child.type === "string") return child;
 
     if ((child.type as any).displayName === "NavigationBarItem") {
       index++;

@@ -14,6 +14,7 @@ export type DrawerProps = {
   hasCloseIcon?: boolean;
   color?: string;
   "data-testid"?: string;
+  "data-testid-backdrop"?: string;
 };
 
 export type DrawerStyleProps = {

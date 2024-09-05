@@ -70,7 +70,7 @@ describe("Drawer component", () => {
     const drawer = screen.getByTestId("drawer");
     expect(drawer).toBeInTheDocument();
   });
-  it("Should render a drawer with strenght weak", () => {
+  it("Should render a drawer with strength weak", () => {
     renderDrawer({
       backdropStrength: "weak",
       open: true,
@@ -78,7 +78,7 @@ describe("Drawer component", () => {
     const drawer = screen.getByTestId("drawer");
     expect(drawer).toBeInTheDocument();
   });
-  it("Should render a drawer with strenght strong", () => {
+  it("Should render a drawer with strength strong", () => {
     renderDrawer({
       backdropStrength: "strong",
       open: true,
@@ -86,12 +86,30 @@ describe("Drawer component", () => {
     const drawer = screen.getByTestId("drawer");
     expect(drawer).toBeInTheDocument();
   });
-  it("Should render a drawer with strenght normal", () => {
+  it("Should render a drawer with strength normal", () => {
     renderDrawer({
       backdropStrength: "normal",
       open: true,
     });
     const drawer = screen.getByTestId("drawer");
     expect(drawer).toBeInTheDocument();
+  });
+  it("Shoud render a drawer that never opens", () => {
+    renderDrawer({});
+    // Do Nothing
+  });
+  it("should close on click of Escape", () => {
+    renderDrawer({ open: true, onClose: jest.fn() });
+    const drawer = screen.getByTestId("drawer");
+    expect(drawer).toBeInTheDocument();
+    fireEvent.keyDown(document, { key: "Escape", code: "Escape" });
+  });
+  it("should close on click of backdrop", () => {
+    renderDrawer({open: true, onClose: jest.fn(), "data-testid-backdrop": "backdrop"});
+    const drawer = screen.getByTestId("drawer");
+    expect(drawer).toBeInTheDocument();
+    const backdrop = screen.getByTestId("backdrop");
+    expect(backdrop).toBeInTheDocument();
+    fireEvent.click(backdrop);
   });
 });

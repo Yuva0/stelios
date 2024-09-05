@@ -12,6 +12,8 @@ export interface ColorPickerProps {
   errorMessage?: React.ReactNode;
   "data-testid"?: string;
   "data-testid-input"?: string;
+  "data-testid-popup"?: string;
+  "data-testid-leading-icon"?: string;
 }
 
 export interface ColorPickerStyleProps {

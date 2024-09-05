@@ -30,6 +30,7 @@ const Drawer = ({
   // Events
   onClose,
   "data-testid": dataTestId,
+  "data-testid-backdrop": dataTestIdBackdrop,
   ...props
 }: DrawerProps) => {
   const [isOpen, setIsOpen] = React.useState(open);
@@ -114,6 +115,7 @@ const Drawer = ({
       </StyledDrawer>
       {isOpen && (
         <StyledBackdrop
+          data-testid={dataTestIdBackdrop}
           $backdropStrength={backdropStrength}
           onClick={_onOutsideClick}
         />

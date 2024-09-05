@@ -101,7 +101,7 @@ const Menu = forwardRef<HTMLDivElement, MenuProps>(
             if (!child) return child;
             if (!React.isValidElement(child)) return child;
             return React.cloneElement(child, {
-              key: child.props.index ?? index,
+              key: index,
               ...(!child.props.color && { color: color }),
               ...(!child.props.variant && { variant: variant }),
               pvtHasFocus: focusVisible === index,
