@@ -14,6 +14,7 @@ export interface NavigationBarGroupItemProps {
   // Events
   onClick?: (e: React.MouseEvent | React.KeyboardEvent) => void;
   _getSelectedIndex?: (index?: number, value?: string) => void;
+  "data-testid"?: string;
 }
 
 export interface NavigationBarGroupItemStyleProps {

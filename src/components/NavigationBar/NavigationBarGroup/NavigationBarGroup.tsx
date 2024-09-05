@@ -14,13 +14,15 @@ const NavigationBarGroup = ({
   leadingIcon,
   children,
   title,
-  expanded,
+  expanded = false,
   className,
   color = colorTokens.default.primary.main,
-  onClick
+  onClick,
+  "data-testid": dataTestId,
+  "data-testid-header": dataTestIdHeader,
 }: NavigationBarGroupProps) => {
   const navigationBarGrpItmContnrRef = React.useRef(null);
-  const [expand, setExpand] = useState(expanded ?? false);
+  const [expand, setExpand] = useState(expanded);
   const theme = useTheme().theme;
   const colorPalette = getColorPalette(theme, color);
 
@@ -36,13 +38,14 @@ const NavigationBarGroup = ({
   };
 
   return (
-    <StyledNavBarGroup className={className}>
+    <StyledNavBarGroup className={className} data-testid={dataTestId}>
       <StyledNavBarGroupHeader
         tabIndex={0}
         $color={color}
         $colorPalette={colorPalette}
         onClick={_toggleExpand}
         onKeyDown={_handleKeyDown}
+        data-testid={dataTestIdHeader}
       >
         <span>
           {leadingIcon && (

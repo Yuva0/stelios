@@ -11,6 +11,8 @@ export interface NavigationBarGroupProps {
   className?: string;
   _getSelectedIndex?: (index?: number) => void;
   onClick?: (e: React.MouseEvent | React.KeyboardEvent) => void;
+  "data-testid"?: string;
+  "data-testid-header"?: string;
 }
 
 export interface NavigationBarGroupStyleProps {

@@ -24,6 +24,7 @@ const NavigationBarGroupItem = ({
   // Events
   _getSelectedIndex,
   onClick,
+  "data-testid": dataTestId,
 }: NavigationBarGroupItemProps) => {
   const [_selected, setSelected] = React.useState(selected);
 
@@ -54,6 +55,7 @@ const NavigationBarGroupItem = ({
       style={style}
       onClick={_onClick}
       onKeyDown={_handleKeyDown}
+      data-testid={dataTestId}
     >
       {leadingIcon && (
         <StyledNavBarGrpItemIcon>{leadingIcon}</StyledNavBarGrpItemIcon>

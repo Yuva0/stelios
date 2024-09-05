@@ -2,7 +2,7 @@
 export interface NavigationBarItemProps {
   _index?: number;
   value: string;
-  children: string | React.ReactNode;
+  children: React.ReactNode;
   leadingIcon?: React.ReactNode;
   trailingIcon?: React.ReactNode;
   className?: string;

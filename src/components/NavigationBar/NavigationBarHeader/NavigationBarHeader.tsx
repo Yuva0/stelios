@@ -16,7 +16,7 @@ const NavigationBarHeader = ({
   className,
   leadingIcon,
   trailingIcon,
-  size,
+  size = "small",
   color = colorTokens.default.primary.main,
 }: NavigationBarHeaderProps) => {
   const theme = useTheme().theme;
@@ -31,7 +31,7 @@ const NavigationBarHeader = ({
     >
       {leadingIcon && <span>{leadingIcon}</span>}
       {typeof children === "string" ? (
-        <Text color={color} variant="span" size={size ?? "small"}>
+        <Text color={color} variant="span" size={size}>
           {children}
         </Text>
       ) : (

@@ -68,8 +68,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
       return React.cloneElement(child, {
         children: React.Children.map(
           child.props.children,
-          (child: NavigationBarGroupItemProps) => {
-            if (!React.isValidElement(child)) return child;
+          (child) => {
             index++;
             return React.cloneElement(child, {
               _index: index,
