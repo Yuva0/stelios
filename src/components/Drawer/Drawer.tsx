@@ -74,6 +74,7 @@ const Drawer = ({
   const CloseIcon = (
     <span style={{ float: "right" }}>
       <IconButton
+        alt="Close"
         size="small"
         variant="outlined"
         icon={<IconX />}

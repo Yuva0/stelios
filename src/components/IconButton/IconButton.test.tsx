@@ -9,6 +9,7 @@ describe("IconButton component", () => {
   beforeEach(() => {
     defaultProps = {
       icon: <div data-testid="icon">Icon</div>,
+      alt: "Icon",
       onClick: jest.fn(),
       "data-testid": "icon-button",
     };
