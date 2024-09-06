@@ -85,7 +85,6 @@ You can access the storybook [here](https://yuva0.github.io/stelios/). <br/> It 
     <li>Menu</li>
     <li>MenuItem</li>
     <li>NavigationBar</li>
-    <li>NotFound</li>
     <li>NotificationDialog</li>
     <li>NumberInput</li>
     <li>Password</li>

@@ -34,7 +34,6 @@ import NavigationBarGroup from "./components/NavigationBar/NavigationBarGroup/Na
 import NavigationBarGroupItem from "./components/NavigationBar/NavigationBarGroupItem/NavigationBarGroupItem";
 import NavigationBarHeader from "./components/NavigationBar/NavigationBarHeader/NavigationBarHeader";
 import NavigationBarItem from "./components/NavigationBar/NavigationBarItem/NavigationBarItem";
-import NotFound from "./components/NotFound/NotFound";
 import NotificationDialog from "./components/NotificationDialog/NotificationDialog";
 import NumberInput from "./components/NumberInput/NumberInput";
 import Password from "./components/Password/Password";
@@ -93,7 +92,6 @@ export {
   NavigationBarGroupItem,
   NavigationBarHeader,
   NavigationBarItem,
-  NotFound,
   NotificationDialog,
   NumberInput,
   Password,
