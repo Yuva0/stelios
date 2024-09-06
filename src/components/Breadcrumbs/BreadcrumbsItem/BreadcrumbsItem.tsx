@@ -52,6 +52,7 @@ const BreadcrumbsItem: React.FunctionComponent<BreadcrumbsItemProps> = ({
       $size={size}
       $isSelectable={!!link}
       data-testid={dataTestId}
+      aria-current={link ? "page" : undefined}
       {...props}
     >
       {BreadcrumbsItemContent}
