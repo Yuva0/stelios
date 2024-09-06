@@ -6,7 +6,7 @@ import { useTheme } from "../ThemeProvider/ThemeProvider";
 import { getColorPalette } from "../../helpers/helpers";
 import colorTokens from "../../tokens/colors.json";
 import { NotFoundProps, NotFoundStyleProps } from "./NotFound.types";
-import File_Ettot_404 from "../../svg/FileError404";
+import FileError404 from "../../svg/FileError404";
 
 const NotFound: React.FunctionComponent<NotFoundProps> = ({
   name,
@@ -30,7 +30,7 @@ const NotFound: React.FunctionComponent<NotFoundProps> = ({
       NotFoundComponent = Cone;
       break;
     case "File_Error_404":
-      NotFoundComponent = File_Ettot_404;
+      NotFoundComponent = FileError404;
       break;
     default:
       NotFoundComponent = Cone;

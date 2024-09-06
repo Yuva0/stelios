@@ -1,6 +1,6 @@
 import { SVGProps } from "./svg.types";
 
-const File_Ettot_404 = ({
+const File_Error_404 = ({
   fill = "#000000",
   width = "800px",
   height = "800px",
@@ -34,4 +34,4 @@ const File_Ettot_404 = ({
   );
 };
 
-export default File_Ettot_404;
+export default File_Error_404;
