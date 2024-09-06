@@ -67,7 +67,7 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
     const Label = label ? (
       typeof label === "string" ? (
         <StyledLabel>
-          <Text variant="label" size={size}>
+          <Text color={color} variant="label" size={size}>
             {label}
           </Text>
         </StyledLabel>
