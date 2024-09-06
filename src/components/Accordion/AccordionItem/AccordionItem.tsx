@@ -238,6 +238,29 @@ const getVariantTitleProps = (
           }
         }
       }
+    case "transparent": {
+      return {
+        backgroundColor: {
+          default: "transparent",
+          hover: "transparent",
+          active: "transparent",
+        },
+        color: {
+          default: colorPalette[color].accentScale[10],
+          hover: colorPalette[color].accentScale[10],
+          active: colorPalette[color].accentScale[10],
+        },
+        border: {
+          default: `1px solid transparent`,
+          hover: `1px solid transparent`,
+          active: `1px solid transparent`
+        },
+        svg: {
+          color: {
+            default: colorPalette[color].accentScale[10],
+          }
+        }
+    }}
       
   }
 };
@@ -334,6 +357,21 @@ const getContentVariantProps = (
         },
         borderRight: {
           default: `2px solid ${colorPalette[color].accentScale[5]}`,
+        }
+      }
+    case "transparent":
+      return {
+        backgroundColor: {
+          default: "transparent",
+        },
+        color: {
+          default: colorPalette[color].accentScale[10],
+        },
+        borderLeft: {
+          default: `2px solid transparent`,
+        },
+        borderRight: {
+          default: `2px solid transparent`,
         }
       }
   }

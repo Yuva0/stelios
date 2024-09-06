@@ -98,6 +98,12 @@ export const OutlinedSoft = {
     variant: "outlined-soft",
   },
 };
+export const Transparent = {
+  ...AccordionTemplate,
+  args: {
+    variant: "transparent",
+  },
+};
 export const Playground = {
   ...AccordionTemplate,
 };
