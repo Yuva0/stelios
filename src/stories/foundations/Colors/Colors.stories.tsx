@@ -246,8 +246,8 @@ const ColorComponent = () => {
           <Text color="primary" style={{ paddingBottom: "1rem" }}>
             This story is created using only one color.
           </Text>
-            <ColorPicker color={color} width="100%" onChange={_onColorChange} />
-            <ToggleButtonGroup width="240px" value={appearance} onClick={_onAppearanceChange}>
+            <ColorPicker color="primary" width="100%" onChange={_onColorChange} />
+            <ToggleButtonGroup width="240px" color={color} value={appearance} onClick={_onAppearanceChange}>
               <ToggleButton value="light" color="primary">Light</ToggleButton>
               <ToggleButton value="dark" color="primary">Dark</ToggleButton>
             </ToggleButtonGroup>
