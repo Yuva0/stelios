@@ -56,6 +56,9 @@ import {
   useTheme,
   useUpdateTheme,
 } from "./components/ThemeProvider/ThemeProvider";
+import Cone from "./svg/Cone";
+import FileError404 from "./svg/FileError404";
+import WeatherCloudy from "./svg/WeatherCloudy";
 
 export {
   Accordion,
@@ -113,4 +116,7 @@ export {
   useTheme,
   useUpdateTheme,
   ThemeProvider,
+  Cone,
+  FileError404,
+  WeatherCloudy,
 };
