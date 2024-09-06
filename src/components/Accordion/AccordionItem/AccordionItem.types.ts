@@ -8,6 +8,10 @@ export interface AccordionItemProps {
   "data-testid-title"?: string;
 }
 
+export interface AccordionItemPvtProps {
+  pvtKey?: number;
+}
+
 export interface AccordionItemStyleProps {
   $expanded?: boolean;
   $colorPalette: any;

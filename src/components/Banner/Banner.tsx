@@ -3,10 +3,10 @@ import Text from "../Text/Text";
 import styled from "styled-components";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
 import colorTokens from "../../tokens/colors.json";
-import { AlertProps, AlertStyleProps } from "./Alert.types";
+import { BannerProps, BannerStyleProps } from "./Banner.types";
 import { getColorPalette } from "../../helpers/helpers";
 
-const Alert: React.FunctionComponent<AlertProps> = ({
+const Banner: React.FunctionComponent<BannerProps> = ({
   title,
   titleIcon,
   description,
@@ -19,7 +19,7 @@ const Alert: React.FunctionComponent<AlertProps> = ({
   "data-testid": dataTestId,
   "data-leading-icon": dataLeadingIcon,
   ...props
-}: AlertProps) => {
+}: BannerProps) => {
   const theme = useTheme().theme;
   const colorPalette = getColorPalette(theme,color);
 
@@ -63,7 +63,7 @@ const Alert: React.FunctionComponent<AlertProps> = ({
   }, [leadingIcon, dataLeadingIcon]);
 
   return (
-    <StyledAlertContainer
+    <StyledBannerContainer
       style={style}
       className={className}
       $width={width}
@@ -75,12 +75,12 @@ const Alert: React.FunctionComponent<AlertProps> = ({
     >
       <LeadingIcon />
       <Content />
-    </StyledAlertContainer>
+    </StyledBannerContainer>
   );
 };
-export default Alert;
+export default Banner;
 
-const StyledAlertContainer = styled.div<AlertStyleProps>`
+const StyledBannerContainer = styled.div<BannerStyleProps>`
   display: flex;
   flex-direction: row;
   box-sizing: border-box;
@@ -90,7 +90,7 @@ const StyledAlertContainer = styled.div<AlertStyleProps>`
   padding: 0.75rem 1rem 1rem 1rem;
   border-radius: 0.8rem;
   ${props => {
-    const properties = propsAlertContainerHandler(props.$variant, props.$color, props.$colorPalette);
+    const properties = propsBannerContainerHandler(props.$variant, props.$color, props.$colorPalette);
     return `
       background-color: ${properties.background.default};
       border: ${properties.border.default};
@@ -100,17 +100,17 @@ const StyledAlertContainer = styled.div<AlertStyleProps>`
     `;
   }}
 `;
-const propsAlertContainerHandler = (
-  variant: AlertStyleProps["$variant"],
-  color: AlertStyleProps["$color"],
-  colorPalette: AlertStyleProps["$colorPalette"]
+const propsBannerContainerHandler = (
+  variant: BannerStyleProps["$variant"],
+  color: BannerStyleProps["$color"],
+  colorPalette: BannerStyleProps["$colorPalette"]
 ) => {
   return { ...getVariantProps(variant, color, colorPalette) };
 };
 const getVariantProps = (
-  variant: AlertStyleProps["$variant"],
-  color: AlertStyleProps["$color"],
-  colorPalette: AlertStyleProps["$colorPalette"]
+  variant: BannerStyleProps["$variant"],
+  color: BannerStyleProps["$color"],
+  colorPalette: BannerStyleProps["$colorPalette"]
 ) => {
   switch (variant) {
     case "contained":

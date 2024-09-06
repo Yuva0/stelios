@@ -1,0 +1,39 @@
+{/* Banner.mdx */}
+import { Canvas, Meta, Controls } from '@storybook/blocks';
+import * as BannerStories from './Banner.stories';
+
+<Meta of={BannerStories} name="Docs" />
+# Banner:
+Banner components are used to inform users about a situation or to give feedback. They can be used to inform users about a
+successful action, an error, a warning or just to give information.
+
+## Variants:
+A subtle variant in the mix can often be the perfect fix.\
+Choose the one that fits your design system the best.
+
+#### Contained.
+Default
+<Canvas of={BannerStories.Contained}/>
+
+#### Outlined
+<Canvas of={BannerStories.Outlined}/>
+
+#### Soft
+<Canvas of={BannerStories.Soft}/>
+
+#### Outlined Soft
+<Canvas of={BannerStories.OutlinedSoft}/>
+
+## Icons:
+Banners can have icons. Icons can be leading or title. (You thought it was trailing, didn't you?)
+
+#### Leading Icon
+<Canvas of={BannerStories.LeadingIcon}/>
+
+#### Title Icon
+<Canvas of={BannerStories.TitleIcon}/>
+
+#### Playground
+Customize as per your needs using the controls below
+<Canvas of={BannerStories.Playground}/>
+<Controls of={BannerStories.Playground}/>

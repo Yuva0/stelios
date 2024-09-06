@@ -16,7 +16,7 @@ import SideBarGroupItem from "../../../components/SideBar/SideBarGroupItem/SideB
 import SideBarItem from "../../../components/SideBar/SideBarItem/SideBarItem";
 import ColorPicker from "../../../components/ColorPicker/ColorPicker";
 import Button from "../../../components/Button/Button";
-import Alert from "../../../components/Alert/Alert";
+import Banner from "../../../components/Banner/Banner";
 import Slider from "../../../components/Slider/Slider";
 import Avatar from "../../../components/Avatar/Avatar";
 import Breadcrumbs from "../../../components/Breadcrumbs/Breadcrumbs";
@@ -308,8 +308,8 @@ const ColorComponent = () => {
             Contained
           </Button>
         </div>
-        <Alert
-          title="Alert"
+        <Banner
+          title="Banner"
           description="Description"
           width="100%"
           color="primary"

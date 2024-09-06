@@ -1,7 +1,7 @@
 /* Components */
 import Accordion from "./components/Accordion/Accordion";
 import AccordionItem from "./components/Accordion/AccordionItem/AccordionItem";
-import Alert from "./components/Alert/Alert";
+import Banner from "./components/Banner/Banner";
 import Autocomplete from "./components/Autocomplete/Autocomplete";
 import Button from "./components/Button/Button";
 import Breadcrumbs from "./components/Breadcrumbs/Breadcrumbs";
@@ -55,7 +55,7 @@ import {
 export {
   Accordion,
   AccordionItem,
-  Alert,
+  Banner,
   Autocomplete,
   Breadcrumbs,
   BreadcrumbsItem,

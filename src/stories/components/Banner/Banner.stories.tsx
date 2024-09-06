@@ -1,44 +1,44 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 
-import Alert from "../../../components/Alert/Alert";
+import Banner from "../../../components/Banner/Banner";
 import { IconArrowBackUp, IconAwardFilled, IconBrandReact, IconBrandTypescript } from "@tabler/icons-react";
 
-const AlertStoryMeta: Meta<typeof Alert> = {
-  title: "Components/Alert",
-  component: Alert,
+const BannerStoryMeta: Meta<typeof Banner> = {
+  title: "Components/Banner",
+  component: Banner,
   parameters: {
     layout: "centered",
   },
   argTypes: {
     variant: {
-      description: "Variant of the alert",
+      description: "Variant of the banner",
       control: {
         type: "select",
         options: ["contained", "outlined", "soft"],
       },
     },
     title: {
-      description: "Title of the alert",
+      description: "Title of the banner",
       control: {
         type: "text",
       },
     },
     description: {
-      description: "Description of the alert",
+      description: "Description of the banner",
       control: {
         type: "text",
       },
     },
     leadingIcon: {
-      description: "Leading icon of the alert",
+      description: "Leading icon of the banner",
       options: [<IconAwardFilled />, undefined],
       control: {
         type: "inline-radio",
       },
     },
     titleIcon: {
-      description: "Title icon of the alert",
+      description: "Title icon of the banner",
       options: [<IconAwardFilled />, undefined],
       control: {
         type: "inline-radio",
@@ -46,16 +46,16 @@ const AlertStoryMeta: Meta<typeof Alert> = {
     },
   },
 };
-export default AlertStoryMeta;
+export default BannerStoryMeta;
 
-type AlertStory = StoryObj<typeof Alert>;
-const AlertTemplate: AlertStory = {
-  render: (args) => <Alert {...args} />,
+type BannerStory = StoryObj<typeof Banner>;
+const BannerTemplate: BannerStory = {
+  render: (args) => <Banner {...args} />,
 };
 
 // Variant
 export const Contained = {
-  ...AlertTemplate,
+  ...BannerTemplate,
   args: {
     title: "MERN Stack",
     description:
@@ -63,7 +63,7 @@ export const Contained = {
   },
 };
 export const Outlined = {
-  ...AlertTemplate,
+  ...BannerTemplate,
   args: {
     title: "MEAN Stack",
     description:
@@ -72,7 +72,7 @@ export const Outlined = {
   },
 };
 export const Soft = {
-  ...AlertTemplate,
+  ...BannerTemplate,
   args: {
     title: "React + Java",
     description:
@@ -81,7 +81,7 @@ export const Soft = {
   },
 };
 export const OutlinedSoft = {
-  ...AlertTemplate,
+  ...BannerTemplate,
   args: {
     title: "React + Go",
     description:
@@ -92,7 +92,7 @@ export const OutlinedSoft = {
 
 // Icons
 export const LeadingIcon = {
-  ...AlertTemplate,
+  ...BannerTemplate,
   args: {
     title: "React",
     description:
@@ -101,7 +101,7 @@ export const LeadingIcon = {
   },
 };
 export const TitleIcon = {
-  ...AlertTemplate,
+  ...BannerTemplate,
   args: {
     title: "Typescript",
     description:
@@ -112,7 +112,7 @@ export const TitleIcon = {
 
 // Playground
 export const Playground = {
-  ...AlertTemplate,
+  ...BannerTemplate,
   args: {
     title: "Design Systems",
     description:

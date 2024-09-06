@@ -4,7 +4,7 @@ import { AccordionProps, AccordionStyleProps } from "./Accordion.types";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
 import colors from "../../tokens/colors.json";
 import { getColorPalette } from "../../helpers/helpers";
-import { AccordionItemProps } from "./AccordionItem/AccordionItem.types";
+import { AccordionItemProps, AccordionItemPvtProps } from "./AccordionItem/AccordionItem.types";
 
 const Accordion = ({
   children,
@@ -26,12 +26,13 @@ const Accordion = ({
       $isFullWidth={isFullWidth}
       data-testid={dataTestId}
     >
-      {React.Children.map(children, (child) => {
+      {React.Children.map(children, (child, index) => {
         if (!React.isValidElement(child)) return child;
         return React.cloneElement(child, {
+          pvtKey: index+1,
           ...(!child.props.variant && variant && { variant: variant }),
           ...(!child.props.color && color && { color: color }),
-        } as AccordionItemProps);
+        } as AccordionItemProps | AccordionItemPvtProps);
       })}
     </StyledAccordion>
   );

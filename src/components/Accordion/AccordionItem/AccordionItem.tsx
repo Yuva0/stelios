@@ -2,6 +2,7 @@ import React from "react";
 import {
   AccordionItemContentStyleProps,
   AccordionItemProps,
+  AccordionItemPvtProps,
   AccordionItemStyleProps,
 } from "./AccordionItem.types";
 import styled from "styled-components";
@@ -11,7 +12,8 @@ import { useTheme } from "../../ThemeProvider/ThemeProvider";
 import { getColorPalette } from "../../../helpers/helpers";
 import colorTokens from "../../../tokens/colors.json";
 
-const AccordionItem = ({
+const AccordionItem: React.FC<AccordionItemProps> = ({
+  pvtKey = 1,
   title,
   children,
   expanded,
@@ -20,7 +22,7 @@ const AccordionItem = ({
   "data-testid": dataTestId,
   "data-testid-title": dataTestIdTitle,
   ...props
-}: AccordionItemProps) => {
+}: AccordionItemProps & AccordionItemPvtProps) => {
   const accordionItemRef = React.useRef<HTMLDivElement>(null);
   const [isExpanded, setIsExpanded] = React.useState(expanded);
   const theme = useTheme().theme;
@@ -40,6 +42,9 @@ const AccordionItem = ({
       );
     return (
       <StyledAccordionItemTitle
+        role="heading"
+        aria-level={1}
+        aria-controls={`accordion-content-${pvtKey.toString()}`}
         $color={color}
         $variant={variant}
         $colorPalette={colorPalette}
@@ -54,9 +59,10 @@ const AccordionItem = ({
   };
 
   return (
-    <StyledAccordionItem data-testid={dataTestId} aria-expanded={isExpanded} {...props}>
+    <StyledAccordionItem id={`accordion-${pvtKey.toString()}`} data-testid={dataTestId} aria-expanded={isExpanded} {...props}>
       <AccordionItemTitle/>
       {isExpanded && <StyledAccordionItemContent
+        id={`accordion-content-${pvtKey.toString()}`}
         ref={accordionItemRef}
         $variant={variant}
         $color={color}
@@ -77,7 +83,7 @@ const StyledAccordionItem = styled.div`
   flex-direction: column;
 `;
 
-const StyledAccordionItemTitle = styled.div<AccordionItemStyleProps>`
+const StyledAccordionItemTitle = styled.button<AccordionItemStyleProps>`
   display: flex;
   flex-direction: row;
   justify-content: space-between;

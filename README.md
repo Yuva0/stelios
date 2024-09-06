@@ -60,9 +60,9 @@ You can access the storybook [here](https://yuva0.github.io/stelios/). <br/> It 
   <summary><h4 style="display: inline" id="components">Components Supported</h3></summary>
   <ul>
     <li>Accordion</li>
-    <li>Alert</li>
     <li>Autocomplete</li>
     <li>Avatar</li>
+    <li>Banner</li>
     <li>Breadcrumbs</li>
     <li>Button</li>
     <li>Capsule</li>

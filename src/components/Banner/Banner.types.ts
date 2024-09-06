@@ -1,4 +1,4 @@
-export interface AlertProps {
+export interface BannerProps {
   title: React.ReactNode;
   titleIcon?: React.ReactNode;
   description: React.ReactNode;
@@ -12,7 +12,7 @@ export interface AlertProps {
   "data-leading-icon"?: string;
 }
 
-export interface AlertStyleProps {
+export interface BannerStyleProps {
   $width: string;
   $color: string;
   $colorPalette: any;
