@@ -42,9 +42,9 @@ const RadioGroup = ({
     React.ReactNode | React.ReactNode[]
   >(null);
 
-  const _getSelectedIndex = (index?: number) => {
-    setSelectedIndex(index ?? 0);
-    setFocusedIndex(index ?? 0);
+  const _getSelectedIndex = (index: number) => {
+    setSelectedIndex(index);
+    setFocusedIndex(index);
   };
 
   const Label = label ? (
@@ -80,10 +80,6 @@ const RadioGroup = ({
               getSelectedIndex: _getSelectedIndex,
             });
           }
-        } else {
-          console.error(
-            `RadioGroup: Invalid child ${child} supplied, expected a Radio or FormControlLabel component`
-          );
         }
       });
     });

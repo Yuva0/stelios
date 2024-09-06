@@ -41,7 +41,6 @@ const Radio = forwardRef(
 
     // Events
     const _onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      if (isSelected) return;
       getSelectedIndex && getSelectedIndex(index);
       onChange && onChange(event);
     };
@@ -126,5 +125,4 @@ const getSize = (size: RadioStyleProps["$size"]) => {
     case "large":
       return 1.5;
   }
-  return 1;
 };

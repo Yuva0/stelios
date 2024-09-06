@@ -29,7 +29,7 @@ const NumberInput = ({
   "data-testid-minus": dataTestIdMinus,
   "data-testid-input": dataTestIdInput,
 }: NumberInputProps) => {
-  const [finalValue, setFinalValue] = React.useState<number | undefined>(value);
+  const [finalValue, setFinalValue] = React.useState<number>(value);
   const theme = useTheme().theme;
   const colorPalette = getColorPalette(theme, color);
 
@@ -37,24 +37,22 @@ const NumberInput = ({
     setFinalValue(value);
   }, [value]);
 
-  const _numberInputLabel = label && typeof label === "string" ? (<Text variant="label" disableColor>{label}</Text>) : label;
-    
-  const _onMinusClick = (e: React.MouseEvent) => {
-    if (!finalValue) {
-      setFinalValue(-1);
-    } else {
-      setFinalValue(finalValue - 1);
-    }
+  const _numberInputLabel =
+    label && typeof label === "string" ? (
+      <Text variant="label" disableColor>
+        {label}
+      </Text>
+    ) : (
+      label
+    );
 
+  const _onMinusClick = (e: React.MouseEvent) => {
+    setFinalValue(finalValue - 1);
     onDecrement && onDecrement(e, finalValue);
+    onChange && onChange(e, finalValue);
   };
   const _onPlusClick = (e: React.MouseEvent) => {
-    if (!finalValue) {
-      setFinalValue(1);
-    } else {
-      setFinalValue(finalValue + 1);
-    }
-
+    setFinalValue(finalValue + 1);
     onIncrement && onIncrement(e, finalValue);
     onChange && onChange(e, finalValue);
   };
@@ -69,7 +67,12 @@ const NumberInput = ({
   };
 
   return (
-    <NumberInputContainer id={id} className={className} style={style} data-testid={dataTestId}>
+    <NumberInputContainer
+      id={id}
+      className={className}
+      style={style}
+      data-testid={dataTestId}
+    >
       {_numberInputLabel}
       <NumberInputContent
         $variant={variant}
@@ -296,7 +299,7 @@ const variantStyleHandler = (
             default: `2px solid ${colorPalette[color].accentScale[5]}`,
             hover: `2px solid ${colorPalette[color].accentScale[6]}`,
             active: `2px solid ${colorPalette[color].accentScale[7]}`,
-          }
+          },
         },
       };
     case "soft":

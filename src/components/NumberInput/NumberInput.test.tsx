@@ -1,7 +1,8 @@
 import * as React from "react";
-import { render, screen, act } from "@testing-library/react";
+import { render, screen, act, fireEvent } from "@testing-library/react";
 import NumberInput from "./NumberInput";
 import { NumberInputProps } from "./NumberInput.types";
+import exp from "constants";
 
 describe("NumberInput component", () => {
   let defaultProps: NumberInputProps;
@@ -12,7 +13,6 @@ describe("NumberInput component", () => {
       "data-testid-minus": "number-input-minus",
       "data-testid-plus": "number-input-plus",
       "data-testid-input": "number-input-input",
-      value: 0,
       onChange: () => {},
     };
   });
@@ -47,7 +47,7 @@ describe("NumberInput component", () => {
   });
 
   it("should render and click on plus and minus button", () => {
-    renderNumberInput({});
+    renderNumberInput({onChange: jest.fn(), onDecrement: jest.fn(), onIncrement: jest.fn()});
     const numberInput = screen.getByTestId("number-input");
     expect(numberInput).toBeInTheDocument();
     const plusButton = screen.getByTestId("number-input-plus");
@@ -56,6 +56,13 @@ describe("NumberInput component", () => {
     expect(minusButton).toBeInTheDocument();
     plusButton.click();
     minusButton.click();
+
+    const numberInputInput = screen.getByTestId("number-input-input");
+    expect(numberInputInput).toBeInTheDocument();
+    fireEvent.change(numberInputInput, { target: { value: "10" } });
+    expect(numberInputInput).toHaveValue(10);
+    fireEvent.change(numberInputInput, { target: { value: "" } });
+    expect(numberInputInput).toHaveValue(0);
   });
 
   it("should render an outlined number input", () => {
@@ -90,6 +97,12 @@ describe("NumberInput component", () => {
 
   it("should render a small number input", () => {
     renderNumberInput({ size: "small" });
+    const numberInput = screen.getByTestId("number-input");
+    expect(numberInput).toBeInTheDocument();
+  });
+
+  it("should render number input with value, min, max and step", () => {
+    renderNumberInput({ value: 10, min: 1, max: 100, step: 5 });
     const numberInput = screen.getByTestId("number-input");
     expect(numberInput).toBeInTheDocument();
   });

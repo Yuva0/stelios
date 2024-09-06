@@ -10,11 +10,13 @@ const Select = ({
   label,
   open = false,
   options,
-  multiSelect,
+  // multiSelect,
   placeholder,
   variant = "contained",
   size = "medium",
   "data-testid": dataTestId,
+  "data-testid-input": dataTestIdInput,
+  "data-testid-menu": dataTestIdMenu,
   color,
   //Events
   onClick,
@@ -23,19 +25,6 @@ const Select = ({
   const [isOpen, setIsOpen] = React.useState(open);
   const [inputValue, setInputValue] = React.useState<string | string[]>("");
 
-  // FIX: To be worked on
-  const _handleMultiSelectOnClick = (
-    e: React.MouseEvent,
-    { title, value }: MenuItemKeyProps
-  ) => {
-    setInputValue(
-      !inputValue
-        ? title
-        : Array.isArray(inputValue)
-          ? [...inputValue, title]
-          : [inputValue, title]
-    );
-  };
   const _handleSingleSelectOnClick = (
     e: React.MouseEvent,
     { title, value }: MenuItemKeyProps
@@ -48,8 +37,8 @@ const Select = ({
     e: React.MouseEvent,
     { title, value }: MenuItemKeyProps
   ) => {
-    if (multiSelect) return _handleMultiSelectOnClick(e, { title, value });
-    else return _handleSingleSelectOnClick(e, { title, value });
+    // if (multiSelect) return _handleMultiSelectOnClick(e, { title, value });
+    return _handleSingleSelectOnClick(e, { title, value });
   };
 
   return (
@@ -68,6 +57,7 @@ const Select = ({
         onClick={() => {
           setIsOpen(!isOpen);
         }}
+        data-testid-input={dataTestIdInput}
       />
       <Menu
         variant={variant}
@@ -75,9 +65,10 @@ const Select = ({
         anchorElement={inputRef.current}
         minWidth={`${inputRef.current?.offsetWidth}px`}
         onClick={_onClick}
+        data-testid={dataTestIdMenu}
       >
-        {options && options.map(({ title, value }, index) => (
-          <MenuItem key={index} title={title} value={value} />
+        {options && options.map((option, index) => (
+          <MenuItem key={index} {...option} />
         ))}
       </Menu>
     </div>

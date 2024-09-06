@@ -40,8 +40,16 @@ describe('Password component', () => {
   });
 
   it("should render with error message", () => {
-    renderPassword({ errorMessage: "Password is required" });
+    renderPassword({ hasError: true, errorMessage: "Password is required" });
     const password = screen.getByTestId("password");
     expect(password).toBeInTheDocument();
+  });
+
+  it("should click the eye icon", () => {
+    renderPassword({});
+    const eyeIcon = screen.getByTestId("eye-icon");
+    expect(eyeIcon).toBeInTheDocument();
+    eyeIcon.click();
+    eyeIcon.click();
   });
 });

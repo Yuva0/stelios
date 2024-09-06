@@ -12,6 +12,8 @@ export interface SelectProps {
   options?: MenuItemProps[];
   color?: string;
   "data-testid"?: string;
+  "data-testid-input"?: string;
+  "data-testid-menu"?: string;
 
   // Events
   onClick?: (
