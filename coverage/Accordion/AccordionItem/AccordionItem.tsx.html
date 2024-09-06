@@ -25,14 +25,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>56/56</span>
+                <span class='fraction'>58/58</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>31/31</span>
+                <span class='fraction'>33/33</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>51/51</span>
+                <span class='fraction'>52/52</span>
             </div>
         
             
@@ -396,12 +396,19 @@
 <a name='L331'></a><a href='#L331'>331</a>
 <a name='L332'></a><a href='#L332'>332</a>
 <a name='L333'></a><a href='#L333'>333</a>
-<a name='L334'></a><a href='#L334'>334</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
+<a name='L334'></a><a href='#L334'>334</a>
+<a name='L335'></a><a href='#L335'>335</a>
+<a name='L336'></a><a href='#L336'>336</a>
+<a name='L337'></a><a href='#L337'>337</a>
+<a name='L338'></a><a href='#L338'>338</a>
+<a name='L339'></a><a href='#L339'>339</a>
+<a name='L340'></a><a href='#L340'>340</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
@@ -410,6 +417,7 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">34x</span>
 <span class="cline-any cline-yes">34x</span>
 <span class="cline-any cline-yes">34x</span>
 <span class="cline-any cline-yes">34x</span>
@@ -451,7 +459,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">34x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -733,6 +745,7 @@
 import {
   AccordionItemContentStyleProps,
   AccordionItemProps,
+  AccordionItemPvtProps,
   AccordionItemStyleProps,
 } from "./AccordionItem.types";
 import styled from "styled-components";
@@ -742,7 +755,8 @@ import { useTheme } from "../../ThemeProvider/ThemeProvider";
 import { getColorPalette } from "../../../helpers/helpers";
 import colorTokens from "../../../tokens/colors.json";
 &nbsp;
-const AccordionItem = ({
+const AccordionItem: React.FC&lt;AccordionItemProps&gt; = ({
+  pvtKey = 1,
   title,
   children,
   expanded,
@@ -751,7 +765,7 @@ const AccordionItem = ({
   "data-testid": dataTestId,
   "data-testid-title": dataTestIdTitle,
   ...props
-}: AccordionItemProps) =&gt; {
+}: AccordionItemProps &amp; AccordionItemPvtProps) =&gt; {
   const accordionItemRef = React.useRef&lt;HTMLDivElement&gt;(null);
   const [isExpanded, setIsExpanded] = React.useState(expanded);
   const theme = useTheme().theme;
@@ -771,6 +785,9 @@ const AccordionItem = ({
       );
     return (
       &lt;StyledAccordionItemTitle
+        role="heading"
+        aria-level={1}
+        aria-controls={`accordion-content-${pvtKey.toString()}`}
         $color={color}
         $variant={variant}
         $colorPalette={colorPalette}
@@ -785,9 +802,10 @@ const AccordionItem = ({
   };
 &nbsp;
   return (
-    &lt;StyledAccordionItem data-testid={dataTestId} aria-expanded={isExpanded} {...props}&gt;
+    &lt;StyledAccordionItem id={`accordion-${pvtKey.toString()}`} data-testid={dataTestId} aria-expanded={isExpanded} {...props}&gt;
       &lt;AccordionItemTitle/&gt;
       {isExpanded &amp;&amp; &lt;StyledAccordionItemContent
+        id={`accordion-content-${pvtKey.toString()}`}
         ref={accordionItemRef}
         $variant={variant}
         $color={color}
@@ -808,7 +826,7 @@ const StyledAccordionItem = styled.div`
   flex-direction: column;
 `;
 &nbsp;
-const StyledAccordionItemTitle = styled.div&lt;AccordionItemStyleProps&gt;`
+const StyledAccordionItemTitle = styled.button&lt;AccordionItemStyleProps&gt;`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -1069,7 +1087,7 @@ const getContentVariantProps = (
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-09-06T03:29:20.940Z
+                at 2024-09-06T06:49:08.919Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

@@ -30,9 +30,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">88.23% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>39/39</span>
+                <span class='fraction'>45/51</span>
             </div>
         
             
@@ -450,8 +450,7 @@
 <a name='L385'></a><a href='#L385'>385</a>
 <a name='L386'></a><a href='#L386'>386</a>
 <a name='L387'></a><a href='#L387'>387</a>
-<a name='L388'></a><a href='#L388'>388</a>
-<a name='L389'></a><a href='#L389'>389</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">3x</span>
+<a name='L388'></a><a href='#L388'>388</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
@@ -816,7 +815,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">94x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1138,18 +1136,18 @@ const getVariantProps = (
           active: `2px solid transparent`,
         },
         boxShadow: {
-          default: `-6px -6px 14px rgba(255, 255, 255, .7),
-              -6px -6px 10px rgba(255, 255, 255, .5),
-              6px 6px 8px rgba(255, 255, 255, .075),
-              6px 6px 10px rgba(0, 0, 0, .15)`,
-          hover: `-2px -2px 6px rgba(255, 255, 255, .6),
-              -2px -2px 4px rgba(255, 255, 255, .4),
-              2px 2px 2px rgba(255, 255, 255, .05),
-              2px 2px 4px rgba(0, 0, 0, .1)`,
-          active: `inset -2px -2px 6px rgba(255, 255, 255, .7),
-              inset -2px -2px 4px rgba(255, 255, 255, .5),
-              inset 2px 2px 2px rgba(255, 255, 255, .075),
-              inset 2px 2px 4px rgba(0, 0, 0, .15)`,
+          default:
+            colorPalette[color].appearance === "light"
+              ? `-6px -6px 14px rgba(255, 255, 255, .7), -6px -6px 10px rgba(255, 255, 255, .5), 6px 6px 8px rgba(255, 255, 255, .075), 6px 6px 10px rgba(0, 0, 0, .15)`
+              : <span class="branch-1 cbranch-no" title="branch not covered" >`-6px -6px 14px rgba(255, 255, 255, 0.1), -6px -6px 10px rgba(255, 255, 255, 0.1), 6px 6px 8px rgba(255, 255, 255, 0.05), 6px 6px 10px rgba(0, 0, 0, 0.1)`,</span>
+          hover:
+            colorPalette[color].appearance === "light"
+              ? `-2px -2px 6px rgba(255, 255, 255, .6), -2px -2px 4px rgba(255, 255, 255, .4), 2px 2px 2px rgba(255, 255, 255, .05), 2px 2px 4px rgba(0, 0, 0, .1)`
+              : <span class="branch-1 cbranch-no" title="branch not covered" >`-2px -2px 14px rgba(255, 255, 255, 0.1),  -2px -2px 4px rgba(255, 255, 255, .1), 2px 2px 2px rgba(255, 255, 255, .01), 2px 2px 4px rgba(0, 0, 0, .1)`,</span>
+          active:
+            colorPalette[color].appearance === "light"
+              ? `inset -2px -2px 6px rgba(255, 255, 255, .7), inset -2px -2px 4px rgba(255, 255, 255, .5), inset 2px 2px 2px rgba(255, 255, 255, .075), inset 2px 2px 4px rgba(0, 0, 0, .15)`
+              : <span class="branch-1 cbranch-no" title="branch not covered" >`inset -2px -2px 14px rgba(255, 255, 255, 0.1), inset -2px -2px 4px rgba(255, 255, 255, .1), inset 2px 2px 2px rgba(255, 255, 255, .01), inset 2px 2px 4px rgba(0, 0, 0, .1)`,</span>
         },
       };
     case "neumorph-contained":
@@ -1188,19 +1186,18 @@ const getVariantProps = (
           active: `2px solid ${colorPalette[color].background}`,
         },
         boxShadow: {
-          default: `-6px -6px 14px rgba(255, 255, 255, .7),
-              -6px -6px 10px rgba(255, 255, 255, .5),
-              6px 6px 8px rgba(255, 255, 255, .075),
-              6px 6px 10px rgba(0, 0, 0, .15)`,
-          hover: `-2px -2px 6px rgba(255, 255, 255, .6),
-              -2px -2px 4px rgba(255, 255, 255, .4),
-              2px 2px 2px rgba(255, 255, 255, .05),
-              2px 2px 4px rgba(0,
-              0, 0, .1)`,
-          active: `inset -2px -2px 6px rgba(255, 255, 255, .7),
-              inset -2px -2px 4px rgba(255, 255, 255, .5),
-              inset 2px 2px 2px rgba(255, 255, 255, .075),
-              inset 2px 2px 4px rgba(0, 0, 0, .15)`,
+          default:
+            colorPalette[color].appearance === "light"
+              ? `-6px -6px 14px rgba(255, 255, 255, .7), -6px -6px 10px rgba(255, 255, 255, .5), 6px 6px 8px rgba(255, 255, 255, .075), 6px 6px 10px rgba(0, 0, 0, .15)`
+              : <span class="branch-1 cbranch-no" title="branch not covered" >`-6px -6px 14px rgba(255, 255, 255, 0.1), -6px -6px 10px rgba(255, 255, 255, 0.1), 6px 6px 8px rgba(255, 255, 255, 0.05), 6px 6px 10px rgba(0, 0, 0, 0.1)`,</span>
+          hover:
+            colorPalette[color].appearance === "light"
+              ? `-2px -2px 6px rgba(255, 255, 255, .6), -2px -2px 4px rgba(255, 255, 255, .4), 2px 2px 2px rgba(255, 255, 255, .05), 2px 2px 4px rgba(0, 0, 0, .1)`
+              : <span class="branch-1 cbranch-no" title="branch not covered" >`-2px -2px 14px rgba(255, 255, 255, 0.1),  -2px -2px 4px rgba(255, 255, 255, .1), 2px 2px 2px rgba(255, 255, 255, .01), 2px 2px 4px rgba(0, 0, 0, .1)`,</span>
+          active:
+            colorPalette[color].appearance === "light"
+              ? `inset -2px -2px 6px rgba(255, 255, 255, .7), inset -2px -2px 4px rgba(255, 255, 255, .5), inset 2px 2px 2px rgba(255, 255, 255, .075), inset 2px 2px 4px rgba(0, 0, 0, .15)`
+              : <span class="branch-1 cbranch-no" title="branch not covered" >`inset -2px -2px 14px rgba(255, 255, 255, 0.1), inset -2px -2px 4px rgba(255, 255, 255, .1), inset 2px 2px 2px rgba(255, 255, 255, .01), inset 2px 2px 4px rgba(0, 0, 0, .1)`,</span>
         },
       };
   }
@@ -1234,7 +1231,7 @@ const getSizeProps = (size: IconButtonStyleProps["$size"]) =&gt; {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-09-06T03:29:20.940Z
+                at 2024-09-06T06:49:08.919Z
             </div>
         <script src="../prettify.js"></script>
         <script>
