@@ -113,7 +113,7 @@ const Drawer = ({
         {...props}
       >
         {headerDrawer}
-        <div style={{ padding: "1rem" }}>{children}</div>
+        <StyledDrawerContent>{children}</StyledDrawerContent>
       </StyledDrawer>
       {isOpen && (
         <StyledBackdrop
@@ -160,6 +160,13 @@ const StyledDrawer = styled.div<DrawerStyleProps>`
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   transition: ${(props) => `${props.$position} 0.3s ease-in-out;`}  
   z-index: ${(props) => props.$zIndex};
+  display: flex;
+  flex-direction: column;
+`;
+const StyledDrawerContent = styled.div`
+  padding: 1rem;
+  flex-grow: 1;
+  overflow-y: auto;
 `;
 const StyledBackdrop = styled.div<DrawerBackdropProps>`
   position: fixed;
