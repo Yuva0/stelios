@@ -92,7 +92,7 @@ const StyledHeader = styled.header<HeaderStyleProps>`
   }}
 `;
 
-const StyledExpandIcon = styled.div<HeaderStyleProps>`
+const StyledExpandIcon = styled.header<HeaderStyleProps>`
   position: absolute;
   border-radius: 0 0 0.25rem 0.25rem;
   cursor: pointer;

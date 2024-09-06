@@ -1,5 +1,3 @@
-import { DefaultTheme } from "../../ThemeProvider/ThemeProvider.types";
-
 export interface SideBarGroupProps {
   children: React.ReactNode | React.ReactNode[];
   className?: string;

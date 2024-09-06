@@ -13,6 +13,7 @@ import Autocomplete from "../../../components/Autocomplete/Autocomplete";
 import SideBar from "../../../components/SideBar/SideBar";
 import SideBarGroup from "../../../components/SideBar/SideBarGroup/SideBarGroup";
 import SideBarGroupItem from "../../../components/SideBar/SideBarGroupItem/SideBarGroupItem";
+import SideBarItem from "../../../components/SideBar/SideBarItem/SideBarItem";
 import ColorPicker from "../../../components/ColorPicker/ColorPicker";
 import Button from "../../../components/Button/Button";
 import Alert from "../../../components/Alert/Alert";
@@ -21,6 +22,8 @@ import Avatar from "../../../components/Avatar/Avatar";
 import Breadcrumbs from "../../../components/Breadcrumbs/Breadcrumbs";
 import BreadcrumbsItem from "../../../components/Breadcrumbs/BreadcrumbsItem/BreadcrumbsItem";
 import CodeDisplay from "../../../components/CodeDisplay/CodeDisplay";
+import ToggleButton from "../../../components/ToggleButton/ToggleButton";
+import ToggleButtonGroup from "../../../components/ToggleButton/ToggleButtonGroup/ToggleButtonGroup";
 
 import {
   Icon12Hours,
@@ -80,17 +83,23 @@ const ColorComponent = () => {
   const theme = useTheme().theme;
   const updateTheme = useUpdateTheme();
   const [color, setColor] = React.useState("#00b4d8");
+  const [appearance, setAppearance] = React.useState<"light" | "dark">("light");
 
   const colorPalette = getColorPalette(theme);
 
   const _onColorChange = (color?: string) => {
     if (!color) return;
     setColor(color);
-    updateTheme({ accents: { primary: color } });
+    updateTheme({ accents: { primary: color }, appearance: appearance });
   };
+  const _onAppearanceChange = (e, appearance?: string) => {
+    if(!appearance) return;
+    setAppearance(appearance as "light" | "dark");
+    updateTheme({ appearance: appearance as "light" | "dark", accents: { primary: color } });
+  }
 
   return (
-    <>
+    <div style={{background: appearance === "light" ? "#fff" : "#000"}}>
       <Header
         expandable={false}
         style={{ backgroundColor: colorPalette!["primary"].accentScale[1], height:"4rem" }}
@@ -105,7 +114,6 @@ const ColorComponent = () => {
             color={color}
             width="100%"
             variant="soft"
-            // size="small"
             placeholder="Type here..."
             options={[
               { title: "Option 1", value: "option_1" },
@@ -239,8 +247,12 @@ const ColorComponent = () => {
             This story is created using only one color.
           </Text>
             <ColorPicker color={color} width="100%" onChange={_onColorChange} />
+            <ToggleButtonGroup width="240px" value={appearance} onClick={_onAppearanceChange}>
+              <ToggleButton value="light" color="primary">Light</ToggleButton>
+              <ToggleButton value="dark" color="primary">Dark</ToggleButton>
+            </ToggleButtonGroup>
             <Text color="primary" size="small">
-              (Change color here)
+              (Change color and appearance here)
             </Text>
         </div>
 
@@ -330,15 +342,16 @@ const ColorComponent = () => {
       </div>
 
       <SideBar style={{ marginTop: "7rem", right: "2rem" }} color={color}>
-        <SideBarGroup title="Group 1" color={color}>
-          <SideBarGroupItem color={color}>Group 1 Item 1</SideBarGroupItem>
-          <SideBarGroupItem color={color}>Group 1 Item 2</SideBarGroupItem>
+        <SideBarGroup title="Group 1" color="primary">
+          <SideBarGroupItem color="primary">Group 1 Item 1</SideBarGroupItem>
+          <SideBarGroupItem color="primary">Group 1 Item 2</SideBarGroupItem>
         </SideBarGroup>
-        <SideBarGroup title="Group 2" color={color}>
-          <SideBarGroupItem color={color}>Group 2 Item 1</SideBarGroupItem>
-          <SideBarGroupItem color={color}>Group 2 Item 1</SideBarGroupItem>
+        <SideBarGroup title="Group 2" color="primary">
+          <SideBarGroupItem color="primary">Group 2 Item 1</SideBarGroupItem>
+          <SideBarGroupItem color="primary">Group 2 Item 1</SideBarGroupItem>
         </SideBarGroup>
+        <SideBarItem color="primary">Test</SideBarItem>
       </SideBar>
-    </>
+    </div>
   );
 };

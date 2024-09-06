@@ -27,7 +27,7 @@ const Link = ({
 
   const LinkText = () => {
     return typeof children === "string" ? (
-      <Text disableColor size={size} variant="span">
+      <Text color={color} size={size} variant="span">
         {children}
       </Text>
     ) : (
@@ -56,7 +56,6 @@ const StyledLink = styled.a<LinkStyleProps>`
   width: fit-content;
   text-decoration: ${(props) =>
     props.$variant === "underline" ? "underline" : "none"};
-  color: ${(props) => props.$color};
   cursor: pointer;
   display: inline-block;
   &:hover {
