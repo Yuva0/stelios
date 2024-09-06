@@ -116,6 +116,8 @@ export {
   useTheme,
   useUpdateTheme,
   ThemeProvider,
+
+  // Icons
   Cone,
   FileError404,
   WeatherCloudy,
