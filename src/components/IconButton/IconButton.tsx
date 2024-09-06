@@ -9,6 +9,7 @@ import colorTokens from "../../tokens/colors.json";
 const IconButton = forwardRef(
   (
     {
+      alt,
       icon,
       size = "medium",
       variant = "contained",

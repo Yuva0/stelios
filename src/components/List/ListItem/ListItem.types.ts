@@ -9,4 +9,5 @@ export interface ListItemProps {
 export interface ListItemStyleProps {
   $color: string;
   $colorPalette: any;
+  $size: "small" | "medium" | "large";
 }

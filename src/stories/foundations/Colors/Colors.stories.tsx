@@ -134,18 +134,21 @@ const ColorComponent = () => {
         </HeaderItem>
         <HeaderItem style={{ display: "flex", gap: "1rem" }}>
           <IconButton
+            alt="github"
             size="small"
             icon={<IconBrandGithub />}
             variant="soft"
             color="primary"
           />
           <IconButton
+            alt="linkedin"
             size="small"
             icon={<IconBrandLinkedin />}
             variant="soft"
             color="primary"
           />
           <IconButton
+            alt="settings"
             size="small"
             icon={<IconSettings />}
             variant="contained"
@@ -338,18 +341,21 @@ const ColorComponent = () => {
             color="primary"
             size="small"
           />
-          <IconButton icon={<IconAward />} variant="soft" color="primary" />
+          <IconButton alt="Award" icon={<IconAward />} variant="soft" color="primary" />
           <IconButton
+            alt="12 Hours"
             icon={<Icon12Hours />}
             variant="outlined-soft"
             color="primary"
           />
           <IconButton
+            alt="24 Hours"
             icon={<Icon24Hours />}
             variant="neumorph"
             color="primary"
           />
           <IconButton
+            alt="3D Cube Sphere Off"
             icon={<Icon3dCubeSphereOff />}
             variant="neumorph-contained"
             color="primary"

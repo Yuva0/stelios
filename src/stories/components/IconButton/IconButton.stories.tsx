@@ -49,6 +49,7 @@ export const Contained = {
   ...IconButtonTemplate,
   args: {
     icon: <IconAwardFilled />,
+    alt:"Award",
     variant: "contained",
   },
 }
@@ -56,6 +57,7 @@ export const Outlined = {
   ...IconButtonTemplate,
   args: {
     icon: <IconAwardFilled />,
+    alt:"Award",
     variant: "outlined",
   },
 }
@@ -63,6 +65,7 @@ export const Soft = {
   ...IconButtonTemplate,
   args: {
     icon: <IconAwardFilled />,
+    alt:"Award",
     variant: "soft",
   },
 }
@@ -70,6 +73,7 @@ export const OutlinedSoft = {
   ...IconButtonTemplate,
   args: {
     icon: <IconAwardFilled />,
+    alt:"Award",
     variant: "outlined-soft",
   },
 }
@@ -77,6 +81,7 @@ export const Neumorph = {
   ...IconButtonTemplate,
   args: {
     icon: <IconAwardFilled />,
+    alt:"Award",
     variant: "neumorph",
   },
 }
@@ -84,6 +89,7 @@ export const NeumorphContained = {
   ...IconButtonTemplate,
   args: {
     icon: <IconAwardFilled />,
+    alt:"Award",
     variant: "neumorph-contained",
   },
 }

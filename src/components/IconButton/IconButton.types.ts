@@ -1,6 +1,7 @@
 export interface IconButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   icon: React.ReactNode;
+  alt: string;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   size?: "small" | "medium" | "large";
   variant?: "contained" | "soft" | "outlined" | "outlined-soft" | "neumorph" | "neumorph-contained";

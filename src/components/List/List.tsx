@@ -1,4 +1,4 @@
-import React, { isValidElement } from "react";
+import React from "react";
 import { ListProps } from "./List.types";
 import styled from "styled-components";
 import Text from "../Text/Text";

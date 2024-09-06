@@ -10,7 +10,7 @@ const ListItem = ({
   children,
   style,
   className,
-  size,
+  size = "medium",
   color = colorTokens.default.primary.main,
 }: ListItemProps) => {
   const theme = useTheme().theme;
@@ -22,9 +22,10 @@ const ListItem = ({
       className={className}
       $colorPalette={colorPalette}
       $color={color}
+      $size={size}
     >
       {typeof children === "string" ? (
-        <Text color={color} size={size} variant="paragraph">
+        <Text disableColor size={size} variant="paragraph">
           {children}
         </Text>
       ) : (
@@ -38,7 +39,8 @@ export default ListItem;
 const StyledListItem = styled.li<ListItemStyleProps>`
   ${(props) => {
     return `
-      color: ${props.$color};
+      font-size: ${props.$size === "large" ? "1.25rem" : props.$size === "medium" ? "1rem" : "0.875rem"};
+      color: ${props.$colorPalette[props.$color].accentScale[10]};
     `;
   }}
 `;
