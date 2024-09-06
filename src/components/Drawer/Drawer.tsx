@@ -65,7 +65,7 @@ const Drawer = ({
 
   const Title =
     title && typeof title === "string" ? (
-      <Text style={{ flexGrow: 1 }} variant="h5">
+      <Text color={color} style={{ flexGrow: 1 }} variant="h5">
         {title}
       </Text>
     ) : (
@@ -77,6 +77,7 @@ const Drawer = ({
         alt="Close"
         size="small"
         variant="outlined"
+        color={color}
         icon={<IconX />}
         onClick={_onOutsideClick}
       />
