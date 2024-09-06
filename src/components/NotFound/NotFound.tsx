@@ -1,12 +1,12 @@
 import * as React from "react";
 import Text from "../Text/Text";
 import Cone from "../../svg/Cone";
+import FileError404 from "../../svg/FileError404";
 import styled from "styled-components";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
 import { getColorPalette } from "../../helpers/helpers";
 import colorTokens from "../../tokens/colors.json";
 import { NotFoundProps, NotFoundStyleProps } from "./NotFound.types";
-import FileError404 from "../../svg/FileError404";
 
 const NotFound: React.FunctionComponent<NotFoundProps> = ({
   name,
