@@ -33,7 +33,7 @@ const Template: Story = {
         {...args}
       >
         <ToggleButton value="sun">
-          <IconSun />
+          <IconSun width={20} height={20}/>
           <Text disableColor variant="paragraph">
             Light
           </Text>

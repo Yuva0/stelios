@@ -32,7 +32,9 @@ import {
   IconAward,
   IconBrandGithub,
   IconBrandLinkedin,
+  IconMoon,
   IconSettings,
+  IconSun,
 } from "@tabler/icons-react";
 import {
   ThemeProvider,
@@ -93,16 +95,22 @@ const ColorComponent = () => {
     updateTheme({ accents: { primary: color }, appearance: appearance });
   };
   const _onAppearanceChange = (e, appearance?: string) => {
-    if(!appearance) return;
+    if (!appearance) return;
     setAppearance(appearance as "light" | "dark");
-    updateTheme({ appearance: appearance as "light" | "dark", accents: { primary: color } });
-  }
+    updateTheme({
+      appearance: appearance as "light" | "dark",
+      accents: { primary: color },
+    });
+  };
 
   return (
-    <div style={{background: appearance === "light" ? "#fff" : "#000"}}>
+    <div style={{ background: appearance === "light" ? "#fff" : "#000" }}>
       <Header
         expandable={false}
-        style={{ backgroundColor: colorPalette!["primary"].accentScale[1], height:"4rem" }}
+        style={{
+          backgroundColor: colorPalette!["primary"].accentScale[1],
+          height: "4rem",
+        }}
       >
         <HeaderItem>
           <Text color="primary" size="large">
@@ -246,17 +254,32 @@ const ColorComponent = () => {
           <Text color="primary" style={{ paddingBottom: "1rem" }}>
             This story is created using only one color.
           </Text>
-            <ColorPicker color="primary" width="100%" onChange={_onColorChange} />
-            <ToggleButtonGroup width="240px" color={color} value={appearance} onClick={_onAppearanceChange}>
-              <ToggleButton value="light" color="primary">Light</ToggleButton>
-              <ToggleButton value="dark" color="primary">Dark</ToggleButton>
-            </ToggleButtonGroup>
-            <Text color="primary" size="small">
-              (Change color and appearance here)
-            </Text>
+          <ColorPicker color="primary" width="100%" onChange={_onColorChange} />
+          <ToggleButtonGroup
+            width="240px"
+            color={color}
+            value={appearance}
+            onClick={_onAppearanceChange}
+          >
+            <ToggleButton value="light" color="primary">
+              <IconSun />
+              <Text disableColor variant="paragraph">
+                Light
+              </Text>
+            </ToggleButton>
+            <ToggleButton value="dark" color="primary">
+              <IconMoon width={20} height={20} />
+              <Text disableColor variant="paragraph">
+                Dark
+              </Text>
+            </ToggleButton>
+          </ToggleButtonGroup>
+          <Text color="primary" size="small">
+            (Change color and appearance here)
+          </Text>
         </div>
 
-        <Breadcrumbs color="primary" variant="soft" size="small">
+        <Breadcrumbs color="primary" variant="contained" size="small">
           <BreadcrumbsItem title="Link 1" link="test" />
           <BreadcrumbsItem title="Link 2" link="test" />
         </Breadcrumbs>

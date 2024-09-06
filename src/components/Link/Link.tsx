@@ -27,7 +27,7 @@ const Link = ({
 
   const LinkText = () => {
     return typeof children === "string" ? (
-      <Text color={color} size={size} variant="span">
+      <Text preciseColor={_color} size={size} variant="span">
         {children}
       </Text>
     ) : (
