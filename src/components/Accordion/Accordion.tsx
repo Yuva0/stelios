@@ -13,6 +13,9 @@ const Accordion = ({
   color = colors.default.primary.main,
   isFullWidth = false,
   "data-testid": dataTestId,
+  style,
+  className,
+  ...props
 }: AccordionProps) => {
   const theme = useTheme().theme;
   const colorPalette = getColorPalette(theme, color);
@@ -25,6 +28,9 @@ const Accordion = ({
       $colorPalette={colorPalette}
       $isFullWidth={isFullWidth}
       data-testid={dataTestId}
+      style={style}
+      className={className}
+      {...props}
     >
       {React.Children.map(children, (child, index) => {
         if (!React.isValidElement(child)) return child;

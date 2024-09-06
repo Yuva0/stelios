@@ -21,6 +21,8 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
   color = colorTokens.default.primary.main,
   "data-testid": dataTestId,
   "data-testid-title": dataTestIdTitle,
+  style,
+  className,
   ...props
 }: AccordionItemProps & AccordionItemPvtProps) => {
   const accordionItemRef = React.useRef<HTMLDivElement>(null);
@@ -59,7 +61,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
   };
 
   return (
-    <StyledAccordionItem id={`accordion-${pvtKey.toString()}`} data-testid={dataTestId} aria-expanded={isExpanded} {...props}>
+    <StyledAccordionItem id={`accordion-${pvtKey.toString()}`} data-testid={dataTestId} aria-expanded={isExpanded} style={style} className={className} {...props}>
       <AccordionItemTitle/>
       {isExpanded && <StyledAccordionItemContent
         id={`accordion-content-${pvtKey.toString()}`}

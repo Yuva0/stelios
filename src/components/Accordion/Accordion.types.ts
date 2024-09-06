@@ -4,6 +4,8 @@ export interface AccordionProps {
   color?: string;
   variant?: "contained" | "outlined" | "soft" | "outlined-soft" | "transparent";
   isFullWidth?: boolean;
+  style?: React.CSSProperties;
+  className?: string;
   "data-testid"?: string;
 }
 

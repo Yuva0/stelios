@@ -4,6 +4,8 @@ export interface AccordionItemProps {
   title?: React.ReactNode;
   variant?: "contained" | "outlined" | "soft" | "outlined-soft" | "transparent";
   color?: string;
+  style?: React.CSSProperties;
+  className?: string;
   "data-testid"?: string;
   "data-testid-title"?: string;
 }
