@@ -1,0 +1,32 @@
+{/* Collapsible.mdx */}
+import { Canvas, Meta, Controls } from '@storybook/blocks';
+import * as AccordionStories from './Collapsible.stories';
+
+<Meta of={AccordionStories} name="Docs"/>
+# Collapsible:
+Collapsible are used to toggle the visibility of a section of content.\
+They are useful when you have a lot of content that you want to hide until the user needs it.
+
+## Variants:
+Pick a variant, make it shine, turning your idea into something divine.\
+Choose the one that fits your design system the best.\
+Default is Contained
+
+##### Contained
+<Canvas of={AccordionStories.Contained} />
+
+#### Outlined
+<Canvas of={AccordionStories.Outlined} />
+
+{/* #### Soft
+<Canvas of={AccordionStories.Soft}/>
+
+#### Outlined Soft
+<Canvas of={AccordionStories.OutlinedSoft}/>
+
+#### Transparent
+<Canvas of={AccordionStories.Transparent}/> */}
+
+#### Playground
+<Canvas of={AccordionStories.Playground}/>
+<Controls of={AccordionStories.Playground}/>

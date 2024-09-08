@@ -1,6 +1,5 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import { ThemeProvider } from "../../../components/ThemeProvider/ThemeProvider";
 
 import ColorPicker from "../../../components/ColorPicker/ColorPicker";
 
