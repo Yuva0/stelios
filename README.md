@@ -72,6 +72,7 @@ You can access the storybook [here](https://yuva0.github.io/stelios/). <br/> It 
     <li>CodeDisplay</li>
     <li>CodePreview</li>
     <li>ColorPicker</li>
+    <li>Collapsible</li>
     <li>ComponentHighlight</li>
     <li>Drawer</li>
     <li>FormControlLabel</li>
