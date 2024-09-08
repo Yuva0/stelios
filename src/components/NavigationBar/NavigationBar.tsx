@@ -21,7 +21,8 @@ const StyledNavigationBarCtr = styled.div<NavigationBarStyleProps>`
   overflow: scroll;
   border-right: ${(props) =>
     `1px solid ${props.$colorPalette[props.$color].grayScale[5]}`};
-  background-color: ${(props) => props.$colorPalette[props.$color].grayScale[0]};
+  background-color: ${(props) =>
+    props.$colorPalette[props.$color].grayScale[0]};
 `;
 
 const NavigationBar: React.FC<NavigationBarProps> = ({
@@ -57,6 +58,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
       index++;
       return React.cloneElement(child, {
         _index: index,
+        ...(color && child.props.color && { color: color }),
         selected: selectedIndex
           ? selectedIndex === index
           : child.props.selected,
@@ -66,20 +68,18 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
 
     if ((child.type as any).displayName === "NavigationBarGroup") {
       return React.cloneElement(child, {
-        children: React.Children.map(
-          child.props.children,
-          (child) => {
-            index++;
-            return React.cloneElement(child, {
-              _index: index,
-              _getSelectedIndex: _handleSelectedIndex,
-              // todo
-              selected: selectedIndex
-                ? selectedIndex === index
-                : (child.props as any).selected,
-            } as Partial<NavigationBarGroupItemProps>);
-          }
-        ),
+        children: React.Children.map(child.props.children, (child) => {
+          index++;
+          return React.cloneElement(child, {
+            _index: index,
+            _getSelectedIndex: _handleSelectedIndex,
+            ...(color && child.props.color && { color: color }),
+            // todo
+            selected: selectedIndex
+              ? selectedIndex === index
+              : (child.props as any).selected,
+          } as Partial<NavigationBarGroupItemProps>);
+        }),
       } as Partial<NavigationBarGroupProps>);
     }
 
