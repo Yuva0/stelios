@@ -11,7 +11,7 @@ const Collapsible: React.FC<CollapsibleProps> = ({
   variant = "contained",
   title,
   children,
-  isOpen,
+  open,
   color = colors.default.primary.main,
   width = "300px",
   onToggle,
@@ -20,7 +20,7 @@ const Collapsible: React.FC<CollapsibleProps> = ({
   const theme = useTheme().theme;
   const colorPalette = getColorPalette(theme, color);
 
-  const [_isOpen, setIsOpen] = React.useState(!isOpen);
+  const [_isOpen, setIsOpen] = React.useState(!open);
 
   const handleToggle = () => {
     setIsOpen((prev) => !prev);
@@ -33,6 +33,7 @@ const Collapsible: React.FC<CollapsibleProps> = ({
       $colorPalette={colorPalette}
       $color={color}
       $width={width}
+      $open={_isOpen}
       {...props}
     >
       <StyledCollapsibleTitle
@@ -54,7 +55,7 @@ const Collapsible: React.FC<CollapsibleProps> = ({
       </StyledCollapsibleTitle>
       {/* {!_isOpen && children} */}
       {_isOpen && 
-        <StyledChildren>
+        <StyledChildren $variant={variant} $colorPalette={colorPalette} $color={color}>
           {children}
         </StyledChildren>
       }
@@ -68,7 +69,7 @@ const StyledCollapsibleCtr = styled.div<CollapsibleStyleProps>`
   width: ${(props) => props.$width};
   border-radius: 1rem;
   ${(props) =>
-    variantStylesHandler(props.$variant, props.$colorPalette, props.$color)?.container}
+    variantStylesHandler(props.$variant, props.$colorPalette, props.$color, props.$open)?.container}
 `;
 
 const StyledCollapsibleTitle = styled.div<CollapsibleStyleProps>`
@@ -78,26 +79,27 @@ const StyledCollapsibleTitle = styled.div<CollapsibleStyleProps>`
   align-items: center;
   padding: 1rem;
   border-radius: 1rem;
-  ${(props) => variantStylesHandler(props.$variant, props.$colorPalette, props.$color)?.title}
   cursor: pointer;
+  ${props => variantStylesHandler(props.$variant, props.$colorPalette, props.$color, props.$open)?.title}
 `;
 const StyledIcon = styled.span`
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.25rem;
+  height: 1.25rem;
   & svg {
     width: 100%;
     height: 100%;
   }
 `;
 
-const StyledChildren = styled.div`
+const StyledChildren = styled.div<CollapsibleStyleProps>`
   padding: 1rem;
 `;
 
 const variantStylesHandler = (
   $variant: CollapsibleStyleProps["$variant"],
   $colorPalette: CollapsibleStyleProps["$colorPalette"],
-  $color: CollapsibleStyleProps["$color"]
+  $color: CollapsibleStyleProps["$color"],
+  $open: CollapsibleStyleProps["$open"]
 ) => {
   switch ($variant) {
     case "contained":
@@ -105,6 +107,8 @@ const variantStylesHandler = (
         container: css`
           background-color: ${$colorPalette[$color].accentScale[8]};
           color: ${$colorPalette[$color].grayScale[0]};
+          border: 2px solid ${$colorPalette[$color].accentScale[8]};
+          border-bottom: ${$open ? `2px solid ${$colorPalette[$color].accentScale[8]}` : "none"};
         `,
         title: css`
           background-color: ${$colorPalette[$color].accentScale[8]};
@@ -122,19 +126,67 @@ const variantStylesHandler = (
     case "outlined": {
       return {
         container: css`
-          background-color: "transparent";
-          color: ${$colorPalette[$color].grayScale[0]};
+          background-color: transparent;
+          color: ${$colorPalette[$color].accentScale[10]};
+          border: 2px solid ${$colorPalette[$color].accentScale[10]};
+          border-bottom: ${$open ? `2px solid ${$colorPalette[$color].accentScale[10]}` : "none"};
         `,
         title: css`
-          background-color: ${$colorPalette[$color].accentScale[8]};
-          color: ${$colorPalette[$color].grayScale[0]};
+          background-color: transparent;
+          color: ${$colorPalette[$color].accentScale[10]};
+          border: 2px solid transparent;
+          border-bottom: 2px solid ${$colorPalette[$color].accentScale[10]};
           &:hover{
-            background-color: ${$colorPalette[$color].accentScale[9]};
+            background-color: ${$colorPalette[$color].grayScale[0]};
           }
           &:active{
-            background-color: ${$colorPalette[$color].accentScale[9]};
+            background-color: ${$colorPalette[$color].grayScale[1]};
           }
         `,
+      }
+    }
+    case "soft": {
+      return {
+        container: css`
+          background-color: ${$colorPalette[$color].accentScale[3]};
+          color: ${$colorPalette[$color].accentScale[11]};
+          border: 2px solid ${$colorPalette[$color].accentScale[3]};
+          border-bottom: ${$open ? `2px solid ${$colorPalette[$color].accentScale[3]}` : "none"};
+        `,
+        title: css`
+          background-color: ${$colorPalette[$color].accentScale[3]};
+          color: ${$colorPalette[$color].accentScale[11]};
+          border: 2px solid ${$colorPalette[$color].accentScale[3]};
+          border-bottom: 2px solid ${$colorPalette[$color].accentScale[6]};
+          &:hover{
+            background-color: ${$colorPalette[$color].accentScale[4]};
+          }
+          &:active{
+            background-color: ${$colorPalette[$color].accentScale[4]};
+          }
+        `,
+      }
+    }
+    case "transparent": {
+      return {
+        container: css`
+          background-color: transparent;
+          color: ${$colorPalette[$color].accentScale[10]};
+          border: 2px solid transparent;
+          border-bottom: ${$open ? `2px solid transparent` : "none"};
+        `,
+        title: css`
+          background-color: transparent;
+          color: ${$colorPalette[$color].accentScale[10]};
+          border: 2px solid transparent;
+          border-bottom: 2px solid ${$colorPalette[$color].accentScale[6]};
+          &:hover{
+            background-color: ${$colorPalette[$color].grayScale[0]};
+          }
+          &:active{
+            background-color: ${$colorPalette[$color].grayScale[1]};
+          }
+        `
       }
     }
   }

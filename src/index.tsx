@@ -13,6 +13,7 @@ import Checkbox from "./components/Checkbox/Checkbox";
 import ClickAwayListener from "./components/ClickAwayListener/ClickAwayListener";
 import CodeDisplay from "./components/CodeDisplay/CodeDisplay";
 import CodePreview from "./components/CodePreview/CodePreview";
+import Collapsible from "./components/Collapsible/Collapsible";
 import ColorPicker from "./components/ColorPicker/ColorPicker";
 import ComponentHighlight from "./components/ComponentHighlight/ComponentHighlight";
 import Drawer from "./components/Drawer/Drawer";
@@ -71,6 +72,7 @@ export {
   ClickAwayListener,
   CodeDisplay,
   CodePreview,
+  Collapsible,
   ColorPicker,
   ComponentHighlight,
   Drawer,

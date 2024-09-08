@@ -19,20 +19,13 @@ const meta: Meta<typeof Collapsible> = {
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <div style={{ minHeight: "15rem" }}>
-        <Story />
-      </div>
-    ),
-  ],
 };
 export default meta;
 type Story = StoryObj<typeof Collapsible>;
 
 const Template: Story = {
   render: (args) => {
-    return <Collapsible {...args} title="Collapsible"><Text disableColor>Text variant</Text></Collapsible>;
+    return <Collapsible {...args} title="Collapsible Title"><Text disableColor>Text variant</Text></Collapsible>;
   },
 };
 
@@ -47,5 +40,19 @@ export const Outlined = {
   ...Template,
   args: {
     variant: "outlined",
+  },
+};
+
+export const Soft = {
+  ...Template,
+  args: {
+    variant: "soft",
+  },
+};
+
+export const Transparent = {
+  ...Template,
+  args: {
+    variant: "transparent",
   },
 };
