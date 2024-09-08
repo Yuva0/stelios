@@ -11,21 +11,31 @@ const Collapsible: React.FC<CollapsibleProps> = ({
   variant = "contained",
   title,
   children,
-  open,
+  open = false,
   color = colors.default.primary.main,
-  width = "300px",
+  width = "auto",
   onToggle,
   ...props
 }) => {
   const theme = useTheme().theme;
   const colorPalette = getColorPalette(theme, color);
 
-  const [_isOpen, setIsOpen] = React.useState(!open);
+  const [_isOpen, setIsOpen] = React.useState(open);
 
   const handleToggle = () => {
     setIsOpen((prev) => !prev);
     onToggle && onToggle(!_isOpen);
   };
+
+  const _ChildrenEle = (() => {
+    if(!_isOpen) return null;
+    return (
+      typeof children === "string" ? 
+      (<StyledChildren $variant={variant} $colorPalette={colorPalette} $color={color}>
+        <Text disableColor variant="paragraph">{children}</Text>
+      </StyledChildren>) : children
+    )
+  })();
 
   return (
     <StyledCollapsibleCtr
@@ -50,15 +60,10 @@ const Collapsible: React.FC<CollapsibleProps> = ({
           title
         )}
         <StyledIcon>
-          {_isOpen ? <IconChevronDown /> : <IconChevronUp />}
+          {_isOpen ? <IconChevronUp /> : <IconChevronDown />}
         </StyledIcon>
       </StyledCollapsibleTitle>
-      {/* {!_isOpen && children} */}
-      {_isOpen && 
-        <StyledChildren $variant={variant} $colorPalette={colorPalette} $color={color}>
-          {children}
-        </StyledChildren>
-      }
+      {_ChildrenEle}
     </StyledCollapsibleCtr>
   );
 };
