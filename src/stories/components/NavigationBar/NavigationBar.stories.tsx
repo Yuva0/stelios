@@ -7,7 +7,6 @@ import NavigationBarItem from "../../../components/NavigationBar/NavigationBarIt
 import NavigationBarHeader from "../../../components/NavigationBar/NavigationBarHeader/NavigationBarHeader";
 import NavigationBarGroup from "../../../components/NavigationBar/NavigationBarGroup/NavigationBarGroup";
 import NavigationBarGroupItem from "../../../components/NavigationBar/NavigationBarGroupItem/NavigationBarGroupItem";
-import { ThemeProvider } from "../../../components/ThemeProvider/ThemeProvider";
 
 const meta: Meta<typeof NavigationBar> = {
   title: "Components/NavigationBar",
@@ -23,7 +22,7 @@ type Story = StoryObj<typeof NavigationBar>;
 const Template: Story = {
   render: () => {
     return (
-      <NavigationBar color="primary" onChange={(value) => console.log(value)}>
+      <NavigationBar onChange={(value) => console.log(value)}>
         <NavigationBarGroup title="Group 1">
           <NavigationBarHeader>Header 1</NavigationBarHeader>
           <NavigationBarGroupItem value="1">Group Items</NavigationBarGroupItem>
