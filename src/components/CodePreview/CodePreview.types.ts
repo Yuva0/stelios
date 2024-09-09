@@ -4,6 +4,8 @@ export interface CodePreviewProps {
   width?: string;
   color?: string;
   "data-testid"?: string;
+  style?: React.CSSProperties;
+  className?: string;
 }
 
 export interface CodePreviewStyleProps {

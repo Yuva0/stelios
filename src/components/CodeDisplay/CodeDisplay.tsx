@@ -15,6 +15,7 @@ const CodeDisplay = ({
   language,
   color = colorTokens.default.primary.main,
   "data-testid": dataTestId,
+  className,
   ...props
 }: CodeDisplayProps) => {
   const theme = useTheme().theme;

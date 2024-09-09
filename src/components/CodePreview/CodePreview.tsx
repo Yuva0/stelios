@@ -12,6 +12,8 @@ const CodePreview = ({
   width,
   color = colorTokens.default.primary.main,
   "data-testid": dataTestId,
+  className,
+  style,
   ...props
 }: CodePreviewProps) => {
   const theme = useTheme().theme;
@@ -24,6 +26,8 @@ const CodePreview = ({
       $width={width}
       $color={color}
       data-testid={dataTestId}
+      className={className}
+      style={style}
       {...props}
     >
       <StyledCode $colorPalette={colorPalette} $color={color}>

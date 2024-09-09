@@ -26,7 +26,7 @@ export default CodePreviewMeta;
 
 type Story = StoryObj<typeof CodePreview>;
 const CodePreviewTemplate: Story = {
-  render: (args) => {
+  render: () => {
     return <CodePreview code={BUTTON_CODE} text={TEXT_CONTENT} />;
   },
 };

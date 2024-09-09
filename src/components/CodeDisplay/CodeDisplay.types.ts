@@ -4,6 +4,7 @@ export interface CodeDisplayProps {
   width?: string;
   language: string;
   style?: React.CSSProperties;
+  className?: string;
   color?: string;
   "data-testid"?: string;
 }
