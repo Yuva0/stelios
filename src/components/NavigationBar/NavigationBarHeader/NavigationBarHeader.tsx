@@ -41,7 +41,8 @@ const NavigationBarHeader = ({
     </StyledNavBarHeader>
   );
 };
-export default NavigationBarHeader;
+export default React.memo(NavigationBarHeader);
+NavigationBarHeader.displayName = "NavigationBarHeader";
 
 const StyledNavBarHeader = styled.li<NavigationBarHeaderStyleProps>`
   display: flex;
@@ -51,7 +52,6 @@ const StyledNavBarHeader = styled.li<NavigationBarHeaderStyleProps>`
   align-items: center;
   border-radius: 0.5rem;
   padding: 0.25rem 0 0.25rem 2.25rem;
-  color: ${(props) => props.$colorPalette[props.$color].grayScale[11]};
   &:before {
     content: "";
     position: absolute;

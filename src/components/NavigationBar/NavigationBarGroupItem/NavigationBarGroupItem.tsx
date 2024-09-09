@@ -73,7 +73,8 @@ const NavigationBarGroupItem = ({
     </StyledNavBarGroupItem>
   );
 };
-export default NavigationBarGroupItem;
+NavigationBarGroupItem.displayName = "NavigationBarGroupItem";
+export default React.memo(NavigationBarGroupItem);
 
 const StyledNavBarGroupItem = styled.li<NavigationBarGroupItemStyleProps>`
   display: flex;

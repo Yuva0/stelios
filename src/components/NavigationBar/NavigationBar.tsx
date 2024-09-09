@@ -58,7 +58,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
       index++;
       return React.cloneElement(child, {
         _index: index,
-        ...(color && child.props.color && { color: color }),
+        ...(color && !child.props.color && { color: color }),
         selected: selectedIndex
           ? selectedIndex === index
           : child.props.selected,
@@ -67,19 +67,29 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
     }
 
     if ((child.type as any).displayName === "NavigationBarGroup") {
+      console.log(child);
       return React.cloneElement(child, {
         children: React.Children.map(child.props.children, (child) => {
-          index++;
-          return React.cloneElement(child, {
-            _index: index,
-            _getSelectedIndex: _handleSelectedIndex,
-            ...(color && child.props.color && { color: color }),
-            // todo
-            selected: selectedIndex
-              ? selectedIndex === index
-              : (child.props as any).selected,
-          } as Partial<NavigationBarGroupItemProps>);
+          if (child.type.displayName === "NavigationBarGroupItem") {
+            index++;
+            return React.cloneElement(child, {
+              _index: index,
+              _getSelectedIndex: _handleSelectedIndex,
+              ...(color && !child.props.color && { color: color }),
+              // todo
+              selected: selectedIndex
+                ? selectedIndex === index
+                : (child.props as any).selected,
+            } as Partial<NavigationBarGroupItemProps>);
+          } else if (child.type.displayName === "NavigationBarHeader") {
+            return React.cloneElement(child, {
+              ...(color && !child.props.color && { color: color }),
+            });
+          } else {
+            return child;
+          }
         }),
+        ...(color && !child.props.color && { color: color }),
       } as Partial<NavigationBarGroupProps>);
     }
 
