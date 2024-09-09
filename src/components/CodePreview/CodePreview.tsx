@@ -14,6 +14,9 @@ const CodePreview = ({
   "data-testid": dataTestId,
   className,
   style,
+  codeStyle,
+  textStyle,
+  language = "javascript",
   ...props
 }: CodePreviewProps) => {
   const theme = useTheme().theme;
@@ -30,13 +33,13 @@ const CodePreview = ({
       style={style}
       {...props}
     >
-      <StyledCode $colorPalette={colorPalette} $color={color}>
+      <StyledCode $colorPalette={colorPalette} $color={color} style={codeStyle}>
         {code}
       </StyledCode>
 
-      <StyledContainer $colorPalette={colorPalette} $color={color}>
+      <StyledContainer $colorPalette={colorPalette} $color={color} style={textStyle}>
         <StyledSyntaxHighlighter
-          language="javascript"
+          language={language}
           style={appearance === "light" ? docco : dark}
           $colorPalette={colorPalette}
           $color={color}
