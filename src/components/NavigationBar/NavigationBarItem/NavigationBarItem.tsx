@@ -73,7 +73,7 @@ const NavigationBarItem = ({
   );
 };
 NavigationBarItem.displayName = "NavigationBarItem";
-export default React.memo(NavigationBarItem);
+export default NavigationBarItem;
 
 const StyledNavBarItem = styled.li<NavigationBarItemStyleProps>`
   display: flex;

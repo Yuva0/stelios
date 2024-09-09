@@ -41,7 +41,7 @@ const NavigationBarHeader = ({
     </StyledNavBarHeader>
   );
 };
-export default React.memo(NavigationBarHeader);
+export default NavigationBarHeader;
 NavigationBarHeader.displayName = "NavigationBarHeader";
 
 const StyledNavBarHeader = styled.li<NavigationBarHeaderStyleProps>`

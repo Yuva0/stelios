@@ -84,7 +84,7 @@ const NavigationBarGroup = ({
   );
 };
 NavigationBarGroup.displayName = "NavigationBarGroup";
-export default React.memo(NavigationBarGroup);
+export default NavigationBarGroup;
 
 const StyledNavBarGroup = styled.ul`
   display: flex;
