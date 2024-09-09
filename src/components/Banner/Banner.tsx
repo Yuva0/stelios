@@ -197,7 +197,7 @@ const StyledTitleIcon = styled.div`
   }
 `;
 const StyledIcon = styled.div`
-  flex: 1 0 auto;
+  flex: 0 0 auto;
   width: 24px;
   height: 24px;
   & svg {
