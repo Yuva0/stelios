@@ -67,7 +67,6 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
     }
 
     if ((child.type as any).displayName === "NavigationBarGroup") {
-      console.log(child);
       return React.cloneElement(child, {
         children: React.Children.map(child.props.children, (child) => {
           if (child.type.displayName === "NavigationBarGroupItem") {

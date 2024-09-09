@@ -123,7 +123,7 @@ const StyledNavBarGroupIcon = styled.span<NavigationBarGroupStyleProps>`
     width: 1rem;
     height: 1rem;
   }
-  color: ${(props) => props.$colorPalette[props.$color].grayScale[11]};
+  color: ${(props) => props.$colorPalette[props.$color].accentScale[10]};
 `;
 const StyledNavBarGroupItemContainer = styled.ul<NavigationBarGroupStyleProps>`
   height: auto;
