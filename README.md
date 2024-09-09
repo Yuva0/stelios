@@ -54,7 +54,7 @@ $ yarn add stelios@latest
 ```
 
 ### Storybook: 
-You can access the storybook [here](https://yuva0.github.io/stelios/). <br/> It provides documentation for the components, including their props and numerous samples to help you get started.
+You can access the storybook [here](https://yuva0.github.io/stelios/storybook). <br/> It provides documentation for the components, including their props and numerous samples to help you get started.
 
 <details open>
   <summary><h4 style="display: inline" id="components">Components Supported</h3></summary>
