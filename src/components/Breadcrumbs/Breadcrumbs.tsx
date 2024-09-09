@@ -2,13 +2,8 @@ import * as React from "react";
 import styled from "styled-components";
 import colorTokens from "../../tokens/colors.json";
 import { BreadcrumbsProps } from "./Breadcrumbs.types";
-
-const StyledDelimiterSpan = styled.span<{ size: BreadcrumbsProps["size"] }>`
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  margin: ${props => sizeHandler(props.size)};
-`;
+import { useTheme } from "../ThemeProvider/ThemeProvider";
+import { getColorPalette } from "../../helpers/helpers";
 
 const Breadcrumbs: React.FunctionComponent<BreadcrumbsProps> = ({
   children,
@@ -20,6 +15,9 @@ const Breadcrumbs: React.FunctionComponent<BreadcrumbsProps> = ({
   "data-testid": dataTestId,
   ...props
 }) => {
+
+  const theme = useTheme().theme;
+  const colorPalette = getColorPalette(theme, color);
   
   return (
     <div style={{ display: "inline-flex" }} data-testid={dataTestId} {...props}>
@@ -34,7 +32,7 @@ const Breadcrumbs: React.FunctionComponent<BreadcrumbsProps> = ({
             })}
 
             {index < React.Children.count(children) - 1 && (
-              <StyledDelimiterSpan size={size}>
+              <StyledDelimiterSpan $size={size} $colorPalette={colorPalette} $color={color}>
                 {delimiter ?? ">"}
               </StyledDelimiterSpan>
             )}
@@ -44,6 +42,14 @@ const Breadcrumbs: React.FunctionComponent<BreadcrumbsProps> = ({
     </div>
   );
 };
+
+const StyledDelimiterSpan = styled.span<{ $size: BreadcrumbsProps["size"], $colorPalette: any, $color: string }>`
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin: ${props => sizeHandler(props.$size)};
+  color: ${props => props.$colorPalette[props.$color].accentScale[10]};
+`;
 const sizeHandler = (size: BreadcrumbsProps["size"]) => {
   switch (size) {
     case "small":
@@ -54,5 +60,4 @@ const sizeHandler = (size: BreadcrumbsProps["size"]) => {
       return "0 0.5rem";
   }
 };
-
 export default Breadcrumbs;
