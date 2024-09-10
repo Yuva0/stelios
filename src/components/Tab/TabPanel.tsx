@@ -6,7 +6,8 @@ const TabPanel: React.FC<TabPanelProps> = ({
   children,
   selected = false,
 }: TabPanelProps) => {
-  return selected && <StyledTabPanel>{children}</StyledTabPanel>;
+  if(!selected) return null;
+  return <StyledTabPanel>{children}</StyledTabPanel>;
 };
 export default TabPanel;
 TabPanel.displayName = "TabPanel";
