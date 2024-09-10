@@ -17,4 +17,12 @@ TabList.displayName = "TabList";
 const StyledTabList = styled.div`
   display: flex;
   flex-direction: row;
+
+  & > :first-child {
+    border-radius: 8px 0 0 8px;
+  }
+
+  & > :last-child {
+    border-radius: 0 8px 8px 0;
+  }
 `;

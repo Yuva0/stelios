@@ -62,7 +62,7 @@ const StyledTab = styled.button<TabStyleProps>`
   text-wrap: nowrap;
   text-overflow: ellipsis;
   flex-direction: column;
-  padding: 1rem;
+  padding: 0.5rem 1rem;
   cursor: pointer;
   ${(props) => getVariantStyleProps(props)}
 `;

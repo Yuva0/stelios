@@ -1,11 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 import { TabsProps } from "./Tabs.types";
-import { TabProps } from "./Tab.types";
 import colorTokens from "../../tokens/colors.json";
-import { useTheme } from "../ThemeProvider/ThemeProvider";
-import { getColorPalette } from "../../helpers/helpers";
-import { TabPanelProps } from "./TabPanel.types";
 
 const Tabs: React.FC<TabsProps> = ({
   children,
