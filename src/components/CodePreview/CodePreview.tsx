@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import SyntaxHighlighter from "react-syntax-highlighter";
-import { dark, docco } from "react-syntax-highlighter/dist/cjs/styles/hljs";
+import { vs, dark } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 import { CodePreviewProps, CodePreviewStyleProps } from "./CodePreview.types";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
 import { getColorPalette } from "../../helpers/helpers";
@@ -9,7 +9,7 @@ import colorTokens from "../../tokens/colors.json";
 const CodePreview = ({
   code,
   text,
-  width,
+  width = "auto",
   color = colorTokens.default.primary.main,
   "data-testid": dataTestId,
   className,
@@ -40,7 +40,7 @@ const CodePreview = ({
       <StyledContainer $colorPalette={colorPalette} $color={color} style={textStyle}>
         <StyledSyntaxHighlighter
           language={language}
-          style={appearance === "light" ? docco : dark}
+          style={appearance === colorTokens.theme.appearance.light ? vs : dark}
           $colorPalette={colorPalette}
           $color={color}
         >
@@ -56,7 +56,7 @@ const StyledCodePreview = styled.div<CodePreviewStyleProps>`
   display: flex;
   flex-direction: column;
   border-radius: 0.5rem;
-  width: ${(props) => props.$width ?? "auto"};
+  width: ${(props) => props.$width};
 `;
 const StyledCode = styled.div<CodePreviewStyleProps>`
   display: flex;
@@ -81,7 +81,7 @@ const StyledContainer = styled.div<CodePreviewStyleProps>`
     word-break: break-word;
     code {
       font-size: 14px;
-      font-family: "Lato", sans-serif;
+      font-family: "Source Code Pro", monospace;
     }
   }
   ${(props) => {
@@ -96,5 +96,5 @@ const StyledSyntaxHighlighter = styled(
 )<CodePreviewStyleProps>`
   background-color: ${(props) =>
     props.$colorPalette[props.$color].accentScale[2]} !important;
-  font-family: "Lato", sans-serif;
+  font-family: "Source Code Pro", monospace;
 `;
