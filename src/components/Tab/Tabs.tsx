@@ -12,6 +12,9 @@ const Tabs: React.FC<TabsProps> = ({
   variant = "contained",
   color = colorTokens.default.primary.main,
   value = "",
+  style,
+  className,
+  ...props
 }) => {
   const [selectedValue, setSelectedValue] = React.useState<string>(value);
   // const theme = useTheme().theme;
@@ -67,7 +70,11 @@ const Tabs: React.FC<TabsProps> = ({
     }
   });
 
-  return <StyledTabs>{_Children}</StyledTabs>;
+  return (
+    <StyledTabs className={className} style={style} {...props}>
+      {_Children}
+    </StyledTabs>
+  );
 };
 export default Tabs;
 Tabs.displayName = "Tabs";
