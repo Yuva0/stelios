@@ -17,6 +17,7 @@ const SideBar = ({
 }: SideBarProps) => {
   const theme = useTheme().theme;
   const colorPalette = getColorPalette(theme, color);
+
   return (
     <StyledSideBar
       $colorPalette={colorPalette}

@@ -40,7 +40,16 @@ const SideBarGroup = ({
           {leadingIcon && <span>{leadingIcon}</span>}
           {title && typeof title === "string" ? (
             onClick ? (
-              <Link size={size} variant="hover" color={color} onClick={onClick}>
+              <Link
+                size={size}
+                variant="hover"
+                preciseColor={
+                  selected
+                    ? colorPalette![color].accentScale[11]
+                    : colorPalette![color].grayScale[11]
+                }
+                onClick={onClick}
+              >
                 {title}
               </Link>
             ) : (
