@@ -3,10 +3,10 @@ import styled from 'styled-components';
 
 import { TabListProps } from './TabList.types';
 
-const TabList: React.FC<TabListProps> = ({children}) => {
+const TabList: React.FC<TabListProps> = ({children, width = "400px"}) => {
 
   return (
-    <StyledTabList>
+    <StyledTabList style={{width: width}}>
       {children}
     </StyledTabList>
   )
@@ -17,5 +17,4 @@ TabList.displayName = "TabList";
 const StyledTabList = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 1rem;
 `;

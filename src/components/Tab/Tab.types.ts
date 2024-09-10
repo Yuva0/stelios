@@ -3,8 +3,16 @@ export interface TabProps {
   value: string;
   selected?: boolean;
   color?: string;
+  variant?: "contained" | "outlined";
 }
 
 export interface TabPvtProps {
-  pvtIndex: number;
+  pvtOnClick?: (value: string) => void;
+}
+
+export interface TabStyleProps {
+  $selected: boolean;
+  $colorPalette: any;
+  $color: string;
+  $variant: "contained" | "outlined";
 }

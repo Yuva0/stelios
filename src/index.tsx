@@ -47,6 +47,11 @@ import SideBarGroup from "./components/SideBar/SideBarGroup/SideBarGroup";
 import SideBarGroupItem from "./components/SideBar/SideBarGroupItem/SideBarGroupItem";
 import Slider from "./components/Slider/Slider";
 import Switch from "./components/Switch/Switch";
+import Tab from "./components/Tab/Tab";
+import TabList from "./components/Tab/TabList";
+import TabPanel from "./components/Tab/TabPanel";
+import TabPanels from "./components/Tab/TabPanels";
+import Tabs from "./components/Tab/Tabs";
 import Tag from "./components/Tag/Tag";
 import Text from "./components/Text/Text";
 import ToggleButton from "./components/ToggleButton/ToggleButton";
@@ -106,6 +111,11 @@ export {
   SideBarGroupItem,
   Slider,
   Switch,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
   Tag,
   Text,
   ToggleButton,
