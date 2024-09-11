@@ -64,7 +64,7 @@ const Password: React.FC<PasswordProps> = ({
         }
         onChange={onChange}
       />
-      {hasError && <Text>{errorMessage}</Text>}
+      {hasError && <Text color={color} size="small">{errorMessage}</Text>}
     </div>
   );
 };
