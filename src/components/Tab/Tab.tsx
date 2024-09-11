@@ -57,7 +57,7 @@ Tab.displayName = "Tab";
 
 const StyledTab = styled.button<TabStyleProps>`
   display: flex;
-  flex: 0 0 33.33%;
+  flex: 1 1 0;
   overflow: hidden;
   text-wrap: nowrap;
   text-overflow: ellipsis;

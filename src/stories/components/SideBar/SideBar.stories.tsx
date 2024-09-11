@@ -33,7 +33,7 @@ const Template: Story = {
           <SideBarGroupItem>Group 1 Item 4</SideBarGroupItem>
         </SideBarGroup>
         <SideBarGroup title="Group 2" onClick={() => {}}>
-          <SideBarGroupItem selected onClick={() => {}}>Group 2 Item 1</SideBarGroupItem>
+          <SideBarGroupItem onClick={() => {}}>Group 2 Item 1</SideBarGroupItem>
           <SideBarGroupItem onClick={() => {}}>Group 2 Item 2</SideBarGroupItem>
           <SideBarGroupItem onClick={() => {}}>Group 2 Item 3</SideBarGroupItem>
           <SideBarGroupItem onClick={() => {}}>Group 2 Item 4</SideBarGroupItem>
