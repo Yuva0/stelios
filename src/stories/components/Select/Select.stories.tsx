@@ -28,6 +28,7 @@ const Template: Story = {
       <div>
         <Select
           label="Select"
+          placeholder="Select an option"
           {...args}
           options={[
             { title: "Option 1", value: "option 1" },

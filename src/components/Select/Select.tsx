@@ -65,6 +65,7 @@ const Select = ({
         anchorElement={inputRef.current}
         minWidth={`${inputRef.current?.offsetWidth}px`}
         onClick={_onClick}
+        color={color}
         data-testid={dataTestIdMenu}
       >
         {options && options.map((option, index) => (

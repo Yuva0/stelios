@@ -51,6 +51,7 @@ const Password: React.FC<PasswordProps> = ({
         type={showPassword ? "text" : "password"}
         label={label}
         placeholder={placeholder}
+        value={value}
         variant={variant}
         size={size}
         trailingIcon={
@@ -64,7 +65,7 @@ const Password: React.FC<PasswordProps> = ({
         }
         onChange={onChange}
       />
-      {hasError && <Text color={color} size="small">{errorMessage}</Text>}
+      {hasError && <Text color={color} size="small" style={{marginTop:"0.25rem"}}>{errorMessage}</Text>}
     </div>
   );
 };

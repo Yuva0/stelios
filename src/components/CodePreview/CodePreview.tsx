@@ -86,7 +86,7 @@ const StyledContainer = styled.div<CodePreviewStyleProps>`
   }
   ${(props) => {
     return `
-      background-color: ${props.$colorPalette[props.$color].accentScale[2]};
+      background-color: ${props.$colorPalette[props.$color].accentScale[4]};
       border: 1px solid ${props.$colorPalette[props.$color].grayScale[5]};
     `;
   }}
@@ -95,6 +95,6 @@ const StyledSyntaxHighlighter = styled(
   SyntaxHighlighter
 )<CodePreviewStyleProps>`
   background-color: ${(props) =>
-    props.$colorPalette[props.$color].accentScale[2]} !important;
+    props.$colorPalette[props.$color].accentScale[4]} !important;
   font-family: "Source Code Pro", monospace;
 `;

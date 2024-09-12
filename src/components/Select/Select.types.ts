@@ -16,8 +16,5 @@ export interface SelectProps {
   "data-testid-menu"?: string;
 
   // Events
-  onClick?: (
-    e: React.MouseEvent,
-    { title, value }: MenuItemKeyProps
-  ) => void;
+  onClick?: (e: React.MouseEvent, { title, value }: MenuItemKeyProps) => void;
 }

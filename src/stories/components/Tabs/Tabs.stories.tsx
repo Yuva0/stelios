@@ -22,7 +22,7 @@ type Story = StoryObj<typeof Tabs>;
 export const Template: Story = {
   render: (args) => {
     return (
-      <Tabs variant="outlined">
+      <Tabs variant="contained">
         <TabList>
           <Tab label="Tab 1 Tab 1 Tab 1 Tab 1 Tab 1 Tab 1" value="tab1" />
           <Tab label="Tab 2" value="tab2"/>

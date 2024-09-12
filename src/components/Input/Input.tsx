@@ -114,6 +114,7 @@ const Input = forwardRef<HTMLDivElement, InputProps>(
           $cursor={cursor}
           $disabled={disabled}
           $variant={variant}
+          $placeholder={placeholder}
           style={inputStyle}
         >
           {leadingIcon && (
@@ -294,6 +295,11 @@ const StyledInputContent = styled.div<InputStyleContentProps>`
         font-family: 'Varela Round', sans-serif;
         background-color: ${properties.backgroundColor.default};
         color: ${properties.color.default};
+        &:empty::before {
+          content: "${props.$placeholder}";
+          color: ${properties.placeholder.default};
+          font-style: italic;
+        }
       }
     `;
   }}

@@ -47,6 +47,7 @@ export interface InputStyleContentProps {
   $hasLeadingIcon: boolean;
   $hasTrailingIcon: boolean;
   $colorPalette: any;
+  $placeholder?: string;
 }
 
 export interface InputStyleIconProps {
