@@ -139,7 +139,7 @@ const variantStyleHandler = (
       `;
     case "outlined":
       return css`
-        background-color: "transparent";
+        background-color: ${colorPalette[color].appearance === "light" ? "#fff" : "#000"};
         color: ${colorPalette[color].accentScale[10]};
         border: 2px solid ${colorPalette[color].accentScale[5]};
       `;

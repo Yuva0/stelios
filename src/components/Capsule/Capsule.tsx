@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, forwardRef } from "react";
+import React, { useRef, forwardRef } from "react";
 import styled from "styled-components";
 import { CapsuleProps, CapsuleStyleProps } from "./Capsule.types";
 import Text from "../Text/Text";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
-import { getColorPalette, hasPropertyChain } from "../../helpers/helpers";
+import { getColorPalette } from "../../helpers/helpers";
 import colors from "../../tokens/colors.json";
 
 const Capsule = forwardRef<HTMLDivElement, CapsuleProps>(

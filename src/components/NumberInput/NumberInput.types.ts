@@ -1,6 +1,5 @@
 export interface NumberInputProps {
   id?: string;
-  placeholder?: string;
   value?: number;
   className?: string;
   style?: React.CSSProperties;

@@ -53,6 +53,7 @@ const Link = ({
 export default Link;
 
 const StyledLink = styled.a<LinkStyleProps>`
+  color: ${(props) => props.$color};
   width: fit-content;
   text-decoration: ${(props) =>
     props.$variant === "underline" ? "underline" : "none"};

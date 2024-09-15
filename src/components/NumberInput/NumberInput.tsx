@@ -9,7 +9,6 @@ import { getColorPalette, hasPropertyChain } from "../../helpers/helpers";
 
 const NumberInput = ({
   id,
-  placeholder,
   value = 0,
   className,
   style,
@@ -94,7 +93,6 @@ const NumberInput = ({
 
         <NumberInputInput
           $variant={variant}
-          placeholder={placeholder}
           type="number"
           $size={size}
           $colorPalette={colorPalette}
