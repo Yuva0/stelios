@@ -42,6 +42,7 @@ const Tab: React.FC<TabProps> = ({
 
   return (
     <StyledTab
+      tabIndex={selected ? -1 : 0}
       $variant={variant}
       $selected={selected}
       $colorPalette={colorPalette}
@@ -80,11 +81,18 @@ const getVariantStyleProps = (props: TabStyleProps) => {
           ${props.$selected
             ? props.$colorPalette[props.$color].accentScale[8]
             : props.$colorPalette[props.$color].accentScale[2]};
+        &:hover {
+          background-color: ${props.$selected ? props.$colorPalette[props.$color].accentScale[8] : props.$colorPalette[props.$color].accentScale[3]};
+        }
+        &:focus-visible {
+          outline: ${`2px solid ${props.$colorPalette[props.$color].accentScale[9]}`};
+          outline-offset: -2px;
+        }
       `;
     case "outlined":
       return css`
         background-color: ${props.$selected
-          ? props.$colorPalette[props.$color].accentScale[1]
+          ? props.$colorPalette[props.$color].accentScale[2]
           : props.$colorPalette[props.$color].accentScale[1]};
         color: ${props.$selected
           ? props.$colorPalette[props.$color].accentScale[10]
@@ -93,6 +101,13 @@ const getVariantStyleProps = (props: TabStyleProps) => {
           ${props.$selected
             ? props.$colorPalette[props.$color].accentScale[7]
             : "transparent"};
+        &:hover {
+          background-color: ${props.$colorPalette[props.$color].accentScale[2]};
+        }
+        &:focus-visible {
+          background-color: ${props.$colorPalette[props.$color].accentScale[2]};
+          outline: 0;
+        }
       `;
   }
 };

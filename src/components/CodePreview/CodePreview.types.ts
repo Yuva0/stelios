@@ -1,7 +1,7 @@
 export interface CodePreviewProps {
   text: string;
   textStyle?: React.CSSProperties;
-  code: React.ReactNode | [React.ReactNode];
+  code: React.ReactNode | React.ReactNode[];
   width?: string;
   color?: string;
   "data-testid"?: string;

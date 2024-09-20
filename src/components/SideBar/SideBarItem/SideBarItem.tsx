@@ -35,7 +35,7 @@ const SideBarItem = ({
       {typeof children === "string" ? (
         <Link
           tabIndex={onClick ? 0 : undefined}
-          preciseColor={selected ? colorPalette![color].accentScale[11] : colorPalette![color].grayScale[11]}
+          preciseColor={selected ? colorPalette![color].accentScale[10] : colorPalette![color].grayScale[11]}
           size={size}
           variant="hover"
           className={className}

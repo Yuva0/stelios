@@ -5,7 +5,6 @@ import Tab from "../../../components/Tab/Tab";
 import TabList from "../../../components/Tab/TabList";
 import TabPanels from '../../../components/Tab/TabPanels';
 import TabPanel from '../../../components/Tab/TabPanel';
-import { ThemeProvider } from "../../../components/ThemeProvider/ThemeProvider";
 
 const meta: Meta<typeof Tabs> = {
   title: "Components/Tabs",
@@ -19,12 +18,12 @@ export default meta;
 
 type Story = StoryObj<typeof Tabs>;
 
-export const Template: Story = {
+const Template: Story = {
   render: (args) => {
     return (
-      <Tabs variant="contained">
+      <Tabs {...args}>
         <TabList>
-          <Tab label="Tab 1 Tab 1 Tab 1 Tab 1 Tab 1 Tab 1" value="tab1" />
+          <Tab label="Tab 1" value="tab1" />
           <Tab label="Tab 2" value="tab2"/>
           <Tab label="Tab 3" value="tab3" />
         </TabList>
@@ -36,4 +35,24 @@ export const Template: Story = {
       </Tabs>
     );
   },
+};
+
+export const Contained = {
+  ...Template,
+  args: {
+    variant: "contained",
+  },
+  
+};
+
+
+export const Outlined = {
+  ...Template,
+  args: {
+    variant: "outlined",
+  },
+};
+
+export const Playground = {
+  ...Template,
 };
