@@ -6,6 +6,8 @@ export interface SideBarProps {
   top?: string;
   right?: string;
   color?: string;
+  onChange?: (value?: string) => void;
+  _getSelectedIndex?: (index?: number, value?: string) => void;
   "data-testid"?: string;
 }
 

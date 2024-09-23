@@ -1,4 +1,6 @@
 export interface SideBarGroupItemProps {
+  _index?: number;
+  value?: string
   children: React.ReactNode | React.ReactNode[];
   className?: string;
   style?: React.CSSProperties;
@@ -7,6 +9,7 @@ export interface SideBarGroupItemProps {
   selected?: boolean;
   // Events
   onClick?: (e: React.MouseEvent | React.KeyboardEvent) => void;
+  _getSelectedIndex?: (index?: number, value?: string) => void;
   "data-testid"?: string;
 }
 

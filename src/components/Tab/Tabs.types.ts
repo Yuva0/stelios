@@ -5,4 +5,5 @@ export interface TabsProps {
   value?: string;
   style?: React.CSSProperties;
   className?: string;
+  onChange?: (value: string) => void;
 }

@@ -15,6 +15,8 @@ const StyledSideBarGroupItem = styled.div<SideBarGroupItemStyleProps>`
 `;
 
 const SideBarGroupItem = ({
+  _index,
+  value,
   children,
   className,
   style,
@@ -23,11 +25,23 @@ const SideBarGroupItem = ({
   color = colorTokens.default.primary.main,
   // Events
   onClick,
+  _getSelectedIndex,
   "data-testid": dataTestId,
   ...props
 }: SideBarGroupItemProps) => {
   const theme = useTheme().theme;
   const colorPalette = getColorPalette(theme, color);
+  const [_selected, setSelected] = React.useState(selected);
+
+  React.useEffect(() => {
+    setSelected(selected)
+  },[selected]);
+
+  const _onClick = (e: React.MouseEvent | React.KeyboardEvent) => {
+    setSelected(true);
+    _getSelectedIndex && _getSelectedIndex(_index, value);
+    onClick && onClick(e);
+  };
 
   return (
     <StyledSideBarGroupItem
@@ -35,7 +49,7 @@ const SideBarGroupItem = ({
       $color={color}
       className={className}
       style={style}
-      onClick={onClick}
+      onClick={_onClick}
       data-testid={dataTestId}
       {...props}
     >
@@ -44,10 +58,10 @@ const SideBarGroupItem = ({
           tabIndex={onClick ? 0 : undefined}
           size={size}
           variant="hover"
-          preciseColor={selected ? colorPalette![color].accentScale[11] : colorPalette![color].grayScale[11]}
+          preciseColor={_selected ? colorPalette![color].accentScale[10] : colorPalette![color].grayScale[11]}
           className={className}
           style={style}
-          onClick={onClick}
+          onClick={_onClick}
         >
           {children}
         </Link>
@@ -57,5 +71,6 @@ const SideBarGroupItem = ({
     </StyledSideBarGroupItem>
   );
 };
+SideBarGroupItem.displayName = "SideBarGroupItem";
 
 export default SideBarGroupItem;

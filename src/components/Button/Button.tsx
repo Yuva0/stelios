@@ -55,6 +55,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         style={style}
         onClick={onClick}
         data-testid={dataTestId}
+        tabIndex={disabled ? -1 : 0}
         {...rest}
       >
         {leadingIcon && (

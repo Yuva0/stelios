@@ -10,6 +10,7 @@ const Tabs: React.FC<TabsProps> = ({
   value = "",
   style,
   className,
+  onChange,
   ...props
 }) => {
   const [selectedValue, setSelectedValue] = React.useState<string>(value);
@@ -18,6 +19,7 @@ const Tabs: React.FC<TabsProps> = ({
 
   const _pvtOnClickHandler = (value: string) => {
     setSelectedValue(value);
+    onChange && onChange(value);
   };
 
   const _Children = React.Children.map(children, (child) => {

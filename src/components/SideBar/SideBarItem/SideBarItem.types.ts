@@ -1,4 +1,6 @@
 export interface SideBarItemProps {
+  _index?: number;
+  value?: string;
   children: React.ReactNode | React.ReactNode[];
   color?: string;
   className?: string;
@@ -6,6 +8,7 @@ export interface SideBarItemProps {
   size?: "small" | "medium" | "large";
   selected?: boolean;
   onClick?: (e: React.MouseEvent | React.KeyboardEvent) => void;
+  _getSelectedIndex?: (index?: number, value?: string) => void;
   "data-testid"?: string;
 }
 

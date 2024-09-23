@@ -68,6 +68,7 @@ const SideBarGroup = ({
   );
 };
 export default SideBarGroup;
+SideBarGroup.displayName = "SideBarGroup"
 
 const StyledSideBarGroup = styled.ul`
   display: flex;

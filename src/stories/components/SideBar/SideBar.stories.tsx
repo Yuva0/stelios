@@ -4,12 +4,12 @@ import SideBar from "../../../components/SideBar/SideBar";
 import SideBarItem from "../../../components/SideBar/SideBarItem/SideBarItem";
 import SideBarGroup from "../../../components/SideBar/SideBarGroup/SideBarGroup";
 import SideBarGroupItem from "../../../components/SideBar/SideBarGroupItem/SideBarGroupItem";
+import { ThemeProvider } from "../../../components/ThemeProvider/ThemeProvider";
 
 const meta: Meta<typeof SideBar> = {
   title: "Components/SideBar",
   component: SideBar,
-  parameters: {
-  },
+  parameters: {},
   argTypes: {},
   decorators: [
     (Story) => (
@@ -25,9 +25,14 @@ type Story = StoryObj<typeof SideBar>;
 const Template: Story = {
   render: () => {
     return (
-      <SideBar style={{ marginTop: "5rem" }}>
-        <SideBarGroup title="Group 1">
-          <SideBarGroupItem>Group 1 Item 1</SideBarGroupItem>
+      <SideBar style={{ marginTop: "5rem" }} color="primary">
+        <SideBarGroup
+          title="Group 1"
+          onClick={(e) => {
+            console.log(e);
+          }}
+        >
+          <SideBarGroupItem selected>Group 1 Item 1</SideBarGroupItem>
           <SideBarGroupItem>Group 1 Item 2</SideBarGroupItem>
           <SideBarGroupItem>Group 1 Item 3</SideBarGroupItem>
           <SideBarGroupItem>Group 1 Item 4</SideBarGroupItem>

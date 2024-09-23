@@ -7,6 +7,8 @@ import { getColorPalette } from "../../../helpers/helpers";
 import colorTokens from "../../../tokens/colors.json";
 
 const SideBarItem = ({
+  _index,
+  value,
   children,
   className,
   style,
@@ -15,18 +17,30 @@ const SideBarItem = ({
   color = colorTokens.default.primary.main,
   //Events
   onClick,
+  _getSelectedIndex,
   "data-testid": dataTestId,
   ...props
 }: SideBarItemProps) => {
+  const [_selected, setSelected] = React.useState(selected);
   const theme = useTheme().theme;
   const colorPalette = getColorPalette(theme, color);
+
+  React.useEffect(() => {
+    setSelected(selected)
+  },[selected]);
+
+  const _onClick = (e: React.MouseEvent | React.KeyboardEvent) => {
+    setSelected(true);
+    _getSelectedIndex && _getSelectedIndex(_index, value);
+    onClick && onClick(e);
+  }
 
   return (
     <StyledSideBarItem
       $colorPalette={colorPalette}
       $color={color}
-      onClick={onClick}
-      $selected={selected}
+      onClick={_onClick}
+      $selected={_selected}
       className={className}
       style={style}
       data-testid={dataTestId}
@@ -35,12 +49,12 @@ const SideBarItem = ({
       {typeof children === "string" ? (
         <Link
           tabIndex={onClick ? 0 : undefined}
-          preciseColor={selected ? colorPalette![color].accentScale[10] : colorPalette![color].grayScale[11]}
+          preciseColor={_selected ? colorPalette![color].accentScale[10] : colorPalette![color].grayScale[11]}
           size={size}
           variant="hover"
           className={className}
           style={style}
-          onClick={onClick}
+          onClick={_onClick}
         >
           {children}
         </Link>
@@ -51,6 +65,7 @@ const SideBarItem = ({
   );
 };
 export default SideBarItem;
+SideBarItem.displayName = "SideBarItem";
 
 const StyledSideBarItem = styled.div<SideBarItemStyleProps>`
   display: flex;
