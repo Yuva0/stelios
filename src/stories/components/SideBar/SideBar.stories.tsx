@@ -25,7 +25,7 @@ type Story = StoryObj<typeof SideBar>;
 const Template: Story = {
   render: () => {
     return (
-      <SideBar style={{ marginTop: "5rem" }} color="primary">
+      <SideBar style={{ marginTop: "5rem" }}>
         <SideBarGroup
           title="Group 1"
           onClick={(e) => {
