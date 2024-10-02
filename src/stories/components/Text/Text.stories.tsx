@@ -9,7 +9,24 @@ const meta: Meta<typeof Text> = {
   parameters: {
     layout: "centered",
   },
-  argTypes: {},
+  argTypes: {
+    variant: {
+      control: {
+        type: "select",
+        options: ["h1", "h2", "h3", "h4", "h5", "h6", "div", "paragraph", "label", "span"],
+      },
+    },
+    children: {
+      control: {
+        type: "text",
+      },
+    },
+    fontSize: {
+      control: {
+        type: "text",
+      },
+    },
+  },
 };
 export default meta;
 type Story = StoryObj<typeof Text>;
