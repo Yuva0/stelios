@@ -111,13 +111,13 @@ const variantStylesHandler = (
       return {
         container: css`
           background-color: ${$colorPalette[$color].accentScale[8]};
-          color: ${$colorPalette[$color].grayScale[0]};
+          color: ${$colorPalette[$color].accentContrast};
           border: 2px solid ${$colorPalette[$color].accentScale[8]};
           border-bottom: ${$open ? `2px solid ${$colorPalette[$color].accentScale[8]}` : "none"};
         `,
         title: css`
           background-color: ${$colorPalette[$color].accentScale[8]};
-          color: ${$colorPalette[$color].grayScale[0]};
+          color: ${$colorPalette[$color].accentContrast};
           border: 2px solid ${$colorPalette[$color].accentScale[8]};
           border-bottom: 2px solid ${$colorPalette[$color].accentScale[11]};
           &:hover{
