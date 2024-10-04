@@ -25,4 +25,5 @@ export type DrawerStyleProps = {
   $backdropStrength: "weak" | "normal" | "strong";
   $colorPalette: any;
   $color: string;
+  $isMobile: boolean;
 };

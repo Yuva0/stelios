@@ -6,7 +6,7 @@ import IconButton from "../IconButton/IconButton";
 import { IconX } from "@tabler/icons-react";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
 import { useDebounce } from "../../helpers/CustomHooks";
-import { getColorPalette } from "../../helpers/helpers";
+import { getColorPalette, useWindowSize } from "../../helpers/helpers";
 import colorTokens from "../../tokens/colors.json";
 // import ClickAwayListener from "../ClickAwayListener/ClickAwayListener";
 
@@ -35,6 +35,8 @@ const Drawer = ({
 }: DrawerProps) => {
   const [isOpen, setIsOpen] = React.useState(open);
   const debouncedOpen = useDebounce(open, 300);
+  const windowSize = useWindowSize();
+  const isMobile = windowSize.width < 480;
 
   React.useEffect(() => {
     setIsOpen(open);
@@ -88,6 +90,7 @@ const Drawer = ({
     <StyledHeader
       $color={color}
       $size={size}
+      $isMobile={isMobile}
       $colorPalette={colorPalette}
       $backdropStrength={backdropStrength}
     >
@@ -105,6 +108,7 @@ const Drawer = ({
         $color={color}
         $position={position}
         $size={size}
+        $isMobile={isMobile}
         $backdropStrength={backdropStrength}
         className={className}
         style={style}
@@ -149,7 +153,7 @@ const getBackdropStrength = (strength: DrawerProps["backdropStrength"]) => {
 };
 
 const StyledDrawer = styled.div<DrawerStyleProps>`
-  width: ${(props) => `${getSize(props.$size)}px`};
+  width: ${(props) => props.$isMobile ? "100%" : `${getSize(props.$size)}px`};
   position: fixed;
   top: 0;
   ${(props) => props.$position}: ${(props) =>
