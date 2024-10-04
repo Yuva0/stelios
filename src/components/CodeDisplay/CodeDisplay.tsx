@@ -12,6 +12,8 @@ const CodeDisplay = ({
   width = "auto",
   title,
   style,
+  codeStyle,
+  syntaxHighlighterStyle,
   language,
   color = colorTokens.default.primary.main,
   "data-testid": dataTestId,
@@ -42,11 +44,12 @@ const CodeDisplay = ({
         $colorPalette={colorPalette}
         $color={color}
         $hasTitle={!!title}
+        style={codeStyle}
       >
         <StyledSyntaxHighlighter
           language={language}
           title={title}
-          style={appearance === colorTokens.theme.appearance.light ? vs : dark}
+          style={{ ...(appearance === colorTokens.theme.appearance.light ? vs : dark), ...syntaxHighlighterStyle }}
           $colorPalette={colorPalette}
           $color={color}
         >

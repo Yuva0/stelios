@@ -131,12 +131,13 @@ const MusicPlayerHeader = () => {
       }}
     >
       <IconButton
+        alt="back"
         color="secondary"
         icon={<IconArrowLeft />}
         variant="neumorph"
       />
       <Text color="secondary">PLAYING NOW</Text>
-      <IconButton color="secondary" icon={<IconMenu />} variant="neumorph" />
+      <IconButton alt="Menu" color="secondary" icon={<IconMenu />} variant="neumorph" />
     </div>
   );
 };
@@ -152,17 +153,20 @@ const MusicPlayerFooter = () => {
       }}
     >
       <IconButton
+        alt="prev"
         color="secondary"
         icon={<IconPlayerTrackPrevFilled />}
         variant="neumorph"
       />
       <IconButton
+        alt="pause"
         color="primary"
         size="large"
         icon={<IconPlayerPauseFilled />}
         variant="neumorph-contained"
       />
       <IconButton
+        alt="next"
         color="secondary"
         icon={<IconPlayerTrackNextFilled />}
         variant="neumorph"
