@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import { LinkProps, LinkStyleProps } from "./Link.types";
 import Text from "../Text/Text";
 import styled from "styled-components";
@@ -6,7 +6,7 @@ import { useTheme } from "../ThemeProvider/ThemeProvider";
 import { getColorPalette } from "../../helpers/helpers";
 import colorTokens from "../../tokens/colors.json";
 
-const Link = ({
+const Link = forwardRef<HTMLAnchorElement, LinkProps>(({
   href,
   children,
   variant = "default",
@@ -19,7 +19,7 @@ const Link = ({
   tabIndex,
   onClick,
   "data-testid": dataTestId,
-}: LinkProps) => {
+}, ref) => {
   const theme = useTheme().theme;
   const colorPalette = getColorPalette(theme, color);
   const _color =
@@ -36,6 +36,7 @@ const Link = ({
   };
   return (
     <StyledLink
+      ref={ref}
       tabIndex={tabIndex}
       $color={_color}
       $variant={variant}
@@ -49,7 +50,7 @@ const Link = ({
       {LinkText()}
     </StyledLink>
   );
-};
+});
 export default Link;
 
 const StyledLink = styled.a<LinkStyleProps>`
