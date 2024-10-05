@@ -9,7 +9,7 @@ export interface MenuItemProps extends MenuItemKeyProps {
   trailingIcon?: React.ReactNode;
   children?: React.ReactNode | React.ReactNode[];
   color?: string;
-  variant?: "contained" | "outlined" | "soft";
+  variant?: "contained" | "outlined" | "soft" | "neumorph";
   onClick?: (
     e: React.MouseEvent<HTMLLIElement> | React.KeyboardEvent<HTMLLIElement>,
     { value, title }: MenuItemKeyProps

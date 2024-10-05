@@ -16,7 +16,7 @@ const meta: Meta<typeof Menu> = {
     variant: {
       control: {
         type: "select",
-        options: ["contained", "outlined", "soft"],
+        options: ["contained", "outlined", "soft", "neumorph"],
       },
       color: {
         control: {
@@ -85,6 +85,12 @@ export const Soft = {
   ...Template,
   args: {
     variant: "soft"
+  }
+}
+export const Neumorph = {
+  ...Template,
+  args: {
+    variant: "neumorph"
   }
 }
 

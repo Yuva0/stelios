@@ -16,7 +16,7 @@ const Menu = forwardRef<HTMLDivElement, MenuProps>(
       popperStyles,
       variant = "contained",
       open = false,
-      minWidth = "none",
+      minWidth = "0",
       anchorElement,
       hideOnOutsideClick = true,
       color = colorTokens.default.primary.main,
@@ -149,7 +149,12 @@ const variantStyleHandler = (
         color: ${colorPalette[color].accentScale[10]};
         border: 2px solid ${colorPalette[color].accentScale[2]};
       `;
-      
+    case "neumorph":
+      return css`
+        background-color: ${colorPalette[color].appearance === "light" ? "#fff" : "#000"};
+        color: ${colorPalette[color].accentScale[10]};
+        box-shadow: 0 6px 6px rgba(0, 0, 0, .1), 6px -6px 12px rgba(0, 0, 0, 0.1);
+      `;
   }
 };
 

@@ -185,5 +185,29 @@ const variantStyleHandler = (
           outline-offset: -0.125rem;
         }
       `;
+    case "neumorph":
+      return css`
+        background-color: ${colorPalette[color].appearance === "light"
+          ? "#fff"
+          : "#000"};
+        color: ${colorPalette[color].accentScale[10]};
+
+        &:hover {
+          background-color: ${colorPalette[color].grayScale[0]};
+          color: ${colorPalette[color].accentScale[10]};
+        }
+        
+        &:active {
+          background-color: ${colorPalette[color].grayScale[1]};
+          color: ${colorPalette[color].accentScale[10]};
+        }
+        
+        &:focus-visible {
+          background-color: ${colorPalette[color].accentScale[0]};
+          outline: none;
+          border-radius: 0.25rem;
+          outline-offset: -0.125rem;
+        }
+      `
   }
 };

@@ -7,7 +7,7 @@ export interface MenuProps {
   anchorElement: HTMLElement | null;
   hideOnOutsideClick?: boolean;
   color?: string;
-  variant?: "contained" | "outlined" | "soft";
+  variant?: "contained" | "outlined" | "soft" | "neumorph";
   // Popper Styles
   popperStyles?: {
     placement?:
