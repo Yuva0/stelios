@@ -252,7 +252,7 @@ const Text = ({
           crossOrigin=""
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Varela+Round&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Alegreya:wght@400;700&family=Varela+Round&display=swap"
           rel="stylesheet"
         />
       </Helmet>
@@ -281,7 +281,7 @@ const StyledH1 = styled.h1<TextStyleProps>`
         : "3rem"};
   font-weight: ${(props) => (props.$strong ? "700" : "400")};
   ${(props) => !props.$disableColor && `color: ${props.$color};`}
-  font-family: ${(props) => props.$fontFamily ?? `"Monteserrat", sans-serif`};
+  font-family: ${(props) => props.$fontFamily ?? '"Alegreya, serif"'};
   ${commonStyles}
 `;
 const StyledH2 = styled.h2<TextStyleProps>`
@@ -298,7 +298,7 @@ const StyledH2 = styled.h2<TextStyleProps>`
         ? "3rem"
         : "2.5rem"};
   font-weight: ${(props) => (props.$strong ? "700" : "400")};
-  font-family: ${(props) => props.$fontFamily ?? `"Monteserrat", sans-serif`};
+  font-family: ${(props) => props.$fontFamily ?? '"Alegreya, serif"'};
   ${(props) => !props.$disableColor && `color: ${props.$color};`}
   ${commonStyles}
 `;
@@ -316,7 +316,7 @@ const StyledH3 = styled.h3<TextStyleProps>`
         ? "2.5rem"
         : "2rem"};
   font-weight: ${(props) => (props.$strong ? "700" : "400")};
-  font-family: ${(props) => props.$fontFamily ?? `"Monteserrat", sans-serif`};
+  font-family: ${(props) => props.$fontFamily ?? '"Alegreya, serif"'};
   ${(props) => !props.$disableColor && `color: ${props.$color};`}
   ${commonStyles}
 `;
@@ -334,7 +334,7 @@ const StyledH4 = styled.h4<TextStyleProps>`
         ? "2rem"
         : "1.75rem"};
   font-weight: ${(props) => (props.$strong ? "700" : "400")};
-  font-family: ${(props) => props.$fontFamily ?? `"Monteserrat", sans-serif`};
+  font-family: ${(props) => props.$fontFamily ?? '"Alegreya, serif"'};
   ${(props) => !props.$disableColor && `color: ${props.$color};`}
   ${commonStyles}
 `;
@@ -352,7 +352,7 @@ const StyledH5 = styled.h5<TextStyleProps>`
         ? "1.75rem"
         : "1.5rem"};
   font-weight: ${(props) => (props.$strong ? "700" : "400")};
-  font-family: ${(props) => props.$fontFamily ?? `"Monteserrat", sans-serif`};
+  font-family: ${(props) => props.$fontFamily ?? '"Alegreya, serif"'};
   ${(props) => !props.$disableColor && `color: ${props.$color};`}
   ${commonStyles}
 `;
@@ -370,7 +370,7 @@ const StyledH6 = styled.h6<TextStyleProps>`
         ? "1.5rem"
         : "1.25rem"};
   font-weight: ${(props) => (props.$strong ? "700" : "400")};
-  font-family: ${(props) => props.$fontFamily ?? `"Monteserrat", sans-serif`};
+  font-family: ${(props) => props.$fontFamily ?? '"Alegreya, serif"'};
   ${(props) => !props.$disableColor && `color: ${props.$color};`}
   ${commonStyles}
 `;
