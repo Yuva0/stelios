@@ -187,9 +187,7 @@ const variantStyleHandler = (
       `;
     case "neumorph":
       return css`
-        background-color: ${colorPalette[color].appearance === "light"
-          ? "#fff"
-          : "#000"};
+        background-color: transparent;
         color: ${colorPalette[color].accentScale[10]};
 
         &:hover {
