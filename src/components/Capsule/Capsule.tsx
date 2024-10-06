@@ -19,6 +19,7 @@ const Capsule = forwardRef<HTMLDivElement, CapsuleProps>(
       width = "25rem",
       height = "4rem",
       textProps,
+      style,
       "data-testid": dataTestId,
       ...rest
     }: CapsuleProps,
@@ -49,6 +50,7 @@ const Capsule = forwardRef<HTMLDivElement, CapsuleProps>(
 
     return (
       <StyledCapsuleContainer
+        style={style}
         ref={innerRef}
         $variant={variant}
         $color={color}
@@ -78,6 +80,7 @@ const StyledCapsuleContainer = styled.div<CapsuleStyleProps>`
     );
     return `
       background-color: ${properties.backgroundColor.default};
+      box-shadow: ${properties.boxShadow ? properties.boxShadow.default : "none"};
       color: ${properties.color.default};
       border-radius: 1rem;
       flex-direction: ${props.$imagePosition === "left" ? "row" : "row-reverse"};
@@ -151,6 +154,23 @@ const getVariantProps = (
           default: `2px solid ${colorPalette[color].accentScale[2]}`,
         },
       };
+    case "neumorph":
+      return {
+        backgroundColor: {
+          default: "transparent"
+        },
+        color: {
+          default: colorPalette[color].accentScale[10]
+        },
+        border: {
+          default: `2px solid transparent`
+        },
+        boxShadow: {
+          default: colorPalette[color].appearance === "light" 
+            ? `-6px -6px 14px rgba(255, 255, 255, .7), -6px -6px 10px rgba(255, 255, 255, .5), 6px 6px 8px rgba(255, 255, 255, .075), 6px 6px 10px rgba(0, 0, 0, .15)` 
+            : `-6px -6px 14px rgba(0, 0, 0, 0.1),-6px -6px 10px rgba(0, 0, 0, .01),6px 6px 8px rgba(0, 0, 0, 0.5),6px 6px 10px rgba(0, 0, 0, .1)`,
+        }
+      }
   }
 };
 

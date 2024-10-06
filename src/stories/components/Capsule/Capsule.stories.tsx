@@ -91,6 +91,29 @@ export const Soft = {
   }
 };
 
+export const Neumorph = {
+  ...CapsuleTemplate,
+  args: {
+    image: IMAGE_URL,
+    imageAlt: "Space",
+    variant: "neumorph",
+    title: "No Man's Sky",
+    description: "One of the best games ever"
+  },
+  parameters: {
+    controls: {
+      hideNoControlsWarning: true,
+      disabled: true,
+      disable: true,
+    },
+    actions: {
+      hideNoControlsWarning: true,
+      disabled: true,
+      disable: true,
+    },
+  }
+};
+
 export const Playground = {
   ...CapsuleTemplate,
   args: {

@@ -1,5 +1,5 @@
 export interface CapsuleProps {
-  variant?: "contained" | "outlined" | "soft";
+  variant?: "contained" | "outlined" | "soft" | "neumorph";
   style?: React.CSSProperties;
   color?: string;
   className?: string;
