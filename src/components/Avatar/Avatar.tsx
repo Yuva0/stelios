@@ -58,6 +58,7 @@ const StyledImgContainer = styled.div<AvatarStyledProps>`
       width: ${properties.width};
       height: ${properties.height};
       background-color: ${properties.backgroundColor};
+      box-shadow: ${properties.boxShadow};
       color: ${properties.color};
       outline: ${properties.outline};
       & img {
@@ -128,14 +129,26 @@ const variantHandler = (
       return {
         backgroundColor: colorPalette[color].accentScale[8],
         color: colorPalette[color].accentContrast,
-        outline: "none" 
+        outline: "none" ,
+        boxShadow: "none",
       };
     case "outlined":
       return {
         backgroundColor: "transparent",
         color: colorPalette[color].accentScale[10],
         outline: `1px solid ${colorPalette[color].accentScale[8]}`,
+        boxShadow: "none",
       };
+    case "neumorph":
+      return {
+        backgroundColor: "transparent",
+        color: colorPalette[color].accentScale[10],
+        boxShadow: `-6px -6px 14px rgba(255, 255, 255, .7),
+          -6px -6px 10px rgba(255, 255, 255, .5),
+          6px 6px 8px rgba(255, 255, 255, .075),
+          6px 6px 10px rgba(0, 0, 0, .15)`,
+        outline: "none",
+      }
   }
 };
 

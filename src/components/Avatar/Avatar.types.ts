@@ -14,7 +14,7 @@ interface AvatarCommonProps {
   size?: "small" | "medium" | "large" | "xlarge";
   shape?: "rounded" | "square";
   color?: string;
-  variant?: "contained" | "outlined";
+  variant?: "contained" | "outlined" | "neumorph";
   type: "image" | "initials";
   initials?: string;
   src?: string;
