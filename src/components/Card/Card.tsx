@@ -156,7 +156,7 @@ const getVariantProps = (
         boxShadow: {
           default: colorPalette[color].appearance === "light" 
             ? `-6px -6px 14px rgba(255, 255, 255, .7), -6px -6px 10px rgba(255, 255, 255, .5), 6px 6px 8px rgba(255, 255, 255, .075), 6px 6px 10px rgba(0, 0, 0, .15)` 
-            : `-6px -6px 14px rgba(255, 255, 255, 0.1), -6px -6px 10px rgba(255, 255, 255, 0.1), 6px 6px 8px rgba(255, 255, 255, 0.05), 6px 6px 10px rgba(0, 0, 0, 0.1)`,
+            : `-6px -6px 14px rgba(0, 0, 0, 0.1),-6px -6px 10px rgba(0, 0, 0, .01),6px 6px 8px rgba(0, 0, 0, 0.5),6px 6px 10px rgba(0, 0, 0, .1)`,
         }
       }
   }

@@ -301,15 +301,15 @@ const getVariantProps = (
           default:
             colorPalette[color].appearance === "light"
               ? `-6px -6px 14px rgba(255, 255, 255, .7), -6px -6px 10px rgba(255, 255, 255, .5), 6px 6px 8px rgba(255, 255, 255, .075), 6px 6px 10px rgba(0, 0, 0, .15)`
-              : `-6px -6px 14px rgba(255, 255, 255, 0.1), -6px -6px 10px rgba(255, 255, 255, 0.1), 6px 6px 8px rgba(255, 255, 255, 0.05), 6px 6px 10px rgba(0, 0, 0, 0.1)`,
+              : `-6px -6px 14px rgba(0, 0, 0, 0.1),-6px -6px 10px rgba(0, 0, 0, .01),3px 3px 4px rgba(0, 0, 0, 0.4),3px 3px 12px rgba(0, 0, 0, 0.1)`,
           hover:
             colorPalette[color].appearance === "light"
               ? `-2px -2px 6px rgba(255, 255, 255, .6), -2px -2px 4px rgba(255, 255, 255, .4), 2px 2px 2px rgba(255, 255, 255, .05), 2px 2px 4px rgba(0, 0, 0, .1)`
-              : `-2px -2px 14px rgba(255, 255, 255, 0.1),  -2px -2px 4px rgba(255, 255, 255, .1), 2px 2px 2px rgba(255, 255, 255, .01), 2px 2px 4px rgba(0, 0, 0, .1)`,
+              : `-2px -2px 14px rgba(0, 0, 0, 0.4), -6px -6px 10px rgba(0, 0, 0, .01), 1px 1px 4px rgba(0, 0, 0, 0.4), 1px 1px 12px rgba(0, 0, 0, 0.1)`,
           active:
             colorPalette[color].appearance === "light"
               ? `inset -2px -2px 6px rgba(255, 255, 255, .7), inset -2px -2px 4px rgba(255, 255, 255, .5), inset 2px 2px 2px rgba(255, 255, 255, .075), inset 2px 2px 4px rgba(0, 0, 0, .15)`
-              : `inset -2px -2px 14px rgba(255, 255, 255, 0.1), inset -2px -2px 4px rgba(255, 255, 255, .1), inset 2px 2px 2px rgba(255, 255, 255, .01), inset 2px 2px 4px rgba(0, 0, 0, .1)`,
+              : `inset -2px -2px 14px rgba(0, 0, 0, 0.1),inset -2px -2px 4px rgba(0, 0, 0, .1),inset 2px 2px 4px rgba(0, 0, 0, .1),inset 2px 2px 8px rgba(0, 0, 0, .1)`,
         },
       };
     case "neumorph-contained":
