@@ -182,13 +182,14 @@ const StyledInput = styled.div<InputStyleProps>`
   width: ${(props) => props.$width};
   gap: 4px;
   user-select: none;
+  box-sizing: border-box;
 `;
 const StyledInputIcon = styled.div<InputStyleIconProps>`
   cursor: pointer;
   flex: 1 0 auto;
   width: ${(props) => sizeHandler(props.$size).iconSize};
   height: ${(props) => sizeHandler(props.$size).iconSize};
-  padding: 0.25rem;
+  box-sizing: border-box;
   &:hover {
     background-color: ${(props) =>
       props.$colorPalette[props.$color].grayScale[2]};
