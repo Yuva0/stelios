@@ -1,5 +1,5 @@
 import React, { useRef, forwardRef } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { CapsuleProps, CapsuleStyleProps } from "./Capsule.types";
 import Text from "../Text/Text";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
@@ -17,9 +17,10 @@ const Capsule = forwardRef<HTMLDivElement, CapsuleProps>(
       variant = "contained",
       imagePosition = "left",
       width = "25rem",
-      height = "4rem",
+      height = "fit-content",
       textProps,
       style,
+      clickable = false,
       "data-testid": dataTestId,
       ...rest
     }: CapsuleProps,
@@ -57,6 +58,7 @@ const Capsule = forwardRef<HTMLDivElement, CapsuleProps>(
         $colorPalette={colorPalette}
         $imagePosition={imagePosition}
         $width={width}
+        $clickable={clickable}
         $height={height}
         data-testid={dataTestId}
         {...rest}
@@ -72,23 +74,12 @@ const Capsule = forwardRef<HTMLDivElement, CapsuleProps>(
 
 const StyledCapsuleContainer = styled.div<CapsuleStyleProps>`
   display: flex;
-  ${props => {
-    const properties = getVariantProps(
-      props.$variant,
-      props.$color,
-      props.$colorPalette
-    );
-    return `
-      background-color: ${properties.backgroundColor.default};
-      box-shadow: ${properties.boxShadow ? properties.boxShadow.default : "none"};
-      color: ${properties.color.default};
-      border-radius: 1rem;
-      flex-direction: ${props.$imagePosition === "left" ? "row" : "row-reverse"};
-      width: ${props.$width};
-      height: ${props.$height};
-      border: ${properties.border!.default};
-    `;
-  }}
+  border-radius: 1rem;
+  flex-direction: ${props => props.$imagePosition === "left" ? "row" : "row-reverse"};
+  width: ${props => props.$width};
+  height: ${props => props.$height};
+  cursor: ${props => props.$clickable ? "pointer" : "default"};
+  ${props => getVariantProps(props.$variant, props.$color, props.$colorPalette, props.$clickable)}
 `;
 
 const StyledTextContainer = styled.div<{ $padding: string }>`
@@ -96,18 +87,22 @@ const StyledTextContainer = styled.div<{ $padding: string }>`
   flex-direction: column;
   padding: ${({ $padding }) => $padding};
   gap: 0.2rem;
+  flex: 0 0 70%;
+  box-sizing: border-box;
 `;
 
 const StyledImgContainer = styled.div<{ $imagePosition: string }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  flex: 0 0 30%;
   border-radius: ${({ $imagePosition }) =>
     $imagePosition === "left" ? "0.9rem 0 0 0.9rem" : "0 0.9rem 0.9rem 0"};
   overflow: hidden;
   img {
     height: 100%;
+    width: 100%;
+    object-fit: cover;
     border-radius: inherit;
   }
 `;
@@ -115,62 +110,107 @@ const StyledImgContainer = styled.div<{ $imagePosition: string }>`
 const getVariantProps = (
   variant: CapsuleStyleProps["$variant"],
   color: CapsuleStyleProps["$color"],
-  colorPalette: CapsuleStyleProps["$colorPalette"]
+  colorPalette: CapsuleStyleProps["$colorPalette"],
+  clickable: CapsuleStyleProps["$clickable"]
 ) => {
   switch (variant) {
     case "contained":
-      return {
-        backgroundColor: {
-          default: colorPalette[color].accentScale[8],
-        },
-        color: {
-          default: colorPalette[color].accentContrast,
-        },
-        border: {
-          default: `2px solid ${colorPalette[color].accentScale[8]}`,
-        },
-      };
+      return css`
+        background-color: ${colorPalette[color].accentScale[8]};
+        color: ${colorPalette[color].accentContrast};
+        border: 2px solid ${colorPalette[color].accentScale[8]};
+
+        ${clickable && css`
+          &:hover {
+            background-color: ${colorPalette[color].accentScale[9]};
+            border: 2px solid ${colorPalette[color].accentScale[9]};
+          }
+          &:active {
+            background-color: ${colorPalette[color].accentScale[9]};
+            border: 2px solid ${colorPalette[color].accentScale[9]};
+            filter: brightness(0.92) saturate(1.1);
+          }
+        `}
+      `;
     case "outlined":
-      return {
-        backgroundColor: {
-          default: "transparent",
-        },
-        color: {
-          default: colorPalette[color].accentScale[8],
-        },
-        border: {
-          default: `2px solid ${colorPalette[color].accentScale[8]}`,
-        },
-      };
+      return css`
+        background-color: transparent;
+        color: ${colorPalette[color].accentScale[8]};
+        border: 2px solid ${colorPalette[color].accentScale[5]};
+
+        ${clickable && css`
+          &:hover {
+            background-color: transparent;
+            border: 2px solid ${colorPalette[color].accentScale[6]};
+          }
+          &:active {
+            background-color: transparent;
+            border: 2px solid ${colorPalette[color].accentScale[7]};
+          }
+        `}
+      `;
     case "soft":
-      return {
-        backgroundColor: {
-          default: colorPalette[color].accentScale[2],
-        },
-        color: {
-          default: colorPalette[color].accentScale[8],
-        },
-        border: {
-          default: `2px solid ${colorPalette[color].accentScale[2]}`,
-        },
-      };
+      return css`
+        background-color: ${colorPalette[color].accentScale[2]};
+        color: ${colorPalette[color].accentScale[10]};
+        border: 2px solid ${colorPalette[color].accentScale[2]};
+
+        ${clickable && css`
+          &:hover {
+            background-color: ${colorPalette[color].accentScale[3]};
+            border: 2px solid ${colorPalette[color].accentScale[3]};
+          }
+          &:active {
+            background-color: ${colorPalette[color].accentScale[3]};
+            border: 2px solid ${colorPalette[color].accentScale[3]};
+            filter: brightness(0.92) saturate(1.1);
+          }
+        `}
+      `;
+    case "outlined-soft":
+      return css`
+        background-color: ${colorPalette[color].accentScale[2]};
+        color: ${colorPalette[color].accentScale[10]};
+        border: 2px solid ${colorPalette[color].accentScale[5]};
+
+        ${clickable && css`
+          &:hover {
+            background-color: ${colorPalette[color].accentScale[3]};
+            border: 2px solid ${colorPalette[color].accentScale[6]};
+          }
+          &:active {
+            background-color: ${colorPalette[color].accentScale[3]};
+            border: 2px solid ${colorPalette[color].accentScale[6]};
+            filter: brightness(0.92) saturate(1.1);
+          }
+        `}
+      `;
     case "neumorph":
-      return {
-        backgroundColor: {
-          default: "transparent"
-        },
-        color: {
-          default: colorPalette[color].accentScale[10]
-        },
-        border: {
-          default: `2px solid transparent`
-        },
-        boxShadow: {
-          default: colorPalette[color].appearance === "light" 
-            ? `-6px -6px 14px rgba(255, 255, 255, .7), -6px -6px 10px rgba(255, 255, 255, .5), 6px 6px 8px rgba(255, 255, 255, .075), 6px 6px 10px rgba(0, 0, 0, .15)` 
-            : `-6px -6px 14px rgba(0, 0, 0, 0.1),-6px -6px 10px rgba(0, 0, 0, .01),6px 6px 8px rgba(0, 0, 0, 0.5),6px 6px 10px rgba(0, 0, 0, .1)`,
-        }
-      }
+      return css`
+        background-color: transparent;
+        color: ${colorPalette[color].accentScale[10]};
+        border: 2px solid transparent;
+        box-shadow: ${colorPalette[color].appearance === "light" 
+          ? `-6px -6px 14px rgba(255, 255, 255, .7), -6px -6px 10px rgba(255, 255, 255, .5), 6px 6px 8px rgba(255, 255, 255, .075), 6px 6px 10px rgba(0, 0, 0, .15)` 
+          : `-6px -6px 14px rgba(0, 0, 0, 0.1),-6px -6px 10px rgba(0, 0, 0, .01),6px 6px 10px rgba(0, 0, 0, 0.4),6px 6px 10px rgba(0, 0, 0, .1)`};
+
+        ${clickable && css`
+          &:hover {
+            background-color: transparent;
+            border: 2px solid transparent;
+            box-shadow: ${colorPalette[color].appearance === "light" 
+              ? `-2px -2px 6px rgba(255, 255, 255, .6), -2px -2px 4px rgba(255, 255, 255, .4), 2px 2px 2px rgba(255, 255, 255, .05), 2px 2px 4px rgba(0, 0, 0, .1)` 
+              : `-1px -1px 6px rgba(0, 0, 0, 0.4), -3px -3px 6px rgba(0, 0, 0, .01), 1px 1px 6px rgba(0, 0, 0, 0.4), 3px 3px 6px rgba(0, 0, 0, 0.1)`};
+          }
+          &:active {
+            background-color: transparent;
+            border: 2px solid transparent;
+            box-shadow: ${colorPalette[color].appearance === "light" 
+              ? `inset -2px -2px 6px rgba(255, 255, 255, .7), inset -2px -2px 4px rgba(255, 255, 255, .5), inset 2px 2px 2px rgba(255, 255, 255, .075), inset 2px 2px 4px rgba(0, 0, 0, .15)` 
+              : `inset -2px -2px 14px rgba(0, 0, 0, 0.1),inset -2px -2px 4px rgba(0, 0, 0, .1),inset 2px 2px 4px rgba(0, 0, 0, .1),inset 2px 2px 8px rgba(0, 0, 0, .1)`};
+          }
+        `}
+      `;
   }
 };
 

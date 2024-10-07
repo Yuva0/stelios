@@ -97,6 +97,7 @@ const StyledBannerContainer = styled.div<BannerStyleProps>`
       border-left: ${properties.borderLeft.default};
       color: ${properties.color.default};
       width: ${props.$width};
+      max-width: 100%;
     `;
   }}
 `;

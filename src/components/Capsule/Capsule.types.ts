@@ -1,5 +1,5 @@
 export interface CapsuleProps {
-  variant?: "contained" | "outlined" | "soft" | "neumorph";
+  variant?: "contained" | "outlined" | "soft" | "outlined-soft" | "neumorph";
   style?: React.CSSProperties;
   color?: string;
   className?: string;
@@ -13,6 +13,7 @@ export interface CapsuleProps {
   imagePosition?: "left" | "right";
   title?: React.ReactNode;
   description?: React.ReactNode;
+  clickable?: boolean;
   onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
 
   // Test Props
@@ -25,5 +26,6 @@ export interface CapsuleStyleProps {
   $imagePosition: NonNullable<CapsuleProps["imagePosition"]>;
   $width: NonNullable<CapsuleProps["width"]>;
   $height: NonNullable<CapsuleProps["height"]>;
+  $clickable: NonNullable<CapsuleProps["clickable"]>;
   $colorPalette: any; // Adjust this to match your theme's color palette type
 }
