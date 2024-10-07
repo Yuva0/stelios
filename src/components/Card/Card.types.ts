@@ -7,6 +7,8 @@ export interface CardProps {
   width?: string;
   className?: string;
   style?: React.CSSProperties;
+  clickable?: boolean;
+  onClick?: () => void;
   "data-testid"?: string;
 }
 export interface CardHeaderProps {
@@ -28,4 +30,5 @@ export interface CardStyledProps {
   $colorPalette: any;
   $color: string;
   $width: string;
+  $clickable: boolean;
 }
