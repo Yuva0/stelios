@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>26/26</span>
+                <span class='fraction'>31/31</span>
             </div>
         
             
@@ -39,14 +39,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>4/4</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>22/22</span>
+                <span class='fraction'>27/27</span>
             </div>
         
             
@@ -121,17 +121,17 @@
 <a name='L56'></a><a href='#L56'>56</a>
 <a name='L57'></a><a href='#L57'>57</a>
 <a name='L58'></a><a href='#L58'>58</a>
-<a name='L59'></a><a href='#L59'>59</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">16x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">11x</span>
@@ -143,6 +143,9 @@
 <span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -167,6 +170,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">16x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -177,19 +188,13 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import * as React from "react";
 import styled from "styled-components";
 import colorTokens from "../../tokens/colors.json";
 import { BreadcrumbsProps } from "./Breadcrumbs.types";
-&nbsp;
-const StyledDelimiterSpan = styled.span&lt;{ size: BreadcrumbsProps["size"] }&gt;`
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  margin: ${props =&gt; sizeHandler(props.size)};
-`;
+import { useTheme } from "../ThemeProvider/ThemeProvider";
+import { getColorPalette } from "../../helpers/helpers";
 &nbsp;
 const Breadcrumbs: React.FunctionComponent&lt;BreadcrumbsProps&gt; = ({
   children,
@@ -201,9 +206,12 @@ const Breadcrumbs: React.FunctionComponent&lt;BreadcrumbsProps&gt; = ({
   "data-testid": dataTestId,
   ...props
 }) =&gt; {
+&nbsp;
+  const theme = useTheme().theme;
+  const colorPalette = getColorPalette(theme, color);
   
   return (
-    &lt;div style={{ display: "inline-flex" }} data-testid={dataTestId} {...props}&gt;
+    &lt;div style={{ display: "inline-flex", flexWrap: "wrap", rowGap: "0.25rem" }} data-testid={dataTestId} {...props}&gt;
       {React.Children.map(children, (child, index) =&gt; {
         if (!React.isValidElement(child)) return child;
         return (
@@ -215,7 +223,7 @@ const Breadcrumbs: React.FunctionComponent&lt;BreadcrumbsProps&gt; = ({
             })}
 &nbsp;
             {index &lt; React.Children.count(children) - 1 &amp;&amp; (
-              &lt;StyledDelimiterSpan size={size}&gt;
+              &lt;StyledDelimiterSpan $size={size} $colorPalette={colorPalette} $color={color}&gt;
                 {delimiter ?? "&gt;"}
               &lt;/StyledDelimiterSpan&gt;
             )}
@@ -225,6 +233,14 @@ const Breadcrumbs: React.FunctionComponent&lt;BreadcrumbsProps&gt; = ({
     &lt;/div&gt;
   );
 };
+&nbsp;
+const StyledDelimiterSpan = styled.span&lt;{ $size: BreadcrumbsProps["size"], $colorPalette: any, $color: string }&gt;`
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin: ${props =&gt; sizeHandler(props.$size)};
+  color: ${props =&gt; props.$colorPalette[props.$color].accentScale[10]};
+`;
 const sizeHandler = (size: BreadcrumbsProps["size"]) =&gt; {
   switch (size) {
     case "small":
@@ -235,7 +251,6 @@ const sizeHandler = (size: BreadcrumbsProps["size"]) =&gt; {
       return "0 0.5rem";
   }
 };
-&nbsp;
 export default Breadcrumbs;
 &nbsp;</pre></td></tr></table></pre>
 
@@ -244,7 +259,7 @@ export default Breadcrumbs;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-09-08T14:47:58.408Z
+                at 2024-10-08T06:05:07.106Z
             </div>
         <script src="../prettify.js"></script>
         <script>

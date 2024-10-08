@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">97.87% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>43/43</span>
+                <span class='fraction'>46/47</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">94.11% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>18/18</span>
+                <span class='fraction'>32/34</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">97.61% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>38/38</span>
+                <span class='fraction'>41/42</span>
             </div>
         
             
@@ -167,7 +167,16 @@
 <a name='L102'></a><a href='#L102'>102</a>
 <a name='L103'></a><a href='#L103'>103</a>
 <a name='L104'></a><a href='#L104'>104</a>
-<a name='L105'></a><a href='#L105'>105</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
+<a name='L105'></a><a href='#L105'>105</a>
+<a name='L106'></a><a href='#L106'>106</a>
+<a name='L107'></a><a href='#L107'>107</a>
+<a name='L108'></a><a href='#L108'>108</a>
+<a name='L109'></a><a href='#L109'>109</a>
+<a name='L110'></a><a href='#L110'>110</a>
+<a name='L111'></a><a href='#L111'>111</a>
+<a name='L112'></a><a href='#L112'>112</a>
+<a name='L113'></a><a href='#L113'>113</a>
+<a name='L114'></a><a href='#L114'>114</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -190,6 +199,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -233,19 +243,27 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">24x</span>
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">42x</span>
-<span class="cline-any cline-yes">42x</span>
+<span class="cline-any cline-yes">36x</span>
+<span class="cline-any cline-yes">36x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -294,7 +312,8 @@ const StyledNavigationBarCtr = styled.div&lt;NavigationBarStyleProps&gt;`
   overflow: scroll;
   border-right: ${(props) =&gt;
     `1px solid ${props.$colorPalette[props.$color].grayScale[5]}`};
-  background-color: ${(props) =&gt; props.$colorPalette[props.$color].grayScale[0]};
+  background-color: ${(props) =&gt;
+    props.$colorPalette[props.$color].grayScale[0]};
 `;
 &nbsp;
 const NavigationBar: React.FC&lt;NavigationBarProps&gt; = ({
@@ -330,6 +349,7 @@ const NavigationBar: React.FC&lt;NavigationBarProps&gt; = ({
       index++;
       return React.cloneElement(child, {
         _index: index,
+        ...(color &amp;&amp; !child.props.color &amp;&amp; { color: color }),
         selected: selectedIndex
           ? selectedIndex === index
           : child.props.selected,
@@ -339,20 +359,27 @@ const NavigationBar: React.FC&lt;NavigationBarProps&gt; = ({
 &nbsp;
     if ((child.type as any).displayName === "NavigationBarGroup") {
       return React.cloneElement(child, {
-        children: React.Children.map(
-          child.props.children,
-          (child) =&gt; {
+        children: React.Children.map(child.props.children, (child) =&gt; {
+          if (child.type.displayName === "NavigationBarGroupItem") {
             index++;
             return React.cloneElement(child, {
               _index: index,
               _getSelectedIndex: _handleSelectedIndex,
+              ...(color &amp;&amp; !child.props.color &amp;&amp; { color: color }),
               // todo
               selected: selectedIndex
                 ? selectedIndex === index
                 : (child.props as any).selected,
             } as Partial&lt;NavigationBarGroupItemProps&gt;);
+          } else if (child.type.displayName === "NavigationBarHeader") {
+            return React.cloneElement(child, {
+              ...(color &amp;&amp; !child.props.color &amp;&amp; <span class="branch-2 cbranch-no" title="branch not covered" >{ color: color })</span>,
+            });
+          } else <span class="missing-if-branch" title="else path not taken" >E</span>{
+<span class="cstat-no" title="statement not covered" >            return child;</span>
           }
-        ),
+        }),
+        ...(color &amp;&amp; !child.props.color &amp;&amp; { color: color }),
       } as Partial&lt;NavigationBarGroupProps&gt;);
     }
 &nbsp;
@@ -382,7 +409,7 @@ export default NavigationBar;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-09-08T14:47:58.408Z
+                at 2024-10-08T06:05:07.106Z
             </div>
         <script src="../prettify.js"></script>
         <script>

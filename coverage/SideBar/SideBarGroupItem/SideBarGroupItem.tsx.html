@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">91.42% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>21/21</span>
+                <span class='fraction'>32/35</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">62.5% </span>
+                <span class="strong">42.85% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>5/8</span>
+                <span class='fraction'>6/14</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">66.66% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>2/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">90.62% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>20/20</span>
+                <span class='fraction'>29/32</span>
             </div>
         
             
@@ -124,7 +124,22 @@
 <a name='L59'></a><a href='#L59'>59</a>
 <a name='L60'></a><a href='#L60'>60</a>
 <a name='L61'></a><a href='#L61'>61</a>
-<a name='L62'></a><a href='#L62'>62</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a>
+<a name='L76'></a><a href='#L76'>76</a>
+<a name='L77'></a><a href='#L77'>77</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -147,13 +162,27 @@
 <span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -183,6 +212,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from "react";
@@ -202,19 +232,33 @@ const StyledSideBarGroupItem = styled.div&lt;SideBarGroupItemStyleProps&gt;`
 `;
 &nbsp;
 const SideBarGroupItem = ({
+  _index,
+  value,
   children,
   className,
   style,
   size,
   selected,
-  color = colorTokens.default.primary.main<span class="branch-1 cbranch-no" title="branch not covered" >,</span>
+  color = <span class="branch-0 cbranch-no" title="branch not covered" >colorTokens.default.primary.main,</span>
   // Events
   onClick,
+  _getSelectedIndex,
   "data-testid": dataTestId,
   ...props
 }: SideBarGroupItemProps) =&gt; {
   const theme = useTheme().theme;
   const colorPalette = getColorPalette(theme, color);
+  const [_selected, setSelected] = React.useState(selected);
+&nbsp;
+  React.useEffect(() =&gt; {
+    setSelected(selected)
+  },[selected]);
+&nbsp;
+  const _onClick = <span class="fstat-no" title="function not covered" >(e</span>: React.MouseEvent | React.KeyboardEvent) =&gt; {
+<span class="cstat-no" title="statement not covered" >    setSelected(true);</span>
+<span class="cstat-no" title="statement not covered" >    _getSelectedIndex &amp;&amp; _getSelectedIndex(_index, value);</span>
+<span class="cstat-no" title="statement not covered" >    onClick &amp;&amp; onClick(e);</span>
+  };
 &nbsp;
   return (
     &lt;StyledSideBarGroupItem
@@ -222,7 +266,7 @@ const SideBarGroupItem = ({
       $color={color}
       className={className}
       style={style}
-      onClick={onClick}
+      onClick={_onClick}
       data-testid={dataTestId}
       {...props}
     &gt;
@@ -231,10 +275,10 @@ const SideBarGroupItem = ({
           tabIndex={onClick ? <span class="branch-0 cbranch-no" title="branch not covered" >0 </span>: undefined}
           size={size}
           variant="hover"
-          color={color}
+          preciseColor={_selected ? <span class="branch-0 cbranch-no" title="branch not covered" >colorPalette![color].accentScale[10] </span>: colorPalette![color].grayScale[11]}
           className={className}
           style={style}
-          onClick={onClick}
+          onClick={_onClick}
         &gt;
           {children}
         &lt;/Link&gt;
@@ -244,6 +288,7 @@ const SideBarGroupItem = ({
     &lt;/StyledSideBarGroupItem&gt;
   );
 };
+SideBarGroupItem.displayName = "SideBarGroupItem";
 &nbsp;
 export default SideBarGroupItem;
 &nbsp;</pre></td></tr></table></pre>
@@ -253,7 +298,7 @@ export default SideBarGroupItem;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-09-08T14:47:58.408Z
+                at 2024-10-08T06:05:07.106Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

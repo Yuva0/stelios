@@ -25,14 +25,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>27/27</span>
+                <span class='fraction'>34/34</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">93.75% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>16/16</span>
+                <span class='fraction'>15/16</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>26/26</span>
+                <span class='fraction'>31/31</span>
             </div>
         
             
@@ -156,7 +156,14 @@
 <a name='L91'></a><a href='#L91'>91</a>
 <a name='L92'></a><a href='#L92'>92</a>
 <a name='L93'></a><a href='#L93'>93</a>
-<a name='L94'></a><a href='#L94'>94</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
+<a name='L94'></a><a href='#L94'>94</a>
+<a name='L95'></a><a href='#L95'>95</a>
+<a name='L96'></a><a href='#L96'>96</a>
+<a name='L97'></a><a href='#L97'>97</a>
+<a name='L98'></a><a href='#L98'>98</a>
+<a name='L99'></a><a href='#L99'>99</a>
+<a name='L100'></a><a href='#L100'>100</a>
+<a name='L101'></a><a href='#L101'>101</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -171,12 +178,19 @@
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -251,7 +265,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import styled from "styled-components";
 import SyntaxHighlighter from "react-syntax-highlighter";
-import { dark, docco } from "react-syntax-highlighter/dist/cjs/styles/hljs";
+import { vs, dark } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 import { CodePreviewProps, CodePreviewStyleProps } from "./CodePreview.types";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
 import { getColorPalette } from "../../helpers/helpers";
@@ -260,9 +274,14 @@ import colorTokens from "../../tokens/colors.json";
 const CodePreview = ({
   code,
   text,
-  width,
+  width = "auto",
   color = colorTokens.default.primary.main,
   "data-testid": dataTestId,
+  className,
+  style,
+  codeStyle,
+  textStyle,
+  language = "javascript"<span class="branch-1 cbranch-no" title="branch not covered" >,</span>
   ...props
 }: CodePreviewProps) =&gt; {
   const theme = useTheme().theme;
@@ -275,16 +294,18 @@ const CodePreview = ({
       $width={width}
       $color={color}
       data-testid={dataTestId}
+      className={className}
+      style={style}
       {...props}
     &gt;
-      &lt;StyledCode $colorPalette={colorPalette} $color={color}&gt;
+      &lt;StyledCode $colorPalette={colorPalette} $color={color} style={codeStyle}&gt;
         {code}
       &lt;/StyledCode&gt;
 &nbsp;
-      &lt;StyledContainer $colorPalette={colorPalette} $color={color}&gt;
+      &lt;StyledContainer $colorPalette={colorPalette} $color={color} style={textStyle}&gt;
         &lt;StyledSyntaxHighlighter
-          language="javascript"
-          style={appearance === "light" ? docco : dark}
+          language={language}
+          style={appearance === colorTokens.theme.appearance.light ? vs : dark}
           $colorPalette={colorPalette}
           $color={color}
         &gt;
@@ -300,7 +321,7 @@ const StyledCodePreview = styled.div&lt;CodePreviewStyleProps&gt;`
   display: flex;
   flex-direction: column;
   border-radius: 0.5rem;
-  width: ${(props) =&gt; props.$width ?? "auto"};
+  width: ${(props) =&gt; props.$width};
 `;
 const StyledCode = styled.div&lt;CodePreviewStyleProps&gt;`
   display: flex;
@@ -325,12 +346,12 @@ const StyledContainer = styled.div&lt;CodePreviewStyleProps&gt;`
     word-break: break-word;
     code {
       font-size: 14px;
-      font-family: "Lato", sans-serif;
+      font-family: "Source Code Pro", monospace;
     }
   }
   ${(props) =&gt; {
     return `
-      background-color: ${props.$colorPalette[props.$color].accentScale[2]};
+      background-color: ${props.$colorPalette[props.$color].accentScale[4]};
       border: 1px solid ${props.$colorPalette[props.$color].grayScale[5]};
     `;
   }}
@@ -339,8 +360,8 @@ const StyledSyntaxHighlighter = styled(
   SyntaxHighlighter
 )&lt;CodePreviewStyleProps&gt;`
   background-color: ${(props) =&gt;
-    props.$colorPalette[props.$color].accentScale[2]} !important;
-  font-family: "Lato", sans-serif;
+    props.$colorPalette[props.$color].accentScale[4]} !important;
+  font-family: "Source Code Pro", monospace;
 `;
 &nbsp;</pre></td></tr></table></pre>
 
@@ -349,7 +370,7 @@ const StyledSyntaxHighlighter = styled(
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-09-08T14:47:58.408Z
+                at 2024-10-08T06:05:07.106Z
             </div>
         <script src="../prettify.js"></script>
         <script>
