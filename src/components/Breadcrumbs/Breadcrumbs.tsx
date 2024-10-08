@@ -20,7 +20,7 @@ const Breadcrumbs: React.FunctionComponent<BreadcrumbsProps> = ({
   const colorPalette = getColorPalette(theme, color);
   
   return (
-    <div style={{ display: "inline-flex" }} data-testid={dataTestId} {...props}>
+    <div style={{ display: "inline-flex", flexWrap: "wrap", rowGap: "0.25rem" }} data-testid={dataTestId} {...props}>
       {React.Children.map(children, (child, index) => {
         if (!React.isValidElement(child)) return child;
         return (
