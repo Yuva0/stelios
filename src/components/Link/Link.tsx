@@ -37,7 +37,7 @@ const Link = forwardRef<HTMLAnchorElement, LinkProps>(({
       children
     );
   };
-  
+
   return (isRelative ?
     <StyledReactRouterLink to={href} ref={ref} tabIndex={tabIndex} target={target} $color={_color} $variant={variant} data-testid={dataTestId} onClick={onClick} style={style} className={className}>
       {LinkText()}
@@ -84,4 +84,13 @@ const StyledReactRouterLink = styled(ReactRouterLink)<LinkStyleProps>`
     props.$variant === "underline" ? "underline" : "none"};
   cursor: pointer;
   display: inline-block;
+  &:hover {
+    text-decoration: ${(props) =>
+      props.$variant === "default" ? "none" : "underline"};
+  }
+  &:focus-visible {
+    outline: 1px solid ${(props) => props.$color};
+    outline-offset: 2px;
+    border-radius: 0.25rem;
+  }
 `;
