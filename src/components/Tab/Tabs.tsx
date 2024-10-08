@@ -11,6 +11,7 @@ const Tabs: React.FC<TabsProps> = ({
   style,
   className,
   onChange,
+  "data-testid": dataTestId,
   ...props
 }) => {
   const [selectedValue, setSelectedValue] = React.useState<string>(value);
@@ -69,7 +70,7 @@ const Tabs: React.FC<TabsProps> = ({
   });
 
   return (
-    <StyledTabs className={className} style={style} {...props}>
+    <StyledTabs className={className} style={style} data-testid={dataTestId} {...props}>
       {_Children}
     </StyledTabs>
   );

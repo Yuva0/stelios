@@ -6,4 +6,5 @@ export interface TabsProps {
   style?: React.CSSProperties;
   className?: string;
   onChange?: (value: string) => void;
+  "data-testid"?: string;
 }

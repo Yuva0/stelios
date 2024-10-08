@@ -77,7 +77,7 @@ const StyledCollapsibleCtr = styled.div<CollapsibleStyleProps>`
   width: ${(props) => props.$width};
   border-radius: 1rem;
   ${(props) =>
-    variantStylesHandler(props.$variant, props.$colorPalette, props.$color, props.$open)?.container}
+    variantStylesHandler(props.$variant, props.$colorPalette, props.$color, props.$open).container}
 `;
 
 const StyledCollapsibleTitle = styled.div<CollapsibleStyleProps>`
@@ -88,7 +88,7 @@ const StyledCollapsibleTitle = styled.div<CollapsibleStyleProps>`
   padding: 1rem;
   border-radius: 1rem;
   cursor: pointer;
-  ${props => variantStylesHandler(props.$variant, props.$colorPalette, props.$color, props.$open)?.title}
+  ${props => variantStylesHandler(props.$variant, props.$colorPalette, props.$color, props.$open).title}
 `;
 const StyledIcon = styled.span`
   width: 1.25rem;
