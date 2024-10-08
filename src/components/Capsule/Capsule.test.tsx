@@ -1,7 +1,8 @@
 import * as React from "react";
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import Capsule from "./Capsule";
 import { CapsuleProps } from "./Capsule.types";
+import { ThemeProvider } from "../ThemeProvider/ThemeProvider";
 
 describe("Capsule Component", () => {
   let defaultProps: any;
@@ -19,6 +20,12 @@ describe("Capsule Component", () => {
 
   const renderCapsule = (props: Partial<CapsuleProps>) => {
     return render(<Capsule {...defaultProps} {...props} />);
+  };
+
+  const renderDarkThemeCapsule = (props: Partial<CapsuleProps>) => {
+    return render(<ThemeProvider appearance="dark" accents={{primary: "red"}}>
+      <Capsule color="primary" {...defaultProps} {...props} />
+    </ThemeProvider>);
   };
 
   it("Should render a capsule with title and description", () => {
@@ -67,6 +74,55 @@ describe("Capsule Component", () => {
     renderCapsule({ variant: "soft" });
     const capsule = screen.getByTestId("capsule");
     expect(capsule).toBeInTheDocument();
+  });
+
+  it("Should render a capsule with neumorph variant", () => {
+    renderCapsule({ variant: "neumorph" });
+    const capsule = screen.getByTestId("capsule");
+    expect(capsule).toBeInTheDocument();
+  });
+
+  it("Should render a capsule with outlined-soft variant", () => {
+    renderCapsule({ variant: "outlined-soft" });
+    const capsule = screen.getByTestId("capsule");
+    expect(capsule).toBeInTheDocument();
+  });
+
+  it("Should render a dark theme capsule", () => {
+    renderDarkThemeCapsule({ variant: "neumorph" });
+    const capsule = screen.getByTestId("capsule");
+    expect(capsule).toBeInTheDocument();
+  });
+  it("Should render a dark theme clickable capsule", () => {
+    renderDarkThemeCapsule({ onClick: jest.fn(), clickable: true, variant: "neumorph" });
+    const capsule = screen.getByTestId("capsule");
+    fireEvent.click(capsule);
+  });
+
+  it("Should render a clickable contained capsule", () => {
+    renderCapsule({ onClick: jest.fn(), clickable: true, variant: "contained" });
+    const capsule = screen.getByTestId("capsule");
+    fireEvent.click(capsule);
+  });
+  it("Should render a clickable outlined capsule", () => {
+    renderCapsule({ onClick: jest.fn(), clickable: true, variant: "outlined" });
+    const capsule = screen.getByTestId("capsule");
+    fireEvent.click(capsule);
+  });
+  it("Should render a clickable soft capsule", () => {
+    renderCapsule({ onClick: jest.fn(), clickable: true, variant: "soft" });
+    const capsule = screen.getByTestId("capsule");
+    fireEvent.click(capsule);
+  });
+  it("Should render a clickable neumorph capsule", () => {
+    renderCapsule({ onClick: jest.fn(), clickable: true, variant: "neumorph" });
+    const capsule = screen.getByTestId("capsule");
+    fireEvent.click(capsule);
+  });
+  it("Should render a clickable outlined-soft capsule", () => {
+    renderCapsule({ onClick: jest.fn(), clickable: true, variant: "outlined-soft" });
+    const capsule = screen.getByTestId("capsule");
+    fireEvent.click(capsule);
   });
 
   it("Should render a capsule with left image position", () => {
