@@ -9,7 +9,7 @@
 Welcome to Stelios, a comprehensive design system built with TypeScript, React, and Styled-Components. Stelios provides a robust set of components and utilities to help you efficiently create responsive and accessible user interfaces.
 
 <p align="center">
-  <img alt="Latest Version" src="https://badgen.net/static/latest/1.0.11/blue/"/>
+  <img alt="Latest Version" src="https://badgen.net/static/latest/1.0.61/blue/"/>
   <!-- <img alt="Downloads" src="https://badgen.net/static/downloads/40/orange"/> -->
   <img alt="Components" src="https://badgen.net/static/components/41/green"/>
 </p>
