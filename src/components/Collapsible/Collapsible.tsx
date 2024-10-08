@@ -14,7 +14,11 @@ const Collapsible: React.FC<CollapsibleProps> = ({
   open = false,
   color = colors.default.primary.main,
   width = "auto",
+  style,
+  className,
   onToggle,
+  "data-testid": dataTestId,
+  "data-testid-title": dataTestIdTitle,
   ...props
 }) => {
   const theme = useTheme().theme;
@@ -27,15 +31,10 @@ const Collapsible: React.FC<CollapsibleProps> = ({
     onToggle && onToggle(!_isOpen);
   };
 
-  const _ChildrenEle = (() => {
-    if(!_isOpen) return null;
-    return (
-      typeof children === "string" ? 
-      (<StyledChildren $variant={variant} $colorPalette={colorPalette} $color={color}>
-        <Text disableColor variant="paragraph">{children}</Text>
-      </StyledChildren>) : children
-    )
-  })();
+  const _ChildrenEle = typeof children === "string" ? 
+  (<StyledChildren $variant={variant} $colorPalette={colorPalette} $color={color}>
+    <Text disableColor variant="paragraph">{children}</Text>
+  </StyledChildren>) : children;
 
   return (
     <StyledCollapsibleCtr
@@ -44,6 +43,9 @@ const Collapsible: React.FC<CollapsibleProps> = ({
       $color={color}
       $width={width}
       $open={_isOpen}
+      style={style}
+      className={className}
+      data-testid={dataTestId}
       {...props}
     >
       <StyledCollapsibleTitle
@@ -51,6 +53,7 @@ const Collapsible: React.FC<CollapsibleProps> = ({
         $colorPalette={colorPalette}
         $color={color}
         onClick={handleToggle}
+        data-testid={dataTestIdTitle}
       >
         {typeof title === "string" ? (
           <Text disableColor variant="paragraph">
@@ -63,7 +66,7 @@ const Collapsible: React.FC<CollapsibleProps> = ({
           {_isOpen ? <IconChevronUp /> : <IconChevronDown />}
         </StyledIcon>
       </StyledCollapsibleTitle>
-      {_ChildrenEle}
+      {_isOpen && _ChildrenEle}
     </StyledCollapsibleCtr>
   );
 };
