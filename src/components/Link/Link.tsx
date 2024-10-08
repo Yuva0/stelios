@@ -19,6 +19,7 @@ const Link = forwardRef<HTMLAnchorElement, LinkProps>(({
   preciseColor,
   tabIndex,
   onClick,
+  onKeyDown,
   "data-testid": dataTestId,
 }, ref) => {
   const theme = useTheme().theme;
@@ -39,7 +40,7 @@ const Link = forwardRef<HTMLAnchorElement, LinkProps>(({
   };
 
   return (isRelative ?
-    <StyledReactRouterLink to={href} ref={ref} tabIndex={tabIndex} target={target} $color={_color} $variant={variant} data-testid={dataTestId} onClick={onClick} style={style} className={className}>
+    <StyledReactRouterLink to={href} ref={ref} tabIndex={tabIndex} target={target} $color={_color} $variant={variant} data-testid={dataTestId} onClick={onClick} onKeyDown={onKeyDown} style={style} className={className}>
       {LinkText()}
     </StyledReactRouterLink> :
     <StyledLink
@@ -53,6 +54,7 @@ const Link = forwardRef<HTMLAnchorElement, LinkProps>(({
       style={style}
       onClick={onClick}
       data-testid={dataTestId}
+      onKeyDown={onKeyDown}
     >
       {LinkText()}
     </StyledLink>

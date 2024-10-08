@@ -8,6 +8,7 @@ export interface LinkProps {
   className?: string;
   style?: React.CSSProperties;
   onClick?: (e: React.MouseEvent | React.KeyboardEvent) => void;
+  onKeyDown?: (e: React.KeyboardEvent) => void;
   color?: string;
   preciseColor?: string;
   target?: "_blank" | "_self" | "_parent" | "_top";
