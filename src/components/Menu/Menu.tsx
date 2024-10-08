@@ -37,7 +37,7 @@ const Menu = forwardRef<HTMLDivElement, MenuProps>(
     const [focusVisible, setFocusVisible] = useState<number>(0);
     const theme = useTheme().theme;
     const colorPalette = getColorPalette(theme, color);
-    const { styles, attributes } = usePopper(anchorElement, popperElement, {
+    const { styles, attributes, update } = usePopper(anchorElement, popperElement, {
       placement: (popperStyles && popperStyles.placement) ?? "bottom-start",
       modifiers: (popperStyles && popperStyles.modifiers) ?? [
         {
@@ -48,6 +48,11 @@ const Menu = forwardRef<HTMLDivElement, MenuProps>(
         },
       ],
     });
+
+    // Update popper position when anchor element changes
+    useEffect(() => {
+      update && update();
+    }, [anchorElement, update]);
 
     useEffect(() => {
       setIsOpen(open);
