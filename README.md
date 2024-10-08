@@ -33,7 +33,16 @@ Welcome to Stelios, a comprehensive design system built with TypeScript, React, 
 - 📜 [Sponsors](#sponsors) -->
 
 ### Documentation:
-You can check the website out at [steliosui.com](https://www.steliosui.com).
+
+Comprehensive documentation for Stelios is available at [steliosui.com](https://www.steliosui.com). Our documentation includes:
+
+- **Getting Started Guide**: Learn how to quickly set up Stelios in your project.
+- **Component API**: Detailed information on props, usage, and examples for each component.
+- **Theming Guide**: Understand how to customize and create themes for your project.
+- **Best Practices**: Tips and tricks for using Stelios effectively in your applications.
+- **Tutorials**: Step-by-step guides for common use cases and advanced features.
+
+We regularly update our documentation to ensure it remains current and valuable. If you have any questions or need further clarification, please don't hesitate to open an issue on our GitHub repository.
 
 ### Features:
 - **Theming**: Dynamic color and theme computation on the fly. Create your own website using just one color.
