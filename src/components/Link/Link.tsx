@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
 import { getColorPalette } from "../../helpers/helpers";
 import colorTokens from "../../tokens/colors.json";
+import {Link as ReactRouterLink} from "react-router-dom";
 
 const Link = forwardRef<HTMLAnchorElement, LinkProps>(({
   href,
@@ -25,6 +26,8 @@ const Link = forwardRef<HTMLAnchorElement, LinkProps>(({
   const _color =
     preciseColor ?? colorPalette![color].accentScale[10];
 
+  const isRelative = href && href.startsWith("/");
+
   const LinkText = () => {
     return typeof children === "string" ? (
       <Text preciseColor={_color} size={size} variant="span">
@@ -34,7 +37,11 @@ const Link = forwardRef<HTMLAnchorElement, LinkProps>(({
       children
     );
   };
-  return (
+  
+  return (isRelative ?
+    <StyledReactRouterLink to={href} ref={ref} tabIndex={tabIndex} target={target} $color={_color} $variant={variant} data-testid={dataTestId} onClick={onClick} style={style} className={className}>
+      {LinkText()}
+    </StyledReactRouterLink> :
     <StyledLink
       ref={ref}
       tabIndex={tabIndex}
@@ -69,4 +76,12 @@ const StyledLink = styled.a<LinkStyleProps>`
     outline-offset: 2px;
     border-radius: 0.25rem;
   }
+`;
+const StyledReactRouterLink = styled(ReactRouterLink)<LinkStyleProps>`
+  color: ${(props) => props.$color};
+  width: fit-content;
+  text-decoration: ${(props) =>
+    props.$variant === "underline" ? "underline" : "none"};
+  cursor: pointer;
+  display: inline-block;
 `;
