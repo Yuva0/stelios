@@ -1,5 +1,4 @@
 import React from "react";
-// import { ColorChangeHandler } from "react-color";
 
 export interface ColorPickerProps {
   open?: boolean;
