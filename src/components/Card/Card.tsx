@@ -7,7 +7,7 @@ import {
   CardStyledProps,
 } from "./Card.types";
 import Text from "../Text/Text";
-import styled, { css } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import colorTokens from "../../tokens/colors.json";
 import { getColorPalette } from "../../helpers/helpers";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
@@ -20,6 +20,7 @@ const Card: React.FunctionComponent<CardProps> = ({
   footer,
   width = "400px",
   clickable = false,
+  animate,
   onClick,
   className,
   style,
@@ -36,6 +37,7 @@ const Card: React.FunctionComponent<CardProps> = ({
       $color={color}
       $width={width}
       $clickable={clickable}
+      $animate={animate}
       className={className}
       style={style}
       data-testid={dataTestId}
@@ -72,14 +74,15 @@ const StyledCard = styled.div<CardStyledProps>`
   gap: 1rem;
   width: ${props => props.$width};
   cursor: ${props => props.$clickable ? 'pointer' : 'default'};
-  ${props => getVariantProps(props.$variant, props.$colorPalette, props.$color, props.$clickable)}
+  ${props => getVariantProps(props.$variant, props.$colorPalette, props.$color, props.$clickable, props.$animate)}
 `;
 
 const getVariantProps = (
   variant: CardStyledProps["$variant"],
   colorPalette: CardStyledProps["$colorPalette"],
   color: CardStyledProps["$color"],
-  clickable: CardStyledProps["$clickable"]
+  clickable: CardStyledProps["$clickable"],
+  animate: CardStyledProps["$animate"]
 ) => {
   switch (variant) {
     case "contained":
@@ -161,6 +164,9 @@ const getVariantProps = (
         box-shadow: ${colorPalette[color].appearance === "light" 
             ? `-6px -6px 14px rgba(255, 255, 255, .7), -6px -6px 10px rgba(255, 255, 255, .5), 6px 6px 8px rgba(255, 255, 255, .075), 6px 6px 10px rgba(0, 0, 0, .15)` 
             : `-6px -6px 14px rgba(0, 0, 0, 0.1),-6px -6px 10px rgba(0, 0, 0, .01),6px 6px 10px rgba(0, 0, 0, 0.4),6px 6px 10px rgba(0, 0, 0, .1)`};
+        ${animate && css`
+          animation: ${boxShadowFadeIn} 0.5s ease-in-out;
+        `}
 
         ${clickable && css`
           &:hover {
@@ -182,3 +188,9 @@ const getVariantProps = (
       `
   }
 };
+
+const boxShadowFadeIn = keyframes`
+  0% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+`;

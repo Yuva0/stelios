@@ -8,6 +8,7 @@ export interface CardProps {
   className?: string;
   style?: React.CSSProperties;
   clickable?: boolean;
+  animate?: "fade-in"
   onClick?: () => void;
   "data-testid"?: string;
 }
@@ -31,4 +32,5 @@ export interface CardStyledProps {
   $color: string;
   $width: string;
   $clickable: boolean;
+  $animate?: CardProps["animate"];
 }
