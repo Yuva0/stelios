@@ -182,7 +182,6 @@ const StyledMenu = styled.ul`
   padding: 0;
   margin: 0;
   user-select: none;
-  z-index: 101;
 `;
 
 

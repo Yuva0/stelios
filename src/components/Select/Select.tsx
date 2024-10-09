@@ -11,13 +11,14 @@ const Select = ({
   open = false,
   options,
   // multiSelect,
-  placeholder,
+  placeholder = "",
   variant = "contained",
   size = "medium",
   "data-testid": dataTestId,
   "data-testid-input": dataTestIdInput,
   "data-testid-menu": dataTestIdMenu,
   color,
+  menuProps,
   //Events
   onClick,
 }: SelectProps) => {
@@ -67,6 +68,8 @@ const Select = ({
         onClick={_onClick}
         color={color}
         data-testid={dataTestIdMenu}
+        style={menuProps?.style}
+        {...menuProps}
       >
         {options && options.map((option, index) => (
           <MenuItem key={index} {...option} />

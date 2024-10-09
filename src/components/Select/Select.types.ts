@@ -1,3 +1,4 @@
+import { MenuProps } from "../Menu/Menu.types";
 import { MenuItemKeyProps, MenuItemProps } from "../MenuItem/MenuItem.types";
 
 export interface SelectProps {
@@ -11,6 +12,7 @@ export interface SelectProps {
   size?: "small" | "medium" | "large";
   options?: MenuItemProps[];
   color?: string;
+  menuProps?: MenuProps;
   "data-testid"?: string;
   "data-testid-input"?: string;
   "data-testid-menu"?: string;
