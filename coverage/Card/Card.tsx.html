@@ -25,14 +25,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>48/48</span>
+                <span class='fraction'>50/50</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">59.25% </span>
+                <span class="strong">58.33% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>32/54</span>
+                <span class='fraction'>35/60</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>40/40</span>
+                <span class='fraction'>42/42</span>
             </div>
         
             
@@ -247,7 +247,18 @@
 <a name='L182'></a><a href='#L182'>182</a>
 <a name='L183'></a><a href='#L183'>183</a>
 <a name='L184'></a><a href='#L184'>184</a>
-<a name='L185'></a><a href='#L185'>185</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
+<a name='L185'></a><a href='#L185'>185</a>
+<a name='L186'></a><a href='#L186'>186</a>
+<a name='L187'></a><a href='#L187'>187</a>
+<a name='L188'></a><a href='#L188'>188</a>
+<a name='L189'></a><a href='#L189'>189</a>
+<a name='L190'></a><a href='#L190'>190</a>
+<a name='L191'></a><a href='#L191'>191</a>
+<a name='L192'></a><a href='#L192'>192</a>
+<a name='L193'></a><a href='#L193'>193</a>
+<a name='L194'></a><a href='#L194'>194</a>
+<a name='L195'></a><a href='#L195'>195</a>
+<a name='L196'></a><a href='#L196'>196</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -274,11 +285,13 @@
 <span class="cline-any cline-yes">13x</span>
 <span class="cline-any cline-yes">13x</span>
 <span class="cline-any cline-yes">13x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">13x</span>
 <span class="cline-any cline-yes">13x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -325,6 +338,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -431,6 +445,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import * as React from "react";
 import {
   CardProps,
@@ -440,7 +462,7 @@ import {
   CardStyledProps,
 } from "./Card.types";
 import Text from "../Text/Text";
-import styled, { css } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import colorTokens from "../../tokens/colors.json";
 import { getColorPalette } from "../../helpers/helpers";
 import { useTheme } from "../ThemeProvider/ThemeProvider";
@@ -453,6 +475,7 @@ const Card: React.FunctionComponent&lt;CardProps&gt; = ({
   footer,
   width = "400px",
   clickable = false<span class="branch-1 cbranch-no" title="branch not covered" >,</span>
+  animate,
   onClick,
   className,
   style,
@@ -469,6 +492,7 @@ const Card: React.FunctionComponent&lt;CardProps&gt; = ({
       $color={color}
       $width={width}
       $clickable={clickable}
+      $animate={animate}
       className={className}
       style={style}
       data-testid={dataTestId}
@@ -505,14 +529,15 @@ const StyledCard = styled.div&lt;CardStyledProps&gt;`
   gap: 1rem;
   width: ${props =&gt; props.$width};
   cursor: ${props =&gt; props.$clickable ? <span class="branch-0 cbranch-no" title="branch not covered" >'pointer' </span>: 'default'};
-  ${props =&gt; getVariantProps(props.$variant, props.$colorPalette, props.$color, props.$clickable)}
+  ${props =&gt; getVariantProps(props.$variant, props.$colorPalette, props.$color, props.$clickable, props.$animate)}
 `;
 &nbsp;
 const getVariantProps = (
   variant: CardStyledProps["$variant"],
   colorPalette: CardStyledProps["$colorPalette"],
   color: CardStyledProps["$color"],
-  clickable: CardStyledProps["$clickable"]
+  clickable: CardStyledProps["$clickable"],
+  animate: CardStyledProps["$animate"]
 ) =&gt; {
   switch (variant) {
     case "contained":
@@ -594,6 +619,9 @@ const getVariantProps = (
         box-shadow: ${colorPalette[color].appearance === "light" 
             ? `-6px -6px 14px rgba(255, 255, 255, .7), -6px -6px 10px rgba(255, 255, 255, .5), 6px 6px 8px rgba(255, 255, 255, .075), 6px 6px 10px rgba(0, 0, 0, .15)` 
             : <span class="branch-1 cbranch-no" title="branch not covered" >`-6px -6px 14px rgba(0, 0, 0, 0.1),-6px -6px 10px rgba(0, 0, 0, .01),6px 6px 10px rgba(0, 0, 0, 0.4),6px 6px 10px rgba(0, 0, 0, .1)`}</span>;
+        ${animate<span class="branch-1 cbranch-no" title="branch not covered" > &amp;&amp; css`</span>
+          animation: ${boxShadowFadeIn} 0.5s ease-in-out;
+        `}
 &nbsp;
         ${clickable<span class="branch-1 cbranch-no" title="branch not covered" > &amp;&amp; css`</span>
           &amp;:hover {
@@ -615,14 +643,19 @@ const getVariantProps = (
       `
   }
 };
-&nbsp;</pre></td></tr></table></pre>
+&nbsp;
+const boxShadowFadeIn = keyframes`
+  0% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+`;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-10-08T09:19:48.153Z
+                at 2024-10-09T09:00:47.204Z
             </div>
         <script src="../prettify.js"></script>
         <script>

@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">80.48% </span>
+                <span class="strong">82.22% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>33/41</span>
+                <span class='fraction'>37/45</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">64.28% </span>
+                <span class="strong">70% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>9/14</span>
+                <span class='fraction'>14/20</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">81.25% </span>
+                <span class="strong">82.85% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>26/32</span>
+                <span class='fraction'>29/35</span>
             </div>
         
             
@@ -142,7 +142,14 @@
 <a name='L77'></a><a href='#L77'>77</a>
 <a name='L78'></a><a href='#L78'>78</a>
 <a name='L79'></a><a href='#L79'>79</a>
-<a name='L80'></a><a href='#L80'>80</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
+<a name='L80'></a><a href='#L80'>80</a>
+<a name='L81'></a><a href='#L81'>81</a>
+<a name='L82'></a><a href='#L82'>82</a>
+<a name='L83'></a><a href='#L83'>83</a>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
@@ -162,7 +169,10 @@
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
@@ -186,6 +196,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -200,6 +211,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -234,15 +248,18 @@ const Select = ({
   open = false<span class="branch-1 cbranch-no" title="branch not covered" >,</span>
   options,
   // multiSelect,
-  placeholder,
+  placeholder = "",
   variant = "contained"<span class="branch-1 cbranch-no" title="branch not covered" >,</span>
   size = "medium"<span class="branch-1 cbranch-no" title="branch not covered" >,</span>
+  width,
   "data-testid": dataTestId,
   "data-testid-input": dataTestIdInput,
   "data-testid-menu": dataTestIdMenu,
   color,
+  menuProps,
   //Events
   onClick,
+  ...props
 }: SelectProps) =&gt; {
   const inputRef = React.useRef&lt;HTMLInputElement&gt;(null);
   const [isOpen, setIsOpen] = React.useState(open);
@@ -271,6 +288,7 @@ const Select = ({
         placeholder={placeholder}
         value={inputValue}
         disableSearch
+        width={width}
         containerRef={inputRef}
         label={label}
         size={size}
@@ -281,6 +299,7 @@ const Select = ({
           setIsOpen(!isOpen);
         }}
         data-testid-input={dataTestIdInput}
+        {...props}
       /&gt;
       &lt;Menu
         variant={variant}
@@ -290,6 +309,8 @@ const Select = ({
         onClick={_onClick}
         color={color}
         data-testid={dataTestIdMenu}
+        style={<span class="branch-1 cbranch-no" title="branch not covered" >menuProps?.style}</span>
+        {...menuProps}
       &gt;
         {options &amp;&amp; options.map((option, index) =&gt; (
           &lt;MenuItem key={index} {...option} /&gt;
@@ -307,7 +328,7 @@ export default Select;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-10-08T09:19:48.153Z
+                at 2024-10-09T09:00:47.204Z
             </div>
         <script src="../prettify.js"></script>
         <script>
