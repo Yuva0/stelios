@@ -14,6 +14,7 @@ const Select = ({
   placeholder = "",
   variant = "contained",
   size = "medium",
+  width,
   "data-testid": dataTestId,
   "data-testid-input": dataTestIdInput,
   "data-testid-menu": dataTestIdMenu,
@@ -21,6 +22,7 @@ const Select = ({
   menuProps,
   //Events
   onClick,
+  ...props
 }: SelectProps) => {
   const inputRef = React.useRef<HTMLInputElement>(null);
   const [isOpen, setIsOpen] = React.useState(open);
@@ -49,6 +51,7 @@ const Select = ({
         placeholder={placeholder}
         value={inputValue}
         disableSearch
+        width={width}
         containerRef={inputRef}
         label={label}
         size={size}
@@ -59,6 +62,7 @@ const Select = ({
           setIsOpen(!isOpen);
         }}
         data-testid-input={dataTestIdInput}
+        {...props}
       />
       <Menu
         variant={variant}

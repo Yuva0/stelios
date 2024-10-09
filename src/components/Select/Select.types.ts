@@ -10,6 +10,7 @@ export interface SelectProps {
   className?: string;
   variant?: "contained" | "outlined" | "soft";
   size?: "small" | "medium" | "large";
+  width?: string;
   options?: MenuItemProps[];
   color?: string;
   menuProps?: MenuProps;
