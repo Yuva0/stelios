@@ -144,7 +144,7 @@ const variantStyleHandler = (
       `;
     case "outlined":
       return css`
-        background-color: ${colorPalette[color].appearance === "light" ? "#fff" : "#000"};
+        background-color: transparent;
         color: ${colorPalette[color].accentScale[10]};
         border: 2px solid ${colorPalette[color].accentScale[5]};
       `;
@@ -182,6 +182,7 @@ const StyledMenu = styled.ul`
   padding: 0;
   margin: 0;
   user-select: none;
+  z-index: 101;
 `;
 
 

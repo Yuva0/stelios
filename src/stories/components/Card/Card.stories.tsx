@@ -2,6 +2,8 @@ import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import Card from "../../../components/Card/Card";
 import Text from "../../../components/Text/Text";
+import { anOldHope } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import { ThemeProvider } from "../../../components/ThemeProvider/ThemeProvider";
 
 const CardStoryMeta: Meta<typeof Card> = {
   title: "Components/Card",
@@ -46,7 +48,7 @@ const FOOTER_CONTENT = <Text disableColor>Have a good day!</Text>
 
 type CardStory = StoryObj<typeof Card>;
 const CardTemplate: CardStory = {
-  render: (args) => <Card {...args}>{args.children}</Card>,
+  render: (args) => <ThemeProvider appearance="dark" accents={{primary: "blue"}}><Card color="primary" {...args}>{args.children}</Card></ThemeProvider>,
 };
 
 // Variants
@@ -100,6 +102,8 @@ export const Neumorph = {
 export const Playground = {
   ...CardTemplate,
   args: {
+    animate: "fade-in",
+    variant: "neumorph",
     children: BODY_CONTENT,
     header: HEADER_CONTENT,
     footer: FOOTER_CONTENT,
