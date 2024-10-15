@@ -18,9 +18,12 @@ const Capsule = forwardRef<HTMLDivElement, CapsuleProps>(
       imagePosition = "left",
       width = "25rem",
       height = "fit-content",
-      textProps,
-      style,
       clickable = false,
+      style,
+      textStyle,
+      imageStyle,
+      textClassName,
+      imageClassName,
       "data-testid": dataTestId,
       ...rest
     }: CapsuleProps,
@@ -34,7 +37,7 @@ const Capsule = forwardRef<HTMLDivElement, CapsuleProps>(
       if (!title && !description) return null;
 
       return (
-        <StyledTextContainer $padding={textProps?.padding || "0.5rem 0.75rem"}>
+        <StyledTextContainer $padding={"0.5rem 0.75rem"} style={textStyle} className={textClassName}>
           {title && (
             <Text disableColor variant="paragraph">
               {title}
@@ -63,7 +66,7 @@ const Capsule = forwardRef<HTMLDivElement, CapsuleProps>(
         data-testid={dataTestId}
         {...rest}
       >
-        <StyledImgContainer $imagePosition={imagePosition}>
+        <StyledImgContainer $imagePosition={imagePosition} style={imageStyle} className={imageClassName}>
           <img src={image} alt={imageAlt} />
         </StyledImgContainer>
         {renderTextContent()}
