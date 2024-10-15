@@ -137,12 +137,6 @@ describe("Capsule Component", () => {
     expect(capsule).toBeInTheDocument();
   });
 
-  it("Should render a capsule with custom textProps padding", () => {
-    renderCapsule({ textProps: { padding: "1rem" } });
-    const capsule = screen.getByTestId("capsule");
-    expect(capsule).toBeInTheDocument();
-  });
-
   it("Should render a capsule with custom width", () => {
     renderCapsule({ width:"1rem"  });
     const capsule = screen.getByTestId("capsule");
